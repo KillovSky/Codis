@@ -26,7 +26,7 @@ Pygments>=2.17.0
 # Parsing seguro de XML (WebDAV)
 defusedxml>=0.7.1
 # Zen Player: capas e metadados
-mutagen>=1.47
+mutagen>=1.48.1
 
 # Opcionais, instalados à parte (executados fora do binário):
 #   python-mpv, python-vlc   - vídeo no Zen Media (exigem libmpv / VLC)
