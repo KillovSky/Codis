@@ -1,0 +1,31 @@
+# Categorias das notas de release automáticas do GitHub.
+# Usadas pelo job "release" de pipeline.yml (API releases/generate-notes) em
+# releases oficiais: agrupa os PRs mesclados pelas labels já usadas no
+# repositório (ver labeler.yml e issue-labeler.yml).
+changelog:
+  exclude:
+    labels:
+      - "skip-changelog"
+      - "stale"
+    authors:
+      - "dependabot[bot]"
+      - "github-actions[bot]"
+  categories:
+    - title: "🔒 Segurança"
+      labels: ["segurança"]
+    - title: "🐛 Correções"
+      labels: ["bug"]
+    - title: "✨ Novidades e melhorias"
+      labels: ["melhoria", "plugin", "tema", "k-ui", "editor", "ui", "ia", "lsp", "lint", "git", "syntax"]
+    - title: "⚡ Desempenho"
+      labels: ["performance"]
+    - title: "🌍 Idiomas (i18n)"
+      labels: ["i18n"]
+    - title: "📚 Documentação"
+      labels: ["documentação"]
+    - title: "🔧 CI/CD, build e testes"
+      labels: ["ci/cd", "build", "testes", "configuração"]
+    - title: "📦 Dependências"
+      labels: ["dependencies"]
+    - title: "📌 Outras mudanças"
+      labels: ["*"]

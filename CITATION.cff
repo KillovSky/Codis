@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "Se você usar o Codis em pesquisa ou trabalho acadêmico, por favor cite usando os metadados abaixo."
+
+title: "Codis"
+abstract: >
+  Codis é um editor de código desktop completo construído inteiramente em Python 3 e Tkinter,
+  sem dependências de Electron ou Node.js. Oferece syntax highlighting para 25 linguagens
+  (48 reconhecidas por extensão),
+  integração com Language Server Protocol (LSP), Git integrado com blame inline,
+  Vim Mode imersivo em janela CLI separada, assistente de IA multi-provedor (Claude, GPT-4o,
+  Gemini, Ollama e GGUF local) com 15 Skills especializadas e contexto automático de projeto,
+  SQL Studio integrado com suporte a SQLite, PostgreSQL, MySQL e DuckDB,
+  interface holográfica K-UI com simulação de nebulosas, auroras e sistema solar de arquivos,
+  sistema de plugins com sandbox estática e API, motor de documentação universal KDocs
+  com suporte nativo a Python (Google/NumPy/Sphinx), Rust, Go, Ruby, Lua, C/C++, C# e mais,
+  gerenciador de tarefas Kanban com agendador de comandos integrado, e suporte a 14 idiomas.
+
+version: "1.0.0"
+date-released: "2026-11-12"
+license: MIT
+
+authors:
+  - name: "KillovSky"
+    alias: "KillovSky"
+    website: "https://github.com/KillovSky"
+
+repository-code: "https://github.com/KillovSky/Codis"
+url: "https://killovsky.github.io/Codis/"
+
+keywords:
+  - code-editor
+  - python
+  - tkinter
+  - ide
+  - syntax-highlighting
+  - lsp
+  - language-server-protocol
+  - git-integration
+  - vim-mode
+  - ai-assistant
+  - multi-provider-ai
+  - sql-studio
+  - task-manager
+  - kdocs
+  - k-ui
+  - i18n
+  - desktop-application
+  - open-source

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Interface · Codis</title>
+<meta name="description" content="O Codis segue um layout inspirado em editores modernos, composto por cinco regiões principais." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/interface.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Interface · Codis" />
+<meta property="og:description" content="O Codis segue um layout inspirado em editores modernos, composto por cinco regiões principais." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/interface.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group" open><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html" class="is-current" aria-current="page">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-interface">🖥️ Interface<a class="anchor" href="#-interface" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis segue um layout inspirado em editores modernos, composto por cinco regiões principais.</p>
+<hr />
+<h2 id="layout-geral">Layout Geral<a class="anchor" href="#layout-geral" aria-label="Link para esta seção">#</a></h2>
+<pre><code>┌──────────────────────────────────────────────────────────────┐
+│  Menu Bar (Arquivo · Editar · Seleção · Exibir · ...)          │
+├────┬────────────┬─────────────────────────────────────────────┤
+│    │            │  Tab Bar                                    │
+│    │            ├─────────────────────────────────────────────┤
+│  A │  Sidebar   │  Breadcrumb                                 │
+│  c │  (Explorer │  ─────────────────────────────────────────  │
+│  t │   Git      │                                             │
+│  i │   Busca    │          Área do Editor                     │
+│  v │   IA       │                                             │
+│  i │   etc.)    │                                             │
+│  t │            ├─────────────────────────────────────────────┤
+│  y │            │  Painel Inferior (Terminal · Output · ...)    │
+│  B │            │                                             │
+│  a ├────────────┴─────────────────────────────────────────────┤
+│  r │            Barra de Status                               │
+└────┴─────────────────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="activity-bar-barra-de-atividades">Activity Bar (Barra de Atividades)<a class="anchor" href="#activity-bar-barra-de-atividades" aria-label="Link para esta seção">#</a></h2>
+<p>A barra vertical de 48 px à esquerda é fixa e contém os ícones de navegação principal.</p>
+<p>A Activity Bar é composta por itens <strong>estáticos</strong> (lista fixa em <code>ITEMS_TOP</code>/<code>ITEMS_BOTTOM</code>) e itens <strong>dinâmicos</strong>, adicionados via <code>add_plugin_item()</code> durante a inicialização. A maior parte dos itens fica <strong>oculta por padrão</strong> - o usuário ativa via clique direito na barra (personalização).</p>
+<h3 id="itens-estáticos-items_top">Itens estáticos (<code>ITEMS_TOP</code>)<a class="anchor" href="#itens-estáticos-items_top" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ícone</th>
+<th>Painel</th>
+<th>Tecla</th>
+<th>Visível por padrão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📁</td>
+<td>Explorer (árvore de arquivos)</td>
+<td><code>Ctrl+Shift+E</code></td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>🔍</td>
+<td>Buscar em Arquivos</td>
+<td><code>Ctrl+Shift+F</code></td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>🌿</td>
+<td>Source Control (Git)</td>
+<td><em>(rótulo &quot;Ctrl+Shift+G&quot;, sem bind real - veja <a href="git.html">Git</a>)</em></td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>▶</td>
+<td>Executar/Depurar</td>
+<td><code>Ctrl+Shift+D</code></td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>🔌</td>
+<td>Extensões (Plugins)</td>
+<td><code>Ctrl+Shift+X</code></td>
+<td>Não</td>
+</tr>
+<tr>
+<td><code>[IA]</code></td>
+<td>Assistente de IA</td>
+<td><code>Ctrl+Shift+A</code></td>
+<td>Não</td>
+</tr>
+<tr>
+<td>🔷</td>
+<td>Outline</td>
+<td>-</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>🔖</td>
+<td>Bookmarks</td>
+<td><code>F2</code></td>
+<td>Não</td>
+</tr>
+<tr>
+<td>📝</td>
+<td>Scratchpad</td>
+<td><code>Ctrl+Shift+N</code>*</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>⚠</td>
+<td>Problemas</td>
+<td><em>(rótulo &quot;Ctrl+Shift+M&quot;, bind real é <code>Ctrl+M</code>)</em></td>
+<td>Não</td>
+</tr>
+<tr>
+<td>🗂</td>
+<td>SSH Remoto</td>
+<td><code>Ctrl+Shift+H</code></td>
+<td>Não</td>
+</tr>
+<tr>
+<td>💬</td>
+<td>Chat ao Vivo</td>
+<td><code>Ctrl+Shift+T</code></td>
+<td>Sim</td>
+</tr>
+<tr>
+<td>🤝</td>
+<td>Colaboração</td>
+<td>-</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>♿</td>
+<td>Acessibilidade</td>
+<td><code>Ctrl+Shift+U</code></td>
+<td>Não</td>
+</tr>
+</tbody>
+</table></div>
+<p>* Com o foco no editor de código, <code>Ctrl+Shift+N</code> é capturado primeiro pelo <a href="inteligencia-editor.html">Sticky Note Gutter</a>.</p>
+<h3 id="itens-estáticos-items_bottom">Itens estáticos (<code>ITEMS_BOTTOM</code>)<a class="anchor" href="#itens-estáticos-items_bottom" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ícone</th>
+<th>Painel</th>
+<th>Tecla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⊟</td>
+<td>Terminal</td>
+<td><code>Ctrl+`</code></td>
+</tr>
+<tr>
+<td>⚙</td>
+<td>Configurações</td>
+<td><code>Ctrl+,</code></td>
+</tr>
+<tr>
+<td><code>Th</code></td>
+<td>Tema (cicla para o próximo)</td>
+<td>-</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="itens-dinâmicos-registrados-via-add_plugin_item">Itens dinâmicos (registrados via <code>add_plugin_item()</code>)<a class="anchor" href="#itens-dinâmicos-registrados-via-add_plugin_item" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ícone</th>
+<th>Painel</th>
+<th>Tecla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🗄</td>
+<td>SQL Studio</td>
+<td><code>Ctrl+Shift+Q</code></td>
+</tr>
+<tr>
+<td>📊</td>
+<td>Code Stats</td>
+<td>-</td>
+</tr>
+<tr>
+<td>✅</td>
+<td>Tarefas (Kanban + Agendador)</td>
+<td>- <em>(sem atalho dedicado, apesar do que sugerem outras fontes)</em></td>
+</tr>
+<tr>
+<td>🌍</td>
+<td>REST Client</td>
+<td>-</td>
+</tr>
+<tr>
+<td>🌐</td>
+<td>Preview / Render</td>
+<td>-</td>
+</tr>
+<tr>
+<td>⏱</td>
+<td>Pomodoro</td>
+<td><code>Ctrl+Alt+P</code></td>
+</tr>
+<tr>
+<td>🔀</td>
+<td>Flowchart</td>
+<td>-</td>
+</tr>
+<tr>
+<td>✂️</td>
+<td>Snippets</td>
+<td><code>Ctrl+Shift+J</code></td>
+</tr>
+<tr>
+<td>⏱</td>
+<td>Time Tracker</td>
+<td>-</td>
+</tr>
+<tr>
+<td>🔗</td>
+<td>Dependency Graph</td>
+<td>-</td>
+</tr>
+<tr>
+<td>📚</td>
+<td>Outline/Docs</td>
+<td>-</td>
+</tr>
+</tbody>
+</table></div>
+<p>Clicar no mesmo ícone que está ativo <strong>fecha</strong> a sidebar. O ícone de <strong>Tema</strong> (<code>Th</code>) na parte inferior alterna para o próximo tema ciclicamente.</p>
+<p>Plugins podem registrar novos itens na Activity Bar via <code>api.add_sidebar_panel()</code> (não <code>register_panel()</code> - veja <a href="plugins.html">Plugins</a>).</p>
+<hr />
+<h2 id="sidebar">Sidebar<a class="anchor" href="#sidebar" aria-label="Link para esta seção">#</a></h2>
+<p>A sidebar (painel lateral) exibe o conteúdo correspondente ao item selecionado na Activity Bar.</p>
+<p><strong>Redimensionamento:</strong> arraste o divisor entre a sidebar e a área do editor.</p>
+<p><strong>Ocultação rápida:</strong> clique no botão flutuante <code>◀</code> / <code>▶</code> que aparece na borda esquerda da área do editor, ou pressione <code>Ctrl+B</code> (se configurado via plugin).</p>
+<h3 id="explorer">Explorer<a class="anchor" href="#explorer" aria-label="Link para esta seção">#</a></h3>
+<p>Exibe a árvore de arquivos do workspace. Suporta:</p>
+<ul>
+<li>Ícones por tipo de arquivo</li>
+<li>Indicadores de status Git (modificado, novo, ignorado)</li>
+<li>Menu de contexto (clicar com botão direito): renomear, excluir, novo arquivo/pasta</li>
+<li>Duplo clique para abrir; clique simples para pré-visualizar (peek)</li>
+</ul>
+<p>Se nenhum workspace estiver aberto, um <em>placeholder</em> com botão <strong>Abrir Pasta</strong> é exibido no lugar da árvore.</p>
+<h3 id="busca-em-arquivos">Busca em Arquivos<a class="anchor" href="#busca-em-arquivos" aria-label="Link para esta seção">#</a></h3>
+<p>Pesquisa de texto completo em todos os arquivos do workspace. Suporta:</p>
+<ul>
+<li>Filtros de inclusão/exclusão de paths (<code>*.py</code>, <code>!node_modules</code>)</li>
+<li>Resultado clicável que abre o arquivo na linha correspondente</li>
+<li>Respeita <code>.gitignore</code> quando <code>respect_ignore_files = true</code></li>
+</ul>
+<h3 id="source-control-git">Source Control (Git)<a class="anchor" href="#source-control-git" aria-label="Link para esta seção">#</a></h3>
+<p>Ver <a href="git.html">Git</a>.</p>
+<h3 id="assistente-de-ia">Assistente de IA<a class="anchor" href="#assistente-de-ia" aria-label="Link para esta seção">#</a></h3>
+<p>Ver <a href="ia.html">Assistente de IA</a>.</p>
+<hr />
+<h2 id="área-do-editor">Área do Editor<a class="anchor" href="#área-do-editor" aria-label="Link para esta seção">#</a></h2>
+<p>A região central contém:</p>
+<ol>
+<li><strong>Tab Bar</strong> - abas de arquivos abertos, com indicador <code>●</code> para arquivos modificados.</li>
+<li><strong>Breadcrumb</strong> - caminho completo do arquivo em camadas clicáveis. Pode ser ocultado via <strong>Exibir → Breadcrumbs</strong>. A breadcrumb é limpa automaticamente ao fechar a última aba aberta, não exibindo o caminho do arquivo fechado.</li>
+<li><strong>Search Bar</strong> - barra de busca/substituição flutuante, ativada por <code>Ctrl+F</code> ou <code>Ctrl+H</code>.</li>
+<li><strong>Container do Editor</strong> - onde os <code>EditorPane</code>s são exibidos.</li>
+</ol>
+<h3 id="múltiplas-abas">Múltiplas Abas<a class="anchor" href="#múltiplas-abas" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><code>Ctrl+Tab</code> - próxima aba</li>
+<li><code>Ctrl+Shift+Tab</code> - aba anterior</li>
+<li><code>Ctrl+W</code> - fechar aba ativa</li>
+<li>Ao fechar uma aba com modificações, o Codis pergunta se deseja salvar.</li>
+</ul>
+<h3 id="split-editor">Split Editor<a class="anchor" href="#split-editor" aria-label="Link para esta seção">#</a></h3>
+<p>Use <strong>Exibir → Split Editor</strong> (ou o comando na Paleta de Comandos) para abrir o mesmo arquivo em uma segunda aba lado a lado. Cada aba mantém seu próprio estado de cursor e scroll.</p>
+<hr />
+<h2 id="painel-inferior">Painel Inferior<a class="anchor" href="#painel-inferior" aria-label="Link para esta seção">#</a></h2>
+<p>O painel inferior (bottom panel) contém oito abas:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Aba</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⚠ Problemas</td>
+<td>Diagnósticos de lint e LSP</td>
+</tr>
+<tr>
+<td>⬛ Terminal</td>
+<td>Terminal integrado com múltiplos shells</td>
+</tr>
+<tr>
+<td>📤 Saída</td>
+<td>Log de eventos do editor e plugins</td>
+</tr>
+<tr>
+<td>🌿 Git</td>
+<td>Instância adicional do painel Git</td>
+</tr>
+<tr>
+<td>📊 Diff</td>
+<td>Comparação lado a lado de arquivos</td>
+</tr>
+<tr>
+<td>🐛 Debug</td>
+<td>Painel de depuração</td>
+</tr>
+<tr>
+<td>🎯 Regex</td>
+<td>Regex Playground interativo</td>
+</tr>
+<tr>
+<td>🗄 SQL</td>
+<td>SQL Studio - banco de dados integrado</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Abrir/fechar:</strong> botão flutuante <code>▲</code> / <code>▼</code> no canto inferior direito, ou <code>Ctrl+`</code> para o Terminal, ou <code>Ctrl+Shift+Q</code> para o SQL Studio.</p>
+<p>No modo <strong>K-UI</strong>, cada aba pode ser &quot;despluggada&quot; (<code>⊞</code>) para uma janela flutuante independente. Clique com o botão direito em qualquer aba para ver a opção.</p>
+<hr />
+<h2 id="barra-de-status">Barra de Status<a class="anchor" href="#barra-de-status" aria-label="Link para esta seção">#</a></h2>
+<p>A barra de status inferior exibe (da esquerda para a direita):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Ação ao clicar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🌿 Branch Git + contagem de mudanças</td>
+<td>Abre o painel Git</td>
+</tr>
+<tr>
+<td>⚠ Erros / ✔ Avisos</td>
+<td>Abre o painel de Problemas</td>
+</tr>
+<tr>
+<td>Nome da linguagem</td>
+<td>Abre seletor de linguagem</td>
+</tr>
+<tr>
+<td>Codificação (UTF-8, etc.)</td>
+<td>Abre seletor de codificação</td>
+</tr>
+<tr>
+<td>Fim de linha (LF / CRLF)</td>
+<td>Abre seletor de EOL</td>
+</tr>
+<tr>
+<td>Indentação (Tabs / Espaços: N)</td>
+<td>Abre seletor de indentação</td>
+</tr>
+<tr>
+<td>Posição do cursor (Ln X, Col Y)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Seleção (N chars, N linhas)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Zoom (100%)</td>
+<td>Abre seletor de zoom</td>
+</tr>
+</tbody>
+</table></div>
+<p>Notificações temporárias aparecem no centro da barra de status (ex: &quot;Arquivo salvo&quot;, &quot;Lint em execução&quot;). Clicar na área de notificação abre um popup com o <strong>histórico de notificações</strong> recentes da sessão.</p>
+<hr />
+<h2 id="botões-de-alternância-flutuantes">Botões de Alternância Flutuantes<a class="anchor" href="#botões-de-alternância-flutuantes" aria-label="Link para esta seção">#</a></h2>
+<p>Dois pequenos botões flutuantes ficam sempre visíveis sobre a interface:</p>
+<ul>
+<li><strong><code>▶</code> / <code>◀</code></strong> - na borda esquerda da área do editor, alterna a sidebar.</li>
+<li><strong><code>▲</code> / <code>▼</code></strong> - no canto inferior direito (acima da barra de status), alterna o painel inferior.</li>
+</ul>
+<hr />
+<h2 id="barra-de-menus">Barra de Menus<a class="anchor" href="#barra-de-menus" aria-label="Link para esta seção">#</a></h2>
+<p>A barra de menus contém os seguintes menus:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Menu</th>
+<th>Conteúdo principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Arquivo</strong></td>
+<td>Novo, Abrir, Salvar, Recentes, Autosave, Fechar, Reiniciar, Sair</td>
+</tr>
+<tr>
+<td><strong>Editar</strong></td>
+<td>Undo/Redo, Copiar/Colar, Busca/Substituição, Manipulação de linhas, Transformações, Histórico de colagem, Formatar</td>
+</tr>
+<tr>
+<td><strong>Seleção</strong></td>
+<td>Selecionar tudo, linha, copiar linha acima/abaixo</td>
+</tr>
+<tr>
+<td><strong>Exibir</strong></td>
+<td>Paleta de Comandos, painéis, temas, quebra de linha, minimapa, breadcrumbs, zoom, tela cheia, split</td>
+</tr>
+<tr>
+<td><strong>Ir</strong></td>
+<td>Ir para linha, símbolo, próximo/anterior problema/aba/colchete</td>
+</tr>
+<tr>
+<td><strong>Executar</strong></td>
+<td>Executar arquivo, formatar, lint, corrigir tudo</td>
+</tr>
+<tr>
+<td><strong>Terminal</strong></td>
+<td>Novo terminal, limpar, matar, executar seleção</td>
+</tr>
+<tr>
+<td><strong>Plugins</strong></td>
+<td>Gerenciar, instalar, abrir pasta de plugins</td>
+</tr>
+<tr>
+<td><strong>Ferramentas</strong></td>
+<td>Contador de palavras, codificação Base64/URL, hash, inserir sequência, painéis nativos, LSP, modos especiais</td>
+</tr>
+<tr>
+<td><strong>Ajuda</strong></td>
+<td>Boas-vindas, documentação, atalhos, Sobre</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="navegação-por-teclado-nos-menus">Navegação por Teclado nos Menus<a class="anchor" href="#navegação-por-teclado-nos-menus" aria-label="Link para esta seção">#</a></h3>
+<p>Os dropdowns da barra de menus suportam navegação completa por teclado:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tecla</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>↑</code> / <code>↓</code></td>
+<td>Move o destaque entre itens do dropdown aberto</td>
+</tr>
+<tr>
+<td><code>←</code> / <code>→</code></td>
+<td>Alterna entre menus de nível superior (ex: Arquivo → Editar)</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>Ativa o item destacado</td>
+</tr>
+<tr>
+<td><code>Escape</code></td>
+<td>Fecha o dropdown</td>
+</tr>
+<tr>
+<td><code>Alt + letra</code></td>
+<td>Abre o menu correspondente à letra sublinhada</td>
+</tr>
+</tbody>
+</table></div>
+<p>Os dropdowns também fecham automaticamente quando a janela principal é minimizada.</p>
+<hr />
+<h2 id="paleta-de-comandos">Paleta de Comandos<a class="anchor" href="#paleta-de-comandos" aria-label="Link para esta seção">#</a></h2>
+<p>Pressione <code>Ctrl+Shift+P</code> para abrir a <strong>Paleta de Comandos</strong> - um campo de busca fuzzy que lista todos os comandos disponíveis (incluindo os de plugins). A paleta exibe o atalho de teclado associado a cada comando.</p>
+<p><code>Ctrl+P</code> abre a <strong>Abertura Rápida de Arquivos</strong>, uma versão da paleta focada em arquivos recentes.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="primeiros-passos.html"><small>Anterior</small>Primeiros Passos</a>
+        <a class="next" href="atalhos.html"><small>Próxima</small>Atalhos de Teclado</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/interface.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/interface.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#layout-geral">Layout Geral</a></li><li class="l2"><a href="#activity-bar-barra-de-atividades">Activity Bar (Barra de Atividades)</a></li><li class="l3"><a href="#itens-estáticos-items_top">Itens estáticos (ITEMS_TOP)</a></li><li class="l3"><a href="#itens-estáticos-items_bottom">Itens estáticos (ITEMS_BOTTOM)</a></li><li class="l3"><a href="#itens-dinâmicos-registrados-via-add_plugin_item">Itens dinâmicos (registrados via add_plugin_item())</a></li><li class="l2"><a href="#sidebar">Sidebar</a></li><li class="l3"><a href="#explorer">Explorer</a></li><li class="l3"><a href="#busca-em-arquivos">Busca em Arquivos</a></li><li class="l3"><a href="#source-control-git">Source Control (Git)</a></li><li class="l3"><a href="#assistente-de-ia">Assistente de IA</a></li><li class="l2"><a href="#área-do-editor">Área do Editor</a></li><li class="l3"><a href="#múltiplas-abas">Múltiplas Abas</a></li><li class="l3"><a href="#split-editor">Split Editor</a></li><li class="l2"><a href="#painel-inferior">Painel Inferior</a></li><li class="l2"><a href="#barra-de-status">Barra de Status</a></li><li class="l2"><a href="#botões-de-alternância-flutuantes">Botões de Alternância Flutuantes</a></li><li class="l2"><a href="#barra-de-menus">Barra de Menus</a></li><li class="l3"><a href="#navegação-por-teclado-nos-menus">Navegação por Teclado nos Menus</a></li><li class="l2"><a href="#paleta-de-comandos">Paleta de Comandos</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

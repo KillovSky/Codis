@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://killovsky.github.io/Codis/sitemap.xml

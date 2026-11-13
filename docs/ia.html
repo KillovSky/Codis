@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Assistente de IA · Codis</title>
+<meta name="description" content="O Codis integra um painel de chat com IA diretamente na sidebar. Suporta múltiplos provedores, streaming de respostas, ferramentas de contexto e skills personalizáveis." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/ia.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Assistente de IA · Codis" />
+<meta property="og:description" content="O Codis integra um painel de chat com IA diretamente na sidebar. Suporta múltiplos provedores, streaming de respostas, ferramentas de contexto e skills personalizáveis." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/ia.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group" open><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html" class="is-current" aria-current="page">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-assistente-de-ia">🤖 Assistente de IA<a class="anchor" href="#-assistente-de-ia" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis integra um painel de chat com IA diretamente na sidebar. Suporta múltiplos provedores, streaming de respostas, ferramentas de contexto e skills personalizáveis.</p>
+<hr />
+<h2 id="abrindo-o-painel-de-ia">Abrindo o Painel de IA<a class="anchor" href="#abrindo-o-painel-de-ia" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><strong>Activity Bar</strong> → ícone <code>[IA]</code></li>
+<li><strong>Menu Exibir</strong> → &quot;Assistente IA&quot;</li>
+<li><code>Ctrl+Shift+A</code></li>
+</ul>
+<hr />
+<h2 id="provedores-suportados">Provedores Suportados<a class="anchor" href="#provedores-suportados" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Provedor</th>
+<th>Tipo</th>
+<th>Requer Chave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Anthropic (Claude)</strong></td>
+<td>API Anthropic</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><strong>OpenAI (ChatGPT)</strong></td>
+<td>API OpenAI</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><strong>Google Gemini</strong></td>
+<td>API Gemini</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><strong>OpenAI Compatible</strong></td>
+<td>Qualquer <code>/v1/chat/completions</code></td>
+<td>Opcional</td>
+</tr>
+<tr>
+<td><strong>Ollama</strong></td>
+<td>HTTP local (<code>localhost:11434</code>)</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>LocalLib</strong></td>
+<td><code>llama-cpp-python</code> direto</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table></div>
+<p>O provedor <strong>OpenAI Compatible</strong> funciona com: LM Studio, Jan, Groq, Together AI, OpenRouter, Perplexity, e qualquer servidor compatível com a API OpenAI.</p>
+<h3 id="configurando-um-provedor">Configurando um Provedor<a class="anchor" href="#configurando-um-provedor" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>No painel de IA, clique no ícone de configuração (⚙) ao lado do seletor de provedor.</li>
+<li>Insira a chave de API, modelo e URL base (quando aplicável).</li>
+<li>Clique em <strong>Testar</strong> para verificar a conectividade.</li>
+</ol>
+<p>As configurações de cada provedor são salvas em <code>config.json</code>.</p>
+<hr />
+<h2 id="contexto-de-código">Contexto de Código<a class="anchor" href="#contexto-de-código" aria-label="Link para esta seção">#</a></h2>
+<p>O assistente pode receber contexto automático do editor ativo. Selecione o tipo de contexto no seletor:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Opção</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nenhum</strong></td>
+<td>Sem contexto de código</td>
+</tr>
+<tr>
+<td><strong>Arquivo</strong></td>
+<td>Conteúdo completo do arquivo ativo</td>
+</tr>
+<tr>
+<td><strong>Seleção</strong></td>
+<td>Apenas o texto selecionado no editor</td>
+</tr>
+<tr>
+<td><strong>Manual</strong></td>
+<td>Você escreve o contexto manualmente</td>
+</tr>
+</tbody>
+</table></div>
+<p>Além do que é selecionado manualmente, o <code>ContextBuilder</code> (<code>src/ia/context_builder.py</code>) monta automaticamente um bloco de contexto bem mais rico, injetado no system prompt antes de cada requisição - toda a coleta é projetada para falhar silenciosamente caso alguma informação não esteja disponível, sem nunca travar o envio da mensagem:</p>
+<p><strong>Nível de projeto:</strong>
+nome, caminho e tipo de projeto (detectado por arquivos de configuração como <code>pyproject.toml</code>, <code>package.json</code> etc.), linguagens predominantes com contagem de arquivos, árvore de arquivos relevante (filtrada e limitada em tamanho), branch e último commit Git, status de arquivos modificados, dependências declaradas e um resumo das primeiras linhas do <code>README</code>.</p>
+<p><strong>Nível de arquivo ativo:</strong>
+caminho relativo, linguagem, imports/includes do arquivo (para entender suas dependências internas), e o conteúdo da janela ao redor do cursor.</p>
+<p>Com esse contexto automático, o modelo normalmente <strong>não precisa perguntar</strong> em qual workspace está, qual arquivo foi aberto, qual linguagem é usada ou como o projeto se estrutura - ele já recebe isso de forma implícita em cada requisição.</p>
+<hr />
+<h2 id="skills-ações-rápidas">Skills (Ações Rápidas)<a class="anchor" href="#skills-ações-rápidas" aria-label="Link para esta seção">#</a></h2>
+<p>Skills são prompts pré-configurados que fornecem instruções especializadas ao modelo antes da mensagem do usuário. O seletor de skills fica na barra de ferramentas do painel de IA.</p>
+<h3 id="skills-padrão">Skills Padrão<a class="anchor" href="#skills-padrão" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Finalidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ask</code></td>
+<td>Pergunta geral de programação</td>
+</tr>
+<tr>
+<td><code>generate</code></td>
+<td>Gerar novo código</td>
+</tr>
+<tr>
+<td><code>explain</code></td>
+<td>Explicar código selecionado</td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>Corrigir bugs identificados</td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>Refatorar código</td>
+</tr>
+<tr>
+<td><code>review</code></td>
+<td>Revisão de código (code review)</td>
+</tr>
+<tr>
+<td><code>document</code></td>
+<td>Gerar documentação (docstrings, JSDoc)</td>
+</tr>
+<tr>
+<td><code>tests</code></td>
+<td>Gerar testes unitários</td>
+</tr>
+<tr>
+<td><code>optimize</code></td>
+<td>Otimizar performance</td>
+</tr>
+<tr>
+<td><code>translate</code></td>
+<td>Traduzir código entre linguagens</td>
+</tr>
+<tr>
+<td><code>commit</code></td>
+<td>Gerar mensagem de commit</td>
+</tr>
+<tr>
+<td><code>security</code></td>
+<td>Análise de segurança</td>
+</tr>
+<tr>
+<td><code>sql</code></td>
+<td>Auxiliar com queries SQL</td>
+</tr>
+<tr>
+<td><code>regex</code></td>
+<td>Construir/explicar expressões regulares</td>
+</tr>
+<tr>
+<td><code>architecture</code></td>
+<td>Discussão de arquitetura de software</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="skills-personalizadas">Skills Personalizadas<a class="anchor" href="#skills-personalizadas" aria-label="Link para esta seção">#</a></h3>
+<p>Crie skills próprias em <code>~/.codis/skills/</code>:</p>
+<pre><code class="language-markdown">---
+name: minha-skill
+description: Descrição da skill
+i18n_key: ia.skill_minha_skill
+prompt_prefix: &quot;Você é um especialista em...&quot;
+---
+
+Instruções detalhadas para o modelo...
+</code></pre>
+<p>Skills do usuário aparecem no seletor após as skills padrão.</p>
+<hr />
+<h2 id="ferramentas-de-contexto-tool-use">Ferramentas de Contexto (Tool Use)<a class="anchor" href="#ferramentas-de-contexto-tool-use" aria-label="Link para esta seção">#</a></h2>
+<p>O painel de IA usa <em>function calling</em> para que o modelo possa agir sobre o workspace automaticamente, em vez de depender só de texto colado pelo usuário. As ferramentas são executadas via <code>ToolExecutor</code> (<code>src/ia/toolbox.py</code>) em thread separada, e são organizadas em níveis de risco - o Approval Gate define cinco (<code>SAFE</code>, <code>LOW</code>, <code>MEDIUM</code>, <code>HIGH</code> e <code>CRITICAL</code>) e as ferramentas atuais usam <code>SAFE</code>, <code>MEDIUM</code>, <code>HIGH</code> e <code>CRITICAL</code>; cada nível tem um tratamento diferente pelo <a href="#approval-gate-aprova%C3%A7%C3%A3o-de-a%C3%A7%C3%B5es">Approval Gate</a>, descrito na próxima seção.</p>
+<h3 id="leitura---safe-executam-sem-confirmação">Leitura - SAFE (executam sem confirmação)<a class="anchor" href="#leitura---safe-executam-sem-confirmação" aria-label="Link para esta seção">#</a></h3>
+<p><code>read_file</code>, <code>read_active_file</code>, <code>get_cursor_context</code>, <code>list_files</code>, <code>search_in_files</code>, <code>find_definition</code>, <code>get_project_summary</code>, <code>read_diagnostics</code>, <code>read_symbols</code>, <code>read_git_diff</code>, <code>read_git_log</code>, <code>find_references</code>, <code>preview_rename</code>, <code>workspace_symbols</code>, <code>get_env_info</code>, <code>check_dependency</code>, <code>diff_files</code>, <code>read_file_tree</code>, <code>get_clipboard</code>.</p>
+<h3 id="escrita---medium-pedem-aprovação">Escrita - MEDIUM (pedem aprovação)<a class="anchor" href="#escrita---medium-pedem-aprovação" aria-label="Link para esta seção">#</a></h3>
+<p><code>write_file</code>, <code>apply_edit</code>, <code>insert_after_line</code>, <code>format_code</code>, <code>patch_files</code>.</p>
+<h3 id="execução---high-bloqueiam-e-aguardam-aprovação-explícita">Execução - HIGH (bloqueiam e aguardam aprovação explícita)<a class="anchor" href="#execução---high-bloqueiam-e-aguardam-aprovação-explícita" aria-label="Link para esta seção">#</a></h3>
+<p><code>run_command</code>, <code>run_script</code>, <code>run_tests</code>, <code>create_directory</code>, <code>delete_file</code>, <code>move_file</code>, <code>copy_file</code>, <code>init_project</code>, <code>install_dependency</code>, <code>git_commit</code>, <code>git_stage</code>, <code>git_branch</code>, <code>open_terminal_tab</code>.</p>
+<h3 id="crítico---critical-alerta-vermelho-exige-confirmação-extra">Crítico - CRITICAL (alerta vermelho, exige confirmação extra)<a class="anchor" href="#crítico---critical-alerta-vermelho-exige-confirmação-extra" aria-label="Link para esta seção">#</a></h3>
+<p><code>delete_directory</code>, <code>git_reset</code>, <code>git_clean</code>.</p>
+<p>No total, são <strong>40 ferramentas</strong> disponíveis ao agente, cobrindo leitura de contexto, edição, execução de comandos, integração Git, inicialização de projetos e instalação de dependências - um nível de capacidade comparável a assistentes como Cursor ou Zed Agent.</p>
+<hr />
+<h2 id="approval-gate-aprovação-de-ações">Approval Gate (Aprovação de Ações)<a class="anchor" href="#approval-gate-aprovação-de-ações" aria-label="Link para esta seção">#</a></h2>
+<p>O <strong>Approval Gate</strong> (<code>src/ia/approval_gate.py</code>) pausa a execução da IA e exige confirmação explícita do usuário antes de qualquer ação com efeitos colaterais. Ele é o que torna seguro deixar a IA operar com 40 ferramentas, incluindo exclusão de arquivos e comandos shell.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Categoria de risco</th>
+<th>Exemplos de ferramenta</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SAFE</strong></td>
+<td>Leitura, busca, análise</td>
+<td>Executa imediatamente, sem interromper o fluxo</td>
+</tr>
+<tr>
+<td><strong>LOW</strong></td>
+<td>Análises pesadas</td>
+<td>Confirmação opcional, configurável pelo usuário</td>
+</tr>
+<tr>
+<td><strong>MEDIUM</strong></td>
+<td>Escrita de arquivo, formatação</td>
+<td>Pede aprovação antes de aplicar</td>
+</tr>
+<tr>
+<td><strong>HIGH</strong></td>
+<td>Comandos shell, criar/deletar arquivos, operações Git</td>
+<td>Bloqueia a execução e aguarda decisão do usuário</td>
+</tr>
+<tr>
+<td><strong>CRITICAL</strong></td>
+<td>Delete recursivo, <code>git reset --hard</code></td>
+<td>Alerta vermelho - exige confirmação extra, mesmo tendo aprovado HIGH anteriormente</td>
+</tr>
+</tbody>
+</table></div>
+<p>Quando uma ação cai em MEDIUM ou acima, o painel de IA exibe um card de aprovação descrevendo exatamente o que será feito (arquivo afetado, comando exato, diff da escrita) antes de qualquer execução real. O usuário pode aprovar, rejeitar, ou - no <strong>Modo Agente</strong> (tarefas multi-passo autônomas) - configurar um nível de confiança que aprova automaticamente certas categorias por sessão.</p>
+<hr />
+<h2 id="streaming">Streaming<a class="anchor" href="#streaming" aria-label="Link para esta seção">#</a></h2>
+<p>As respostas do modelo são exibidas em streaming - o texto aparece progressivamente enquanto o modelo gera a resposta. Um indicador de carregamento animado é exibido durante a geração.</p>
+<p>Para cancelar uma resposta em andamento, clique no botão <strong>✕ Cancelar</strong>.</p>
+<hr />
+<h2 id="inserir-código-no-editor">Inserir Código no Editor<a class="anchor" href="#inserir-código-no-editor" aria-label="Link para esta seção">#</a></h2>
+<p>Quando a resposta do modelo contém blocos de código (<code>```linguagem ... ```</code>), o Codis extrai esses blocos automaticamente.</p>
+<p>Dois botões aparecem após a resposta:</p>
+<ul>
+<li><strong>📋 Copiar</strong> - copia o código para o clipboard.</li>
+<li><strong>⤵ Inserir no Editor</strong> - abre um diálogo de diff (<code>DialDiff</code>) mostrando as diferenças entre o código atual e o código sugerido pela IA. Você pode aceitar, rejeitar ou editar antes de aplicar.</li>
+</ul>
+<hr />
+<h2 id="histórico-de-chat">Histórico de Chat<a class="anchor" href="#histórico-de-chat" aria-label="Link para esta seção">#</a></h2>
+<p>Cada sessão mantém um histórico de mensagens que é enviado ao modelo a cada turno (contexto acumulado). O histórico é mantido em memória durante a sessão e <strong>não é persistido</strong> entre reinicializações.</p>
+<p>Para iniciar uma nova conversa do zero, clique em <strong>🗑 Limpar Histórico</strong>.</p>
+<hr />
+<h2 id="configuração-inline-de-provedor">Configuração Inline de Provedor<a class="anchor" href="#configuração-inline-de-provedor" aria-label="Link para esta seção">#</a></h2>
+<p>Clique no botão <strong>⚙ Configurar</strong> ao lado do seletor de provedor para abrir um painel inline de configuração. Os campos disponíveis variam por provedor:</p>
+<ul>
+<li><strong>Anthropic / OpenAI / Gemini:</strong> chave de API + modelo</li>
+<li><strong>OpenAI Compatible:</strong> chave de API (opcional) + URL base + modelo</li>
+<li><strong>Ollama:</strong> URL base (padrão: <code>http://localhost:11434</code>) + modelo</li>
+<li><strong>LocalLib:</strong> caminho do modelo GGUF + parâmetros de inferência</li>
+</ul>
+<hr />
+<h2 id="prompt-de-sistema">Prompt de Sistema<a class="anchor" href="#prompt-de-sistema" aria-label="Link para esta seção">#</a></h2>
+<p>O assistente de IA usa um prompt de sistema padrão otimizado para programação:</p>
+<ul>
+<li>Responde no mesmo idioma que o usuário escreve.</li>
+<li>Usa sempre blocos de código com a linguagem correta.</li>
+<li>Utiliza o contexto automático fornecido sem pedir informações repetidas.</li>
+<li>Usa as ferramentas proativamente quando o contexto é insuficiente.</li>
+</ul>
+<p>O prompt de sistema padrão pode ser customizado via configuração avançada (campo <code>sistema</code> em <code>config.json</code>, lido por todos os 6 provedores em <code>src/ia/providers.py</code>).</p>
+<hr />
+<h2 id="disponibilidade">Disponibilidade<a class="anchor" href="#disponibilidade" aria-label="Link para esta seção">#</a></h2>
+<p>O painel de IA é carregado de forma <strong>condicional</strong>: se a importação de <code>src.ia.iaspace</code> falhar por qualquer motivo (dependências ausentes, erro de importação), o Codis inicia normalmente sem o painel, registrando apenas um aviso no log. Nenhuma funcionalidade do editor é afetada.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="utilitarios-dev.html"><small>Anterior</small>Formatador, Variáveis de Ambiente e Grafo de Dependências</a>
+        <a class="next" href="chat.html"><small>Próxima</small>Chat ao Vivo (Painel de Chat Universal)</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/ia.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/ia.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#abrindo-o-painel-de-ia">Abrindo o Painel de IA</a></li><li class="l2"><a href="#provedores-suportados">Provedores Suportados</a></li><li class="l3"><a href="#configurando-um-provedor">Configurando um Provedor</a></li><li class="l2"><a href="#contexto-de-código">Contexto de Código</a></li><li class="l2"><a href="#skills-ações-rápidas">Skills (Ações Rápidas)</a></li><li class="l3"><a href="#skills-padrão">Skills Padrão</a></li><li class="l3"><a href="#skills-personalizadas">Skills Personalizadas</a></li><li class="l2"><a href="#ferramentas-de-contexto-tool-use">Ferramentas de Contexto (Tool Use)</a></li><li class="l3"><a href="#leitura---safe-executam-sem-confirmação">Leitura - SAFE (executam sem confirmação)</a></li><li class="l3"><a href="#escrita---medium-pedem-aprovação">Escrita - MEDIUM (pedem aprovação)</a></li><li class="l3"><a href="#execução---high-bloqueiam-e-aguardam-aprovação-explícita">Execução - HIGH (bloqueiam e aguardam aprovação explícita)</a></li><li class="l3"><a href="#crítico---critical-alerta-vermelho-exige-confirmação-extra">Crítico - CRITICAL (alerta vermelho, exige confirmação extra)</a></li><li class="l2"><a href="#approval-gate-aprovação-de-ações">Approval Gate (Aprovação de Ações)</a></li><li class="l2"><a href="#streaming">Streaming</a></li><li class="l2"><a href="#inserir-código-no-editor">Inserir Código no Editor</a></li><li class="l2"><a href="#histórico-de-chat">Histórico de Chat</a></li><li class="l2"><a href="#configuração-inline-de-provedor">Configuração Inline de Provedor</a></li><li class="l2"><a href="#prompt-de-sistema">Prompt de Sistema</a></li><li class="l2"><a href="#disponibilidade">Disponibilidade</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

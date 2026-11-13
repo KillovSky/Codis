@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Backups, Lixeira &amp; Arquivos Compactados · Codis</title>
+<meta name="description" content="Três recursos do Codis lidam com a segurança e o histórico de arquivos fora do controle de versão Git: File Timeline (snapshots automáticos), o Gerenciador de Lixeira (exclusão segura) e o Visualizado" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/backups-lixeira-arquivos.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Backups, Lixeira &amp; Arquivos Compactados · Codis" />
+<meta property="og:description" content="Três recursos do Codis lidam com a segurança e o histórico de arquivos fora do controle de versão Git: File Timeline (snapshots automáticos), o Gerenciador de Lixeira (exclusão segura) e o Visualizado" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/backups-lixeira-arquivos.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group" open><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html" class="is-current" aria-current="page">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-backups-lixeira--arquivos-compactados">🗄️ Backups, Lixeira &amp; Arquivos Compactados<a class="anchor" href="#-backups-lixeira--arquivos-compactados" aria-label="Link para esta seção">#</a></h1>
+<p>Três recursos do Codis lidam com a segurança e o histórico de arquivos fora do controle de versão Git: <strong>File Timeline</strong> (snapshots automáticos), o <strong>Gerenciador de Lixeira</strong> (exclusão segura) e o <strong>Visualizador de Arquivos Compactados</strong> (ZIP/RAR/7z/TAR).</p>
+<hr />
+<h2 id="-file-timeline-srcuifile_timelinepy">🕒 File Timeline (<code>src/ui/file_timeline.py</code>)<a class="anchor" href="#-file-timeline-srcuifile_timelinepy" aria-label="Link para esta seção">#</a></h2>
+<p>Acesso: menu <strong>Exibir → Painéis → File Timeline</strong>.</p>
+<p>Exibe o histórico de snapshots automáticos de um arquivo aberto, permitindo restaurar versões anteriores <strong>sem depender do Git</strong>. Útil em arquivos fora de um repositório, ou quando você quer voltar a um estado anterior sem criar um commit.</p>
+<h3 id="como-funciona">Como funciona<a class="anchor" href="#como-funciona" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>O Codis salva snapshots automáticos do conteúdo do arquivo em <code>~/.codis/backups/</code> (organizados por nome de arquivo sanitizado)</li>
+<li>A janela do Timeline lista os snapshots em ordem cronológica, com timestamp de cada um</li>
+<li>Cada snapshot pode ser comparado com o conteúdo atual via diff (usando <code>difflib</code>), mostrando exatamente o que mudou</li>
+<li>Restaurar um snapshot substitui o conteúdo do editor pela versão escolhida - a substituição <strong>não é salva automaticamente em disco</strong>, dando a chance de revisar antes de confirmar com <code>Ctrl+S</code></li>
+</ul>
+<h3 id="quando-usar">Quando usar<a class="anchor" href="#quando-usar" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Recuperar uma versão anterior depois de uma edição em massa indesejada (find &amp; replace errado, por exemplo)</li>
+<li>Comparar o estado atual de um arquivo com como ele estava há algumas horas, sem precisar de um repositório Git</li>
+<li>Funciona em qualquer arquivo de texto, mesmo fora de um workspace versionado</li>
+</ul>
+<hr />
+<h2 id="-gerenciador-de-lixeira-srcuitrash_managerpy">🗑️ Gerenciador de Lixeira (<code>src/ui/trash_manager.py</code>)<a class="anchor" href="#-gerenciador-de-lixeira-srcuitrash_managerpy" aria-label="Link para esta seção">#</a></h2>
+<p>A exclusão de arquivos pelo Codis (no Explorer, por exemplo) usa um destes destinos, definido em <code>trash_backend</code> (Configurações → Destino da Lixeira):</p>
+<ol>
+<li><strong><code>workspace</code></strong> (padrão): move o item para <code>&lt;projeto&gt;/.codis_trash/</code> com um <code>rename</code> atômico no mesmo volume - instantâneo mesmo para arquivos enormes e nunca vira cópia entre discos. A pasta tem seu próprio <code>.gitignore</code> e <code>.meta.json</code> com os metadados (caminho de origem, data de exclusão).</li>
+<li><strong><code>system</code></strong>: delega à lixeira nativa do sistema operacional via <code>send2trash</code> (opcional). Se falhar ou o pacote não estiver instalado, o Codis usa a lixeira do projeto.</li>
+</ol>
+<p><code>trash_max_mb</code> e <code>trash_retention_days</code> limitam o tamanho e a idade dos itens; ao exceder, os mais antigos são removidos.</p>
+<h3 id="painel-da-lixeira">Painel da lixeira<a class="anchor" href="#painel-da-lixeira" aria-label="Link para esta seção">#</a></h3>
+<p>O painel <code>TrashPanel</code> (Activity Bar) lista os itens de todas as lixeiras do projeto, com opções de:</p>
+<ul>
+<li>Restaurar para o caminho original</li>
+<li>Excluir permanentemente</li>
+</ul>
+<h3 id="uso-programático-para-quem-desenvolve-plugins">Uso programático (para quem desenvolve plugins)<a class="anchor" href="#uso-programático-para-quem-desenvolve-plugins" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">from src.ui.trash_manager import TrashManager
+
+TrashManager.delete(path)                    # envia para a lixeira
+TrashManager.delete(path, permanent=True)    # exclusão definitiva
+</code></pre>
+<hr />
+<h2 id="-visualizador-de-arquivos-compactados-srcuiarchive_panelpy">📦 Visualizador de Arquivos Compactados (<code>src/ui/archive_panel.py</code>)<a class="anchor" href="#-visualizador-de-arquivos-compactados-srcuiarchive_panelpy" aria-label="Link para esta seção">#</a></h2>
+<p>Permite explorar o conteúdo de arquivos compactados sem precisar extraí-los manualmente primeiro.</p>
+<h3 id="formatos-suportados">Formatos suportados<a class="anchor" href="#formatos-suportados" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Formato</th>
+<th>Suporte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ZIP</strong></td>
+<td>Nativo, via módulo <code>zipfile</code> da biblioteca padrão</td>
+</tr>
+<tr>
+<td><strong>TAR / GZip / BZip2</strong></td>
+<td>Nativo, via módulo <code>tarfile</code> da biblioteca padrão</td>
+</tr>
+<tr>
+<td><strong>RAR</strong></td>
+<td>Requer <code>pip install rarfile</code> - exibe aviso se ausente</td>
+</tr>
+<tr>
+<td><strong>7-Zip</strong></td>
+<td>Requer <code>pip install py7zr</code> - exibe aviso se ausente</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="interface">Interface<a class="anchor" href="#interface" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Árvore (<code>TreeView</code>) com a estrutura de pastas do arquivo compactado, sem extrair nada ainda</li>
+<li>Duplo-clique em um arquivo, ou o botão <strong>Abrir no editor</strong>, extrai apenas aquele arquivo para um diretório temporário e o abre diretamente no Codis</li>
+<li><strong>Extrair selecionado...</strong> permite escolher o destino e extrair arquivos/pastas específicos, sem precisar descompactar o pacote inteiro</li>
+<li>Barra de status mostra o tamanho comprimido comparado ao tamanho real de cada item, útil para identificar arquivos grandes dentro do pacote antes de extrair</li>
+</ul>
+<hr />
+<h2 id="-visualizador-de-pré-tema-srcuitheme_preview_panelpy">🎨 Visualizador de Pré-Tema (<code>src/ui/theme_preview_panel.py</code>)<a class="anchor" href="#-visualizador-de-pré-tema-srcuitheme_preview_panelpy" aria-label="Link para esta seção">#</a></h2>
+<p>Painel de pré-visualização de temas estilo wizard, usado antes de confirmar a troca de tema - ver detalhes completos em <a href="temas.html#pr%C3%A9-visualiza%C3%A7%C3%A3o-antes-de-aplicar">Temas</a>.</p>
+<ul>
+<li>Grade de cartões com todos os temas disponíveis (nome + ícone indicando dark/light)</li>
+<li>Preview ao vivo com miniatura de código, sidebar, tab bar e barra de status já no tema selecionado</li>
+<li>Botão de aplicar com escolha entre troca <strong>Completa</strong> ou <strong>Rápida</strong></li>
+<li>Navegação por teclado (setas, <code>Enter</code>, <code>Escape</code>)</li>
+<li>Filtro por nome e por polaridade (dark / light / todos)</li>
+</ul>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="sistema-performance.html"><small>Anterior</small>Sistema, Performance &amp; Pacotes</a>
+        <a class="next" href="output.html"><small>Próxima</small>Painel de Saída</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/backups-lixeira-arquivos.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/backups-lixeira-arquivos.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#-file-timeline-srcuifile_timelinepy">File Timeline (src/ui/file_timeline.py)</a></li><li class="l3"><a href="#como-funciona">Como funciona</a></li><li class="l3"><a href="#quando-usar">Quando usar</a></li><li class="l2"><a href="#-gerenciador-de-lixeira-srcuitrash_managerpy">Gerenciador de Lixeira (src/ui/trash_manager.py)</a></li><li class="l3"><a href="#painel-da-lixeira">Painel da lixeira</a></li><li class="l3"><a href="#uso-programático-para-quem-desenvolve-plugins">Uso programático (para quem desenvolve plugins)</a></li><li class="l2"><a href="#-visualizador-de-arquivos-compactados-srcuiarchive_panelpy">Visualizador de Arquivos Compactados (src/ui/archive_panel.py)</a></li><li class="l3"><a href="#formatos-suportados">Formatos suportados</a></li><li class="l3"><a href="#interface">Interface</a></li><li class="l2"><a href="#-visualizador-de-pré-tema-srcuitheme_preview_panelpy">Visualizador de Pré-Tema (src/ui/theme_preview_panel.py)</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

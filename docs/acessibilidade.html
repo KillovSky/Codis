@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acessibilidade · Codis</title>
+<meta name="description" content="O Codis oferece um sistema de acessibilidade modular e totalmente opcional. Nenhuma funcionalidade afeta a experiência padrão enquanto não for explicitamente ativada." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/acessibilidade.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Acessibilidade · Codis" />
+<meta property="og:description" content="O Codis oferece um sistema de acessibilidade modular e totalmente opcional. Nenhuma funcionalidade afeta a experiência padrão enquanto não for explicitamente ativada." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/acessibilidade.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group" open><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html" class="is-current" aria-current="page">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-acessibilidade">♿ Acessibilidade<a class="anchor" href="#-acessibilidade" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis oferece um sistema de acessibilidade modular e totalmente opcional. Nenhuma funcionalidade afeta a experiência padrão enquanto não for explicitamente ativada.</p>
+<hr />
+<h2 id="como-ativar">Como Ativar<a class="anchor" href="#como-ativar" aria-label="Link para esta seção">#</a></h2>
+<p>Acesse pelo menu <strong>Ferramentas → Remoto &amp; Colaboração → Acessibilidade…</strong>, pelo atalho <code>Ctrl+Shift+U</code>, pelo ícone ♿ na barra de atividades (visível por padrão, já que <code>a11y_screen_reader</code> é <code>true</code> por padrão em <code>config.json</code>), ou via linha de comando:</p>
+<pre><code class="language-bash">python run.py --a11y
+python run.py --accessibility
+</code></pre>
+<hr />
+<h2 id="modos-disponíveis">Modos Disponíveis<a class="anchor" href="#modos-disponíveis" aria-label="Link para esta seção">#</a></h2>
+<h3 id="alto-contraste">Alto Contraste<a class="anchor" href="#alto-contraste" aria-label="Link para esta seção">#</a></h3>
+<p>Aplica uma paleta de cores com fundo preto, texto branco e bordas nítidas, seguindo as diretrizes WCAG AA. Ideal para ambientes com luz intensa ou baixa acuidade visual.</p>
+<p>A ativação é persistida entre sessões no arquivo de configuração. Para desativar, basta desmarcar a opção no painel ou usar o mesmo atalho.</p>
+<h3 id="modos-para-daltonismo">Modos para Daltonismo<a class="anchor" href="#modos-para-daltonismo" aria-label="Link para esta seção">#</a></h3>
+<p>Quatro paletas de cores otimizadas para diferentes tipos de daltonismo:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>Deficiência</th>
+<th>Estratégia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protanopia</td>
+<td>Dificuldade com vermelho</td>
+<td>Azul no lugar de vermelho, laranja para avisos</td>
+</tr>
+<tr>
+<td>Deuteranopia</td>
+<td>Dificuldade com verde</td>
+<td>Laranja-vermelho, amarelo-ouro, azul</td>
+</tr>
+<tr>
+<td>Tritanopia</td>
+<td>Dificuldade com azul/amarelo</td>
+<td>Vermelho puro, teal, laranja</td>
+</tr>
+<tr>
+<td>Acromasia</td>
+<td>Sem percepção de cor</td>
+<td>Escala de cinza por luminosidade</td>
+</tr>
+</tbody>
+</table></div>
+<p>As paletas substituem as cores semânticas (erro, aviso, sucesso, info) por alternativas perceptivelmente distintas dentro da limitação de cada condição.</p>
+<hr />
+<h2 id="leitor-de-tela--tts">Leitor de Tela / TTS<a class="anchor" href="#leitor-de-tela--tts" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis detecta automaticamente o motor de síntese de voz disponível no sistema:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Sistema</th>
+<th>Motor usado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux</td>
+<td><code>spd-say</code> (Speech Dispatcher), <code>espeak</code></td>
+</tr>
+<tr>
+<td>macOS</td>
+<td><code>say</code> (nativo)</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>SAPI via PowerShell</td>
+</tr>
+</tbody>
+</table></div>
+<p>Quando um motor é detectado, os widgets anotados anunciam automaticamente seu rótulo e atalho ao receber foco ou ao passar o mouse sobre eles (<code>&lt;Enter&gt;</code>). Use o botão <strong>Testar leitor de tela</strong> no painel para verificar o funcionamento.</p>
+<p>Para anotar widgets customizados em plugins:</p>
+<pre><code class="language-python"># No activate(api) do plugin
+api.annotate_widget(meu_botao,
+                    role=&quot;button&quot;,
+                    label=&quot;Executar script&quot;,
+                    keyshortcut=&quot;F5&quot;)
+</code></pre>
+<hr />
+<h2 id="navegação-por-teclado">Navegação por Teclado<a class="anchor" href="#navegação-por-teclado" aria-label="Link para esta seção">#</a></h2>
+<p>Toda a interface pode ser operada sem mouse:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tecla</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tab</code></td>
+<td>Próximo widget no grupo ativo</td>
+</tr>
+<tr>
+<td><code>Shift+Tab</code></td>
+<td>Widget anterior</td>
+</tr>
+<tr>
+<td><code>Enter</code> / <code>Space</code></td>
+<td>Ativar elemento focado</td>
+</tr>
+<tr>
+<td><code>Escape</code></td>
+<td>Fechar modal / sair do grupo</td>
+</tr>
+<tr>
+<td>Setas</td>
+<td>Navegação contextual (listas, árvores)</td>
+</tr>
+</tbody>
+</table></div>
+<p>O gerenciador de navegação é inicializado automaticamente. Plugins podem registrar grupos de navegação customizados:</p>
+<pre><code class="language-python">api.register_nav_group(&quot;meu_painel&quot;, [btn1, btn2, entry1])
+</code></pre>
+<hr />
+<h2 id="configuração-persistente">Configuração Persistente<a class="anchor" href="#configuração-persistente" aria-label="Link para esta seção">#</a></h2>
+<p>As preferências são salvas automaticamente em <code>~/.config/codis/config.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;a11y_high_contrast&quot;: false,
+  &quot;a11y_colorblind_mode&quot;: &quot;deuteranopia&quot;
+}
+</code></pre>
+<hr />
+<h2 id="suporte-a-voz-experimental">Suporte a Voz (experimental)<a class="anchor" href="#suporte-a-voz-experimental" aria-label="Link para esta seção">#</a></h2>
+<p>Navegação por comandos de voz requer <code>speech_recognition</code> e um microfone:</p>
+<pre><code class="language-bash">pip install SpeechRecognition
+</code></pre>
+<p>Quando disponível, o botão <strong>🎙 Ativar voz</strong> aparece no painel de acessibilidade. Comandos básicos: &quot;abrir arquivo&quot;, &quot;fechar&quot;, &quot;desfazer&quot;, &quot;salvar&quot;.</p>
+<hr />
+<h2 id="contribuindo-com-acessibilidade">Contribuindo com Acessibilidade<a class="anchor" href="#contribuindo-com-acessibilidade" aria-label="Link para esta seção">#</a></h2>
+<p>Se você usa tecnologia assistiva e encontrou problemas de acessibilidade no Codis, abra uma issue com a tag <code>a11y</code>. Descreva:</p>
+<ul>
+<li>O modo de acessibilidade utilizado</li>
+<li>O sistema operacional e motor TTS</li>
+<li>O comportamento esperado vs. o observado</li>
+<li>Se possível, um log do painel de Output</li>
+</ul>
+<p>Contribuições de paletas para daltonismo adicional (ex: tritanopia melhorada para temas claros) são muito bem-vindas via Pull Request.</p>
+<hr />
+<h2 id="navegação-e-motor">Navegação e Motor<a class="anchor" href="#navegação-e-motor" aria-label="Link para esta seção">#</a></h2>
+<h3 id="navegação-aprimorada-por-teclado">Navegação Aprimorada por Teclado<a class="anchor" href="#navegação-aprimorada-por-teclado" aria-label="Link para esta seção">#</a></h3>
+<p>Com <code>a11y_keyboard_nav: true</code> (padrão), o Codis registra grupos de widgets para navegação por <strong>Tab / Shift+Tab</strong> e <strong>setas direcionais</strong> em painéis, listas e árvores.</p>
+<h3 id="fonte-de-ui-grande">Fonte de UI Grande<a class="anchor" href="#fonte-de-ui-grande" aria-label="Link para esta seção">#</a></h3>
+<p>Com <code>a11y_large_ui_font: true</code>, força a fonte de interface para no mínimo <strong>13pt</strong>, melhorando legibilidade em monitores de baixa resolução ou com zoom reduzido.</p>
+<h3 id="reduzir-movimento">Reduzir Movimento<a class="anchor" href="#reduzir-movimento" aria-label="Link para esta seção">#</a></h3>
+<p>Com <code>a11y_reduce_motion: true</code>, desabilita animações, transições e efeitos visuais (piscar, fade, deslizamentos). Útil para usuários com sensibilidade a movimento ou epilepsia fotossensível.</p>
+<hr />
+<h2 id="configurações">Configurações<a class="anchor" href="#configurações" aria-label="Link para esta seção">#</a></h2>
+<p>Acesse em <strong>Configurações → Acessibilidade</strong> (ou <code>Ctrl+,</code> → categoria Acessibilidade):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a11y_high_contrast</code></td>
+<td><code>False</code></td>
+<td>Alto contraste (WCAG AA)</td>
+</tr>
+<tr>
+<td><code>a11y_colorblind_mode</code></td>
+<td><code>&quot;&quot;</code></td>
+<td>Modo daltonismo: protanopia / deuteranopia / tritanopia / achromatopsia</td>
+</tr>
+<tr>
+<td><code>a11y_screen_reader</code></td>
+<td><code>True</code></td>
+<td>Habilita anúncios via TTS/leitor de tela</td>
+</tr>
+<tr>
+<td><code>a11y_keyboard_nav</code></td>
+<td><code>True</code></td>
+<td>Navegação aprimorada por Tab e setas</td>
+</tr>
+<tr>
+<td><code>a11y_large_ui_font</code></td>
+<td><code>False</code></td>
+<td>Fonte de UI mínima de 13pt</td>
+</tr>
+<tr>
+<td><code>a11y_reduce_motion</code></td>
+<td><code>False</code></td>
+<td>Desativa animações e efeitos visuais</td>
+</tr>
+</tbody>
+</table></div>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="output.html"><small>Anterior</small>Painel de Saída</a>
+        <a class="next" href="paint.html"><small>Próxima</small>Editor de Imagens (Paint)</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/acessibilidade.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/acessibilidade.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#como-ativar">Como Ativar</a></li><li class="l2"><a href="#modos-disponíveis">Modos Disponíveis</a></li><li class="l3"><a href="#alto-contraste">Alto Contraste</a></li><li class="l3"><a href="#modos-para-daltonismo">Modos para Daltonismo</a></li><li class="l2"><a href="#leitor-de-tela--tts">Leitor de Tela / TTS</a></li><li class="l2"><a href="#navegação-por-teclado">Navegação por Teclado</a></li><li class="l2"><a href="#configuração-persistente">Configuração Persistente</a></li><li class="l2"><a href="#suporte-a-voz-experimental">Suporte a Voz (experimental)</a></li><li class="l2"><a href="#contribuindo-com-acessibilidade">Contribuindo com Acessibilidade</a></li><li class="l2"><a href="#navegação-e-motor">Navegação e Motor</a></li><li class="l3"><a href="#navegação-aprimorada-por-teclado">Navegação Aprimorada por Teclado</a></li><li class="l3"><a href="#fonte-de-ui-grande">Fonte de UI Grande</a></li><li class="l3"><a href="#reduzir-movimento">Reduzir Movimento</a></li><li class="l2"><a href="#configurações">Configurações</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

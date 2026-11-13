@@ -1,0 +1,64 @@
+* text=auto eol=lf
+
+*.py        text eol=lf diff=python
+*.pyi       text eol=lf diff=python
+*.pyx       text eol=lf
+*.json      text eol=lf
+*.toml      text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.cfg       text eol=lf
+*.ini       text eol=lf
+*.md        text eol=lf diff=markdown
+*.txt       text eol=lf
+*.sh        text eol=lf
+*.cff       text eol=lf
+
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.ps1       text eol=crlf
+
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.icns      binary
+*.webp      binary
+*.woff      binary
+*.woff2     binary
+*.ttf       binary
+*.otf       binary
+*.eot       binary
+*.zip       binary
+*.tar.gz    binary
+*.7z        binary
+*.exe       binary
+*.dll       binary
+*.so        binary
+*.dylib     binary
+*.pdf       binary
+*.db        binary
+*.sqlite    binary
+*.sqlite3   binary
+
+src/locales/*.json text eol=lf merge=union
+
+*.lock              linguist-generated=true
+package-lock.json   linguist-generated=true
+CHANGELOG.md        linguist-generated=false
+
+*.py        linguist-language=Python
+wiki/*      linguist-documentation
+docs/*      linguist-documentation
+examples/*  linguist-vendored=false
+
+.github/                 export-ignore
+.gitattributes           export-ignore
+.gitignore               export-ignore
+.mailmap                 export-ignore
+tests/                   export-ignore
+*.bak                    export-ignore
+
+pyproject.toml      merge=ours
+requirements.txt    merge=ours

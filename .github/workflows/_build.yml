@@ -1,0 +1,200 @@
+name: "Build (reutilizável)"
+
+# Gera os executáveis PyInstaller de cada plataforma da matriz e o ZIP do
+# código-fonte. Chamado SOMENTE por pipeline.yml (job "build").
+#
+# Este workflow NÃO publica nada: ele só produz artefatos. A publicação da
+# release (com todos os arquivos de uma vez) é feita pelo job "release" do
+# pipeline - assim cada binário é compilado uma única vez por commit, e o
+# mesmo arquivo serve ao artefato do Actions e à release.
+on:
+  workflow_call:
+    inputs:
+      matrix:
+        description: "Matriz de plataformas (JSON do job plan)"
+        required: true
+        type: string
+      stem:
+        description: "Prefixo dos arquivos (ex: Codis-v1.0.0)"
+        required: true
+        type: string
+      version:
+        description: "Versão embutida nos nomes/ZIP (CODIS_RELEASE_VERSION)"
+        required: true
+        type: string
+      source:
+        description: "Gerar também o ZIP de código-fonte?"
+        required: false
+        type: boolean
+        default: true
+      retention:
+        description: "Dias de retenção dos artefatos"
+        required: false
+        type: number
+        default: 5
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.12"
+  PYINSTALLER_VERSION: "6.22.3"
+
+jobs:
+  build:
+    name: "Build ${{ matrix.label }}"
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental == true }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(inputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Configurar Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          architecture: ${{ matrix.arch }}
+          cache: "pip"
+
+      - name: "Dependencias de sistema (Linux)"
+        if: matrix.platform == 'linux'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            libtk8.6 libtcl8.6 binutils xvfb fontconfig fonts-dejavu-core
+
+      - name: "Instalar dependencias Python"
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          if [ "${{ matrix.experimental }}" = "true" ]; then
+            python .github/scripts/pip_install_tolerant.py requirements.txt
+          else
+            pip install -r requirements.txt
+          fi
+          pip install "pyinstaller==${PYINSTALLER_VERSION}"
+
+      - name: "Diagnostico Tcl/Tk"
+        shell: bash
+        run: |
+          python -c "import sys, tkinter; t = tkinter.Tcl(); print('Python', sys.version.split()[0], '| Tcl', t.eval('info patchlevel'), '|', t.eval('info library'))"
+
+      - name: "Definir nomes"
+        id: meta
+        shell: bash
+        env:
+          STEM: ${{ inputs.stem }}
+        run: |
+          NAME="${STEM}-${{ matrix.suffix }}"
+          echo "name=${NAME}"                            >> "$GITHUB_OUTPUT"
+          echo "file=release_out/${NAME}.${{ matrix.ext }}" >> "$GITHUB_OUTPUT"
+
+      - name: "Build PyInstaller (package_codis.py)"
+        shell: bash
+        env:
+          PYTHONIOENCODING: "utf-8"
+          CODIS_RELEASE_VERSION: ${{ inputs.version }}
+        run: python package_codis.py pyinstaller --no-upx
+
+      - name: "Verificar executavel e tamanho"
+        shell: bash
+        run: |
+          if [ "${{ matrix.platform }}" = "windows" ]; then BIN="dist/Codis.exe"; else BIN="dist/Codis"; fi
+          if [ ! -e "$BIN" ] && [ -d dist/Codis.app ]; then BIN="dist/Codis.app/Contents/MacOS/Codis"; fi
+          [ -e "$BIN" ] || { echo "ERRO: executavel nao encontrado em dist/"; ls -la dist || true; exit 1; }
+          ls -lh "$BIN"
+          SIZE_MB=$(( $(wc -c < "$BIN") / 1048576 ))
+          echo "Tamanho: ${SIZE_MB} MB"
+          echo "- ${{ matrix.label }}: ${SIZE_MB} MB" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ matrix.platform }}" = "linux" ] && [ "$SIZE_MB" -gt 60 ]; then
+            echo "ERRO: binario Linux com ${SIZE_MB} MB (limite 60 MB). Algo extra entrou no bundle."
+            exit 1
+          fi
+
+      - name: "Diagnostico de fontes e Tk (Linux)"
+        if: matrix.platform == 'linux'
+        shell: bash
+        run: |
+          python -c "import tkinter; print('Tcl/Tk', tkinter.Tcl().eval('info patchlevel'))"
+          echo "fontes totais: $(fc-list | wc -l) | coloridas: $(fc-list ':color=true' family | wc -l)"
+          fc-list ':color=true' family | sort -u | head -5 || true
+          echo "fc-match DejaVu Sans -> $(fc-match 'DejaVu Sans')"
+          echo "fc-match U+21BA       -> $(fc-match ':charset=21ba')"
+
+      - name: "Smoke test (${{ matrix.label }})"
+        continue-on-error: ${{ matrix.platform != 'linux' }}
+        shell: bash
+        run: |
+          if [ "${{ matrix.platform }}" = "windows" ]; then BIN="dist/Codis.exe"; else BIN="dist/Codis"; fi
+          if [ ! -e "$BIN" ] && [ -d dist/Codis.app ]; then BIN="dist/Codis.app/Contents/MacOS/Codis"; fi
+          if [ "${{ matrix.platform }}" = "linux" ]; then
+            xvfb-run -a -s "-screen 0 1280x800x24" python .github/scripts/smoke_test.py "$BIN" --seconds 20
+          else
+            python .github/scripts/smoke_test.py "$BIN" --seconds 20
+          fi
+
+      - name: "Empacotar (Linux)"
+        if: matrix.platform == 'linux'
+        shell: bash
+        run: |
+          mkdir -p release_out
+          tar -C dist -czf "${{ steps.meta.outputs.file }}" Codis
+
+      - name: "Empacotar (Windows)"
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force release_out | Out-Null
+          Compress-Archive -Path dist/Codis.exe -DestinationPath "${{ steps.meta.outputs.file }}" -CompressionLevel Optimal
+
+      - name: "Empacotar (macOS)"
+        if: matrix.platform == 'macos'
+        shell: bash
+        run: |
+          mkdir -p release_out
+          OUT="$(pwd)/${{ steps.meta.outputs.file }}"
+          cd dist
+          if [ -d Codis.app ]; then zip -qry "$OUT" Codis.app; else zip -q "$OUT" Codis; fi
+
+      - name: "Upload artefato"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.meta.outputs.name }}
+          path: ${{ steps.meta.outputs.file }}
+          if-no-files-found: error
+          retention-days: ${{ inputs.retention }}
+
+  source-zip:
+    name: "ZIP Codigo-Fonte"
+    if: inputs.source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: "Gerar ZIP"
+        id: zip
+        env:
+          PYTHONIOENCODING: "utf-8"
+          CODIS_RELEASE_VERSION: ${{ inputs.version }}
+          ZIP_NAME: ${{ inputs.stem }}-source.zip
+        run: |
+          export CODIS_SNAPSHOT_NAME="$ZIP_NAME"
+          python package_codis.py zip
+          [ -f "dist/${ZIP_NAME}" ] || { echo "ERRO: dist/${ZIP_NAME} nao foi gerado"; ls -la dist || true; exit 1; }
+          echo "path=dist/${ZIP_NAME}" >> "$GITHUB_OUTPUT"
+          echo "name=${ZIP_NAME%.zip}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.zip.outputs.name }}
+          path: ${{ steps.zip.outputs.path }}
+          if-no-files-found: error
+          retention-days: ${{ inputs.retention }}

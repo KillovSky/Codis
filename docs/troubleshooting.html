@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Solução de Problemas · Codis</title>
+<meta name="description" content="Guia de diagnóstico técnico (comandos, logs, causas) para os problemas mais comuns. Para respostas rápidas em formato pergunta-resposta, veja também a FAQ." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/troubleshooting.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Solução de Problemas · Codis" />
+<meta property="og:description" content="Guia de diagnóstico técnico (comandos, logs, causas) para os problemas mais comuns. Para respostas rápidas em formato pergunta-resposta, veja também a FAQ." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/troubleshooting.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group" open><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html" class="is-current" aria-current="page">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-solução-de-problemas">🛠️ Solução de Problemas<a class="anchor" href="#-solução-de-problemas" aria-label="Link para esta seção">#</a></h1>
+<p>Guia de diagnóstico técnico (comandos, logs, causas) para os problemas mais comuns. Para respostas rápidas em formato pergunta-resposta, veja também a <a href="faq.html">FAQ</a>.</p>
+<hr />
+<h2 id="índice">Índice<a class="anchor" href="#índice" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><a href="#o-codis-n%C3%A3o-abre--tela-preta">O Codis não abre / tela preta</a></li>
+<li><a href="#erro-no-module-named-tkinter">Erro: &quot;No module named tkinter&quot;</a></li>
+<li><a href="#fontes-distorcidas-ou-ileg%C3%ADveis">Fontes distorcidas ou ilegíveis</a></li>
+<li><a href="#tela-em-branco-no-linux-wayland">Tela em branco no Linux (Wayland)</a></li>
+<li><a href="#antiv%C3%ADrus-bloqueia-o-execut%C3%A1vel">Antivírus bloqueia o executável</a></li>
+<li><a href="#lsp-n%C3%A3o-funciona--sem-autocomplete">LSP não funciona / sem autocomplete</a></li>
+<li><a href="#editor-muito-lento-em-arquivos-grandes">Editor muito lento em arquivos grandes</a></li>
+<li><a href="#git-panel-mostra-git-n%C3%A3o-encontrado">Git panel mostra &quot;git não encontrado&quot;</a></li>
+<li><a href="#terminal-integrado-n%C3%A3o-abre-windows">Terminal integrado não abre (Windows)</a></li>
+<li><a href="#erro-de-encoding-ao-abrir-arquivo">Erro de encoding ao abrir arquivo</a></li>
+<li><a href="#plugins-n%C3%A3o-carregam">Plugins não carregam</a></li>
+<li><a href="#configura%C3%A7%C3%B5es-corrompidas--reset">Configurações corrompidas / reset</a></li>
+<li><a href="#coletar-informa%C3%A7%C3%B5es-para-reportar-bug">Coletar informações para reportar bug</a></li>
+</ul>
+<hr />
+<h2 id="o-codis-não-abre--tela-preta">O Codis não abre / tela preta<a class="anchor" href="#o-codis-não-abre--tela-preta" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Sintomas:</strong> Processo Python inicia e termina sem abrir janela, ou janela aparece vazia/preta.</p>
+<p><strong>Diagnóstico:</strong></p>
+<pre><code class="language-bash"># Execute pelo terminal para ver erros
+python run.py
+
+# Com log detalhado
+CODIS_DEBUG=1 python run.py
+</code></pre>
+<p><strong>Causas comuns:</strong></p>
+<ol>
+<li>
+<p><strong>Python &lt; 3.12</strong> - o Codis usa f-strings com aspas aninhadas (PEP 701), sintaxe válida apenas em 3.12+.</p>
+<pre><code class="language-bash">python --version   # deve ser 3.12.x ou superior
+</code></pre>
+</li>
+<li>
+<p><strong>Tkinter não instalado</strong> - veja a seção <a href="#erro-no-module-named-tkinter">Erro: &quot;No module named tkinter&quot;</a>.</p>
+</li>
+<li>
+<p><strong>Configuração corrompida</strong> - veja <a href="#configura%C3%A7%C3%B5es-corrompidas--reset">Configurações corrompidas / reset</a>.</p>
+</li>
+<li>
+<p><strong>Conflito de display no Linux</strong> - veja <a href="#tela-em-branco-no-linux-wayland">Tela em branco no Linux (Wayland)</a>.</p>
+</li>
+</ol>
+<hr />
+<h2 id="erro-no-module-named-tkinter">Erro: &quot;No module named tkinter&quot;<a class="anchor" href="#erro-no-module-named-tkinter" aria-label="Link para esta seção">#</a></h2>
+<p>O Tkinter não está incluído em algumas instalações Python, especialmente no Linux.</p>
+<p><strong>Ubuntu / Debian:</strong></p>
+<pre><code class="language-bash">sudo apt install python3-tk
+</code></pre>
+<p><strong>Fedora / RHEL:</strong></p>
+<pre><code class="language-bash">sudo dnf install python3-tkinter
+</code></pre>
+<p><strong>Arch Linux:</strong></p>
+<pre><code class="language-bash">sudo pacman -S tk
+</code></pre>
+<p><strong>macOS (via Homebrew):</strong></p>
+<pre><code class="language-bash">brew install python-tk@3.12
+</code></pre>
+<p><strong>Windows:</strong> O instalador oficial do Python inclui Tkinter por padrão. Se estiver faltando, reinstale Python com a opção &quot;tcl/tk and IDLE&quot; marcada.</p>
+<hr />
+<h2 id="fontes-distorcidas-ou-ilegíveis">Fontes distorcidas ou ilegíveis<a class="anchor" href="#fontes-distorcidas-ou-ilegíveis" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Linux:</strong> Instale as fontes DejaVu e configure o fontconfig:</p>
+<pre><code class="language-bash">sudo apt install fonts-dejavu-core fonts-dejavu-extra fontconfig
+fc-cache -fv
+</code></pre>
+<p><strong>Windows:</strong> Certifique-se de que ClearType está ativado:</p>
+<ul>
+<li>Configurações → Personalização → Fontes → Configurações de ClearType</li>
+</ul>
+<p><strong>macOS:</strong> Fontes borradas em telas não-Retina são uma limitação do Tkinter no macOS. Use <strong>Configurações → Editor → Fonte</strong> e escolha uma fonte com hinting manual (ex: Menlo, Courier New).</p>
+<p><strong>Todas as plataformas:</strong> Em <strong>Configurações → Aparência → Escala de Interface</strong>, ajuste o DPI multiplier para corresponder à sua tela.</p>
+<hr />
+<h2 id="tela-em-branco-no-linux-wayland">Tela em branco no Linux (Wayland)<a class="anchor" href="#tela-em-branco-no-linux-wayland" aria-label="Link para esta seção">#</a></h2>
+<p>O Tkinter usa X11. No Wayland, é necessário o XWayland.</p>
+<p><strong>Verificar se XWayland está disponível:</strong></p>
+<pre><code class="language-bash">echo $WAYLAND_DISPLAY   # deve mostrar wayland-0 ou similar
+echo $DISPLAY           # deve mostrar :0 ou similar (XWayland)
+</code></pre>
+<p><strong>Forçar X11:</strong></p>
+<pre><code class="language-bash">GDK_BACKEND=x11 python run.py
+</code></pre>
+<p><strong>GNOME (Wayland):</strong> Instale <code>xwayland</code> se não estiver presente:</p>
+<pre><code class="language-bash">sudo apt install xwayland   # Ubuntu/Debian
+</code></pre>
+<p><strong>KDE (Wayland):</strong> XWayland é instalado por padrão com o Plasma. Se não estiver funcionando:</p>
+<pre><code class="language-bash">sudo apt install kwin-wayland-backend-x11
+</code></pre>
+<hr />
+<h2 id="antivírus-bloqueia-o-executável">Antivírus bloqueia o executável<a class="anchor" href="#antivírus-bloqueia-o-executável" aria-label="Link para esta seção">#</a></h2>
+<p>Executáveis gerados por PyInstaller frequentemente disparam falsos positivos em antivírus heurísticos. Isso afeta especialmente binários Windows.</p>
+<p><strong>Antivírus comuns afetados:</strong> Windows Defender, Bkav, Gridinsoft, SentinelOne, Skyhigh.</p>
+<p><strong>Causa:</strong> O bootstrap do PyInstaller (código que carrega o Python runtime) tem padrões comportamentais similares a droppers. Não há malware no Codis.</p>
+<p><strong>Soluções:</strong></p>
+<ol>
+<li>
+<p><strong>Adicionar exceção no antivírus</strong> - adicione a pasta do Codis como exceção/exclusão.</p>
+</li>
+<li>
+<p><strong>Verificar integridade</strong> - os hashes SHA-256 dos binários oficiais estão em cada <a href="https://github.com/KillovSky/Codis/releases" target="_blank" rel="noopener">GitHub Release</a>:</p>
+<pre><code class="language-bash"># Windows (PowerShell)
+Get-FileHash Codis.exe -Algorithm SHA256
+
+# Linux / macOS
+sha256sum Codis
+</code></pre>
+</li>
+<li>
+<p><strong>Executar pelo Python</strong> - a opção mais segura para quem desconfia do binário:</p>
+<pre><code class="language-bash">git clone https://github.com/KillovSky/Codis.git
+pip install -r requirements.txt
+python run.py
+</code></pre>
+</li>
+<li>
+<p><strong>Reportar falso positivo</strong> - submeta o binário para análise no <a href="https://www.virustotal.com" target="_blank" rel="noopener">VirusTotal</a> e reporte como falso positivo diretamente ao seu antivírus.</p>
+</li>
+</ol>
+<hr />
+<h2 id="lsp-não-funciona--sem-autocomplete">LSP não funciona / sem autocomplete<a class="anchor" href="#lsp-não-funciona--sem-autocomplete" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Verificar se o servidor LSP está instalado:</strong></p>
+<pre><code class="language-bash"># Para Python
+pylsp --version   # ou: python-language-server --version
+
+# Instalar
+pip install python-lsp-server[all]
+</code></pre>
+<p><strong>Verificar configuração:</strong></p>
+<ul>
+<li>Abra <strong>Configurações → LSP → Servidores</strong></li>
+<li>Confirme que o caminho do servidor está correto</li>
+<li>Clique em &quot;Testar Conexão&quot;</li>
+</ul>
+<p><strong>Log do LSP:</strong></p>
+<pre><code class="language-bash">CODIS_DEBUG=1 python run.py 2&gt;&amp;1 | grep -i lsp
+</code></pre>
+<p><strong>Problemas comuns:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Sintoma</th>
+<th>Causa</th>
+<th>Solução</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;LSP: servidor não encontrado&quot;</td>
+<td><code>pylsp</code> não está no PATH</td>
+<td><code>pip install python-lsp-server[all]</code></td>
+</tr>
+<tr>
+<td>&quot;LSP: timeout na inicialização&quot;</td>
+<td>Servidor lento para iniciar</td>
+<td>Aumentar timeout em Configurações → LSP</td>
+</tr>
+<tr>
+<td>Autocomplete funciona mas hover não</td>
+<td>Capacidade não suportada pelo servidor</td>
+<td>Normal para alguns servidores LSP</td>
+</tr>
+<tr>
+<td>LSP trava ao abrir arquivo grande</td>
+<td>Análise estática pesada</td>
+<td>Desativar LSP para arquivos &gt; X KB em Configurações</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="editor-muito-lento-em-arquivos-grandes">Editor muito lento em arquivos grandes<a class="anchor" href="#editor-muito-lento-em-arquivos-grandes" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis ativa automaticamente o <strong>modo arquivo grande</strong> para arquivos com mais de 500 KB. Se não estiver ocorrendo:</p>
+<ol>
+<li>Abra <strong>Configurações → Performance</strong></li>
+<li>Reduza <code>large_file_threshold_kb</code> (padrão: 500)</li>
+<li>Desative <code>minimap_enabled</code> para arquivos grandes</li>
+<li>Desative <code>animations_enabled</code></li>
+</ol>
+<p>Para arquivos extremamente grandes (&gt; 50 MB), recomendamos usar <code>less</code> ou <code>vim</code> no terminal integrado do Codis.</p>
+<hr />
+<h2 id="git-panel-mostra-git-não-encontrado">Git panel mostra &quot;git não encontrado&quot;<a class="anchor" href="#git-panel-mostra-git-não-encontrado" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Linux / macOS:</strong></p>
+<pre><code class="language-bash">which git   # deve mostrar /usr/bin/git ou similar
+# Se não encontrado:
+sudo apt install git    # Ubuntu/Debian
+brew install git        # macOS
+</code></pre>
+<p><strong>Windows:</strong> Instale o <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git for Windows</a> e certifique-se de que está no PATH:</p>
+<pre><code class="language-cmd">where git
+</code></pre>
+<p>Se o Git está instalado mas o Codis não encontra, configure o caminho manualmente:</p>
+<ul>
+<li><strong>Configurações → Git → Caminho do executável git</strong></li>
+</ul>
+<hr />
+<h2 id="terminal-integrado-não-abre-windows">Terminal integrado não abre (Windows)<a class="anchor" href="#terminal-integrado-não-abre-windows" aria-label="Link para esta seção">#</a></h2>
+<p>O terminal integrado no Windows usa <code>pywinpty</code> para suporte a PTY completo.</p>
+<pre><code class="language-bash">pip install pywinpty
+</code></pre>
+<p>Se <code>pywinpty</code> não estiver disponível, o terminal cai para modo <code>subprocess</code> simples (sem cores ANSI, sem interatividade completa). Isso é esperado - o editor ainda funciona.</p>
+<p><strong>Alternativa:</strong> Use o PowerShell ou CMD externo via <strong>Ferramentas → Abrir terminal externo</strong>.</p>
+<hr />
+<h2 id="erro-de-encoding-ao-abrir-arquivo">Erro de encoding ao abrir arquivo<a class="anchor" href="#erro-de-encoding-ao-abrir-arquivo" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis detecta encoding automaticamente via <code>charset-normalizer</code> ou <code>chardet</code>. Se não estiver instalado:</p>
+<pre><code class="language-bash">pip install charset-normalizer chardet
+</code></pre>
+<p>Para forçar encoding manualmente ao abrir um arquivo:</p>
+<ul>
+<li>Clique com o botão direito no arquivo na file tree</li>
+<li><strong>Abrir com encoding → escolha o encoding</strong></li>
+</ul>
+<p>Ou via menu <strong>Arquivo → Reabrir com encoding</strong>.</p>
+<hr />
+<h2 id="plugins-não-carregam">Plugins não carregam<a class="anchor" href="#plugins-não-carregam" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Verificar log de plugins:</strong></p>
+<pre><code class="language-bash">CODIS_DEBUG=1 python run.py 2&gt;&amp;1 | grep -i plugin
+</code></pre>
+<p><strong>Causas comuns:</strong></p>
+<ol>
+<li><strong>Erro de sintaxe no plugin</strong> - o plugin tem um bug que impede o carregamento. Verifique o log.</li>
+<li><strong>Dependência faltando</strong> - o plugin requer um pacote não instalado. Veja a documentação do plugin.</li>
+<li><strong>Versão incompatível</strong> - o plugin foi escrito para uma versão anterior do Codis. Verifique a versão mínima exigida.</li>
+</ol>
+<p><strong>Desativar todos os plugins temporariamente:</strong></p>
+<pre><code class="language-bash">CODIS_NO_PLUGINS=1 python run.py
+</code></pre>
+<hr />
+<h2 id="configurações-corrompidas--reset">Configurações corrompidas / reset<a class="anchor" href="#configurações-corrompidas--reset" aria-label="Link para esta seção">#</a></h2>
+<p>As configurações ficam em <code>~/.codis/config.json</code>.</p>
+<p><strong>Resetar para padrão:</strong></p>
+<pre><code class="language-bash"># Backup
+cp ~/.codis/config.json ~/.codis/config.json.bak
+
+# Reset
+rm ~/.codis/config.json
+python run.py   # recria com valores padrão
+</code></pre>
+<p><strong>Windows:</strong> A pasta fica em <code>%USERPROFILE%\.codis\</code>.</p>
+<p><strong>Editar manualmente</strong> (para usuários avançados):</p>
+<pre><code class="language-bash"># O arquivo é JSON padrão - editável em qualquer editor de texto
+nano ~/.codis/config.json
+</code></pre>
+<hr />
+<h2 id="coletar-informações-para-reportar-bug">Coletar informações para reportar bug<a class="anchor" href="#coletar-informações-para-reportar-bug" aria-label="Link para esta seção">#</a></h2>
+<p>Antes de abrir uma issue, colete:</p>
+<pre><code class="language-bash"># Versão do Python e Tkinter
+python -c &quot;import sys, tkinter; print(sys.version); print('Tk:', tkinter.TkVersion)&quot;
+
+# Sistema operacional
+python -c &quot;import platform; print(platform.platform())&quot;
+
+# Versão do Codis
+python -c &quot;from src.constants import APP_VERSION; print(APP_VERSION)&quot;
+
+# Dependências instaladas
+pip list | grep -E &quot;Pillow|markdown|psutil|websockets|send2trash|charset|Pygments&quot;
+
+# Log com debug ativado (últimas 100 linhas)
+CODIS_DEBUG=1 python run.py 2&gt;&amp;1 | tail -100
+</code></pre>
+<p>Cole essas informações no template de bug report:
+<a href="https://github.com/KillovSky/Codis/issues/new?template=bug_report.yml" target="_blank" rel="noopener">🐛 Abrir bug report</a></p>
+<hr />
+<h2 id="codis-compilado-pip-venv-lsp-e-git">Codis compilado: pip, venv, LSP e Git<a class="anchor" href="#codis-compilado-pip-venv-lsp-e-git" aria-label="Link para esta seção">#</a></h2>
+<p>O executável compilado (PyInstaller) <strong>não inclui um interpretador Python</strong> para os
+subprocessos. O Codis procura um Python 3.12+ instalado (PATH, <code>py -3</code> no Windows,
+pastas padrão) e o valida executando-o. Se o painel pip mostrar <em>&quot;Python não
+encontrado&quot;</em>:</p>
+<ol>
+<li>Instale o Python em python.org (marque <em>Add to PATH</em>), ou</li>
+<li>defina <code>CODIS_PYTHON</code> com o caminho do <code>python</code>/<code>python.exe</code> e reinicie.</li>
+</ol>
+<p>Garantias contra cascata de processos: o Codis nunca executa a si mesmo como Python;
+quando chamado como <code>Codis -m modulo</code> ou <code>Codis -c codigo</code> ele se comporta como
+interpretador (módulos embutidos apenas) em vez de abrir a interface, e recusa
+iniciar com profundidade de spawn acima de 4 (<code>CODIS_SPAWN_DEPTH</code>). O ambiente
+dos subprocessos é limpo das variáveis do bundle (<code>LD_LIBRARY_PATH</code>, <code>TCL_LIBRARY</code>,
+<code>TK_LIBRARY</code>).</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="faq.html"><small>Anterior</small>FAQ - Perguntas Frequentes</a>
+        <a class="next" href="editor.html"><small>Próxima</small>Editor</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/troubleshooting.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/troubleshooting.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#índice">Índice</a></li><li class="l2"><a href="#o-codis-não-abre--tela-preta">O Codis não abre / tela preta</a></li><li class="l2"><a href="#erro-no-module-named-tkinter">Erro: &quot;No module named tkinter&quot;</a></li><li class="l2"><a href="#fontes-distorcidas-ou-ilegíveis">Fontes distorcidas ou ilegíveis</a></li><li class="l2"><a href="#tela-em-branco-no-linux-wayland">Tela em branco no Linux (Wayland)</a></li><li class="l2"><a href="#antivírus-bloqueia-o-executável">Antivírus bloqueia o executável</a></li><li class="l2"><a href="#lsp-não-funciona--sem-autocomplete">LSP não funciona / sem autocomplete</a></li><li class="l2"><a href="#editor-muito-lento-em-arquivos-grandes">Editor muito lento em arquivos grandes</a></li><li class="l2"><a href="#git-panel-mostra-git-não-encontrado">Git panel mostra &quot;git não encontrado&quot;</a></li><li class="l2"><a href="#terminal-integrado-não-abre-windows">Terminal integrado não abre (Windows)</a></li><li class="l2"><a href="#erro-de-encoding-ao-abrir-arquivo">Erro de encoding ao abrir arquivo</a></li><li class="l2"><a href="#plugins-não-carregam">Plugins não carregam</a></li><li class="l2"><a href="#configurações-corrompidas--reset">Configurações corrompidas / reset</a></li><li class="l2"><a href="#coletar-informações-para-reportar-bug">Coletar informações para reportar bug</a></li><li class="l2"><a href="#codis-compilado-pip-venv-lsp-e-git">Codis compilado: pip, venv, LSP e Git</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

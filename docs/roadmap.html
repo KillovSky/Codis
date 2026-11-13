@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Roadmap · Codis</title>
+<meta name="description" content="Este documento descreve a direção de desenvolvimento do Codis. As prioridades são orientativas e podem mudar conforme o feedback da comunidade." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/roadmap.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Roadmap · Codis" />
+<meta property="og:description" content="Este documento descreve a direção de desenvolvimento do Codis. As prioridades são orientativas e podem mudar conforme o feedback da comunidade." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/roadmap.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group" open><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html" class="is-current" aria-current="page">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="roadmap---codis">Roadmap - Codis<a class="anchor" href="#roadmap---codis" aria-label="Link para esta seção">#</a></h1>
+<p>Este documento descreve a direção de desenvolvimento do Codis. As prioridades são orientativas e podem mudar conforme o feedback da comunidade.</p>
+<blockquote>
+<p><strong>Nota:</strong> Este projeto é mantido por uma pessoa em tempo livre. Não há datas fixas de entrega.</p>
+</blockquote>
+<hr />
+<h2 id="filosofia">Filosofia<a class="anchor" href="#filosofia" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis segue alguns princípios que guiam o que entra no roadmap:</p>
+<ul>
+<li><strong>Python puro</strong> - nenhuma dependência de Electron, Node.js ou runtimes externos</li>
+<li><strong>&quot;Leve&quot; por padrão</strong> - recursos pesados são opcionais e não consomem recursos até serem ativados</li>
+<li><strong>Extensível</strong> - qualquer funcionalidade que puder ser feita como plugin, deve ser feita como plugin primeiro</li>
+<li><strong>Acessível</strong> - suporte a leitores de tela, navegação por teclado e modos de alto contraste são requisitos, não extras</li>
+</ul>
+<hr />
+<h2 id="estado-atual---v100">Estado Atual - v1.0.0<a class="anchor" href="#estado-atual---v100" aria-label="Link para esta seção">#</a></h2>
+<p>A versão 1.0.0 representa o editor completo como base sólida:</p>
+<ul>
+<li>Editor com 48 linguagens reconhecidas (25 com highlight de sintaxe), LSP, Git, Vim Mode, minimap, multi-cursor</li>
+<li>Assistente de IA multi-provedor (Anthropic, OpenAI, OpenAI-compatível, Gemini, Ollama, GGUF)</li>
+<li>SQL Studio integrado (SQLite, PostgreSQL, MySQL, DuckDB)</li>
+<li>K-UI holográfico com nebulosas, auroras e sistema solar de arquivos</li>
+<li>Sistema de plugins com sandbox estática e API de eventos</li>
+<li>KDocs - documentação nativa para 27 linguagens</li>
+<li>21 temas built-in, 14 idiomas de interface, 29 modos standalone</li>
+<li>1.683 testes automatizados, CI/CD completo</li>
+</ul>
+<hr />
+<h2 id="próximas-direções">Próximas Direções<a class="anchor" href="#próximas-direções" aria-label="Link para esta seção">#</a></h2>
+<p>As áreas abaixo estão no radar para versões futuras. A ordem não implica prioridade absoluta.
+Muitas das funções abaixo já existem e funcionam no Codis, <br />
+sendo sua inserção aqui um planejamento para adicionar ainda mais suporte a recursos e não uma nova feature.</p>
+<h3 id="editor-e-lsp">Editor e LSP<a class="anchor" href="#editor-e-lsp" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Suporte a múltiplos language servers simultâneos por arquivo</li>
+<li>Code Actions via LSP (quick fixes, refactorings automáticos)</li>
+<li>Semantic tokens para highlighting baseado em semântica real</li>
+<li>Bracket pair colorização por profundidade de escopo</li>
+</ul>
+<h3 id="interface-e-ux">Interface e UX<a class="anchor" href="#interface-e-ux" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Layouts salvos de painéis (workspaces de layout personalizados)</li>
+<li>Modo de foco por arquivo com ocultação automática de painéis</li>
+<li>Drag-and-drop de arquivos da árvore para o editor</li>
+<li>Pré-visualização de imagem inline no explorador de arquivos</li>
+</ul>
+<h3 id="ia">IA<a class="anchor" href="#ia" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Histórico de conversas persistido por projeto</li>
+<li>Modo agente com execução de comandos supervisionada</li>
+<li>Embeddings locais para contexto semântico do projeto</li>
+<li>Suporte a mais provedores (Mistral, Cohere, DeepSeek)</li>
+</ul>
+<h3 id="git-e-colaboração">Git e Colaboração<a class="anchor" href="#git-e-colaboração" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Git log visual com grafo de branches</li>
+<li>Cherry-pick e rebase interativo via interface gráfica</li>
+<li>Suporte a submódulos Git</li>
+</ul>
+<h3 id="plugins-e-extensibilidade">Plugins e Extensibilidade<a class="anchor" href="#plugins-e-extensibilidade" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>API de language server customizado via plugin</li>
+<li>Sistema de temas com herança e variáveis CSS-style</li>
+<li>Marketplace de plugins com instalação via UI</li>
+</ul>
+<h3 id="performance-e-estabilidade">Performance e Estabilidade<a class="anchor" href="#performance-e-estabilidade" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Modo de edição de arquivos binários (hex editor básico)</li>
+<li>Suporte a arquivos muito grandes (&gt;100K linhas) com virtualização de linhas</li>
+<li>Perfil de inicialização com carregamento lazy de painéis</li>
+</ul>
+<hr />
+<h2 id="como-influenciar-o-roadmap">Como Influenciar o Roadmap<a class="anchor" href="#como-influenciar-o-roadmap" aria-label="Link para esta seção">#</a></h2>
+<p>A melhor forma de influenciar o que entra no Codis é:</p>
+<ol>
+<li><strong>Abrir uma Feature Request</strong> - <a href="https://github.com/KillovSky/Codis/issues/new?template=feature_request.yml" target="_blank" rel="noopener">→ Nova issue de feature</a></li>
+<li><strong>Participar das Discussões</strong> - <a href="https://github.com/KillovSky/Codis/discussions" target="_blank" rel="noopener">→ Discussions</a></li>
+<li><strong>Enviar um Pull Request</strong> - veja o <a href="contributing.html">Guia de Contribuição</a></li>
+<li><strong>Criar um plugin</strong> - se a funcionalidade couber num plugin, é a via mais rápida</li>
+</ol>
+<p>Features implementadas como plugins pela comunidade podem eventualmente ser promovidas ao núcleo do editor.</p>
+<hr />
+<p><em>Última atualização: v1.0.0</em></p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="changelog.html"><small>Anterior</small>Changelog</a>
+        <a class="next" href="contributing.html"><small>Próxima</small>Contribuindo</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/ROADMAP.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>ROADMAP.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#filosofia">Filosofia</a></li><li class="l2"><a href="#estado-atual---v100">Estado Atual - v1.0.0</a></li><li class="l2"><a href="#próximas-direções">Próximas Direções</a></li><li class="l3"><a href="#editor-e-lsp">Editor e LSP</a></li><li class="l3"><a href="#interface-e-ux">Interface e UX</a></li><li class="l3"><a href="#ia">IA</a></li><li class="l3"><a href="#git-e-colaboração">Git e Colaboração</a></li><li class="l3"><a href="#plugins-e-extensibilidade">Plugins e Extensibilidade</a></li><li class="l3"><a href="#performance-e-estabilidade">Performance e Estabilidade</a></li><li class="l2"><a href="#como-influenciar-o-roadmap">Como Influenciar o Roadmap</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

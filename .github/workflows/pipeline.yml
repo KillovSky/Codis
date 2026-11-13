@@ -1,0 +1,258 @@
+name: "Pipeline - Validar, Compilar e Publicar"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PORTA DE ENTRADA ÚNICA para commits, tags e pull requests.
+#
+#   plan ─┬─► quality (testes, lint, i18n) ─┐
+#         └─► build   (executáveis + ZIP)  ─┴─► release ─► summary
+#
+# * plan     decide tudo uma vez (versão, canal, plataformas, o que mudou);
+# * quality  e build rodam em PARALELO e cada um roda uma única vez por commit;
+# * release  só roda se os dois passaram e reaproveita os arquivos do build
+#            (nada é recompilado): anexa binários, ZIP do código-fonte e
+#            SHA256SUMS à release.
+#
+# Canais (ver .github/scripts/plan.py):
+#   stable   main/master com APP_VERSION sem tag, ou tag vX.Y.Z -> release oficial
+#   nightly  main/master com versão já lançada                  -> pré-release móvel "nightly"
+#   dev      develop                                            -> pré-release móvel "dev"
+#   none     pull requests                                      -> só valida e compila
+# ─────────────────────────────────────────────────────────────────────────────
+on:
+  push:
+    branches: ["main", "master", "develop"]
+    tags: ["v*.*.*"]
+  pull_request:
+    branches: ["main", "master"]
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Publicar release? (auto = decide pelo branch/tag; none = só validar e compilar)"
+        type: choice
+        options: ["auto", "none"]
+        default: "auto"
+      extended:
+        description: "Incluir plataformas extras (Linux ARM64, Windows ARM64/x86, macOS Intel)?"
+        type: boolean
+        default: true
+
+# Pushes seguidos no mesmo branch entram em fila (só a execução mais nova
+# espera) em vez de cancelar uma release em andamento. PRs cancelam a anterior.
+concurrency:
+  group: pipeline-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  # ── 1. Planejamento ────────────────────────────────────────────────────────
+  plan:
+    name: "Planejar"
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.plan.outputs.version }}
+      tag: ${{ steps.plan.outputs.tag }}
+      kind: ${{ steps.plan.outputs.kind }}
+      prerelease: ${{ steps.plan.outputs.prerelease }}
+      stem: ${{ steps.plan.outputs.stem }}
+      sha: ${{ steps.plan.outputs.sha }}
+      run_quality: ${{ steps.plan.outputs.run_quality }}
+      run_build: ${{ steps.plan.outputs.run_build }}
+      run_release: ${{ steps.plan.outputs.run_release }}
+      source: ${{ steps.plan.outputs.source }}
+      retention: ${{ steps.plan.outputs.retention }}
+      matrix: ${{ steps.plan.outputs.matrix }}
+      reason: ${{ steps.plan.outputs.reason }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # histórico + tags: necessário para detectar mudanças e a última release
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: "Decidir o que rodar"
+        id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_REF: ${{ github.base_ref }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          INPUT_RELEASE: ${{ inputs.release }}
+          INPUT_EXTENDED: ${{ inputs.extended }}
+        run: python .github/scripts/plan.py
+
+  # ── 2a. Qualidade (paralelo ao build) ──────────────────────────────────────
+  quality:
+    name: "Qualidade"
+    needs: plan
+    if: needs.plan.outputs.run_quality == 'true'
+    uses: ./.github/workflows/_quality.yml
+    permissions:
+      contents: read
+
+  # ── 2b. Build multiplataforma + ZIP de fonte (paralelo à qualidade) ────────
+  build:
+    name: "Build"
+    needs: plan
+    if: needs.plan.outputs.run_build == 'true'
+    uses: ./.github/workflows/_build.yml
+    permissions:
+      contents: read
+    with:
+      matrix: ${{ needs.plan.outputs.matrix }}
+      stem: ${{ needs.plan.outputs.stem }}
+      version: ${{ needs.plan.outputs.version }}
+      source: ${{ needs.plan.outputs.source == 'true' }}
+      retention: ${{ fromJSON(needs.plan.outputs.retention) }}
+
+  # ── 3. Release (só se qualidade e build passaram) ──────────────────────────
+  release:
+    name: "Release ${{ needs.plan.outputs.tag }}"
+    needs: [plan, quality, build]
+    if: >-
+      !cancelled() &&
+      needs.plan.outputs.run_release == 'true' &&
+      needs.build.result == 'success' &&
+      (needs.quality.result == 'success' || needs.quality.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write # criar/atualizar release e mover as tags nightly/dev
+    concurrency:
+      group: release-${{ needs.plan.outputs.tag }}
+      cancel-in-progress: false
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ needs.plan.outputs.tag }}
+      KIND: ${{ needs.plan.outputs.kind }}
+      VERSION: ${{ needs.plan.outputs.version }}
+      SHA: ${{ needs.plan.outputs.sha }}
+      STEM: ${{ needs.plan.outputs.stem }}
+      PRERELEASE: ${{ needs.plan.outputs.prerelease }}
+      REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: "Baixar arquivos do build"
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ needs.plan.outputs.stem }}-*
+          path: release_files
+          merge-multiple: true
+
+      - name: "Checksums SHA-256"
+        working-directory: release_files
+        run: |
+          ls -lh
+          sha256sum -- * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: "Gerar notas da release"
+        env:
+          ASSET_DIR: release_files
+          OUT: release_notes.md
+        run: python .github/scripts/release_notes.py
+
+      - name: "Publicar release oficial"
+        if: env.KIND == 'stable'
+        run: |
+          set -euo pipefail
+          # Notas automáticas do GitHub, categorizadas pelas labels dos PRs
+          # (.github/release.yml), anexadas abaixo das notas geradas pelo script.
+          if gh api -X POST "repos/${REPO}/releases/generate-notes" \
+               -f tag_name="$TAG" -f target_commitish="$SHA" --jq .body > auto_notes.md; then
+            { echo; echo "---"; echo; cat auto_notes.md; } >> release_notes.md
+          else
+            echo "::warning::Não foi possível gerar as notas automáticas por label; seguindo sem elas."
+          fi
+
+          FLAGS=(--title "Codis v${VERSION}" --notes-file release_notes.md)
+          if [ "$PRERELEASE" = "true" ]; then FLAGS+=(--prerelease); else FLAGS+=(--latest); fi
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            # Reexecução/republicação: atualiza a release existente, sem duplicar.
+            gh release upload "$TAG" release_files/* --clobber
+            gh release edit "$TAG" "${FLAGS[@]}"
+          else
+            # Rascunho -> upload completo -> publica: ninguém (nem o atualizador
+            # do app) enxerga uma release pela metade.
+            gh release create "$TAG" release_files/* "${FLAGS[@]}" --target "$SHA" --draft
+            gh release edit "$TAG" --draft=false
+          fi
+
+      - name: "Publicar pré-release móvel (nightly/dev)"
+        if: env.KIND == 'nightly' || env.KIND == 'dev'
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Uma única pré-release por canal: remove a anterior, move a tag para
+          # este commit e recria com os arquivos novos (releases não acumulam).
+          gh release delete "$TAG" --yes 2>/dev/null || true
+          git tag -f "$TAG" "$SHA"
+          git push --force origin "refs/tags/${TAG}"
+          gh release create "$TAG" release_files/* \
+            --verify-tag --prerelease --latest=false \
+            --title "Codis ${KIND} (${SHA:0:7})" --notes-file release_notes.md
+
+      - name: "Sumário"
+        run: |
+          {
+            echo "## Release publicada"
+            echo ""
+            echo "- Canal: \`${KIND}\`"
+            echo "- Tag: \`${TAG}\`"
+            echo "- Link: https://github.com/${REPO}/releases/tag/${TAG}"
+            echo ""
+            echo "| Arquivo | Tamanho |"
+            echo "|---|---|"
+            for f in release_files/*; do echo "| \`$(basename "$f")\` | $(du -h "$f" | cut -f1) |"; done
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # ── 4. Resumo e portão único de status ─────────────────────────────────────
+  summary:
+    name: "Resumo do pipeline"
+    needs: [plan, quality, build, release]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Resumo"
+        env:
+          PLAN: ${{ needs.plan.result }}
+          QUALITY: ${{ needs.quality.result }}
+          BUILD: ${{ needs.build.result }}
+          RELEASE: ${{ needs.release.result }}
+          KIND: ${{ needs.plan.outputs.kind }}
+          TAG: ${{ needs.plan.outputs.tag }}
+          REASON: ${{ needs.plan.outputs.reason }}
+        run: |
+          {
+            echo "## Pipeline Codis"
+            echo ""
+            echo "| Etapa | Resultado |"
+            echo "|---|---|"
+            echo "| Planejamento | ${PLAN} |"
+            echo "| Qualidade | ${QUALITY} |"
+            echo "| Build | ${BUILD} |"
+            echo "| Release (\`${KIND}\` ${TAG}) | ${RELEASE} |"
+            echo ""
+            echo "**Motivo:** ${REASON}"
+            echo ""
+            echo "**Ref:** \`${{ github.ref_name }}\`  **Commit:** \`${{ github.sha }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+          # Falha o pipeline se qualquer etapa obrigatória falhou ou foi cancelada.
+          for r in "$PLAN" "$QUALITY" "$BUILD" "$RELEASE"; do
+            if [ "$r" = "failure" ] || [ "$r" = "cancelled" ]; then
+              echo "::error::Alguma etapa do pipeline falhou ou foi cancelada."
+              exit 1
+            fi
+          done

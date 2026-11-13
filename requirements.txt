@@ -1,0 +1,34 @@
+# Codis - dependências Python (todas opcionais; o núcleo usa apenas stdlib + Tkinter).
+# Instalação: pip install -r requirements.txt
+
+# Lixeira nativa do SO
+send2trash>=1.8.0
+# Imagens: Paint, fundo do K-UI, miniaturas
+Pillow>=10.0.0
+# Preview de Markdown
+markdown>=3.4.0
+# Arquivos .7z e .rar
+py7zr>=0.20.0
+rarfile>=4.0
+# Colaboração em tempo real e chat
+websockets>=12.0
+# Terminal com PTY no Windows
+pywinpty>=3.0.5 ; sys_platform == "win32"
+# Gerenciador de processos e monitor de performance
+psutil>=5.9.0
+# Detecção de encoding
+charset-normalizer>=3.0.0
+chardet>=5.0.0
+# TOML em Python < 3.11
+tomli>=2.0.0 ; python_version < "3.11"
+# Exportação HTML com highlight
+Pygments>=2.17.0
+# Parsing seguro de XML (WebDAV)
+defusedxml>=0.7.1
+# Zen Player: capas e metadados
+mutagen>=1.47
+
+# Opcionais, instalados à parte (executados fora do binário):
+#   python-mpv, python-vlc   - vídeo no Zen Media (exigem libmpv / VLC)
+#   python-lsp-server[all]   - LSP para Python
+#   black, isort, pycodestyle, pyflakes - formatadores e verificadores

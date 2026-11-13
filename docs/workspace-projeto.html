@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Workspace &amp; Produtividade de Projeto · Codis</title>
+<meta name="description" content="Esta página cobre o conjunto de ferramentas voltadas à organização do workspace (pasta de projeto) e à produtividade ao alternar entre projetos: troca rápida de workspace, templates de novo projeto, e" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/workspace-projeto.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Workspace &amp; Produtividade de Projeto · Codis" />
+<meta property="og:description" content="Esta página cobre o conjunto de ferramentas voltadas à organização do workspace (pasta de projeto) e à produtividade ao alternar entre projetos: troca rápida de workspace, templates de novo projeto, e" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/workspace-projeto.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group" open><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html" class="is-current" aria-current="page">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-workspace--produtividade-de-projeto">🗂️ Workspace &amp; Produtividade de Projeto<a class="anchor" href="#-workspace--produtividade-de-projeto" aria-label="Link para esta seção">#</a></h1>
+<p>Esta página cobre o conjunto de ferramentas voltadas à organização do <strong>workspace</strong> (pasta de projeto) e à produtividade ao alternar entre projetos: troca rápida de workspace, templates de novo projeto, execução de código multi-linguagem, gravação de macros, remapeamento de atalhos e o modelo de confiança de pastas (Workspace Trust).</p>
+<p>Acesso à maioria delas: menu <strong>Ferramentas → Workspace &amp; Editor</strong>.</p>
+<hr />
+<h2 id="-workspace-switcher-srcuiworkspace_switcherpy">🔁 Workspace Switcher (<code>src/ui/workspace_switcher.py</code>)<a class="anchor" href="#-workspace-switcher-srcuiworkspace_switcherpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <code>Ctrl+Shift+W</code> ou <strong>Ferramentas → Workspace &amp; Editor → Alternar Workspace</strong>.</p>
+<p>Painel flutuante (700×480) para trocar rapidamente entre workspaces recentemente abertos.</p>
+<ul>
+<li>Lista de workspaces recentes com ícone indicando o tipo detectado (Git, projeto Python, projeto JS/Node...)</li>
+<li>Pré-visualização da árvore de diretórios ao passar o mouse sobre um item</li>
+<li>Busca em tempo real por nome de pasta</li>
+<li>Ações: abrir, remover da lista de recentes, abrir no explorador de arquivos do sistema</li>
+</ul>
+<hr />
+<h2 id="-project-templates-srcuiproject_templatespy">📋 Project Templates (<code>src/ui/project_templates.py</code>)<a class="anchor" href="#-project-templates-srcuiproject_templatespy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <strong>Ferramentas → Workspace &amp; Editor → Novo Projeto a partir de Template</strong>.</p>
+<p>Cria projetos novos a partir de templates pré-definidos ou customizados pelo usuário. Cada template é uma pasta com arquivos e um <code>template.json</code> de metadados.</p>
+<h3 id="templates-embutidos">Templates embutidos<a class="anchor" href="#templates-embutidos" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python_basic</code></td>
+<td>Script Python simples</td>
+</tr>
+<tr>
+<td><code>python_package</code></td>
+<td>Pacote Python instalável (com <code>pyproject.toml</code>)</td>
+</tr>
+<tr>
+<td><code>fastapi</code></td>
+<td>API REST com FastAPI</td>
+</tr>
+<tr>
+<td><code>flask</code></td>
+<td>Aplicação web com Flask</td>
+</tr>
+<tr>
+<td><code>cli_tool</code></td>
+<td>Ferramenta de linha de comando</td>
+</tr>
+<tr>
+<td><code>node_basic</code></td>
+<td>Projeto Node.js básico</td>
+</tr>
+<tr>
+<td><code>typescript_basic</code></td>
+<td>Projeto TypeScript básico</td>
+</tr>
+<tr>
+<td><code>data_science</code></td>
+<td>Estrutura para notebooks/análise de dados</td>
+</tr>
+<tr>
+<td><code>mkdocs</code></td>
+<td>Site de documentação com MkDocs</td>
+</tr>
+<tr>
+<td><code>makefile_c</code></td>
+<td>Projeto C/C++ com Makefile</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="funcionalidades">Funcionalidades<a class="anchor" href="#funcionalidades" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Janela de criação (820×580) com preview da estrutura de arquivos antes de confirmar</li>
+<li><strong>Variáveis de substituição</strong> nos arquivos do template: <code>{{project_name}}</code>, <code>{{author}}</code>, <code>{{year}}</code> e outras, substituídas no momento da criação</li>
+<li>Templates customizados: qualquer pasta pode ser salva como template novo</li>
+<li>Suporte a <strong>comandos pós-criação</strong> (ex.: <code>git init</code>, <code>pip install -r requirements.txt</code>) executados automaticamente após gerar os arquivos</li>
+</ul>
+<hr />
+<h2 id="-code-runner-configurável-srcuicode_runnerpy">▶️ Code Runner Configurável (<code>src/ui/code_runner.py</code>)<a class="anchor" href="#-code-runner-configurável-srcuicode_runnerpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <strong>Ferramentas → Workspace &amp; Editor → Configurar Code Runner</strong>. A execução em si é via <code>F5</code> (Executar Arquivo).</p>
+<p>Permite rodar arquivos em qualquer linguagem com comando, argumentos e variáveis de ambiente customizáveis por linguagem.</p>
+<h3 id="linguagens-pré-configuradas">Linguagens pré-configuradas<a class="anchor" href="#linguagens-pré-configuradas" aria-label="Link para esta seção">#</a></h3>
+<p>Python, JavaScript, TypeScript, Ruby, PHP, Go, Rust, Java, Kotlin, Swift, Lua, Perl, Bash, PowerShell, R, Julia, Dart, Scala, Elixir, Haskell, C e C++ - mais de 30 linguagens no total, incluindo variações de runtime.</p>
+<h3 id="funcionalidades-1">Funcionalidades<a class="anchor" href="#funcionalidades-1" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Editar o comando de execução de qualquer linguagem (por exemplo, trocar <code>python</code> por <code>python3.12</code> ou adicionar flags)</li>
+<li>Argumentos extras e variáveis de ambiente específicas por linguagem</li>
+<li>Timeout configurável por execução (evita que um script travado prenda o terminal indefinidamente)</li>
+<li>Histórico de execuções com timestamp</li>
+</ul>
+<hr />
+<h2 id="-macro-recorder-srcuimacro_recorderpy">🎬 Macro Recorder (<code>src/ui/macro_recorder.py</code>)<a class="anchor" href="#-macro-recorder-srcuimacro_recorderpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalhos: <code>Ctrl+Shift+M</code> (iniciar/parar gravação) · <code>Ctrl+Alt+M</code> (reproduzir).</p>
+<p>Grava e reproduz sequências de teclas e ações do editor.</p>
+<h3 id="funcionalidades-2">Funcionalidades<a class="anchor" href="#funcionalidades-2" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Toolbar flutuante com botões Gravar / Parar / Reproduzir</li>
+<li>Captura texto digitado, atalhos de teclado e navegação de cursor</li>
+<li>Múltiplas macros nomeadas, com persistência em JSON</li>
+<li>Reprodução com delay configurável (útil para visualizar a macro rodando passo a passo)</li>
+<li>Importar/exportar macros como arquivo JSON, para compartilhar com outra instância do Codis</li>
+</ul>
+<hr />
+<h2 id="-key-remapper-srcuikey_remapperpy">⌨️ Key Remapper (<code>src/ui/key_remapper.py</code>)<a class="anchor" href="#-key-remapper-srcuikey_remapperpy" aria-label="Link para esta seção">#</a></h2>
+<p>Acesso: <strong>Configurações → Atalhos de Teclado...</strong></p>
+<p>Permite remapear qualquer atalho de teclado da aplicação. Os atalhos customizados são persistidos separadamente da configuração principal e aplicados em toda a sessão.</p>
+<h3 id="arquitetura-interna">Arquitetura interna<a class="anchor" href="#arquitetura-interna" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KeyRemapperStore</code></td>
+<td>Lê/grava <code>keybindings.json</code>, separado do <code>config.json</code></td>
+</tr>
+<tr>
+<td><code>KeyRemapperDialog</code></td>
+<td>Janela de edição (760×560) com lista pesquisável e captura interativa de tecla</td>
+</tr>
+<tr>
+<td><code>KeyRemapperManager</code></td>
+<td>Aplica os bindings customizados na janela raiz do Tk; usado pelo <code>CodisApp</code> na inicialização</td>
+</tr>
+</tbody>
+</table></div>
+<p>Para redefinir um atalho: localize a ação na lista pesquisável, clique em <strong>Capturar</strong>, pressione a nova combinação desejada - a janela de captura (320×120) registra a combinação e a salva imediatamente.</p>
+<hr />
+<h2 id="-workspace-trust-srcuiworkspace_trustpy">🔒 Workspace Trust (<code>src/ui/workspace_trust.py</code>)<a class="anchor" href="#-workspace-trust-srcuiworkspace_trustpy" aria-label="Link para esta seção">#</a></h2>
+<p>Sistema de segurança acionado automaticamente ao abrir uma pasta <strong>nunca aberta antes</strong> nesta máquina.</p>
+<h3 id="como-funciona">Como funciona<a class="anchor" href="#como-funciona" aria-label="Link para esta seção">#</a></h3>
+<p>Ao abrir um workspace novo, o Codis exibe um diálogo de confiança perguntando se o conteúdo da pasta é confiável. Pastas marcadas como <strong>não confiáveis</strong> têm os seguintes recursos restringidos automaticamente:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Comportamento em pasta não confiável</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plugins</td>
+<td>Carregados em modo somente-leitura, sem execução de código</td>
+</tr>
+<tr>
+<td>Execução de tarefas/scripts</td>
+<td>Bloqueada</td>
+</tr>
+<tr>
+<td>LSP</td>
+<td>Desabilitado (servidores de linguagem podem executar código arbitrário)</td>
+</tr>
+<tr>
+<td>Terminal integrado</td>
+<td>Exibe aviso visual de modo restrito</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="persistência">Persistência<a class="anchor" href="#persistência" aria-label="Link para esta seção">#</a></h3>
+<p>A lista de pastas confiáveis fica em <code>~/.codis/trusted_workspaces.json</code>. Uma vez confiada, a pasta (e qualquer subpasta dela) não pergunta novamente. Para revogar a confiança de uma pasta, edite ou remova a entrada correspondente nesse arquivo.</p>
+<blockquote>
+<p>Este modelo é equivalente ao &quot;Workspace Trust&quot; do VS Code: protege contra a abertura descuidada de repositórios desconhecidos que poderiam, por exemplo, embutir um <code>.codis/plugins/malicioso.py</code> ou configurar um LSP apontando para um binário malicioso.</p>
+</blockquote>
+<hr />
+<h2 id="-panel-detach-srcuipanel_detachpy">🪟 Panel Detach (<code>src/ui/panel_detach.py</code>)<a class="anchor" href="#-panel-detach-srcuipanel_detachpy" aria-label="Link para esta seção">#</a></h2>
+<p>Gerencia o <strong>destacamento</strong> de painéis (Terminal, Output, Git, Debug, Regex, Problems) para janelas flutuantes independentes, arrastáveis e redimensionáveis.</p>
+<p>Antes da versão atual, o destacamento só funcionava com o modo K-UI ativo, pois a lógica vivia dentro do controlador holográfico. O <code>PanelDetachManager</code> foi extraído como uma classe independente, instanciada uma única vez na inicialização do <code>CodisApp</code>, e funciona tanto no modo clássico quanto no modo K-UI - incluindo a janela flutuante com moldura holográfica (<code>KFloatWindow</code>), que é reaproveitada de <a href="kui.html">K-UI</a>.</p>
+<p>Compartilhar uma única instância entre os dois modos resolve um problema de UX: painéis destacados <strong>não são fechados à força</strong> quando o usuário alterna o K-UI ligado/desligado - eles continuam abertos normalmente.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="terminal.html"><small>Anterior</small>Terminal</a>
+        <a class="next" href="utilitarios-dev.html"><small>Próxima</small>Formatador, Variáveis de Ambiente e Grafo de Dependências</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/workspace-projeto.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/workspace-projeto.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#-workspace-switcher-srcuiworkspace_switcherpy">Workspace Switcher (src/ui/workspace_switcher.py)</a></li><li class="l2"><a href="#-project-templates-srcuiproject_templatespy">Project Templates (src/ui/project_templates.py)</a></li><li class="l3"><a href="#templates-embutidos">Templates embutidos</a></li><li class="l3"><a href="#funcionalidades">Funcionalidades</a></li><li class="l2"><a href="#-code-runner-configurável-srcuicode_runnerpy">Code Runner Configurável (src/ui/code_runner.py)</a></li><li class="l3"><a href="#linguagens-pré-configuradas">Linguagens pré-configuradas</a></li><li class="l3"><a href="#funcionalidades-1">Funcionalidades</a></li><li class="l2"><a href="#-macro-recorder-srcuimacro_recorderpy">Macro Recorder (src/ui/macro_recorder.py)</a></li><li class="l3"><a href="#funcionalidades-2">Funcionalidades</a></li><li class="l2"><a href="#-key-remapper-srcuikey_remapperpy">Key Remapper (src/ui/key_remapper.py)</a></li><li class="l3"><a href="#arquitetura-interna">Arquitetura interna</a></li><li class="l2"><a href="#-workspace-trust-srcuiworkspace_trustpy">Workspace Trust (src/ui/workspace_trust.py)</a></li><li class="l3"><a href="#como-funciona">Como funciona</a></li><li class="l3"><a href="#persistência">Persistência</a></li><li class="l2"><a href="#-panel-detach-srcuipanel_detachpy">Panel Detach (src/ui/panel_detach.py)</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

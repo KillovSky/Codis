@@ -1,0 +1,126 @@
+name: "Verificacao e Sync de Locales"
+
+# Ferramenta MANUAL para sincronizar as chaves dos locales e commitar o resultado.
+# A verificação automática (a cada PR/commit) fica no pipeline: job
+# "Consistencia de Locales" de _quality.yml - por isso este workflow não tem
+# mais triggers de push/PR (rodava a mesma checagem uma segunda vez).
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Aplicar sync e commitar resultado? (true = sim, false = só verificar)"
+        required: false
+        default: "false"
+
+concurrency:
+  group: locale-sync-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  locale-check:
+    name: "Consistência de locales"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: "Verificar chaves sincronizadas (dry-run)"
+        id: dryrun
+        run: |
+          python sync_locales.py --dry-run 2>&1 | tee sync_output.txt
+          cat sync_output.txt >> "$GITHUB_STEP_SUMMARY"
+          if grep -q "seriam adicionadas" sync_output.txt; then
+            echo "out_of_sync=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Locales desincronizados - dispare novamente com apply=true para aplicar e commitar."
+          else
+            echo "out_of_sync=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: "Aplicar sync e commitar resultado"
+        if: github.event.inputs.apply == 'true'
+        env:
+          PYTHONIOENCODING: "utf-8"
+        run: |
+          python sync_locales.py
+          echo "Sync aplicado. Verificando arquivos modificados..."
+          git diff --name-only src/locales/
+
+          if git diff --quiet src/locales/; then
+            echo "Nenhuma alteracao necessaria - locales já estavam sincronizados."
+          else
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add src/locales/
+            ACTOR="${{ github.actor }}"
+            SHA="${{ github.sha }}"
+            git commit -m "chore(i18n): sync locales estrutura de chaves [skip ci]" \
+                       -m "Executado via workflow_dispatch por: ${ACTOR}" \
+                       -m "Commit de origem: ${SHA}"
+            git push
+            echo "Commit realizado com sucesso."
+          fi
+
+      - name: "Verificar pt-BR.json (arquivo de referência)"
+        run: |
+          python3 - <<'PYEOF'
+          import json, sys
+          from pathlib import Path
+          ptbr = json.loads(Path("src/locales/pt-BR.json").read_text(encoding="utf-8"))
+          todo_keys = [k for k, v in ptbr.items() if "[TODO]" in str(v)]
+          if todo_keys:
+              print(f"Atencao: pt-BR.json tem {len(todo_keys)} chave(s) com [TODO]:")
+              for k in todo_keys[:20]:
+                  print(f"   {k}")
+          else:
+              print(f"OK: pt-BR.json completo - {len(ptbr)} chaves, sem [TODO]")
+          PYEOF
+
+      - name: "Resumo por arquivo"
+        run: |
+          python3 - <<'PYEOF'
+          import json, pathlib, os
+          locales_dir = pathlib.Path("src/locales")
+          files = sorted(locales_dir.glob("*.json"))
+          counts = {}
+          for f in files:
+              data = json.loads(f.read_text(encoding="utf-8"))
+              todo = sum(1 for v in data.values() if "[TODO]" in str(v))
+              counts[f.name] = (len(data), todo)
+          max_keys = max(c[0] for c in counts.values())
+          print(f"{'Arquivo':<20} {'Chaves':>6}  {'[TODO]':>6}  Status")
+          print("-" * 50)
+          summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "/dev/null")
+          lines = []
+          for fname, (n, todo) in counts.items():
+              if fname == "pt-BR.json":
+                  status = "OK referencia"
+              elif n == max_keys and todo == 0:
+                  status = "OK atualizado"
+              elif n == max_keys:
+                  status = f"Pendente: {todo} [TODO]"
+              else:
+                  status = f"Faltam {max_keys - n} chaves"
+              print(f"{fname:<20} {n:>6}  {todo:>6}  {status}")
+              lines.append(f"| {fname} | {n} | {todo} | {status} |")
+          with open(summary_path, "a") as s:
+              s.write("## Status dos Locales\n\n")
+              s.write("| Arquivo | Chaves | [TODO] | Status |\n|---|---|---|---|\n")
+              s.write("\n".join(lines) + "\n")
+          PYEOF
+
+      - name: "Upload do relatório"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: locale-sync-report-${{ github.sha }}
+          path: sync_output.txt
+          retention-days: 7

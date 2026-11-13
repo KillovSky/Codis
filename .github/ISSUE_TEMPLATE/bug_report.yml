@@ -1,0 +1,169 @@
+name: "🐛 Relatório de Bug"
+description: "Reporte um bug ou comportamento inesperado no Codis."
+title: "[BUG] "
+labels: ["bug", "precisa de triagem"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+
+        Antes de abrir esta issue, por favor:
+        - Verifique a [Wiki / FAQ](https://github.com/KillovSky/Codis/wiki/faq) - muitos problemas comuns já têm solução documentada
+        - Pesquise nas [issues existentes](https://github.com/KillovSky/Codis/issues?q=is%3Aissue) para evitar duplicatas
+        - Se for uma **vulnerabilidade de segurança**, **não abra uma issue pública** - leia a [Política de Segurança](https://github.com/KillovSky/Codis/blob/main/SECURITY.md)
+
+  - type: checkboxes
+    id: pre-checks
+    attributes:
+      label: "Checklist inicial"
+      options:
+        - label: "Pesquisei nas issues existentes e não encontrei duplicata"
+          required: true
+        - label: "Testei com a versão mais recente do Codis"
+          required: true
+        - label: "Reproduzi o bug partindo de uma instalação limpa (sem plugins de terceiros)"
+          required: false
+
+  - type: textarea
+    id: descricao
+    attributes:
+      label: "📋 Descrição do Bug"
+      description: "Descreva claramente o que acontece de errado."
+      placeholder: "Ao fazer X, o Codis faz Y em vez de Z..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducao
+    attributes:
+      label: "🔁 Passos para Reproduzir"
+      description: "Passo a passo mínimo para reproduzir o problema. Quanto mais preciso, mais rápido resolvemos."
+      value: |
+        1. Abra o Codis com `python run.py`
+        2. Vá até '...'
+        3. Faça '...'
+        4. Observe o erro
+    validations:
+      required: true
+
+  - type: textarea
+    id: esperado
+    attributes:
+      label: "✅ Comportamento Esperado"
+      placeholder: "Deveria acontecer X..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: atual
+    attributes:
+      label: "❌ Comportamento Atual"
+      placeholder: "Em vez disso, acontece Y..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: stack_trace
+    attributes:
+      label: "🪵 Log / Stack Trace"
+      description: |
+        Execute `python run.py` no terminal (não use `pythonw`) e cole a saída completa.
+        Sem o stack trace fica difícil investigar.
+      render: python
+      placeholder: |
+        Traceback (most recent call last):
+          File "src/...", line X, in ...
+        ErrorType: mensagem de erro
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: "💻 Sistema Operacional"
+      options:
+        - "Windows 11"
+        - "Windows 10"
+        - "Windows 10 LTSC / Server"
+        - "Ubuntu 22.04 / 24.04"
+        - "Debian 12"
+        - "Arch Linux / Manjaro"
+        - "Fedora / RHEL / CentOS"
+        - "macOS 14 Sonoma"
+        - "macOS 13 Ventura"
+        - "macOS 12 Monterey"
+        - "Outro Linux"
+        - "Outro"
+    validations:
+      required: true
+
+  - type: input
+    id: arch
+    attributes:
+      label: "🏗️ Arquitetura"
+      description: "x64 (Intel/AMD 64-bit), x86 (32-bit), ARM64 (Apple Silicon / ARM)"
+      placeholder: "x64"
+
+  - type: input
+    id: python
+    attributes:
+      label: "🐍 Versão do Python"
+      description: "Execute `python --version` ou `python3 --version`"
+      placeholder: "Python 3.12.3"
+    validations:
+      required: true
+
+  - type: input
+    id: codis
+    attributes:
+      label: "📦 Versão do Codis"
+      description: "Encontre em `Ajuda → Sobre` ou em `src/constants.py` (APP_VERSION)"
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequencia
+    attributes:
+      label: "📊 Frequência do Bug"
+      options:
+        - "Sempre (100%)"
+        - "Frequentemente (> 50%)"
+        - "Às vezes (< 50%)"
+        - "Ocorreu apenas uma vez"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: regressao
+    attributes:
+      label: "↩️ É uma regressão?"
+      description: "Funcionava em uma versão anterior do Codis?"
+      options:
+        - "Não sei"
+        - "Sim - funcionava antes"
+        - "Não - nunca funcionou"
+
+  - type: input
+    id: versao_anterior
+    attributes:
+      label: "Última versão que funcionava (se regressão)"
+      placeholder: "1.0.0"
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: "📎 Contexto Adicional"
+      description: "Plugins ativos, tema em uso, screenshots, arquivos de configuração relevantes..."
+      placeholder: |
+        - Plugins ativos: nenhum / nome_plugin v1.0
+        - Tema: fluent_dark
+        - config.json relevante: { "font_size": 14, ... }
+        - Screenshots em anexo
+
+  - type: checkboxes
+    id: contribuir
+    attributes:
+      label: "🤝 Você gostaria de contribuir com a correção?"
+      options:
+        - label: "Sim, posso abrir um Pull Request com a correção"

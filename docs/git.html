@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Git · Codis</title>
+<meta name="description" content="O Codis possui integração Git nativa completa através do GitPanel (src/ui/git_panel.py). Nenhuma extensão adicional é necessária." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/git.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Git · Codis" />
+<meta property="og:description" content="O Codis possui integração Git nativa completa através do GitPanel (src/ui/git_panel.py). Nenhuma extensão adicional é necessária." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/git.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group" open><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html" class="is-current" aria-current="page">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-git">🌿 Git<a class="anchor" href="#-git" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis possui integração Git nativa completa através do <code>GitPanel</code> (<code>src/ui/git_panel.py</code>). Nenhuma extensão adicional é necessária.</p>
+<hr />
+<h2 id="requisitos">Requisitos<a class="anchor" href="#requisitos" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li>Git instalado e disponível no <code>PATH</code>.</li>
+<li>Um workspace aberto que seja (ou contenha) um repositório Git.</li>
+</ul>
+<p>O Codis detecta automaticamente se o workspace é um repositório Git. Se não for, o painel exibe um botão para inicializar (<code>git init</code>).</p>
+<hr />
+<h2 id="abrindo-o-painel-git">Abrindo o Painel Git<a class="anchor" href="#abrindo-o-painel-git" aria-label="Link para esta seção">#</a></h2>
+<p>Existem três formas:</p>
+<ol>
+<li><strong>Activity Bar</strong> → ícone 🌿 (Source Control)</li>
+<li><strong>Barra de Status</strong> → clique no nome da branch (ex: <code>🌿 main · 3↑</code>)</li>
+<li><strong>Menu Exibir → Git</strong></li>
+</ol>
+<blockquote>
+<p>O ícone 🌿 na Activity Bar exibe o rótulo &quot;Ctrl+Shift+G&quot;, mas esse atalho de teclado não tem keybind funcional vinculado no código atual (mesma situação de <a href="linting.html#nota-t%C3%A9cnica">Problemas</a> e <a href="remote-ssh.html">SSH Remoto</a> - o rótulo da Activity Bar nem sempre reflete um bind real). Use o menu ou clique no ícone diretamente.</p>
+</blockquote>
+<p>O painel Git existe em dois lugares:</p>
+<ul>
+<li><strong>Sidebar</strong> - painel principal de controle de versão.</li>
+<li><strong>Painel Inferior → aba Git</strong> - instância adicional (útil quando a sidebar está com o Explorer aberto).</li>
+</ul>
+<hr />
+<h2 id="seções-do-painel">Seções do Painel<a class="anchor" href="#seções-do-painel" aria-label="Link para esta seção">#</a></h2>
+<h3 id="staged-changes-mudanças-em-stage">Staged Changes (Mudanças em Stage)<a class="anchor" href="#staged-changes-mudanças-em-stage" aria-label="Link para esta seção">#</a></h3>
+<p>Arquivos adicionados à área de staging (<code>git add</code>). Para cada arquivo:</p>
+<ul>
+<li><strong>Unstage</strong> - remove do staging (⊖)</li>
+<li><strong>Discard</strong> - descarta as mudanças (⊘)</li>
+<li><strong>Ver diff</strong> - clique no arquivo para abrir o diff no painel Diff</li>
+</ul>
+<h3 id="changes-mudanças">Changes (Mudanças)<a class="anchor" href="#changes-mudanças" aria-label="Link para esta seção">#</a></h3>
+<p>Arquivos modificados mas não staged. Para cada arquivo:</p>
+<ul>
+<li><strong>Stage</strong> - adiciona ao staging (⊕)</li>
+<li><strong>Discard</strong> - reverte ao estado do último commit (⊘)</li>
+<li><strong>Ver diff</strong> - clique no arquivo</li>
+</ul>
+<h3 id="untracked-novos-arquivos">Untracked (Novos Arquivos)<a class="anchor" href="#untracked-novos-arquivos" aria-label="Link para esta seção">#</a></h3>
+<p>Arquivos novos não rastreados pelo Git. Para cada arquivo:</p>
+<ul>
+<li><strong>Stage</strong> - adiciona ao tracking e staging (⊕)</li>
+<li><strong>Ignorar</strong> - adiciona ao <code>.gitignore</code></li>
+</ul>
+<hr />
+<h2 id="operações-disponíveis">Operações Disponíveis<a class="anchor" href="#operações-disponíveis" aria-label="Link para esta seção">#</a></h2>
+<h3 id="commit">Commit<a class="anchor" href="#commit" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Preencha a mensagem de commit no campo de texto.</li>
+<li>Clique em <strong>✓ Commit</strong> ou pressione <code>Ctrl+Enter</code> dentro do campo.</li>
+</ol>
+<p>O Codis valida que a mensagem não está vazia antes de commitar.</p>
+<h3 id="stage--unstage-em-massa">Stage / Unstage em Massa<a class="anchor" href="#stage--unstage-em-massa" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>Stage All</strong> - adiciona todos os arquivos modificados ao staging.</li>
+<li><strong>Unstage All</strong> - remove todos os arquivos do staging.</li>
+</ul>
+<h3 id="push--pull--fetch">Push / Pull / Fetch<a class="anchor" href="#push--pull--fetch" aria-label="Link para esta seção">#</a></h3>
+<p>Botões na barra superior do painel. Executados em thread separada para não bloquear a UI. Um indicador de progresso é exibido durante a operação.</p>
+<ul>
+<li><strong>Fetch</strong> - atualiza as informações do remote sem mesclar.</li>
+<li><strong>Pull</strong> - <code>git pull</code> com o remote configurado.</li>
+<li><strong>Push</strong> - <code>git push</code> para o remote e branch configurados.</li>
+</ul>
+<h3 id="stash">Stash<a class="anchor" href="#stash" aria-label="Link para esta seção">#</a></h3>
+<p>O botão <strong>Stash</strong> abre o <strong>Gerenciador de Stash</strong>, um painel completo com:</p>
+<ul>
+<li><strong>Campo de mensagem</strong> - descreva o stash antes de guardar (opcional).</li>
+<li><strong>Guardar</strong> - executa <code>git stash push</code> com a mensagem informada.</li>
+<li><strong>Lista de stashes</strong> - exibe todos os stashes do repositório com referência (<code>stash@{N}</code>) e mensagem.</li>
+<li><strong>Pop (aplicar + remover)</strong> - restaura o stash selecionado e o remove da pilha (<code>git stash pop</code>).</li>
+<li><strong>Aplicar</strong> - aplica o stash selecionado sem removê-lo da pilha (<code>git stash apply</code>).</li>
+<li><strong>Ver Diff</strong> - exibe o diff do stash selecionado no painel de diff integrado.</li>
+<li><strong>Remover</strong> - descarta o stash selecionado com confirmação (<code>git stash drop</code>).</li>
+</ul>
+<h3 id="branch">Branch<a class="anchor" href="#branch" aria-label="Link para esta seção">#</a></h3>
+<p>O seletor de branch na parte superior do painel permite:</p>
+<ul>
+<li><strong>Trocar de branch</strong> - selecione uma branch existente.</li>
+<li><strong>Criar nova branch</strong> - insira um nome e pressione Enter.</li>
+<li><strong>Deletar branch</strong> - clique com botão direito em uma branch.</li>
+</ul>
+<h3 id="git-log">Git Log<a class="anchor" href="#git-log" aria-label="Link para esta seção">#</a></h3>
+<p>Uma seção de log compacto exibe os commits mais recentes com:</p>
+<ul>
+<li>Hash curto (7 chars)</li>
+<li>Mensagem do commit</li>
+<li>Autor e data</li>
+</ul>
+<p>Clicar em um commit mostra os detalhes no painel de Output.</p>
+<hr />
+<h2 id="diff-inline">Diff Inline<a class="anchor" href="#diff-inline" aria-label="Link para esta seção">#</a></h2>
+<p>Ao clicar em um arquivo modificado (staged ou unstaged), o diff é exibido no <strong>Painel Inferior → aba Diff</strong>.</p>
+<p>O diff mostra lado a lado:</p>
+<ul>
+<li><strong>Original</strong> - conteúdo salvo no disco (ou HEAD)</li>
+<li><strong>Modificado</strong> - conteúdo atual</li>
+</ul>
+<p>Navegação por hunks: <code>F7</code> (próximo) e <code>Shift+F7</code> (anterior).</p>
+<h3 id="diff-entre-dois-arquivos">Diff entre Dois Arquivos<a class="anchor" href="#diff-entre-dois-arquivos" aria-label="Link para esta seção">#</a></h3>
+<p>Via <strong>Ferramentas → Diff: Dois Arquivos</strong> ou Paleta de Comandos, selecione dois arquivos quaisquer para compará-los lado a lado.</p>
+<h3 id="diff-arquivo-vs-salvo">Diff: Arquivo vs. Salvo<a class="anchor" href="#diff-arquivo-vs-salvo" aria-label="Link para esta seção">#</a></h3>
+<p>Via <strong>Ferramentas → Diff: Arquivo vs. Versão Salva</strong> mostra a diferença entre o conteúdo atual do editor (com modificações não salvas) e a última versão salva em disco.</p>
+<hr />
+<h2 id="indicadores-na-árvore-de-arquivos">Indicadores na Árvore de Arquivos<a class="anchor" href="#indicadores-na-árvore-de-arquivos" aria-label="Link para esta seção">#</a></h2>
+<p>Quando um workspace Git está aberto, a árvore de arquivos (Explorer) exibe indicadores visuais:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>M</code></td>
+<td>Modificado</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>Não rastreado (Untracked)</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>Adicionado ao staging</td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>Deletado</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>Renomeado</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>Copiado</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="badge-na-activity-bar">Badge na Activity Bar<a class="anchor" href="#badge-na-activity-bar" aria-label="Link para esta seção">#</a></h2>
+<p>O ícone de Git na Activity Bar exibe um badge com o número de arquivos com mudanças (staged + unstaged + untracked). O badge é atualizado automaticamente após cada operação.</p>
+<hr />
+<h2 id="autenticação-git">Autenticação Git<a class="anchor" href="#autenticação-git" aria-label="Link para esta seção">#</a></h2>
+<p>Para repositórios remotos que requerem autenticação (HTTPS), o painel exibe um diálogo de autenticação quando detecta erros de credenciais (<code>AuthManager</code>).</p>
+<p>Suporta:</p>
+<ul>
+<li>Usuário + senha</li>
+<li>Tokens de acesso pessoal (PAT)</li>
+</ul>
+<p>As credenciais são armazenadas de forma segura no arquivo de configuração do Codis (em Base64) e associadas ao host do repositório.</p>
+<h3 id="gerenciar-credenciais">Gerenciar Credenciais<a class="anchor" href="#gerenciar-credenciais" aria-label="Link para esta seção">#</a></h3>
+<p>As credenciais podem ser gerenciadas diretamente em <strong>Configurações → Git</strong>, na seção <strong>Credenciais Git (HTTPS)</strong>:</p>
+<ul>
+<li><strong>Lista de hosts</strong> - exibe os hosts para os quais há credenciais salvas.</li>
+<li><strong>＋ Adicionar / Atualizar credenciais</strong> - abre um diálogo para informar o host (ex: <code>github.com</code>), usuário e token/senha.</li>
+<li><strong>Remover</strong> - apaga as credenciais de um host específico.</li>
+</ul>
+<blockquote>
+<p>As credenciais são gerenciadas exclusivamente na janela de Configurações, categoria <strong>Git</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="clone-de-repositório">Clone de Repositório<a class="anchor" href="#clone-de-repositório" aria-label="Link para esta seção">#</a></h2>
+<p>Na <strong>Tela de Boas-Vindas</strong>, há um campo para clonar repositórios diretamente:</p>
+<ol>
+<li>Cole a URL do repositório (HTTPS ou SSH).</li>
+<li>Selecione o diretório de destino.</li>
+<li>Clique em <strong>Clone</strong>.</li>
+</ol>
+<p>O progresso do clone é exibido no <strong>Painel de Saída → canal &quot;Git Clone&quot;</strong>. Ao concluir, o workspace é automaticamente aberto na pasta clonada.</p>
+<hr />
+<h2 id="fetch-automático">Fetch Automático<a class="anchor" href="#fetch-automático" aria-label="Link para esta seção">#</a></h2>
+<p>Com <code>git_auto_fetch: true</code>, o Codis executa <code>git fetch</code> automaticamente a cada <code>git_fetch_interval</code> segundos (padrão: 180).</p>
+<hr />
+<h2 id="dependência-comando-git">Dependência: Comando <code>git</code><a class="anchor" href="#dependência-comando-git" aria-label="Link para esta seção">#</a></h2>
+<p>Todas as operações Git são feitas via chamadas ao executável <code>git</code> em subprocessos. O Codis não usa nenhuma biblioteca Python para Git. Isso garante compatibilidade com qualquer versão do Git e respeita as configurações locais do usuário (<code>.gitconfig</code>, credencial store, etc.).</p>
+<hr />
+<h2 id="segurança">Segurança<a class="anchor" href="#segurança" aria-label="Link para esta seção">#</a></h2>
+<p>O <code>GIT_ASKPASS</code> (<code>src/ui/git_auth.py</code>) usa um script Python <strong>estático</strong>, sem credenciais embutidas, que lê usuário e token de variáveis de ambiente do subprocesso Git. A credencial nunca passa por um parser de shell (aspas, <code>`</code>, <code>$()</code> e <code>&amp;</code> são tratados como texto literal) e o helper é gerado uma única vez e reaproveitado, sem acumular arquivos com senha em disco.</p>
+<p><code>git_credentials</code> (dentro de <code>config.json</code>) é salvo com permissão <code>0600</code> (Linux/macOS).</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="debug.html"><small>Anterior</small>Debug (DAP via debugpy)</a>
+        <a class="next" href="terminal.html"><small>Próxima</small>Terminal</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/git.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/git.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#requisitos">Requisitos</a></li><li class="l2"><a href="#abrindo-o-painel-git">Abrindo o Painel Git</a></li><li class="l2"><a href="#seções-do-painel">Seções do Painel</a></li><li class="l3"><a href="#staged-changes-mudanças-em-stage">Staged Changes (Mudanças em Stage)</a></li><li class="l3"><a href="#changes-mudanças">Changes (Mudanças)</a></li><li class="l3"><a href="#untracked-novos-arquivos">Untracked (Novos Arquivos)</a></li><li class="l2"><a href="#operações-disponíveis">Operações Disponíveis</a></li><li class="l3"><a href="#commit">Commit</a></li><li class="l3"><a href="#stage--unstage-em-massa">Stage / Unstage em Massa</a></li><li class="l3"><a href="#push--pull--fetch">Push / Pull / Fetch</a></li><li class="l3"><a href="#stash">Stash</a></li><li class="l3"><a href="#branch">Branch</a></li><li class="l3"><a href="#git-log">Git Log</a></li><li class="l2"><a href="#diff-inline">Diff Inline</a></li><li class="l3"><a href="#diff-entre-dois-arquivos">Diff entre Dois Arquivos</a></li><li class="l3"><a href="#diff-arquivo-vs-salvo">Diff: Arquivo vs. Salvo</a></li><li class="l2"><a href="#indicadores-na-árvore-de-arquivos">Indicadores na Árvore de Arquivos</a></li><li class="l2"><a href="#badge-na-activity-bar">Badge na Activity Bar</a></li><li class="l2"><a href="#autenticação-git">Autenticação Git</a></li><li class="l3"><a href="#gerenciar-credenciais">Gerenciar Credenciais</a></li><li class="l2"><a href="#clone-de-repositório">Clone de Repositório</a></li><li class="l2"><a href="#fetch-automático">Fetch Automático</a></li><li class="l2"><a href="#dependência-comando-git">Dependência: Comando git</a></li><li class="l2"><a href="#segurança">Segurança</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

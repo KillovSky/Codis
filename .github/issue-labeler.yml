@@ -1,0 +1,23 @@
+"bug":
+  - title: "\\[BUG\\]"
+
+"melhoria":
+  - title: "\\[FEATURE\\]"
+
+"documentação":
+  - title: "\\[DOCS\\]"
+
+"segurança":
+  - title: "\\[SECURITY\\]"
+
+"plugin":
+  - title: "\\[PLUGIN\\]"
+
+"tema":
+  - title: "\\[THEME\\]|\\[TEMA\\]"
+
+"i18n":
+  - title: "\\[I18N\\]|\\[LANG\\]|\\[TRANSLATION\\]"
+
+"performance":
+  - title: "\\[PERF\\]|\\[PERFORMANCE\\]"

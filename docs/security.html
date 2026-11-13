@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Segurança · Codis</title>
+<meta name="description" content="Este documento descreve como reportar vulnerabilidades de segurança e como o projeto as trata." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/security.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Segurança · Codis" />
+<meta property="og:description" content="Este documento descreve como reportar vulnerabilidades de segurança e como o projeto as trata." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/security.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group" open><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html" class="is-current" aria-current="page">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-política-de-segurança---codis">🔐 Política de Segurança - Codis<a class="anchor" href="#-política-de-segurança---codis" aria-label="Link para esta seção">#</a></h1>
+<p>Este documento descreve como reportar vulnerabilidades de segurança e como o projeto as trata.</p>
+<hr />
+<h2 id="versões-suportadas">Versões Suportadas<a class="anchor" href="#versões-suportadas" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Suporte de Segurança</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1.0.0</code></td>
+<td>✅ Ativa - patches enviados assim que possível</td>
+</tr>
+<tr>
+<td>Forks, distribuições não oficiais, versões modificadas</td>
+<td>❌ Fora do escopo deste repositório</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="como-reportar-uma-vulnerabilidade">Como Reportar uma Vulnerabilidade<a class="anchor" href="#como-reportar-uma-vulnerabilidade" aria-label="Link para esta seção">#</a></h2>
+<blockquote>
+<p>⚠️ <strong>Não abra issues públicas para vulnerabilidades de segurança.</strong><br />
+Issues públicas expõem usuários antes que haja uma correção disponível.</p>
+</blockquote>
+<h3 id="canal-preferencial">Canal preferencial<a class="anchor" href="#canal-preferencial" aria-label="Link para esta seção">#</a></h3>
+<p>Use o <strong>GitHub Private Security Advisories</strong>:</p>
+<ol>
+<li>Acesse <a href="https://github.com/KillovSky/Codis/security/advisories" target="_blank" rel="noopener">Security → Advisories</a></li>
+<li>Clique em <strong>&quot;Report a vulnerability&quot;</strong></li>
+<li>Preencha o formulário - a conversa fica privada entre você e o maintainer</li>
+</ol>
+<h3 id="alternativa">Alternativa<a class="anchor" href="#alternativa" aria-label="Link para esta seção">#</a></h3>
+<p>Contato direto pelos links no perfil <a href="https://github.com/KillovSky" target="_blank" rel="noopener">@KillovSky</a>.</p>
+<hr />
+<h2 id="o-que-incluir-no-relatório">O que Incluir no Relatório<a class="anchor" href="#o-que-incluir-no-relatório" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Descrição</strong></td>
+<td>Qual é a vulnerabilidade e como ela funciona</td>
+</tr>
+<tr>
+<td><strong>Impacto</strong></td>
+<td>O que um atacante pode fazer com ela</td>
+</tr>
+<tr>
+<td><strong>Passos de reprodução</strong></td>
+<td>Sequência mínima e reproduzível</td>
+</tr>
+<tr>
+<td><strong>Versão afetada</strong></td>
+<td>Versão do Codis e do Python</td>
+</tr>
+<tr>
+<td><strong>Prova de conceito</strong></td>
+<td>Código, script ou screenshot (se possível)</td>
+</tr>
+<tr>
+<td><strong>Correção sugerida</strong></td>
+<td>Opcional, mas muito bem-vinda</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="escopo">Escopo<a class="anchor" href="#escopo" aria-label="Link para esta seção">#</a></h2>
+<h3 id="-em-escopo">✅ Em escopo<a class="anchor" href="#-em-escopo" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Execução de código arbitrário via plugins sem confirmação do usuário</li>
+<li>Exfiltração de dados - credentials, tokens, chaves de API armazenadas</li>
+<li>Corrupção de arquivos do usuário causada por bug no editor</li>
+<li>Path traversal / directory traversal em operações de arquivo</li>
+<li>Bypass do sistema de confiança de plugins (<code>trusted_plugins.json</code>)</li>
+<li>Injeção de comandos via inputs do usuário que chegam a <code>subprocess</code></li>
+<li>Credenciais Git expostas em logs, estado compartilhado ou transmissões inseguras</li>
+<li>XSS ou injeção no render de Markdown/HTML interno</li>
+<li>Credenciais de banco de dados expostas via SQL Studio</li>
+</ul>
+<h3 id="-fora-do-escopo">❌ Fora do escopo<a class="anchor" href="#-fora-do-escopo" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Bugs funcionais sem impacto de segurança → <a href="https://github.com/KillovSky/Codis/issues/new?template=bug_report.yml" target="_blank" rel="noopener">Issue normal</a></li>
+<li>Vulnerabilidades em dependências externas → reporte diretamente a elas</li>
+<li>Problemas em forks e distribuições de terceiros</li>
+<li>Vulnerabilidades que exigem acesso físico ao dispositivo do usuário</li>
+<li>Ataques de engenharia social fora do código</li>
+</ul>
+<hr />
+<h2 id="processo-de-resposta">Processo de Resposta<a class="anchor" href="#processo-de-resposta" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Etapa</th>
+<th>Prazo estimado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confirmação de recebimento</td>
+<td>~1 semana</td>
+</tr>
+<tr>
+<td>Avaliação inicial de severidade</td>
+<td>~5 dias após confirmação</td>
+</tr>
+<tr>
+<td>Desenvolvimento de correção</td>
+<td>Depende da complexidade</td>
+</tr>
+<tr>
+<td>Lançamento do patch</td>
+<td>Após validação</td>
+</tr>
+<tr>
+<td>Publicação do advisory</td>
+<td>Após o patch estar disponível</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>O projeto é mantido por uma única pessoa no tempo livre disponível. Os prazos são estimativas de boa-fé.</p>
+</blockquote>
+<hr />
+<h2 id="modelo-de-segurança-do-sistema-de-plugins">Modelo de Segurança do Sistema de Plugins<a class="anchor" href="#modelo-de-segurança-do-sistema-de-plugins" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis executa código Python de plugins instalados pelo usuário. Isso é <strong>intencional</strong> - plugins são extensões Python nativas com acesso ao processo.</p>
+<h3 id="mitigações-implementadas">Mitigações implementadas<a class="anchor" href="#mitigações-implementadas" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>Análise estática na instalação</strong> - o <code>PluginLoader</code> executa análise AST de importações e chamadas suspeitas antes de ativar um plugin novo</li>
+<li><strong>Sistema de confiança</strong> - <code>trusted_plugins.json</code> registra plugins verificados; plugins não listados passam por confirmação do usuário antes de carregar</li>
+<li><strong>Sandboxing de API</strong> - a <code>PluginAPI</code> expõe apenas as interfaces necessárias; plugins não têm acesso direto a <code>ConfigManager</code>, credenciais Git ou providers de IA por padrão</li>
+<li><strong>Escrita atômica</strong> - saves usam <code>tmp + rename</code>; plugins não podem corromper arquivos via race condition na API exposta</li>
+</ul>
+<h3 id="modelo-de-segurança-do-sql-studio">Modelo de segurança do SQL Studio<a class="anchor" href="#modelo-de-segurança-do-sql-studio" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Senhas de conexão são armazenadas com codificação base64 em <code>~/.codis/sql_connections.json</code> - proteção básica contra exposição acidental em logs, não criptografia robusta</li>
+<li>Conexões SQLite usam <code>check_same_thread=False</code> com lock explícito para serialização de acesso concorrente</li>
+<li>Credenciais nunca aparecem em logs ou na interface</li>
+</ul>
+<h3 id="limitação-conhecida-por-design">Limitação conhecida (por design)<a class="anchor" href="#limitação-conhecida-por-design" aria-label="Link para esta seção">#</a></h3>
+<p>O sistema de confiança de plugins <strong>não é uma sandbox completa</strong>. Um plugin Python malicioso com permissão do usuário pode fazer qualquer coisa que Python pode fazer. <strong>Instale apenas plugins de fontes confiáveis.</strong></p>
+<p>Veja <a href="plugins.html">wiki/plugins.md</a> para detalhes sobre o modelo de segurança e as APIs disponíveis.</p>
+<hr />
+<h2 id="créditos">Créditos<a class="anchor" href="#créditos" aria-label="Link para esta seção">#</a></h2>
+<p>Pesquisadores que reportarem vulnerabilidades válidas de forma responsável serão creditados nas notas de release (com permissão) como <strong>Security Researchers</strong>.</p>
+<hr />
+<h2 id="referências">Referências<a class="anchor" href="#referências" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><a href="https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/" target="_blank" rel="noopener">OWASP - Secure Coding Practices</a></li>
+<li><a href="https://docs.python.org/3/library/subprocess.html#security-considerations" target="_blank" rel="noopener">Python Security - subprocess</a></li>
+<li><a href="https://docs.github.com/en/code-security/security-advisories/working-with-repository-security-advisories/creating-a-repository-security-advisory" target="_blank" rel="noopener">GitHub - Private Security Advisories</a></li>
+</ul>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="contributing.html"><small>Anterior</small>Contribuindo</a>
+        <a class="next" href="authors.html"><small>Próxima</small>Autores</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/SECURITY.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>SECURITY.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#versões-suportadas">Versões Suportadas</a></li><li class="l2"><a href="#como-reportar-uma-vulnerabilidade">Como Reportar uma Vulnerabilidade</a></li><li class="l3"><a href="#canal-preferencial">Canal preferencial</a></li><li class="l3"><a href="#alternativa">Alternativa</a></li><li class="l2"><a href="#o-que-incluir-no-relatório">O que Incluir no Relatório</a></li><li class="l2"><a href="#escopo">Escopo</a></li><li class="l3"><a href="#-em-escopo">Em escopo</a></li><li class="l3"><a href="#-fora-do-escopo">Fora do escopo</a></li><li class="l2"><a href="#processo-de-resposta">Processo de Resposta</a></li><li class="l2"><a href="#modelo-de-segurança-do-sistema-de-plugins">Modelo de Segurança do Sistema de Plugins</a></li><li class="l3"><a href="#mitigações-implementadas">Mitigações implementadas</a></li><li class="l3"><a href="#modelo-de-segurança-do-sql-studio">Modelo de segurança do SQL Studio</a></li><li class="l3"><a href="#limitação-conhecida-por-design">Limitação conhecida (por design)</a></li><li class="l2"><a href="#créditos">Créditos</a></li><li class="l2"><a href="#referências">Referências</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

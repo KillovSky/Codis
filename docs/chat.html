@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chat ao Vivo (Painel de Chat Universal) · Codis</title>
+<meta name="description" content="Cliente de chat multi-protocolo embutido no Codis. A arquitetura é dividida em núcleo sem Tk (src/chat/) e interface (src/ui/chat_panel.py):" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/chat.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Chat ao Vivo (Painel de Chat Universal) · Codis" />
+<meta property="og:description" content="Cliente de chat multi-protocolo embutido no Codis. A arquitetura é dividida em núcleo sem Tk (src/chat/) e interface (src/ui/chat_panel.py):" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/chat.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group" open><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html" class="is-current" aria-current="page">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-chat-ao-vivo-painel-de-chat-universal">💬 Chat ao Vivo (Painel de Chat Universal)<a class="anchor" href="#-chat-ao-vivo-painel-de-chat-universal" aria-label="Link para esta seção">#</a></h1>
+<p>Cliente de chat multi-protocolo embutido no Codis. A arquitetura é dividida em <strong>núcleo sem Tk</strong> (<code>src/chat/</code>) e <strong>interface</strong> (<code>src/ui/chat_panel.py</code>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Arquivos</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Modelos</td>
+<td><code>src/chat/models.py</code></td>
+<td><code>ChatProfile</code>, tabelas de campos por protocolo (<code>FieldSpec</code>), selos/cores</td>
+</tr>
+<tr>
+<td>Adaptadores</td>
+<td><code>src/chat/adapters/*.py</code></td>
+<td>Um por protocolo; ciclo de vida, reconexão com backoff e fila de envio ficam em <code>base.py</code></td>
+</tr>
+<tr>
+<td>Sessão</td>
+<td><code>src/chat/session.py</code></td>
+<td>Estado dos canais (thread-safe), menções, comandos, eco, histórico</td>
+</tr>
+<tr>
+<td>Histórico</td>
+<td><code>src/chat/history.py</code></td>
+<td>JSONL por canal, permissão 0600, tamanho limitado</td>
+</tr>
+<tr>
+<td>Interface</td>
+<td><code>src/ui/chat_panel.py</code>, <code>chat_render.py</code>, <code>chat_profile_dialog.py</code></td>
+<td>Renderização incremental, composer, busca, diálogo de conexão</td>
+</tr>
+</tbody>
+</table></div>
+<p>Acesso: <strong>Configurações → Remoto &amp; Colaboração → Chat ao Vivo...</strong> ou o ícone 💬 da barra de atividades.</p>
+<blockquote>
+<p>Não confundir com <a href="colaboracao.html">Colaboração em Tempo Real</a> (edição compartilhada). O Chat é um cliente de mensageria genérico para conversar com a equipe <strong>enquanto</strong> você programa.</p>
+</blockquote>
+<hr />
+<h2 id="protocolos">Protocolos<a class="anchor" href="#protocolos" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Protocolo</th>
+<th>O que está implementado</th>
+<th>Limitações conhecidas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IRC / IRCS</strong></td>
+<td>Parser RFC 1459 + tags IRCv3, <code>CAP</code> (sasl, server-time, multi-prefix), SASL PLAIN, TLS, CTCP (<code>ACTION</code>, <code>VERSION</code>, <code>PING</code>), NAMES/prefixos, PING/keepalive, divisão de mensagens longas, servidores com fim de linha <code>\n</code> ou <code>\r\n</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>XMPP / Jabber</strong></td>
+<td>Parser XML incremental, STARTTLS ou TLS direto, SASL PLAIN/ANONYMOUS, bind, MUC (roster, assunto, histórico com horário original, conflito de apelido), DMs, <code>/me</code></td>
+<td>SCRAM-SHA-1 ainda não; sem SRV lookup (informe o host se o domínio não resolver)</td>
+</tr>
+<tr>
+<td><strong>Matrix</strong></td>
+<td>Login por senha ou <code>access_token</code> (validado por <code>whoami</code>), long-poll <code>/sync</code>, nomes de exibição, salas por alias/ID, convites, imagens/arquivos como link, <code>m.emote</code>, tópico</td>
+<td>Sem E2EE (salas criptografadas não são legíveis)</td>
+</tr>
+<tr>
+<td><strong>Slack</strong></td>
+<td><strong>Socket Mode</strong> (App Token <code>xapp-</code>, recomendado), RTM (apps clássicos) ou <strong>polling</strong> automático; nomes de canais/usuários resolvidos, menções/links desescapados</td>
+<td>Apps novos não têm RTM: sem App Token o Codis usa polling (alguns segundos de atraso)</td>
+</tr>
+<tr>
+<td><strong>Discord</strong></td>
+<td>Gateway v10 com heartbeat/ACK e intents corretos, filtro de canais do perfil, DMs, menções e anexos, limite de 2000 caracteres, <code>allowed_mentions</code> desligado (sem <code>@everyone</code> acidental)</td>
+<td>Exige <em>Message Content Intent</em> habilitado no Developer Portal; token de usuário (self-bot) viola os ToS</td>
+</tr>
+<tr>
+<td><strong>Telegram</strong></td>
+<td>Long-polling, grupos/canais/DMs, texto puro (sem erros por <code>&lt;</code>), mídia como rótulo</td>
+<td>Bot só vê chats onde foi adicionado</td>
+</tr>
+<tr>
+<td><strong>Mattermost</strong></td>
+<td>Login (token no cabeçalho <code>Token</code>) ou PAT, WebSocket v4, equipes, DMs, membros</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>MQTT 3.1.1</strong></td>
+<td>Remaining-length completo, usuário com/sem senha, keepalive com <code>PINGREQ</code>, TLS, curingas na assinatura, formato <code>plain</code> ou <code>json</code></td>
+<td>Publica só em tópico exato (sem curinga)</td>
+</tr>
+<tr>
+<td><strong>WebSocket / Codis</strong></td>
+<td><code>ws</code>, <code>wss</code> e servidor colaborativo do Codis (join com senha, lista de peers, entrada/saída)</td>
+<td>Senha errada é erro definitivo (não fica tentando)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="garantias-comuns">Garantias comuns<a class="anchor" href="#garantias-comuns" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>Reconexão automática</strong> com backoff exponencial (1 s → 60 s) e re-entrada nos canais; erros definitivos (senha/token inválido) <strong>não</strong> são repetidos.</li>
+<li>Todo envio sai por <strong>fila em thread própria</strong>: a interface nunca trava em rede lenta; falhas aparecem no canal.</li>
+<li>Texto enviado é saneado contra <strong>injeção de comandos</strong> (CR/LF/NUL) nos protocolos orientados a linha.</li>
+</ul>
+<hr />
+<h2 id="interface">Interface<a class="anchor" href="#interface" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><strong>Barra lateral</strong> com selo/cor do protocolo, status (online / conectando / reconectando / offline) e <em>badges</em> de não lidas (vermelho = menção ou DM). Recolher servidor pela seta.</li>
+<li><strong>Mensagens</strong> com recuo suspenso, agrupamento por autor, separador de dia, linha <em>&quot;novas mensagens&quot;</em> após o histórico, destaque de menções, <code>`código`</code>, blocos <code>```</code>, <code>**negrito**</code>, links clicáveis (só <code>http/https</code>), cores de nick com contraste garantido no tema claro/escuro.</li>
+<li><strong>Rolagem preservada</strong>: se você está lendo o histórico, mensagens novas não puxam a tela; aparece o botão <strong>↓ N novas</strong>.</li>
+<li><strong>Composer</strong> multilinha (Enter envia, Shift+Enter quebra linha), ↑/↓ histórico, <strong>Tab</strong> completa nicks e comandos, confirmação ao colar mais de 5 linhas.</li>
+<li><strong>Busca</strong> no canal (<code>Ctrl+F</code>, Enter/Shift+Enter navegam), <strong>alternador rápido</strong> (<code>Ctrl+K</code>), <code>Alt+↑/↓</code> troca de conversa.</li>
+<li><strong>Membros</strong> (alternável): ops primeiro; duplo clique menciona; menu com DM/Whois (IRC), ignorar, copiar.</li>
+<li><strong>Diálogo de conexão</strong> adaptativo, validação inline, botão <strong>Testar conexão</strong> (alcance/TLS e credencial quando o protocolo permite).</li>
+</ul>
+<h3 id="comandos">Comandos<a class="anchor" href="#comandos" aria-label="Link para esta seção">#</a></h3>
+<p><code>/help</code> lista tudo. Genéricos: <code>/join</code>, <code>/part</code>, <code>/close</code>, <code>/query nick [msg]</code>, <code>/me</code>, <code>/clear</code>, <code>/clearhistory</code>, <code>/ignore</code>, <code>/unignore</code>, <code>/reconnect</code>, <code>/disconnect</code>, <code>//texto</code> (envia <code>/texto</code>). IRC: <code>/msg /nick /topic /whois /who /names /list /mode /kick /op /deop /voice /ban /ns /cs /identify /away /invite /notice /ctcp /raw</code>. XMPP: <code>/topic /nick</code>. Matrix: <code>/topic</code>.</p>
+<hr />
+<h2 id="perfis-e-privacidade">Perfis e privacidade<a class="anchor" href="#perfis-e-privacidade" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><code>~/.config/codis/chat_profiles.json</code> (0600). Senhas/tokens ficam em <strong>base64 (ofuscação, não é criptografia)</strong> - não reutilize senhas importantes.</li>
+<li><strong>Histórico</strong> em <code>.../chat_history/&lt;perfil&gt;/&lt;canal&gt;.jsonl</code> (0600, ~1 MB por canal), ligado por padrão; desative por perfil (&quot;Salvar histórico&quot;) ou apague com <code>/clearhistory</code>.</li>
+<li>Opções por perfil: reconectar automaticamente, conectar ao abrir, verificar certificado TLS.</li>
+</ul>
+<h2 id="testes">Testes<a class="anchor" href="#testes" aria-label="Link para esta seção">#</a></h2>
+<p><code>tests/test_chat_*.py</code> sobem <strong>servidores falsos em sockets reais</strong> (IRC, MQTT, XMPP, HTTP, WebSocket) e o servidor colaborativo real do Codis; <code>tests_gui/test_chat_panel.py</code> exercita a interface completa sob Xvfb.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="ia.html"><small>Anterior</small>Assistente de IA</a>
+        <a class="next" href="remote-ssh.html"><small>Próxima</small>Desenvolvimento Remoto via SSH</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/chat.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/chat.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#protocolos">Protocolos</a></li><li class="l3"><a href="#garantias-comuns">Garantias comuns</a></li><li class="l2"><a href="#interface">Interface</a></li><li class="l3"><a href="#comandos">Comandos</a></li><li class="l2"><a href="#perfis-e-privacidade">Perfis e privacidade</a></li><li class="l2"><a href="#testes">Testes</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

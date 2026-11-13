@@ -1,0 +1,69 @@
+name: "CodeQL - Analise de Seguranca"
+
+on:
+  push:
+    branches: ["main", "master", "develop"]
+    paths:
+      - "src/**"
+      - "run.py"
+      - "requirements.txt"
+      - ".github/workflows/codeql.yml"
+  pull_request:
+    branches: ["main", "master"]
+    paths:
+      - "src/**"
+      - "run.py"
+      - "requirements.txt"
+      - ".github/workflows/codeql.yml"
+  schedule:
+    - cron: "0 8 * * 1"
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  codeql:
+    name: "Analisar com CodeQL (${{ matrix.language }})"
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["python"]
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
+      - name: "Configurar Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: "Instalar dependências (para análise completa)"
+        run: |
+          pip install -r requirements.txt || true
+
+      - name: "Inicializar CodeQL"
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+          queries: security-extended,security-and-quality
+          config: |
+            paths:
+              - src
+              - run.py
+            paths-ignore:
+              - "**/__pycache__"
+              - "**/tests/**"
+              - "build/**"
+              - "dist/**"
+
+      - name: "Realizar análise CodeQL"
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
+          upload: true

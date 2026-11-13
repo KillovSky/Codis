@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Temas · Codis</title>
+<meta name="description" content="O Codis possui um sistema de temas completo com suporte a modos claro e escuro, além de suporte a temas criados por plugins." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/temas.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Temas · Codis" />
+<meta property="og:description" content="O Codis possui um sistema de temas completo com suporte a modos claro e escuro, além de suporte a temas criados por plugins." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/temas.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group" open><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html" class="is-current" aria-current="page">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-temas">🎨 Temas<a class="anchor" href="#-temas" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis possui um sistema de temas completo com suporte a modos claro e escuro, além de suporte a temas criados por plugins.</p>
+<hr />
+<h2 id="temas-built-in">Temas Built-in<a class="anchor" href="#temas-built-in" aria-label="Link para esta seção">#</a></h2>
+<p>21 temas inclusos, todos definidos em <code>src/theme/base.py</code>. O nome exibido no menu <strong>Exibir → Tema</strong> é exatamente o nome interno (sem rebranding) - a tabela abaixo só capitaliza para leitura.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Nome interno</th>
+<th>Exibição</th>
+<th>Modo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fluent_dark</code></td>
+<td>Fluent Dark</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>fluent_light</code></td>
+<td>Fluent Light</td>
+<td>Claro</td>
+</tr>
+<tr>
+<td><code>catppuccin_mocha</code></td>
+<td>Catppuccin Mocha</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>tokyo_night</code></td>
+<td>Tokyo Night</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>dracula</code></td>
+<td>Dracula</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>gruvbox_dark</code></td>
+<td>Gruvbox Dark</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>gruvbox_light</code></td>
+<td>Gruvbox Light</td>
+<td>Claro</td>
+</tr>
+<tr>
+<td><code>solarized_dark</code></td>
+<td>Solarized Dark</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>solarized_light</code></td>
+<td>Solarized Light</td>
+<td>Claro</td>
+</tr>
+<tr>
+<td><code>one_dark_pro</code></td>
+<td>One Dark Pro</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>nord</code></td>
+<td>Nord</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>monokai_pro</code></td>
+<td>Monokai Pro</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>github_dark</code></td>
+<td>GitHub Dark</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>github_light</code></td>
+<td>GitHub Light</td>
+<td>Claro</td>
+</tr>
+<tr>
+<td><code>palenight</code></td>
+<td>Palenight</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>rose_pine</code></td>
+<td>Rosé Pine</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>everforest_dark</code></td>
+<td>Everforest Dark</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>ayu_mirage</code></td>
+<td>Ayu Mirage</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>midnight_void</code></td>
+<td>Midnight Void</td>
+<td>Escuro</td>
+</tr>
+<tr>
+<td><code>sepia</code></td>
+<td>Sepia</td>
+<td>Claro</td>
+</tr>
+<tr>
+<td><code>high_contrast</code></td>
+<td>High Contrast</td>
+<td>Escuro</td>
+</tr>
+</tbody>
+</table></div>
+<p>Além desses, o modo <strong>K-UI</strong> aplica uma camada visual holográfica adicional sobre qualquer um dos 21 temas - ver <a href="#tema-k-ui">Tema K-UI</a> mais abaixo.</p>
+<p>O tema padrão é <code>fluent_dark</code>.</p>
+<hr />
+<h2 id="como-trocar-de-tema">Como Trocar de Tema<a class="anchor" href="#como-trocar-de-tema" aria-label="Link para esta seção">#</a></h2>
+<p>Existem quatro formas de trocar de tema:</p>
+<ol>
+<li><strong>Menu:</strong> <code>Exibir → Tema</code> - lista todos os temas disponíveis.</li>
+<li><strong>Activity Bar:</strong> clique no ícone 🎨 na parte inferior da Activity Bar - avança para o próximo tema.</li>
+<li><strong>Configurações:</strong> <code>Ctrl+,</code> → campo <code>theme</code>.</li>
+<li><strong>Paleta de Comandos:</strong> <code>Ctrl+Shift+P</code> → &quot;Toggle Theme&quot;.</li>
+</ol>
+<h3 id="modos-de-aplicação">Modos de Aplicação<a class="anchor" href="#modos-de-aplicação" aria-label="Link para esta seção">#</a></h3>
+<p>Ao trocar de tema, um diálogo pergunta qual modo aplicar:</p>
+<ul>
+<li><strong>Modo Rápido</strong> - repinta todos os widgets sem reconstruir a UI. Mais rápido, mas alguns elementos podem ficar com cores ligeiramente inconsistentes.</li>
+<li><strong>Modo Completo</strong> - destrói e reconstrói toda a interface preservando o estado (workspace e arquivos abertos). Garante consistência total de cores.</li>
+</ul>
+<hr />
+<h2 id="pré-visualização-antes-de-aplicar">Pré-visualização antes de aplicar<a class="anchor" href="#pré-visualização-antes-de-aplicar" aria-label="Link para esta seção">#</a></h2>
+<p>O <strong>Seletor de Temas</strong> (<code>Exibir → Tema → Abrir Seletor de Temas...</code>) abre um painel dedicado de pré-visualização (<code>src/ui/theme_preview_panel.py</code>) antes de aplicar qualquer tema definitivamente:</p>
+<ul>
+<li>Grade de cartões com todos os temas disponíveis, mostrando nome e um ícone indicando se é dark ou light</li>
+<li><strong>Preview ao vivo</strong>: cada cartão mostra uma miniatura realista de como ficariam o editor, a sidebar, a tab bar e a barra de status com aquele tema - sem precisar aplicá-lo antes para ver</li>
+<li>Filtro por nome e por polaridade (mostrar apenas dark, apenas light, ou todos)</li>
+<li>Navegação totalmente por teclado: setas para mover entre cartões, <code>Enter</code> para confirmar, <code>Escape</code> para cancelar</li>
+<li>Ao confirmar, ainda é perguntado se a aplicação deve ser <strong>Completa</strong> ou <strong>Rápida</strong> (ver seção anterior)</li>
+</ul>
+<hr />
+<h2 id="estrutura-de-um-tema">Estrutura de um Tema<a class="anchor" href="#estrutura-de-um-tema" aria-label="Link para esta seção">#</a></h2>
+<p>Um tema é um <code>@dataclass Theme</code> definido em <code>src/theme/base.py</code>. Os atributos são organizados por grupos:</p>
+<h3 id="grupo-janela-principal">Grupo: Janela Principal<a class="anchor" href="#grupo-janela-principal" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Identificador único do tema</td>
+</tr>
+<tr>
+<td><code>dark</code></td>
+<td><code>True</code> para escuro, <code>False</code> para claro</td>
+</tr>
+<tr>
+<td><code>bg</code></td>
+<td>Cor de fundo da janela</td>
+</tr>
+<tr>
+<td><code>fg</code></td>
+<td>Cor de texto principal</td>
+</tr>
+<tr>
+<td><code>fg_muted</code></td>
+<td>Cor de texto secundário (menos visível)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="grupo-editor">Grupo: Editor<a class="anchor" href="#grupo-editor" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>editor_bg</code></td>
+<td>Fundo da área de código</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td>Cor do cursor de texto</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>O texto principal do editor usa <code>fg</code> (não existe um <code>editor_fg</code> separado no dataclass <code>Theme</code>, apesar de mencionado no docstring interno de <code>base.py</code> - trata-se de uma referência desatualizada no comentário do código-fonte).</p>
+</blockquote>
+<h3 id="grupo-sidebar-e-activity-bar">Grupo: Sidebar e Activity Bar<a class="anchor" href="#grupo-sidebar-e-activity-bar" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sidebar_bg</code></td>
+<td>Fundo da sidebar</td>
+</tr>
+<tr>
+<td><code>activity_bg</code></td>
+<td>Fundo da Activity Bar</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="grupo-abas">Grupo: Abas<a class="anchor" href="#grupo-abas" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tabbar_bg</code></td>
+<td>Fundo da barra de abas</td>
+</tr>
+<tr>
+<td><code>tab_act_bg</code></td>
+<td>Fundo da aba ativa</td>
+</tr>
+<tr>
+<td><code>tab_act_fg</code></td>
+<td>Texto da aba ativa</td>
+</tr>
+<tr>
+<td><code>tab_in_fg</code></td>
+<td>Texto das abas inativas</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="grupo-painéis-e-flutuantes">Grupo: Painéis e Flutuantes<a class="anchor" href="#grupo-painéis-e-flutuantes" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>panel_bg</code></td>
+<td>Fundo do painel inferior</td>
+</tr>
+<tr>
+<td><code>floating_bg</code></td>
+<td>Fundo de janelas flutuantes (diálogos)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="grupo-seleção-e-inputs">Grupo: Seleção e Inputs<a class="anchor" href="#grupo-seleção-e-inputs" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sel_bg</code></td>
+<td>Fundo de texto selecionado</td>
+</tr>
+<tr>
+<td><code>sel_fg</code></td>
+<td>Texto selecionado</td>
+</tr>
+<tr>
+<td><code>input_bg</code></td>
+<td>Fundo de campos de texto</td>
+</tr>
+<tr>
+<td><code>border</code></td>
+<td>Cor de bordas e divisores</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="grupo-botões">Grupo: Botões<a class="anchor" href="#grupo-botões" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>btn_bg</code></td>
+<td>Fundo de botões padrão</td>
+</tr>
+<tr>
+<td><code>btn_hover</code></td>
+<td>Fundo de botões ao passar o mouse</td>
+</tr>
+<tr>
+<td><code>btn_fg</code></td>
+<td>Texto de botões padrão</td>
+</tr>
+<tr>
+<td><code>btn_primary</code></td>
+<td>Fundo de botões de ação primária</td>
+</tr>
+<tr>
+<td><code>btn_primary_fg</code></td>
+<td>Texto de botões de ação primária</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="grupo-scrollbar">Grupo: Scrollbar<a class="anchor" href="#grupo-scrollbar" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scroll_bg</code></td>
+<td>Trilha da scrollbar</td>
+</tr>
+<tr>
+<td><code>scroll_thumb</code></td>
+<td>Thumb (alça) da scrollbar</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="grupo-diagnósticos">Grupo: Diagnósticos<a class="anchor" href="#grupo-diagnósticos" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ok_fg</code></td>
+<td>Cor de status positivo</td>
+</tr>
+<tr>
+<td><code>warn_fg</code></td>
+<td>Cor de avisos</td>
+</tr>
+<tr>
+<td><code>err_fg</code></td>
+<td>Cor de erros</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="grupo-syntax-highlighting">Grupo: Syntax Highlighting<a class="anchor" href="#grupo-syntax-highlighting" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>t_keyword</code></td>
+<td>Palavras-chave</td>
+</tr>
+<tr>
+<td><code>t_string</code></td>
+<td>Strings</td>
+</tr>
+<tr>
+<td><code>t_comment</code></td>
+<td>Comentários</td>
+</tr>
+<tr>
+<td><code>t_number</code></td>
+<td>Números</td>
+</tr>
+<tr>
+<td><code>t_func</code></td>
+<td>Funções</td>
+</tr>
+<tr>
+<td><code>t_type</code></td>
+<td>Tipos / classes</td>
+</tr>
+<tr>
+<td><code>t_operator</code></td>
+<td>Operadores</td>
+</tr>
+<tr>
+<td><code>t_decorator</code></td>
+<td>Decoradores / anotações</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="criando-um-tema-customizado">Criando um Tema Customizado<a class="anchor" href="#criando-um-tema-customizado" aria-label="Link para esta seção">#</a></h2>
+<h3 id="método-1-via-plugin">Método 1: Via Plugin<a class="anchor" href="#método-1-via-plugin" aria-label="Link para esta seção">#</a></h3>
+<p>A forma mais flexível é criar um plugin que registre o tema:</p>
+<pre><code class="language-python"># meu_plugin.py
+from src.plugins.api import PluginAPI, PluginManifest
+from src.theme.base import Theme
+
+MANIFEST = PluginManifest(name=&quot;meu-tema&quot;, version=&quot;1.0.0&quot;)
+
+def activate(api: PluginAPI) -&gt; None:
+    meu_tema = Theme(
+        name=&quot;meu_tema&quot;,
+        dark=True,
+        bg=&quot;#1a1a2e&quot;,
+        fg=&quot;#e0e0e0&quot;,
+        fg_muted=&quot;#888888&quot;,
+        editor_bg=&quot;#16213e&quot;,
+        cursor=&quot;#00d4ff&quot;,
+        sidebar_bg=&quot;#0f3460&quot;,
+        activity_bg=&quot;#0a2540&quot;,
+        tabbar_bg=&quot;#1a1a2e&quot;,
+        tab_act_bg=&quot;#0f3460&quot;,
+        tab_act_fg=&quot;#ffffff&quot;,
+        tab_in_fg=&quot;#aaaaaa&quot;,
+        panel_bg=&quot;#0f0f1a&quot;,
+        floating_bg=&quot;#1a1a2e&quot;,
+        sel_bg=&quot;#0f3460&quot;,
+        sel_fg=&quot;#ffffff&quot;,
+        input_bg=&quot;#0f1f35&quot;,
+        border=&quot;#2d3f6e&quot;,
+        btn_bg=&quot;#1e2d4a&quot;,
+        btn_hover=&quot;#2d3f6e&quot;,
+        btn_fg=&quot;#e0e0e0&quot;,
+        btn_primary=&quot;#00d4ff&quot;,
+        btn_primary_fg=&quot;#000000&quot;,
+        scroll_bg=&quot;#0f1f35&quot;,
+        scroll_thumb=&quot;#2d3f6e&quot;,
+        ok_fg=&quot;#00ff88&quot;,
+        warn_fg=&quot;#ffaa00&quot;,
+        err_fg=&quot;#ff4444&quot;,
+        t_keyword=&quot;#00d4ff&quot;,
+        t_string=&quot;#00ff88&quot;,
+        t_comment=&quot;#555577&quot;,
+        t_number=&quot;#ff8855&quot;,
+        t_func=&quot;#88aaff&quot;,
+        t_type=&quot;#ffdd44&quot;,
+        t_operator=&quot;#cc88ff&quot;,
+        t_decorator=&quot;#ff88cc&quot;,
+    )
+    api.register_theme(meu_tema)
+</code></pre>
+<h3 id="sobre-codisthemes">Sobre <code>~/.codis/themes/</code><a class="anchor" href="#sobre-codisthemes" aria-label="Link para esta seção">#</a></h3>
+<p>Esse diretório é criado automaticamente na inicialização do Codis (junto com <code>plugins/</code>, <code>snippets/</code> etc.), mas <strong>não é escaneado nem carregado automaticamente</strong> nesta versão - não há nenhum loader de tema que leia arquivos <code>.py</code> soltos dessa pasta. O <strong>Método 1 acima (via plugin)</strong> é a única forma funcional e suportada de registrar temas customizados.</p>
+<hr />
+<h2 id="compatibilidade-hidpi-windows">Compatibilidade HiDPI (Windows)<a class="anchor" href="#compatibilidade-hidpi-windows" aria-label="Link para esta seção">#</a></h2>
+<p>No Windows, o Codis aplica automaticamente:</p>
+<ul>
+<li><code>SetProcessDpiAwareness(1)</code> via <code>ctypes.windll.shcore</code></li>
+<li><code>tk scaling 1.5</code></li>
+<li>Coloração da barra de título nativa (<code>DwmSetWindowAttribute</code>) para combinar com o tema ativo (Windows 11)</li>
+</ul>
+<p>Nenhuma configuração manual é necessária.</p>
+<hr />
+<h2 id="tema-k-ui">Tema K-UI<a class="anchor" href="#tema-k-ui" aria-label="Link para esta seção">#</a></h2>
+<p>O tema <code>kui</code> é especial - ele é registrado dinamicamente ao ativar o <strong>K-UI</strong>. Não é um tema no sentido tradicional: a K-UI renderiza sua própria paleta de cores independente (<code>_pal()</code>), com void escuro (<code>#020209</code> escuro / <code>#0d0d2b</code> claro), texto luminoso e efeitos visuais que ignoram propositalmente as cores do <code>bg</code> para criar a estética cósmica.</p>
+<p>Ver <a href="kui.html">K-UI</a> para detalhes.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="configuracoes.html"><small>Anterior</small>Configurações</a>
+        <a class="next" href="faq.html"><small>Próxima</small>FAQ - Perguntas Frequentes</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/temas.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/temas.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#temas-built-in">Temas Built-in</a></li><li class="l2"><a href="#como-trocar-de-tema">Como Trocar de Tema</a></li><li class="l3"><a href="#modos-de-aplicação">Modos de Aplicação</a></li><li class="l2"><a href="#pré-visualização-antes-de-aplicar">Pré-visualização antes de aplicar</a></li><li class="l2"><a href="#estrutura-de-um-tema">Estrutura de um Tema</a></li><li class="l3"><a href="#grupo-janela-principal">Grupo: Janela Principal</a></li><li class="l3"><a href="#grupo-editor">Grupo: Editor</a></li><li class="l3"><a href="#grupo-sidebar-e-activity-bar">Grupo: Sidebar e Activity Bar</a></li><li class="l3"><a href="#grupo-abas">Grupo: Abas</a></li><li class="l3"><a href="#grupo-painéis-e-flutuantes">Grupo: Painéis e Flutuantes</a></li><li class="l3"><a href="#grupo-seleção-e-inputs">Grupo: Seleção e Inputs</a></li><li class="l3"><a href="#grupo-botões">Grupo: Botões</a></li><li class="l3"><a href="#grupo-scrollbar">Grupo: Scrollbar</a></li><li class="l3"><a href="#grupo-diagnósticos">Grupo: Diagnósticos</a></li><li class="l3"><a href="#grupo-syntax-highlighting">Grupo: Syntax Highlighting</a></li><li class="l2"><a href="#criando-um-tema-customizado">Criando um Tema Customizado</a></li><li class="l3"><a href="#método-1-via-plugin">Método 1: Via Plugin</a></li><li class="l3"><a href="#sobre-codisthemes">Sobre ~/.codis/themes/</a></li><li class="l2"><a href="#compatibilidade-hidpi-windows">Compatibilidade HiDPI (Windows)</a></li><li class="l2"><a href="#tema-k-ui">Tema K-UI</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

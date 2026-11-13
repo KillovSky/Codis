@@ -1,0 +1,64 @@
+name: "🧹 Stale Issues & PRs"
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    name: "🧹 Marcar e fechar itens parados"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+          days-before-issue-stale: 60
+          days-before-issue-close: 14
+          stale-issue-label: "stale"
+          stale-issue-message: |
+            👋 Esta issue ficou sem atividade por 60 dias e foi marcada como **stale**.
+
+            Se ainda for relevante, por favor:
+            - Confirme que o problema ainda ocorre na versão mais recente do Codis
+            - Adicione mais contexto ou informações que possam ajudar
+            - Remova a label `stale` para manter a issue aberta
+
+            Se não houver atividade por mais 14 dias, esta issue será fechada automaticamente.
+            Ela pode ser reaberta a qualquer momento se necessário.
+          close-issue-message: |
+            🔒 Esta issue foi fechada por inatividade (60 + 14 dias sem atividade).
+
+            Se o problema ainda ocorrer na versão mais recente do Codis, por favor abra uma nova issue
+            com as informações atualizadas - [template de bug](https://github.com/KillovSky/Codis/issues/new?template=bug_report.yml).
+
+          days-before-pr-stale: 30
+          days-before-pr-close: 14
+          stale-pr-label: "stale"
+          stale-pr-message: |
+            👋 Este Pull Request ficou sem atividade por 30 dias e foi marcado como **stale**.
+
+            Se ainda deseja ter esta mudança mesclada:
+            - Resolva eventuais conflitos com a branch `main`
+            - Responda ao feedback de revisão pendente
+            - Remova a label `stale` para manter o PR ativo
+
+            Se não houver atividade por mais 14 dias, este PR será fechado automaticamente.
+          close-pr-message: |
+            🔒 Este Pull Request foi fechado por inatividade (30 + 14 dias sem atividade).
+
+            As mudanças podem ser submetidas novamente em um novo PR a qualquer momento.
+            Consulte o [Guia de Contribuição](https://github.com/KillovSky/Codis/blob/main/CONTRIBUTING.md) se precisar de ajuda.
+
+          exempt-issue-labels: "bug,segurança,bloqueante,em-progresso,help wanted,pinned"
+          exempt-pr-labels: "em-progresso,bloqueante,dependencies,pinned"
+
+          exempt-all-pr-milestones: true
+
+          operations-per-run: 100

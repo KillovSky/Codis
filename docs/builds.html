@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Builds e Empacotamento · Codis</title>
+<meta name="description" content="Esta página descreve como empacotar o Codis para distribuição." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/builds.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Builds e Empacotamento · Codis" />
+<meta property="og:description" content="Esta página descreve como empacotar o Codis para distribuição." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/builds.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group" open><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html" class="is-current" aria-current="page">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-builds-e-empacotamento">📦 Builds e Empacotamento<a class="anchor" href="#-builds-e-empacotamento" aria-label="Link para esta seção">#</a></h1>
+<p>Esta página descreve como empacotar o Codis para distribuição.</p>
+<hr />
+<h2 id="script-de-empacotamento">Script de Empacotamento<a class="anchor" href="#script-de-empacotamento" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis inclui o script <code>package_codis.py</code> na raiz do projeto para gerar distribuições.</p>
+<pre><code class="language-bash">python package_codis.py
+</code></pre>
+<hr />
+<h2 id="setuppy">setup.py<a class="anchor" href="#setuppy" aria-label="Link para esta seção">#</a></h2>
+<p>O <code>setup.py</code> na raiz define os metadados do pacote Python. A versão <strong>não é hardcoded</strong> - é extraída dinamicamente de <code>APP_VERSION</code> em <code>src/constants.py</code> via regex, para nunca ficar dessincronizada:</p>
+<pre><code class="language-python"># setup.py (resumido)
+import re
+from pathlib import Path
+from setuptools import setup, find_packages
+
+def _find_version() -&gt; str:
+    &quot;&quot;&quot;Extrai APP_VERSION de src/constants.py.&quot;&quot;&quot;
+    m = re.search(r'^APP_VERSION\s*=\s*[&quot;\']([^&quot;\']+)[&quot;\']',
+                  Path(&quot;src/constants.py&quot;).read_text(encoding=&quot;utf-8&quot;), re.MULTILINE)
+    return m.group(1)
+
+setup(
+    name=&quot;codis&quot;,
+    version=_find_version(),
+    python_requires=&quot;&gt;=3.12&quot;,
+    packages=find_packages(exclude=[&quot;tests*&quot;, &quot;docs*&quot;, &quot;wiki*&quot;, &quot;build*&quot;, &quot;dist*&quot;]),
+    install_requires=[],           # sem dependências obrigatórias
+    extras_require={
+        &quot;recommended&quot;: [&quot;send2trash&gt;=1.8.0&quot;, &quot;Pillow&gt;=9.0.0&quot;, &quot;markdown&gt;=3.4.0&quot;],
+        &quot;full&quot;: [&quot;send2trash&gt;=1.8.0&quot;, &quot;Pillow&gt;=9.0.0&quot;, &quot;markdown&gt;=3.4.0&quot;,
+                 &quot;py7zr&gt;=0.20.0&quot;, &quot;rarfile&gt;=4.0&quot;],
+        &quot;dev&quot;: [&quot;pyinstaller&quot;, &quot;pytest&quot;, &quot;pytest-cov&quot;, &quot;flake8&quot;, &quot;pylint&quot;],
+    },
+    entry_points={
+        &quot;console_scripts&quot;: [&quot;codis = run:main&quot;],
+        &quot;gui_scripts&quot;: [&quot;codis-gui = run:main&quot;],
+    },
+)
+</code></pre>
+<blockquote>
+<p><code>pip install .[dev]</code> instala as ferramentas de desenvolvimento (PyInstaller, pytest, flake8, pylint) de uma vez.</p>
+</blockquote>
+<h3 id="instalação-via-pip-modo-desenvolvimento">Instalação via pip (modo desenvolvimento)<a class="anchor" href="#instalação-via-pip-modo-desenvolvimento" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash">pip install -e .
+</code></pre>
+<p>Após isso, o comando <code>codis</code> fica disponível globalmente.</p>
+<hr />
+<h2 id="dependências">Dependências<a class="anchor" href="#dependências" aria-label="Link para esta seção">#</a></h2>
+<p>O <code>requirements.txt</code> lista pacotes opcionais que habilitam funcionalidades extras:</p>
+<pre><code>send2trash&gt;=1.8.0    # lixeira nativa (fallback: pseudo-lixeira interna)
+Pillow&gt;=9.0.0        # imagens no K-UI
+markdown&gt;=3.4.0      # preview Markdown
+py7zr&gt;=0.20.0        # suporte a .7z
+rarfile&gt;=4.0         # suporte a .rar
+</code></pre>
+<p><strong>Nenhum deles é obrigatório.</strong> O Codis executa com zero dependências externas.</p>
+<hr />
+<h2 id="empacotamento-com-pyinstaller">Empacotamento com PyInstaller<a class="anchor" href="#empacotamento-com-pyinstaller" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis inclui um modo dedicado em <code>package_codis.py</code> que monta automaticamente todos os parâmetros corretos do PyInstaller - é a forma recomendada de gerar um executável, em vez de chamar <code>pyinstaller</code> manualmente:</p>
+<pre><code class="language-bash">pip install pyinstaller
+python package_codis.py pyinstaller            # gera em modo --onedir (padrão)
+python package_codis.py pyinstaller --onefile  # executável único em vez de pasta
+python package_codis.py pyinstaller --debug    # mantém console para depuração
+</code></pre>
+<p>O padrão é um <strong>executável único</strong> (<code>--onefile</code>, mesmo modo do CI); use <code>--onedir</code> para gerar uma pasta (inicia mais rápido, pois não auto-extrai a cada execução).</p>
+<p>Por baixo dos panos, o script monta automaticamente:</p>
+<ul>
+<li><strong>Dados incluídos:</strong> os <code>src/locales/&lt;idioma&gt;.json</code> (14 idiomas; o <code>.translate_manifest.json</code> de desenvolvimento <strong>não</strong> entra), <code>wiki/</code> e <code>requirements.txt</code></li>
+<li><strong>Tcl/Tk:</strong> coletado pelo hook oficial do PyInstaller. <strong>Não</strong> adicione <code>--add-data</code> de Tcl/Tk manualmente (duplica os dados e, sem <code>DISPLAY</code>, pode embutir o prefixo inteiro do Python)</li>
+<li><strong>Imports ocultos:</strong> todos os submódulos de <code>tkinter</code>, mais <code>src.plugins</code>, <code>src.ia</code>, <code>src.lsp</code>, <code>src.lint</code>, <code>src.syntax</code>, <code>src.diff</code>, <code>xmlrpc.client/server</code> e <code>email.mime.*</code></li>
+<li><strong>Módulos excluídos</strong> (reduzem o tamanho do bundle): <code>matplotlib</code>, <code>numpy</code>, <code>pandas</code>, <code>scipy</code>, <code>cv2</code>, <code>PyQt5/6</code>, <code>PySide2/6</code>, <code>wx</code>, entre outros nunca usados pelo Codis</li>
+</ul>
+<p>Para nunca usar UPX (como no CI): <code>python package_codis.py pyinstaller --no-upx</code> ou <code>CODIS_NO_UPX=1</code>. O PyInstaller já ignora o UPX fora do Windows, e no executável <code>--onefile</code> final ele não reduz nada.</p>
+<p>Tamanho de referência do executável Linux x64: <strong>~32 MB</strong>. O CI falha se passar de 60 MB.</p>
+<blockquote>
+<p>Se <code>send2trash</code> estiver instalado no ambiente de build, ele é incluído automaticamente no bundle. Sem ele, o executável final usa a lixeira do projeto (<code>.codis_trash/</code>) normalmente.</p>
+</blockquote>
+<hr />
+<h2 id="empacotamento-com-nuitka-alternativa-não-oficial">Empacotamento com Nuitka (alternativa não-oficial)<a class="anchor" href="#empacotamento-com-nuitka-alternativa-não-oficial" aria-label="Link para esta seção">#</a></h2>
+<blockquote>
+<p>Diferente do PyInstaller, o Nuitka <strong>não faz parte do pipeline oficial</strong> do Codis (não há workflow de CI usando-o, nem script dedicado em <code>package_codis.py</code>). O comando abaixo é um ponto de partida não usado pelo projeto, caso prefira essa alternativa por conta própria.</p>
+</blockquote>
+<pre><code class="language-bash">pip install nuitka
+python -m nuitka --onefile --enable-plugin=tk-inter \
+    --include-data-dir=src/locales=src/locales \
+    --include-data-dir=wiki=wiki \
+    run.py
+</code></pre>
+<hr />
+<h2 id="github-actions">GitHub Actions<a class="anchor" href="#github-actions" aria-label="Link para esta seção">#</a></h2>
+<p>O repositório inclui <strong>10 workflows</strong> em <code>.github/workflows/</code>. A regra de ouro: <strong>cada commit passa por um único pipeline</strong> (<code>pipeline.yml</code>), que valida, compila e publica a release <strong>uma só vez</strong> - os arquivos compilados são os mesmos do artefato e da release, e nada é refeito quando você lança uma versão.</p>
+<h3 id="o-pipeline-commit--build--release">O pipeline (commit → build → release)<a class="anchor" href="#o-pipeline-commit--build--release" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-text">push / tag / PR
+      │
+   plan ─────────────┬──► quality  (testes, lint, i18n)  ──┐
+ (decide tudo        │                                      ├──► release ──► summary
+  uma única vez)     └──► build    (executáveis + ZIP)    ──┘
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Job</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plan</code></td>
+<td>Roda <code>.github/scripts/plan.py</code>: lê <code>APP_VERSION</code>, descobre o canal de release, o que mudou desde o último build publicado e monta a matriz de plataformas</td>
+</tr>
+<tr>
+<td><code>quality</code></td>
+<td>Chama <code>_quality.yml</code>: sintaxe (Python 3.12/3.13), imports em Linux/Windows/macOS, Flake8 e Pylint (informativos), pytest com cobertura, i18n e consistência de locales</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>Chama <code>_build.yml</code>: executáveis PyInstaller de cada plataforma (com smoke test no Linux e limite de 60 MB) + ZIP do código-fonte. Roda <strong>em paralelo</strong> com <code>quality</code></td>
+</tr>
+<tr>
+<td><code>release</code></td>
+<td>Só roda se <code>quality</code> e <code>build</code> passaram. Baixa os arquivos já compilados, gera <code>SHA256SUMS.txt</code> e as notas e publica a release. <strong>Não recompila nada</strong></td>
+</tr>
+<tr>
+<td><code>summary</code></td>
+<td>Resumo da execução; falha o pipeline se alguma etapa obrigatória falhou</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="canais-de-release">Canais de release<a class="anchor" href="#canais-de-release" aria-label="Link para esta seção">#</a></h3>
+<p>O canal é decidido pelo <code>plan</code>, sem nenhuma ação manual:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Canal</th>
+<th>Quando</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stable</code></td>
+<td>Push em <code>main</code>/<code>master</code> quando <code>APP_VERSION</code> <strong>ainda não tem tag</strong>; ou push de tag <code>vX.Y.Z</code></td>
+<td>Release oficial <code>vX.Y.Z</code> (marcada como <em>Latest</em>; <code>-beta.N</code> etc. viram <em>pre-release</em>), com notas do <code>CHANGELOG.md</code> e notas automáticas por <em>label</em></td>
+</tr>
+<tr>
+<td><code>nightly</code></td>
+<td>Push em <code>main</code>/<code>master</code> quando a versão <strong>já foi lançada</strong></td>
+<td>Uma única pré-release móvel chamada <code>nightly</code>, atualizada a cada commit com mudança de código (não acumula releases)</td>
+</tr>
+<tr>
+<td><code>dev</code></td>
+<td>Push em <code>develop</code></td>
+<td>Pré-release móvel <code>dev</code> (somente as 3 plataformas principais)</td>
+</tr>
+<tr>
+<td><code>none</code></td>
+<td>Pull request</td>
+<td>Só valida e compila (3 plataformas principais); não publica</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cada release traz, de uma vez: os executáveis (Windows x64, Linux x64, macOS Apple Silicon e, em <code>main</code>/tag, também Linux ARM64, Windows ARM64/x86 e macOS Intel, que são experimentais e nunca derrubam o pipeline), o <strong>ZIP do código-fonte</strong> (<code>Codis-vX.Y.Z-source.zip</code>), o <code>SHA256SUMS.txt</code> (usado pelo atualizador do app para conferir a integridade), as notas e o comparativo com a versão anterior.</p>
+<p>Releases oficiais são criadas como <strong>rascunho</strong>, recebem todos os arquivos e só então são publicadas: nem usuários nem o atualizador enxergam uma release pela metade. Pré-releases <code>nightly</code>/<code>dev</code> <strong>não</strong> afetam o atualizador (ele lê apenas a última release oficial).</p>
+<blockquote>
+<p><strong>Commits só de documentação</strong> (<code>*.md</code>, <code>wiki/</code>, <code>docs/</code>, <code>tools/</code>...) não compilam nem publicam release: o <code>plan</code> compara o commit com o último build publicado e só segue se algo que entra no binário mudou (<code>src/**</code>, <code>run.py</code>, <code>requirements.txt</code>, <code>package_codis.py</code>, <code>setup.py</code>, <code>pyproject.toml</code> ou os scripts/workflows de build).</p>
+</blockquote>
+<h3 id="todos-os-workflows">Todos os workflows<a class="anchor" href="#todos-os-workflows" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Trigger</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pipeline.yml</code></td>
+<td>Push em <code>main</code>/<code>master</code>/<code>develop</code>, tag <code>v*.*.*</code>, PR para <code>main</code>/<code>master</code>, <code>workflow_dispatch</code> (inputs <code>release</code> e <code>extended</code>)</td>
+<td><strong>Porta de entrada única</strong>: <code>plan</code> → <code>quality</code> ∥ <code>build</code> → <code>release</code> → <code>summary</code></td>
+</tr>
+<tr>
+<td><code>_quality.yml</code></td>
+<td>Chamado pelo <code>pipeline.yml</code></td>
+<td>Verificações de código (reutilizável, sem triggers próprios)</td>
+</tr>
+<tr>
+<td><code>_build.yml</code></td>
+<td>Chamado pelo <code>pipeline.yml</code></td>
+<td>Executáveis multiplataforma + ZIP de código-fonte (reutilizável, <strong>não publica</strong>)</td>
+</tr>
+<tr>
+<td><code>docs.yml</code></td>
+<td>PR com mudanças em docs/código (<code>check</code>); push em <code>main</code> com mudanças em <code>docs/**</code>, <code>wiki/**</code>, <code>*.md</code>, <code>tools/**</code> ou <code>src/constants.py</code> (<code>site</code> + <code>deploy</code> + <code>wiki</code>); <code>workflow_dispatch</code></td>
+<td>PR: confere <code>tools/docs_facts.py --check</code> e <code>tools/build_site.py --check</code>. Push: gera <code>docs/</code> e publica no GitHub Pages; sincroniza <code>wiki/</code> com a GitHub Wiki <strong>somente se <code>wiki/</code> mudou</strong></td>
+</tr>
+<tr>
+<td><code>codeql.yml</code></td>
+<td>Push/PR em <code>main</code>/<code>master</code>/<code>develop</code> com mudanças de código, e semanalmente (segunda 08:00 UTC)</td>
+<td>Análise estática de segurança CodeQL (independente do pipeline; não bloqueia releases)</td>
+</tr>
+<tr>
+<td><code>dependency-review.yml</code></td>
+<td>PR com mudanças em <code>requirements.txt</code> ou <code>.github/dependabot.yml</code></td>
+<td>Bloqueia PRs com dependências de CVE alto/crítico e comenta o resumo no PR</td>
+</tr>
+<tr>
+<td><code>label.yml</code></td>
+<td>Abertura/edição/sync de PR, abertura/edição de issue</td>
+<td>Rotulagem automática (as <em>labels</em> alimentam as notas de release por categoria)</td>
+</tr>
+<tr>
+<td><code>locale-sync.yml</code></td>
+<td>Somente <code>workflow_dispatch</code> (flag <code>apply</code>)</td>
+<td>Ferramenta manual: sincroniza as chaves dos 14 locales e commita. A verificação automática já roda em <code>quality</code></td>
+</tr>
+<tr>
+<td><code>artifact-cleanup.yml</code></td>
+<td>Semanalmente (segunda 07:00 UTC), ou <code>workflow_dispatch</code> (<code>dry_run</code>, <code>min_age_days</code>, <code>keep_last_builds</code>)</td>
+<td>Remove artifacts antigos do Actions, protegendo as execuções mais recentes de <code>pipeline.yml</code></td>
+</tr>
+<tr>
+<td><code>stale.yml</code></td>
+<td>Diariamente (06:00 UTC), ou <code>workflow_dispatch</code></td>
+<td>Marca issues/PRs inativos como stale</td>
+</tr>
+</tbody>
+</table></div>
+<p>As categorias das notas automáticas ficam em <code>.github/release.yml</code> (por <em>label</em>: <code>bug</code>, <code>melhoria</code>, <code>segurança</code>, <code>documentação</code>, <code>i18n</code>, <code>dependencies</code> etc.).</p>
+<h3 id="disparo-manual">Disparo manual<a class="anchor" href="#disparo-manual" aria-label="Link para esta seção">#</a></h3>
+<p>Em <strong>Actions → Pipeline → Run workflow</strong>:</p>
+<ul>
+<li><code>release = auto</code> (padrão): comporta-se como um push no branch escolhido, ignorando o filtro de &quot;o que mudou&quot;.</li>
+<li><code>release = none</code>: valida e compila sem publicar (útil para testar o build).</li>
+<li><code>extended = false</code>: só as 3 plataformas principais.</li>
+<li>Rodar a partir de uma <strong>tag</strong> (<code>Use workflow from: Tag: vX.Y.Z</code>) recompila e <strong>atualiza os arquivos</strong> da release dessa tag (reexecução segura, sem duplicar).</li>
+</ul>
+<h3 id="onde-cada-coisa-roda-para-não-duplicar">Onde cada coisa roda (para não duplicar)<a class="anchor" href="#onde-cada-coisa-roda-para-não-duplicar" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tarefa</th>
+<th>Onde roda</th>
+<th>Onde <strong>não</strong> roda mais</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Checagem de sintaxe</td>
+<td><code>quality</code> (uma vez)</td>
+<td>no build (antes havia outra)</td>
+</tr>
+<tr>
+<td>ZIP do código-fonte</td>
+<td><code>build</code> (uma vez)</td>
+<td><code>package.yml</code> (removido)</td>
+</tr>
+<tr>
+<td>Compilar executáveis</td>
+<td><code>build</code> (uma vez por commit)</td>
+<td><code>release.yml</code> (recompilava ao criar a tag)</td>
+</tr>
+<tr>
+<td>Verificar locales</td>
+<td><code>quality</code></td>
+<td><code>locale-sync.yml</code> em push/PR</td>
+</tr>
+<tr>
+<td>Site, wiki e conferência de docs</td>
+<td><code>docs.yml</code></td>
+<td>três workflows separados</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Mapa do que mudou:</strong> <code>ci.yml</code> → <code>_quality.yml</code>; <code>build.yml</code> + <code>package.yml</code> + <code>release.yml</code> → <code>_build.yml</code> + <code>pipeline.yml</code>; <code>docs-check.yml</code> + <code>pages.yml</code> + <code>wiki-sync.yml</code> → <code>docs.yml</code>. O badge de CI do README aponta para <code>pipeline.yml</code>.</p>
+</blockquote>
+<hr />
+<h2 id="testes">Testes<a class="anchor" href="#testes" aria-label="Link para esta seção">#</a></h2>
+<p>Os testes ficam em <code>tests/</code> - 70 arquivos, 1683 casos no total, rodando 100% headless (sem display gráfico):</p>
+<pre><code>tests/
+├── conftest.py              ← Fixtures compartilhadas + stub de Tkinter
+├── test_config.py           ← Testes do ConfigManager
+├── test_diff_engine.py      ← Testes do DiffEngine
+├── test_lsp_protocol.py     ← Testes do protocolo LSP
+├── test_syntax_patterns.py  ← Testes de highlight (8 linguagens)
+└── ... (mais 13 arquivos)
+</code></pre>
+<p>Executar todos os testes:</p>
+<pre><code class="language-bash">pytest tests/ -v
+pytest tests/ --cov=src --cov-report=term-missing   # com cobertura
+</code></pre>
+<p>→ Veja <a href="testes.html">Testes</a> para a cobertura completa por módulo, fixtures disponíveis e convenções.</p>
+<hr />
+<h2 id="distribuição-como-zip-portátil">Distribuição como ZIP Portátil<a class="anchor" href="#distribuição-como-zip-portátil" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis pode ser distribuído como um ZIP portátil (sem instalação):</p>
+<ol>
+<li>Clone o repositório.</li>
+<li>Compacte o diretório: <code>zip -r Codis.zip .</code></li>
+<li>O usuário extrai e executa <code>python run.py</code> - <strong>sem nenhum pip install</strong>.</li>
+</ol>
+<p>Para funcionalidades extras (lixeira nativa, imagens, etc.):</p>
+<pre><code class="language-bash">pip install send2trash Pillow markdown
+</code></pre>
+<hr />
+<h2 id="versionamento">Versionamento<a class="anchor" href="#versionamento" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis usa <strong>Semantic Versioning</strong> (SemVer):</p>
+<ul>
+<li><code>MAJOR.MINOR.PATCH</code> - ex: <code>1.0.0</code></li>
+<li>A versão é definida em <code>src/constants.py</code> (<code>APP_VERSION</code>)</li>
+<li>O codinome de cada versão é definido em <code>APP_CODENAME</code> (ex: <code>&quot;Aether&quot;</code>)</li>
+</ul>
+<p>Para lançar uma versão <strong>não é preciso criar tag nem rodar nada manualmente</strong>:</p>
+<ol>
+<li>Atualize <code>CHANGELOG.md</code> (seção <code>## [X.Y.Z]</code>) e <code>APP_VERSION</code> em <code>src/constants.py</code>.</li>
+<li>Faça o commit/merge em <code>main</code>.</li>
+</ol>
+<p>O <code>pipeline.yml</code> percebe que <code>vX.Y.Z</code> ainda não existe, valida, compila todas as plataformas, gera o ZIP do código-fonte e os checksums e publica a release oficial - tudo na mesma execução. Os commits seguintes (sem mudar a versão) apenas atualizam a pré-release <code>nightly</code>.</p>
+<p>Também continua válido criar a tag manualmente (<code>git tag vX.Y.Z &amp;&amp; git push origin vX.Y.Z</code>): ela precisa ser igual a <code>APP_VERSION</code>, e se a release já tiver sido publicada o pipeline não faz nada.</p>
+<h3 id="requisitos-de-runtime-do-executável-compilado">Requisitos de runtime do executável compilado<a class="anchor" href="#requisitos-de-runtime-do-executável-compilado" aria-label="Link para esta seção">#</a></h3>
+<p>O binário gerado por <code>package_codis.py pyinstaller</code> <strong>não</strong> embute Python para rodar
+<code>pip</code>, <code>venv</code>, servidores LSP baseados em Python (<code>pylsp</code>, <code>pyright</code>...) nem o
+code runner de Python: eles usam o Python do sistema (ver <em>Troubleshooting</em>). Ao
+adicionar código que lança subprocessos Python, use <code>src/pyexec.py</code>
+(<code>python_cmd()</code>, <code>child_env()</code>, <code>script_command()</code>) - <strong>nunca <code>sys.executable</code></strong>,
+que no executável compilado é o próprio Codis.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="arquitetura.html"><small>Anterior</small>Arquitetura</a>
+        <a class="next" href="updater.html"><small>Próxima</small>Atualizador</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/builds.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/builds.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#script-de-empacotamento">Script de Empacotamento</a></li><li class="l2"><a href="#setuppy">setup.py</a></li><li class="l3"><a href="#instalação-via-pip-modo-desenvolvimento">Instalação via pip (modo desenvolvimento)</a></li><li class="l2"><a href="#dependências">Dependências</a></li><li class="l2"><a href="#empacotamento-com-pyinstaller">Empacotamento com PyInstaller</a></li><li class="l2"><a href="#empacotamento-com-nuitka-alternativa-não-oficial">Empacotamento com Nuitka (alternativa não-oficial)</a></li><li class="l2"><a href="#github-actions">GitHub Actions</a></li><li class="l3"><a href="#o-pipeline-commit--build--release">O pipeline (commit build release)</a></li><li class="l3"><a href="#canais-de-release">Canais de release</a></li><li class="l3"><a href="#todos-os-workflows">Todos os workflows</a></li><li class="l3"><a href="#disparo-manual">Disparo manual</a></li><li class="l3"><a href="#onde-cada-coisa-roda-para-não-duplicar">Onde cada coisa roda (para não duplicar)</a></li><li class="l2"><a href="#testes">Testes</a></li><li class="l2"><a href="#distribuição-como-zip-portátil">Distribuição como ZIP Portátil</a></li><li class="l2"><a href="#versionamento">Versionamento</a></li><li class="l3"><a href="#requisitos-de-runtime-do-executável-compilado">Requisitos de runtime do executável compilado</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

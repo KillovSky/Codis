@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Desenvolvimento Remoto via SSH · Codis</title>
+<meta name="description" content="O Codis suporta edição de arquivos em servidores remotos diretamente pela interface do editor, sem precisar instalar nada no servidor além do SSH padrão." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/remote-ssh.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Desenvolvimento Remoto via SSH · Codis" />
+<meta property="og:description" content="O Codis suporta edição de arquivos em servidores remotos diretamente pela interface do editor, sem precisar instalar nada no servidor além do SSH padrão." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/remote-ssh.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group" open><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html" class="is-current" aria-current="page">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-desenvolvimento-remoto-via-ssh">🖥️ Desenvolvimento Remoto via SSH<a class="anchor" href="#-desenvolvimento-remoto-via-ssh" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis suporta edição de arquivos em servidores remotos diretamente pela interface do editor, sem precisar instalar nada no servidor além do SSH padrão.</p>
+<hr />
+<h2 id="requisitos">Requisitos<a class="anchor" href="#requisitos" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li>Binário <code>ssh</code> disponível no PATH local (padrão em Linux, macOS; Git for Windows no Windows)</li>
+<li>Binário <code>scp</code> ou <code>sftp</code> para transferência de arquivos</li>
+<li>Acesso SSH ao servidor (chave privada ou senha)</li>
+</ul>
+<p>Nenhuma instalação no servidor é necessária.</p>
+<hr />
+<h2 id="configurando-um-perfil-ssh">Configurando um Perfil SSH<a class="anchor" href="#configurando-um-perfil-ssh" aria-label="Link para esta seção">#</a></h2>
+<p>Acesse <strong>Ferramentas → Remoto &amp; Colaboração → SSH Remoto…</strong>, pelo atalho <code>Ctrl+Shift+H</code>, ou pelo ícone 🖧 na barra de atividades (visível quando a chave de configuração <strong><code>ssh_enabled</code></strong> estiver definida como <code>true</code> - não existe por padrão em <code>config.json</code>, sendo necessário adicioná-la manualmente ou usar o menu/atalho).</p>
+<p>Clique em <strong>+ Novo Perfil</strong> e preencha:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nome do perfil</td>
+<td>Identificador amigável (ex: &quot;Servidor de Produção&quot;)</td>
+</tr>
+<tr>
+<td>Host / IP</td>
+<td>Endereço do servidor (ex: <code>192.168.1.10</code> ou <code>meu.servidor.com</code>)</td>
+</tr>
+<tr>
+<td>Porta</td>
+<td>Porta SSH (padrão: 22)</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Login SSH (ex: <code>ubuntu</code>, <code>root</code>)</td>
+</tr>
+<tr>
+<td>Chave SSH</td>
+<td>Caminho para <code>.pem</code> ou chave privada (deixe vazio para senha)</td>
+</tr>
+<tr>
+<td>Diretório remoto</td>
+<td>Pasta inicial ao navegar (padrão: <code>~</code>)</td>
+</tr>
+<tr>
+<td>Jump Host</td>
+<td>ProxyJump intermediário (ex: <code>bastion.empresa.com</code>)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Os perfis são salvos em <code>~/.config/codis/ssh_profiles.json</code>.</p>
+<hr />
+<h2 id="testando-a-conexão">Testando a Conexão<a class="anchor" href="#testando-a-conexão" aria-label="Link para esta seção">#</a></h2>
+<p>Selecione um perfil e clique em <strong>Testar</strong>. O Codis executa <code>ssh ... echo ok</code> e exibe o resultado na barra de status. Erros comuns:</p>
+<ul>
+<li><code>ssh: command not found</code> - instale o cliente SSH</li>
+<li><code>Connection refused</code> - servidor inacessível ou porta errada</li>
+<li><code>Permission denied</code> - chave incorreta ou usuário inválido</li>
+</ul>
+<hr />
+<h2 id="navegando-arquivos-remotos">Navegando Arquivos Remotos<a class="anchor" href="#navegando-arquivos-remotos" aria-label="Link para esta seção">#</a></h2>
+<p>O painel <strong>Arquivos Remotos</strong> funciona igual para SSH/SFTP, FTP/FTPS, HTTP(S) e WebDAV.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ação</th>
+<th>Como</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Abrir pasta / arquivo</td>
+<td>Duplo clique ou <code>Enter</code> (arquivos abrem no editor com o <strong>nome original</strong>)</td>
+</tr>
+<tr>
+<td>Subir um nível</td>
+<td><code>Backspace</code> ou botão ↑</td>
+</tr>
+<tr>
+<td>Voltar / avançar</td>
+<td><code>Alt+←</code> / <code>Alt+→</code></td>
+</tr>
+<tr>
+<td>Editar o caminho</td>
+<td><code>Ctrl+L</code> ou clique na área vazia dos breadcrumbs</td>
+</tr>
+<tr>
+<td>Atualizar</td>
+<td><code>F5</code></td>
+</tr>
+<tr>
+<td>Filtrar</td>
+<td><code>Ctrl+F</code> (instantâneo)</td>
+</tr>
+<tr>
+<td>Ordenar</td>
+<td>Clique no cabeçalho da coluna (pastas sempre primeiro)</td>
+</tr>
+<tr>
+<td>Renomear / excluir</td>
+<td><code>F2</code> / <code>Del</code> (SSH, FTP, WebDAV)</td>
+</tr>
+<tr>
+<td>Nova pasta</td>
+<td><code>Ctrl+N</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>O menu de contexto (botão direito, em arquivo, pasta ou área vazia) oferece abrir,
+baixar, enviar, nova pasta, renomear, excluir e copiar caminho. Baixar/enviar aceita
+<strong>seleção múltipla e pastas inteiras</strong> (recursivo, com limite de segurança).
+O painel lateral recolhe sozinho em janelas estreitas (botão ☰) e as colunas
+secundárias somem conforme a largura.</p>
+<h3 id="salvar-envia-de-volta-sync-ao-salvar">Salvar envia de volta (sync ao salvar)<a class="anchor" href="#salvar-envia-de-volta-sync-ao-salvar" aria-label="Link para esta seção">#</a></h3>
+<p>Qualquer forma de salvar um arquivo aberto do servidor (<code>Ctrl+S</code>, <em>Salvar tudo</em> ou
+autosave) o reenvia. Se o arquivo <strong>mudou no servidor</strong> desde que foi aberto, o
+Codis pergunta antes de sobrescrever. Se o envio falhar, você é avisado e pode
+tentar de novo (as alterações continuam salvas localmente). Desative com
+<code>remote_sync_on_save: false</code>.</p>
+<h3 id="protocolos">Protocolos<a class="anchor" href="#protocolos" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Protocolo</th>
+<th style="text-align:center">Listar</th>
+<th style="text-align:center">Baixar</th>
+<th style="text-align:center">Enviar</th>
+<th style="text-align:center">Criar pasta / renomear / excluir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH / SFTP</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>FTP / FTPS (explícito <code>:21</code>, implícito <code>:990</code>)</td>
+<td style="text-align:center">✓ (MLSD ou LIST Unix/IIS)</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓ (pasta vazia para excluir)</td>
+</tr>
+<tr>
+<td>WebDAV / WebDAVS</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>HTTP / HTTPS (índice Apache/nginx)</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+</tbody>
+</table></div>
+<p>No cadastro da conexão você pode <strong>colar uma URL</strong> (<code>sftp://user@host:2200/var/www</code>) no campo
+Host e os demais campos são preenchidos. O botão <strong>Testar conexão</strong> valida sem fechar o diálogo.</p>
+<hr />
+<h2 id="debug-remoto-dap-via-túnel-ssh">Debug Remoto (DAP via Túnel SSH)<a class="anchor" href="#debug-remoto-dap-via-túnel-ssh" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis pode criar um túnel SSH para conectar o depurador local a um processo <code>debugpy</code> rodando no servidor.</p>
+<p>No servidor, inicie o processo com debugpy:</p>
+<pre><code class="language-bash">python -m debugpy --listen 0.0.0.0:5678 meu_script.py
+</code></pre>
+<p>No Codis, abra o painel remoto, conecte ao perfil e clique em <strong>Abrir Túnel Debug</strong>. O Codis criará um túnel <code>localhost:5678 → servidor:5678</code>, e o cliente DAP local (o mesmo do <a href="debug.html">Painel de Debug</a>) conecta normalmente nesse túnel, como se o processo estivesse rodando na própria máquina.</p>
+<blockquote>
+<p>As portas usadas pelo túnel são informadas diretamente no diálogo <strong>Abrir Túnel Debug</strong>, e são independentes da configuração <code>debug_dap_port</code> (usada apenas para depuração local, sem SSH). Se a porta local do túnel colidir com outra ferramenta de debug já em uso na sua máquina (ex: VS Code também escutando em <code>5678</code>), basta escolher outra porta local no diálogo do túnel.</p>
+</blockquote>
+<hr />
+<h2 id="configuração-avançada-com-jump-host">Configuração Avançada com Jump Host<a class="anchor" href="#configuração-avançada-com-jump-host" aria-label="Link para esta seção">#</a></h2>
+<p>Para servidores atrás de um bastion/jump host:</p>
+<pre><code>Perfil: Servidor Interno
+Host: 10.0.0.50
+Porta: 22
+Usuário: dev
+Jump Host: bastion.empresa.com
+</code></pre>
+<p>O Codis usa <code>ssh -J bastion.empresa.com dev@10.0.0.50</code> automaticamente.</p>
+<hr />
+<h2 id="autenticação">Autenticação<a class="anchor" href="#autenticação" aria-label="Link para esta seção">#</a></h2>
+<p>Ordem: <strong>chave privada</strong> → <strong>senha</strong> → <strong>ssh-agent</strong>. A senha vai para o <code>ssh</code> por
+<code>sshpass -e</code> (Linux/macOS, se instalado) ou por um <code>SSH_ASKPASS</code> temporário, o que
+faz o login por senha funcionar também <strong>no Windows</strong>, sem <code>sshpass</code>. A senha nunca
+aparece na linha de comando. Se a chave tiver passphrase, informe-a no campo Senha.
+Em Linux/macOS a conexão é reutilizada (ControlMaster): uma única autenticação para
+listar, baixar e enviar; defina <code>CODIS_SSH_NOMUX=1</code> para desativar.</p>
+<h2 id="limitações">Limitações<a class="anchor" href="#limitações" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li>O servidor SSH precisa de shell POSIX (<code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>rm</code>, <code>mv</code>); servidores Windows (cmd/PowerShell) não são suportados para listagem.</li>
+<li>Progresso de transferência é detalhado em FTP/HTTP/WebDAV; em SSH a barra fica indeterminada (usa o <code>sftp</code> do sistema).</li>
+<li>Não há watch remoto de arquivos (mudanças externas só são detectadas ao salvar, pela checagem de conflito).</li>
+<li>Senhas ficam em base64 (ofuscação, <strong>não</strong> criptografia) em arquivo <code>0600</code>; prefira chaves ou o ssh-agent.</li>
+<li>O caminho SSH_ASKPASS no Windows ainda não foi validado em máquina Windows real.</li>
+</ul>
+<hr />
+<h2 id="configurações">Configurações<a class="anchor" href="#configurações" aria-label="Link para esta seção">#</a></h2>
+<p>Acesse em <strong>Configurações → SSH Remoto</strong> (ou <code>Ctrl+,</code> → categoria SSH Remoto):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssh_default_port</code></td>
+<td><code>22</code></td>
+<td>Porta SSH padrão para novos perfis</td>
+</tr>
+<tr>
+<td><code>ssh_connect_timeout</code></td>
+<td><code>15</code></td>
+<td>Timeout de conexão (segundos)</td>
+</tr>
+<tr>
+<td><code>ssh_keepalive_interval</code></td>
+<td><code>30</code></td>
+<td>Intervalo keepalive em segundos (0 = off)</td>
+</tr>
+<tr>
+<td><code>ssh_agent_forwarding</code></td>
+<td><code>False</code></td>
+<td>Habilita forwarding do agente SSH</td>
+</tr>
+<tr>
+<td><code>ssh_strict_host_key</code></td>
+<td><code>True</code></td>
+<td>Verifica chave do host strictamente</td>
+</tr>
+<tr>
+<td><code>ssh_sftp_buffer_kb</code></td>
+<td><code>64</code></td>
+<td>Tamanho do buffer SFTP em KB</td>
+</tr>
+<tr>
+<td><code>ssh_open_in_editor</code></td>
+<td><code>True</code></td>
+<td>Baixa e abre arquivo remoto no editor</td>
+</tr>
+<tr>
+<td><code>ssh_enabled</code></td>
+<td><code>False</code></td>
+<td>Exibe ícone SSH na barra de atividades</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>As configurações <code>debug_dap_enabled</code>/<code>debug_dap_port</code> pertencem à categoria <strong>Avançado</strong> (depuração local, sem SSH) - veja <a href="debug.html">Debug</a> e <a href="configuracoes.html#-avan%C3%A7ado">Configurações → Avançado</a>. O túnel de debug SSH descrito acima usa portas informadas diretamente no diálogo, não essas chaves.</p>
+</blockquote>
+<hr />
+<h2 id="segurança-e-robustez">Segurança e robustez<a class="anchor" href="#segurança-e-robustez" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><strong>Caminhos escapados.</strong> O caminho navegado é escapado com <code>shlex.quote</code> antes de ir ao shell remoto (preservando a expansão de <code>~</code>), de modo que nomes com <code>;</code>, crases ou <code>$()</code> não são executados.</li>
+<li><strong>Senha SSH fora da linha de comando.</strong> Com <code>sshpass</code>, a senha é transmitida por variável de ambiente (<code>sshpass -e</code> + <code>SSHPASS</code>), nunca como argumento visível em <code>ps</code>.</li>
+<li><strong>Lote do <code>sftp</code>.</strong> Caminhos são citados no estilo do parser do <code>sftp</code> e quebras de linha embutidas são rejeitadas.</li>
+<li><strong>Caminhos iniciados por <code>-</code>.</strong> O terminador de opções <code>--</code> é usado antes dos caminhos no <code>scp</code>.</li>
+<li><strong>Permissões.</strong> Perfis de conexão (<code>remote_browser_profiles.json</code>) e demais arquivos com credenciais ofuscadas são salvos com permissão <code>0600</code> (Linux/macOS).</li>
+<li><strong>Listagem SSH.</strong> O parser ancora no tamanho/data de <code>ls --time-style=long-iso</code> e funciona com GNU, BSD e BusyBox.</li>
+<li><strong>Erros visíveis.</strong> Permissão negada e pasta inexistente exibem a mensagem real e um botão <em>Tentar novamente</em>.</li>
+<li><strong>Sync ao salvar.</strong> O editor notifica <code>src/editor/save_hooks.py</code> em qualquer gravação; falhas de upload/download são reportadas como erro.</li>
+<li><strong>Arquivos sem extensão conhecida</strong> (<code>Makefile</code>, <code>Dockerfile</code>, dotfiles) são inspecionados (byte nulo) em vez de recusados.</li>
+</ul>
+<p>Os testes estão em <code>tests/test_remote_adapters.py</code> e <code>tests_gui/test_remote_browser_panel.py</code>.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="chat.html"><small>Anterior</small>Chat ao Vivo (Painel de Chat Universal)</a>
+        <a class="next" href="colaboracao.html"><small>Próxima</small>Edição Colaborativa</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/remote-ssh.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/remote-ssh.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#requisitos">Requisitos</a></li><li class="l2"><a href="#configurando-um-perfil-ssh">Configurando um Perfil SSH</a></li><li class="l2"><a href="#testando-a-conexão">Testando a Conexão</a></li><li class="l2"><a href="#navegando-arquivos-remotos">Navegando Arquivos Remotos</a></li><li class="l3"><a href="#salvar-envia-de-volta-sync-ao-salvar">Salvar envia de volta (sync ao salvar)</a></li><li class="l3"><a href="#protocolos">Protocolos</a></li><li class="l2"><a href="#debug-remoto-dap-via-túnel-ssh">Debug Remoto (DAP via Túnel SSH)</a></li><li class="l2"><a href="#configuração-avançada-com-jump-host">Configuração Avançada com Jump Host</a></li><li class="l2"><a href="#autenticação">Autenticação</a></li><li class="l2"><a href="#limitações">Limitações</a></li><li class="l2"><a href="#configurações">Configurações</a></li><li class="l2"><a href="#segurança-e-robustez">Segurança e robustez</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

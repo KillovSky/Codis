@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Formatador, Variáveis de Ambiente e Grafo de Dependências · Codis</title>
+<meta name="description" content="Esta página cobre três utilitários de desenvolvimento que ficam na categoria Ferramentas → Utilitários de Desenvolvimento: o Formatador/Validador de dados estruturados, o Gerenciador de Variáveis de A" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/utilitarios-dev.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Formatador, Variáveis de Ambiente e Grafo de Dependências · Codis" />
+<meta property="og:description" content="Esta página cobre três utilitários de desenvolvimento que ficam na categoria Ferramentas → Utilitários de Desenvolvimento: o Formatador/Validador de dados estruturados, o Gerenciador de Variáveis de A" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/utilitarios-dev.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group" open><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html" class="is-current" aria-current="page">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-formatador-variáveis-de-ambiente-e-grafo-de-dependências">🛠️ Formatador, Variáveis de Ambiente e Grafo de Dependências<a class="anchor" href="#-formatador-variáveis-de-ambiente-e-grafo-de-dependências" aria-label="Link para esta seção">#</a></h1>
+<p>Esta página cobre três utilitários de desenvolvimento que ficam na categoria <strong>Ferramentas → Utilitários de Desenvolvimento</strong>: o Formatador/Validador de dados estruturados, o Gerenciador de Variáveis de Ambiente e o Visualizador de Grafo de Dependências.</p>
+<blockquote>
+<p>Os demais utilitários dessa mesma categoria - Color Picker, Regex Playground, SQL Studio, REST Client, Diff Viewer, Code Stats e Flowchart - já estão documentados em <a href="recursos-avancados.html">Recursos Avançados</a>.</p>
+</blockquote>
+<hr />
+<h2 id="--formatador-de-dados-srcuiformatter_panelpy">{ } Formatador de Dados (<code>src/ui/formatter_panel.py</code>)<a class="anchor" href="#--formatador-de-dados-srcuiformatter_panelpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <code>Ctrl+Alt+F</code> ou <strong>Ferramentas → Utilitários de Desenvolvimento → Formatador</strong>.</p>
+<h3 id="formatos-suportados">Formatos suportados<a class="anchor" href="#formatos-suportados" aria-label="Link para esta seção">#</a></h3>
+<p>JSON, YAML, TOML e XML.</p>
+<h3 id="funcionalidades">Funcionalidades<a class="anchor" href="#funcionalidades" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ação</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Formatar</strong></td>
+<td>Reindenta e organiza o conteúdo no formato escolhido, com indentação consistente</td>
+</tr>
+<tr>
+<td><strong>Minificar</strong></td>
+<td>Remove espaços e quebras de linha desnecessárias, gerando a versão mais compacta</td>
+</tr>
+<tr>
+<td><strong>Validar</strong></td>
+<td>Verifica a sintaxe e exibe erros com número de linha e coluna exatos</td>
+</tr>
+<tr>
+<td><strong>Converter</strong></td>
+<td>Converte entre formatos: JSON ↔ YAML ↔ TOML</td>
+</tr>
+<tr>
+<td><strong>Comparar</strong></td>
+<td>Abre o conteúdo formatado em duas versões no <a href="recursos-avancados.html#diff-engine">Diff Viewer</a></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="fluxo-típico">Fluxo típico<a class="anchor" href="#fluxo-típico" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Cole ou digite o conteúdo no painel de entrada</li>
+<li>Escolha o formato de origem (detectado automaticamente quando possível)</li>
+<li>Use <strong>Validar</strong> antes de formatar, se quiser garantir que a sintaxe está correta</li>
+<li><strong>Formatar</strong>/<strong>Minificar</strong> processa o conteúdo no painel de saída</li>
+<li><strong>Copiar resultado</strong> ou <strong>Salvar arquivo</strong> para persistir o resultado</li>
+</ol>
+<p>A árvore de estrutura (painel lateral) permite explorar o documento de forma hierárquica, útil para JSON/YAML profundamente aninhados.</p>
+<hr />
+<h2 id="-gerenciador-de-variáveis-de-ambiente-srcuienv_managerpy">⚙ Gerenciador de Variáveis de Ambiente (<code>src/ui/env_manager.py</code>)<a class="anchor" href="#-gerenciador-de-variáveis-de-ambiente-srcuienv_managerpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <strong>Ferramentas → Utilitários de Desenvolvimento → Variáveis de Env</strong>.</p>
+<p>A janela tem três abas:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Aba</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Env Atual</strong></td>
+<td>Todas as variáveis de ambiente do processo Codis em execução</td>
+</tr>
+<tr>
+<td><strong>Perfis .env</strong></td>
+<td>Arquivos <code>.env</code> salvos, importáveis/exportáveis</td>
+</tr>
+<tr>
+<td><strong>Snippets</strong></td>
+<td>Trechos prontos para exportar variáveis em diferentes shells</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="funcionalidades-1">Funcionalidades<a class="anchor" href="#funcionalidades-1" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Visualizar todas as variáveis do processo atual (<code>os.environ</code>)</li>
+<li>Adicionar, editar ou remover variáveis para a sessão corrente (afeta apenas o processo do Codis, não o sistema)</li>
+<li><strong>Perfis <code>.env</code></strong>: criar, importar e exportar arquivos <code>.env</code> completos, e aplicá-los à sessão atual</li>
+<li>Pesquisa e filtro por nome de variável</li>
+<li><strong>Geração de snippets</strong> prontos em <code>export VAR=valor</code> (bash), <code>setx VAR valor</code> (cmd) e <code>$env:VAR = &quot;valor&quot;</code> (PowerShell)</li>
+<li><strong>Diff entre o env atual e um perfil salvo</strong> - útil para descobrir rapidamente o que mudou entre ambientes (ex.: comparar <code>.env.production</code> com o ambiente local)</li>
+</ul>
+<h3 id="parsing-de-env">Parsing de <code>.env</code><a class="anchor" href="#parsing-de-env" aria-label="Link para esta seção">#</a></h3>
+<p>O parser interno (<code>_parse_env_file</code>) lê o formato <code>.env</code> simples (<code>CHAVE=valor</code> por linha, com suporte a comentários <code>#</code> e linhas vazias ignoradas).</p>
+<hr />
+<h2 id="-dependency-graph-srcuidependency_graphpy">🔗 Dependency Graph (<code>src/ui/dependency_graph.py</code>)<a class="anchor" href="#-dependency-graph-srcuidependency_graphpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <strong>Ferramentas → Utilitários de Desenvolvimento → Grafo de Deps</strong>.</p>
+<p>Analisa os imports de arquivos Python no workspace e renderiza um grafo interativo de dependências, desenhado inteiramente em <code>Canvas</code> Tkinter - sem nenhuma biblioteca de grafos externa.</p>
+<h3 id="como-funciona">Como funciona<a class="anchor" href="#como-funciona" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Faz o parse de <code>import X</code> e <code>from X import Y</code> em todos os arquivos <code>.py</code> do workspace, usando <code>ast</code> (com fallback para regex se o parse falhar)</li>
+<li>Classifica cada módulo encontrado em três categorias coloridas:</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Categoria</th>
+<th>Cor</th>
+<th>Critério</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stdlib</strong></td>
+<td>Verde</td>
+<td>Está em <code>sys.stdlib_module_names</code></td>
+</tr>
+<tr>
+<td><strong>local</strong></td>
+<td>-</td>
+<td>Faz parte do próprio workspace</td>
+</tr>
+<tr>
+<td><strong>third-party</strong></td>
+<td>-</td>
+<td>Pacote externo instalado (não é stdlib nem local)</td>
+</tr>
+</tbody>
+</table></div>
+<ol start="3">
+<li>Aplica um <strong>layout força-dirigida</strong> (force-directed) implementado nativamente para posicionar os nós de forma legível</li>
+<li>Renderiza o grafo com zoom e pan via mouse</li>
+</ol>
+<h3 id="funcionalidades-adicionais">Funcionalidades adicionais<a class="anchor" href="#funcionalidades-adicionais" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Clique em um nó para abrir o arquivo correspondente diretamente no editor</li>
+<li>Filtro por nome de módulo</li>
+<li>Checkbox para mostrar/ocultar módulos stdlib (reduz ruído visual em projetos grandes)</li>
+<li><strong>Ciclos de dependência são destacados em vermelho</strong> - útil para identificar imports circulares antes que causem erro em runtime</li>
+<li><strong>Exportação como DOT</strong> (formato Graphviz), permitindo renderizar o grafo externamente com <code>dot -Tpng grafo.dot -o grafo.png</code> ou importar em outras ferramentas de visualização</li>
+</ul>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="workspace-projeto.html"><small>Anterior</small>Workspace &amp; Produtividade de Projeto</a>
+        <a class="next" href="ia.html"><small>Próxima</small>Assistente de IA</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/utilitarios-dev.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/utilitarios-dev.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#--formatador-de-dados-srcuiformatter_panelpy">{ } Formatador de Dados (src/ui/formatter_panel.py)</a></li><li class="l3"><a href="#formatos-suportados">Formatos suportados</a></li><li class="l3"><a href="#funcionalidades">Funcionalidades</a></li><li class="l3"><a href="#fluxo-típico">Fluxo típico</a></li><li class="l2"><a href="#-gerenciador-de-variáveis-de-ambiente-srcuienv_managerpy">Gerenciador de Variáveis de Ambiente (src/ui/env_manager.py)</a></li><li class="l3"><a href="#funcionalidades-1">Funcionalidades</a></li><li class="l3"><a href="#parsing-de-env">Parsing de .env</a></li><li class="l2"><a href="#-dependency-graph-srcuidependency_graphpy">Dependency Graph (src/ui/dependency_graph.py)</a></li><li class="l3"><a href="#como-funciona">Como funciona</a></li><li class="l3"><a href="#funcionalidades-adicionais">Funcionalidades adicionais</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recursos Exclusivos · Codis</title>
+<meta name="description" content="Esta página documenta os recursos únicos do Codis que o diferenciam de outros editores." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/recursos-exclusivos.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Recursos Exclusivos · Codis" />
+<meta property="og:description" content="Esta página documenta os recursos únicos do Codis que o diferenciam de outros editores." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/recursos-exclusivos.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group" open><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html" class="is-current" aria-current="page">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-recursos-exclusivos">🌟 Recursos Exclusivos<a class="anchor" href="#-recursos-exclusivos" aria-label="Link para esta seção">#</a></h1>
+<p>Esta página documenta os recursos únicos do Codis que o diferenciam de outros editores.</p>
+<hr />
+<h2 id="vim-mode">Vim Mode<a class="anchor" href="#vim-mode" aria-label="Link para esta seção">#</a></h2>
+<p>O Vim Mode do Codis é uma implementação imersiva que vai além de um simples emulador de atalhos. Ao ser ativado, cria uma <strong>janela CLI separada</strong> com aparência de terminal.</p>
+<h3 id="ativando-o-vim-mode">Ativando o Vim Mode<a class="anchor" href="#ativando-o-vim-mode" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><code>Ctrl+Alt+V</code></li>
+<li>Menu <strong>Ferramentas → ⌨️ Vim Mode (toggle)</strong></li>
+</ul>
+<blockquote>
+<p><strong>Nota:</strong> Vim Mode e K-UI são mutuamente exclusivos. Ativar um desativa o outro.</p>
+</blockquote>
+<h3 id="o-que-acontece-ao-ativar">O Que Acontece ao Ativar<a class="anchor" href="#o-que-acontece-ao-ativar" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Uma janela <code>Toplevel</code> separada é criada com aparência de terminal (fundo escuro, fonte monoespaçada).</li>
+<li>O conteúdo do arquivo ativo é copiado para o editor interno da janela CLI.</li>
+<li>A interface principal do Codis continua ativa em segundo plano.</li>
+<li>O rodapé da janela CLI exibe: modo atual | nome do arquivo | linha:coluna | indicador de modificação.</li>
+<li>A interface principal tem seu chrome ocultado (sidebar, Activity Bar, tabbar, breadcrumb, barra de status) para foco total.</li>
+</ol>
+<h3 id="modos-implementados">Modos Implementados<a class="anchor" href="#modos-implementados" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>Cursor</th>
+<th>Como Entrar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NORMAL</code></td>
+<td>Bloco (█)</td>
+<td>Esc; padrão ao abrir</td>
+</tr>
+<tr>
+<td><code>INSERT</code></td>
+<td>Barra (|)</td>
+<td><code>i</code>, <code>a</code>, <code>o</code>, <code>I</code>, <code>A</code>, <code>O</code></td>
+</tr>
+<tr>
+<td><code>VISUAL</code></td>
+<td>Bloco (violeta)</td>
+<td><code>v</code></td>
+</tr>
+<tr>
+<td><code>V-LINE</code></td>
+<td>Bloco (violeta)</td>
+<td><code>V</code></td>
+</tr>
+<tr>
+<td><code>REPLACE</code></td>
+<td>Underline (vermelho)</td>
+<td><code>r</code></td>
+</tr>
+<tr>
+<td><code>COMMAND</code></td>
+<td>Barra</td>
+<td><code>:</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="comandos-normal">Comandos NORMAL<a class="anchor" href="#comandos-normal" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tecla</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>h</code> <code>j</code> <code>k</code> <code>l</code></td>
+<td>Mover cursor</td>
+</tr>
+<tr>
+<td><code>w</code> <code>b</code> <code>e</code></td>
+<td>Mover por palavras</td>
+</tr>
+<tr>
+<td><code>gg</code></td>
+<td>Início do arquivo</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>Fim do arquivo</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>Início da linha</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Fim da linha</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>Apagar linha</td>
+</tr>
+<tr>
+<td><code>yy</code></td>
+<td>Copiar (yank) linha</td>
+</tr>
+<tr>
+<td><code>p</code> <code>P</code></td>
+<td>Colar depois / antes</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>Desfazer</td>
+</tr>
+<tr>
+<td><code>Ctrl+R</code></td>
+<td>Refazer</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Apagar caractere</td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td>Alternar case do char</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code> <code>&lt;&lt;</code></td>
+<td>Indentar / desindentar</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="comandos-command-">Comandos COMMAND (<code>:</code>)<a class="anchor" href="#comandos-command-" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:w</code></td>
+<td>Salvar arquivo</td>
+</tr>
+<tr>
+<td><code>:q</code></td>
+<td>Fechar janela Vim (volta ao Codis)</td>
+</tr>
+<tr>
+<td><code>:q!</code></td>
+<td>Fechar sem salvar</td>
+</tr>
+<tr>
+<td><code>:wq</code></td>
+<td>Salvar e fechar</td>
+</tr>
+<tr>
+<td><code>:&lt;número&gt;</code></td>
+<td>Ir para a linha</td>
+</tr>
+<tr>
+<td><code>:%s/busca/subst/g</code></td>
+<td>Substituição global (regex)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="saindo-do-vim-mode">Saindo do Vim Mode<a class="anchor" href="#saindo-do-vim-mode" aria-label="Link para esta seção">#</a></h3>
+<p>Use <code>:q</code>, <code>:q!</code> ou <code>:wq</code> dentro da janela CLI, ou <code>Ctrl+Alt+V</code> na janela principal do Codis.</p>
+<hr />
+<h2 id="zen-mode">Zen Mode<a class="anchor" href="#zen-mode" aria-label="Link para esta seção">#</a></h2>
+<p>O Zen Mode remove todas as distrações para foco total no código.</p>
+<h3 id="ativando">Ativando<a class="anchor" href="#ativando" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><code>Ctrl+K Z</code></li>
+<li>Menu <strong>Ferramentas → 🌌 Zen Mode</strong></li>
+</ul>
+<h3 id="o-que-o-zen-mode-faz">O Que o Zen Mode Faz<a class="anchor" href="#o-que-o-zen-mode-faz" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Oculta: sidebar, painel inferior, Activity Bar, botões flutuantes</li>
+<li>Ativa tela cheia (<code>-fullscreen</code>)</li>
+<li>Exibe uma label discreta no rodapé: &quot;Zen Mode [Esc para sair]&quot;</li>
+<li>Inicia o <strong>Zen Media Player</strong> automaticamente (se playlist configurada e <code>zen_media_autoplay: true</code>)</li>
+</ul>
+<h3 id="saindo-do-zen-mode">Saindo do Zen Mode<a class="anchor" href="#saindo-do-zen-mode" aria-label="Link para esta seção">#</a></h3>
+<p>Pressione <code>Esc</code> ou use <code>Ctrl+K Z</code> novamente.</p>
+<hr />
+<h2 id="zen-media-player">Zen Media Player<a class="anchor" href="#zen-media-player" aria-label="Link para esta seção">#</a></h2>
+<p>O <strong>Zen Media</strong> é um player de midia integrado, projetado para criar uma atmosfera imersiva durante sessões de código.</p>
+<h3 id="configurando">Configurando<a class="anchor" href="#configurando" aria-label="Link para esta seção">#</a></h3>
+<p><strong>Ferramentas → 🎵 Zen Media Config...</strong> (ou via Spotlight no K-UI).</p>
+<p>No diálogo de configuração:</p>
+<ul>
+<li>Adicione arquivos de midia à playlist</li>
+<li>Configure autoplay ao entrar no Zen Mode</li>
+<li>Ajuste volume e modo de repetição</li>
+</ul>
+<h3 id="zen-player-interface">Zen Player (interface)<a class="anchor" href="#zen-player-interface" aria-label="Link para esta seção">#</a></h3>
+<p>Abra com <strong>Workspace → Zen Player</strong> ou <code>Ctrl+Alt+P</code>. Funciona dentro e fora do Zen Mode.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Como funciona</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Janela flutuante</strong></td>
+<td>Layout completo: capa grande e abas <strong>Tocando / Fila / Equalizador</strong>. Botão de pin mantém no topo. Atalhos na janela: <code>Espaço</code> (play/pause), <code>←</code>/<code>→</code> (faixa anterior/próxima).</td>
+</tr>
+<tr>
+<td><strong>Encaixar (attach)</strong></td>
+<td>Botão de dock: o player vira uma barra no rodapé da janela principal (capa, título, controles, busca, volume; EQ e Fila abrem em popup). O botão ao lado destaca de volta. A música não é interrompida na troca.</td>
+</tr>
+<tr>
+<td><strong>Capa</strong></td>
+<td>1) imagem com o <strong>mesmo nome</strong> do áudio na pasta; 2) <code>cover</code>/<code>folder</code>/<code>front</code>/<code>album</code>/<code>artwork</code> na pasta; 3) arte embutida (requer <code>mutagen</code>); 4) miniatura via <code>ffmpeg</code>, se instalado; 5) capa gerada. A cor de destaque da interface vem da capa.</td>
+</tr>
+<tr>
+<td><strong>Metadados</strong></td>
+<td>Título/artista/álbum via <code>mutagen</code>; sem tags, usa o nome do arquivo (<code>Artista - Título</code> é separado).</td>
+</tr>
+<tr>
+<td><strong>Equalizador</strong></td>
+<td>10 bandas (31 Hz–16 kHz, ±12 dB), pré-amp automático contra clipping, 13 presets (Flat, Bass Boost, Treble Boost, Vocal, Rock, Pop, Jazz, Classical, Electronic, Hip-Hop, Acoustic, Lo-fi, Late Night) e presets próprios (<strong>Salvar preset</strong>). Arraste as bandas, use a roda do mouse (±0,5 dB) ou duplo clique para zerar uma banda.</td>
+</tr>
+<tr>
+<td><strong>Minimizar</strong></td>
+<td>Esconde o player e mostra a bolinha (<code>ZenMiniOrb</code>); clicar nela volta ao player.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Preferências persistidas em <code>config.json</code>: <code>zen_player_mode</code> (<code>floating</code>/<code>docked</code>), <code>zen_player_geometry</code>, <code>zen_player_topmost</code>, <code>zen_eq_gains</code>, <code>zen_eq_enabled</code>, <code>zen_eq_custom</code>, <code>zen_media_volume</code>, <code>zen_media_shuffle</code>, <code>zen_media_repeat</code>, <code>zen_media_playlist</code>.</p>
+<p>O equalizador é aplicado ao vivo no <strong>mpv</strong> (filtro <code>af</code> com <code>equalizer</code> do ffmpeg) e no <strong>VLC</strong> (<code>AudioEqualizer</code>).</p>
+<h3 id="componentes">Componentes<a class="anchor" href="#componentes" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Arquivo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ZenMediaPlayer</code></td>
+<td><code>zen_media.py</code></td>
+<td>Motor (mpv/VLC), playlist, EQ, vários ouvintes (<code>add_listener</code>)</td>
+</tr>
+<tr>
+<td><code>ZenPlayerHost</code> / <code>ZenPlayerView</code></td>
+<td><code>zen_player.py</code></td>
+<td>Onde o player vive (janela/dock) e a interface em dois layouts</td>
+</tr>
+<tr>
+<td>Widgets</td>
+<td><code>zen_player_widgets.py</code></td>
+<td>Botões vetoriais, barra de busca, <code>EqualizerPanel</code>, <code>QueuePanel</code></td>
+</tr>
+<tr>
+<td>Lógica</td>
+<td><code>zen_audio.py</code></td>
+<td>EQ/presets, capas, metadados (sem Tk, testável)</td>
+</tr>
+<tr>
+<td><code>ZenMiniOrb</code></td>
+<td><code>zen_media.py</code></td>
+<td>Bolinha flutuante quando o player está minimizado</td>
+</tr>
+<tr>
+<td><code>ZenMediaDialog</code></td>
+<td><code>zen_media.py</code></td>
+<td>Diálogo de configuração completo</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="fluxo">Fluxo<a class="anchor" href="#fluxo" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Ao entrar no Zen Mode com faixas na playlist, o player é exibido no modo salvo.</li>
+<li>Minimizar mostra a <strong>ZenMiniOrb</strong> no canto inferior direito; clicar nela reabre o player.</li>
+<li>Ao sair do Zen Mode apenas a bolinha é ocultada; o player (janela ou dock) e a reprodução continuam.</li>
+</ol>
+<hr />
+<h2 id="focus-mode">Focus Mode<a class="anchor" href="#focus-mode" aria-label="Link para esta seção">#</a></h2>
+<p>O Focus Mode atenua visualmente as abas inativas para destacar o arquivo que está sendo editado.</p>
+<h3 id="ativando-1">Ativando<a class="anchor" href="#ativando-1" aria-label="Link para esta seção">#</a></h3>
+<p>Menu <strong>Ferramentas → Focus Mode</strong>.</p>
+<p><strong>Efeito:</strong> editores inativos recebem <code>bg = t.bg</code> (mais claro/escuro) em vez de <code>t.editor_bg</code>, criando contraste visual entre a aba ativa e as demais.</p>
+<hr />
+<h2 id="easter-eggs">Easter Eggs<a class="anchor" href="#easter-eggs" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li>Er...nada aqui!</li>
+</ul>
+<!--O Codis possui easter eggs ocultos descobertos via comandos especiais no terminal integrado.
+
+### Como Ativar
+
+1. Abra o terminal (`Ctrl+`` ` ``)
+2. Digite `/codis <código>` e pressione Enter
+
+Os códigos são secretos por design - parte da diversão é descobri-los.
+
+### Konami Code
+O clássico Konami Code (↑↑↓↓←→←→BA) pode ser digitado no campo de input do terminal para ativar um efeito visual especial.
+
+### Gerenciamento
+
+Os easter eggs são gerenciados pela classe `EasterEggManager` (`src/ui/easter_eggs.py`). Os efeitos incluem animações visuais sobre a interface principal, partículas e mudanças temporárias de cores.-->
+<hr />
+<h2 id="modo-somente-leitura">Modo Somente Leitura<a class="anchor" href="#modo-somente-leitura" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Ferramentas → Modo Somente Leitura</strong> alterna o editor ativo entre editável e <code>state=&quot;disabled&quot;</code>.</p>
+<p>No modo somente leitura:</p>
+<ul>
+<li>Nenhuma digitação é possível</li>
+<li>Atalhos de edição são ignorados</li>
+<li>A barra de status indica o estado</li>
+</ul>
+<hr />
+<h2 id="modo-sobrescrita">Modo Sobrescrita<a class="anchor" href="#modo-sobrescrita" aria-label="Link para esta seção">#</a></h2>
+<p>Pressione <code>Insert</code> para alternar entre modo de <strong>inserção</strong> (padrão) e <strong>sobrescrita</strong> (cada tecla substitui o caractere à frente do cursor em vez de inserir).</p>
+<hr />
+<h2 id="propriedade-exclusiva-histórico-de-colagem-clipboard-ring">Propriedade Exclusiva: Histórico de Colagem (Clipboard Ring)<a class="anchor" href="#propriedade-exclusiva-histórico-de-colagem-clipboard-ring" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis mantém um histórico das últimas <strong>50 entradas</strong> copiadas/recortadas. <code>Ctrl+Shift+V</code> abre o histórico para escolher qual entrada colar.</p>
+<p>O histórico é mantido em memória durante a sessão.</p>
+<hr />
+<h2 id="barra-de-título-nativa-colorida-windows-11">Barra de Título Nativa Colorida (Windows 11)<a class="anchor" href="#barra-de-título-nativa-colorida-windows-11" aria-label="Link para esta seção">#</a></h2>
+<p>No Windows 11, o Codis colore automaticamente a barra de título nativa da janela para combinar com o tema ativo, usando <code>DwmSetWindowAttribute</code> (DWMWA_CAPTION_COLOR).</p>
+<p>Isso dá ao Codis uma aparência nativa integrada, sem necessidade de configuração.</p>
+<hr />
+<h2 id="novas-janelas">Novas Janelas<a class="anchor" href="#novas-janelas" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Arquivo → Nova Janela</strong> lança uma nova instância independente do Codis no mesmo processo Python (<code>python -m src</code>). Múltiplas instâncias são totalmente independentes e compartilham apenas as configurações em <code>config.json</code>.</p>
+<hr />
+<h2 id="modos-standalone">Modos Standalone<a class="anchor" href="#modos-standalone" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis oferece <strong>29 modos standalone</strong> (mais 4 aliases) que permitem abrir qualquer painel isoladamente, sem carregar o editor completo. São úteis para scripts de automação, launchers de sistema e uso rápido de ferramentas específicas.</p>
+<p>Cada modo standalone carrega apenas o subconjunto mínimo de dependências necessário: tema, i18n, configuração e o painel em questão. Fechar a janela encerra o processo.</p>
+<h3 id="como-usar">Como Usar<a class="anchor" href="#como-usar" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash"># Subcomandos diretos (preferido - sem hífens)
+python run.py sql
+python run.py git /meu/projeto
+
+# Flags longas (compatibilidade)
+python run.py --sql
+python run.py --git /meu/projeto
+
+# Ver lista completa
+python run.py --help
+</code></pre>
+<p>O <code>run.py</code> normaliza automaticamente <code>python run.py sql</code> para <code>python run.py --sql</code>, então ambos os formatos funcionam de forma idêntica.</p>
+<h3 id="lista-completa-de-modos">Lista Completa de Modos<a class="anchor" href="#lista-completa-de-modos" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>Alias</th>
+<th>Descrição</th>
+<th>Argumento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--sql</code></td>
+<td>-</td>
+<td>SQL Studio (SQLite/PostgreSQL/MySQL/DuckDB)</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--tasks</code></td>
+<td>-</td>
+<td>Gerenciador de Tarefas: Kanban + Agendador</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--diff</code></td>
+<td>-</td>
+<td>Diff Viewer lado a lado</td>
+<td><code>[A] [B]</code></td>
+</tr>
+<tr>
+<td><code>--paint</code></td>
+<td>-</td>
+<td>Editor de Imagens básico</td>
+<td><code>[img]</code></td>
+</tr>
+<tr>
+<td><code>--rest</code></td>
+<td>-</td>
+<td>REST Client (HTTP com headers e corpo)</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--regex</code></td>
+<td>-</td>
+<td>Regex Playground com grupos e flags</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--terminal</code></td>
+<td>-</td>
+<td>Terminal integrado</td>
+<td><code>[dir]</code></td>
+</tr>
+<tr>
+<td><code>--git</code></td>
+<td>-</td>
+<td>Painel Git completo</td>
+<td><code>[dir]</code></td>
+</tr>
+<tr>
+<td><code>--pip</code></td>
+<td>-</td>
+<td>Gerenciador de Pacotes Pip</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--scratch</code></td>
+<td>-</td>
+<td>Bloco de Notas multi-aba, persistido</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--flowchart</code></td>
+<td>-</td>
+<td>Gerador de Fluxograma (AST Python)</td>
+<td><code>[py]</code></td>
+</tr>
+<tr>
+<td><code>--render</code></td>
+<td><code>--preview</code></td>
+<td>Preview HTML / Markdown / SVG</td>
+<td><code>[file]</code></td>
+</tr>
+<tr>
+<td><code>--stats</code></td>
+<td>-</td>
+<td>Estatísticas de Código (LOC, complexidade)</td>
+<td><code>[dir]</code></td>
+</tr>
+<tr>
+<td><code>--pomodoro</code></td>
+<td>-</td>
+<td>Timer Pomodoro 25/5 configurável</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--todo</code></td>
+<td>-</td>
+<td>Lista de Tarefas Rápidas</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--output</code></td>
+<td>-</td>
+<td>Painel de Output (log viewer)</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--processes</code></td>
+<td><code>--procs</code></td>
+<td>Gerenciador de Processos do sistema</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--calculator</code></td>
+<td><code>--calc</code></td>
+<td>Calculadora Científica</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--clock</code></td>
+<td>-</td>
+<td>Relógio / Alarmes / Cronômetro</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--calendar</code></td>
+<td>-</td>
+<td>Calendário com Lembretes</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--env</code></td>
+<td>-</td>
+<td>Variáveis de Ambiente do shell</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--formatter</code></td>
+<td>-</td>
+<td>Formatador JSON / YAML / TOML / XML</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--snippets</code></td>
+<td>-</td>
+<td>Gerenciador de Snippets</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--color-picker</code></td>
+<td>-</td>
+<td>Seletor de Cores com picker visual</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--player</code></td>
+<td>-</td>
+<td>Zen Media Player (VLC/MPV backend)</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--accessibility</code></td>
+<td><code>--a11y</code></td>
+<td>Painel de Acessibilidade</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--plugins</code></td>
+<td>-</td>
+<td>Gerenciador de Plugins</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--ssh</code></td>
+<td>-</td>
+<td>Conexão SSH / SFTP Remota</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--archive</code></td>
+<td>-</td>
+<td>Visualizador de ZIP / RAR / 7z</td>
+<td><code>[file]</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="exemplos-práticos">Exemplos Práticos<a class="anchor" href="#exemplos-práticos" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash"># Abrir diff entre dois arquivos diretamente do terminal
+python run.py diff antes.py depois.py
+
+# Iniciar o SQL Studio com o projeto ativo
+python run.py sql
+
+# Abrir o flowchart de um arquivo específico
+python run.py flowchart src/app.py
+
+# Preview de um relatório Markdown
+python run.py render relatorio.md
+
+# Estatísticas do projeto inteiro
+python run.py stats src/
+</code></pre>
+<hr />
+<h2 id="reinício-do-processo">Reinício do Processo<a class="anchor" href="#reinício-do-processo" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Arquivo → Reiniciar</strong> salva todos os arquivos modificados e reinicia o processo do Codis:</p>
+<ul>
+<li>No <strong>Linux/macOS</strong>: usa <code>os.execv()</code> para substituir o processo atual.</li>
+<li>No <strong>Windows</strong>: lança um novo processo com <code>subprocess.Popen</code> e destrói a janela atual.</li>
+</ul>
+<p>O workspace e a sessão são salvos antes do reinício para que tudo seja restaurado.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="recursos-avancados.html"><small>Anterior</small>Recursos Avançados</a>
+        <a class="next" href="kui.html"><small>Próxima</small>K-UI - K-UI (Holográfica/Cósmica)</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/recursos-exclusivos.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/recursos-exclusivos.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#vim-mode">Vim Mode</a></li><li class="l3"><a href="#ativando-o-vim-mode">Ativando o Vim Mode</a></li><li class="l3"><a href="#o-que-acontece-ao-ativar">O Que Acontece ao Ativar</a></li><li class="l3"><a href="#modos-implementados">Modos Implementados</a></li><li class="l3"><a href="#comandos-normal">Comandos NORMAL</a></li><li class="l3"><a href="#comandos-command-">Comandos COMMAND (:)</a></li><li class="l3"><a href="#saindo-do-vim-mode">Saindo do Vim Mode</a></li><li class="l2"><a href="#zen-mode">Zen Mode</a></li><li class="l3"><a href="#ativando">Ativando</a></li><li class="l3"><a href="#o-que-o-zen-mode-faz">O Que o Zen Mode Faz</a></li><li class="l3"><a href="#saindo-do-zen-mode">Saindo do Zen Mode</a></li><li class="l2"><a href="#zen-media-player">Zen Media Player</a></li><li class="l3"><a href="#configurando">Configurando</a></li><li class="l3"><a href="#zen-player-interface">Zen Player (interface)</a></li><li class="l3"><a href="#componentes">Componentes</a></li><li class="l3"><a href="#fluxo">Fluxo</a></li><li class="l2"><a href="#focus-mode">Focus Mode</a></li><li class="l3"><a href="#ativando-1">Ativando</a></li><li class="l2"><a href="#easter-eggs">Easter Eggs</a></li><li class="l2"><a href="#modo-somente-leitura">Modo Somente Leitura</a></li><li class="l2"><a href="#modo-sobrescrita">Modo Sobrescrita</a></li><li class="l2"><a href="#propriedade-exclusiva-histórico-de-colagem-clipboard-ring">Propriedade Exclusiva: Histórico de Colagem (Clipboard Ring)</a></li><li class="l2"><a href="#barra-de-título-nativa-colorida-windows-11">Barra de Título Nativa Colorida (Windows 11)</a></li><li class="l2"><a href="#novas-janelas">Novas Janelas</a></li><li class="l2"><a href="#modos-standalone">Modos Standalone</a></li><li class="l3"><a href="#como-usar">Como Usar</a></li><li class="l3"><a href="#lista-completa-de-modos">Lista Completa de Modos</a></li><li class="l3"><a href="#exemplos-práticos">Exemplos Práticos</a></li><li class="l2"><a href="#reinício-do-processo">Reinício do Processo</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

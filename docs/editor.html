@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Editor · Codis</title>
+<meta name="description" content="O núcleo do Codis é o EditorPane - um editor de texto rico construído sobre o widget tk.Text. Esta página descreve todas as funcionalidades disponíveis no editor." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/editor.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Editor · Codis" />
+<meta property="og:description" content="O núcleo do Codis é o EditorPane - um editor de texto rico construído sobre o widget tk.Text. Esta página descreve todas as funcionalidades disponíveis no editor." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/editor.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group" open><summary>Editando</summary><ul>
+<li><a href="editor.html" class="is-current" aria-current="page">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-editor">✏️ Editor<a class="anchor" href="#-editor" aria-label="Link para esta seção">#</a></h1>
+<p>O núcleo do Codis é o <code>EditorPane</code> - um editor de texto rico construído sobre o widget <code>tk.Text</code>. Esta página descreve todas as funcionalidades disponíveis no editor.</p>
+<hr />
+<h2 id="syntax-highlighting">Syntax Highlighting<a class="anchor" href="#syntax-highlighting" aria-label="Link para esta seção">#</a></h2>
+<p>O destaque de sintaxe é baseado em expressões regulares compiladas em <code>src/syntax/patterns.py</code>. É importante distinguir dois níveis de suporte a linguagem no Codis:</p>
+<ul>
+<li><strong>Highlight de sintaxe real</strong> (<code>LANG_RE</code>, 25 linguagens): JavaScript, TypeScript, Python, HTML, CSS, SCSS, Less, JSON, Markdown, YAML, TOML, INI, SQL, Shell, Rust, Go, C, C++, Java, Makefile, Dockerfile, GraphQL, XML, Vue e Svelte (estas duas últimas só acessíveis trocando a linguagem manualmente, sem detecção automática por extensão).</li>
+<li><strong>Reconhecimento por extensão sem highlight</strong> (<code>EXT_LANG</code>, mais 23 linguagens): Kotlin, Swift, C#, F#, VB.NET, Ruby, PHP, Lua, Perl, R, Julia, Haskell, Elixir, Erlang, Scala, Clojure, CoffeeScript, Groovy, HCL/Terraform, Protocol Buffers, Nix, Batch e PowerShell - o Codis identifica corretamente a linguagem (ícone, nome de exibição na barra de status, formatador associado), mas o texto é exibido <strong>sem coloração de sintaxe</strong>, já que essas linguagens não têm uma entrada em <code>LANG_RE</code>.</li>
+</ul>
+<p>No total são <strong>48 linguagens reconhecidas por extensão</strong>, das quais <strong>25 têm highlight de sintaxe colorido</strong>.</p>
+<p>A linguagem é detectada automaticamente pela extensão do arquivo. Para alterar manualmente, clique no nome da linguagem na <strong>Barra de Status</strong>.</p>
+<blockquote>
+<p>Não confundir com o <a href="kdocs.html">KDocs</a>, que reconhece <strong>27 linguagens diferentes</strong> para fins de parsing de docstring/comentário - uma lista parcialmente distinta da de highlight, já que KDocs e o highlighter de sintaxe são sistemas independentes.</p>
+</blockquote>
+<hr />
+<h2 id="autocompletar">Autocompletar<a class="anchor" href="#autocompletar" aria-label="Link para esta seção">#</a></h2>
+<p>O autocomplete combina três fontes:</p>
+<ol>
+<li><strong>Palavras do arquivo atual</strong> - análise lexical do buffer.</li>
+<li><strong>Keywords da linguagem</strong> - lista curada por linguagem (definida em <code>src/constants.py</code>).</li>
+<li><strong>Símbolos LSP</strong> - funções, classes e variáveis do servidor de linguagem ativo.</li>
+</ol>
+<p><strong>Configuração:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Opção</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>autocomplete</code></td>
+<td><code>true</code></td>
+<td>Ativa/desativa</td>
+</tr>
+<tr>
+<td><code>autocomplete_delay</code></td>
+<td><code>200</code> ms</td>
+<td>Tempo de espera após digitação</td>
+</tr>
+<tr>
+<td><code>autocomplete_min_chars</code></td>
+<td><code>1</code></td>
+<td>Mínimo de caracteres para disparar</td>
+</tr>
+<tr>
+<td><code>autocomplete_max_items</code></td>
+<td><code>24</code></td>
+<td>Máximo de sugestões exibidas</td>
+</tr>
+</tbody>
+</table></div>
+<p>A lista de autocomplete é navegável por <code>↑</code> / <code>↓</code> e fechada com <code>Esc</code>. <code>Tab</code> ou <code>Enter</code> confirma a sugestão selecionada.</p>
+<hr />
+<h2 id="snippets">Snippets<a class="anchor" href="#snippets" aria-label="Link para esta seção">#</a></h2>
+<p>Snippets são trechos de código reutilizáveis armazenados em <code>~/.codis/snippets/</code>. O painel de Snippets (<code>Ctrl+Shift+J</code> ou Activity Bar → ✂️) permite gerenciar e inserir snippets.</p>
+<p>Ao digitar o prefixo de um snippet e pressionar <code>Tab</code>, o snippet é expandido no cursor. Snippets suportam variáveis <code>${1}</code>, <code>${2}</code> para navegação entre campos de edição.</p>
+<p>Ver <a href="recursos-avancados.html#snippets">Recursos Avançados → Snippets</a> para detalhes sobre criação.</p>
+<hr />
+<h2 id="fechamento-automático-de-pares">Fechamento Automático de Pares<a class="anchor" href="#fechamento-automático-de-pares" aria-label="Link para esta seção">#</a></h2>
+<p>O editor fecha automaticamente os pares:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Abre</th>
+<th>Fecha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>(</code></td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td><code>[</code></td>
+<td><code>]</code></td>
+</tr>
+<tr>
+<td><code>{</code></td>
+<td><code>}</code></td>
+</tr>
+<tr>
+<td><code>&quot;</code></td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td><code>'</code></td>
+<td><code>'</code></td>
+</tr>
+<tr>
+<td><code>`</code></td>
+<td><code>`</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Pressionar o caractere de fechamento sobre um par existente apenas move o cursor para fora, sem duplicar.</p>
+<hr />
+<h2 id="minimapa">Minimapa<a class="anchor" href="#minimapa" aria-label="Link para esta seção">#</a></h2>
+<p>O minimapa é uma representação em miniatura do código à direita do editor.</p>
+<ul>
+<li><strong>Largura:</strong> 110 px (configurável via <code>minimap_width</code>)</li>
+<li><strong>Escala:</strong> 1:3 (configurável via <code>minimap_scale</code>)</li>
+<li>Marcadores coloridos de diagnósticos de lint são sobrepostos no minimapa.</li>
+<li>Para ocultar: <code>Exibir → Minimapa</code> ou <code>Ctrl+,</code> → <code>minimap: false</code>.</li>
+</ul>
+<hr />
+<h2 id="numeração-de-linhas">Numeração de Linhas<a class="anchor" href="#numeração-de-linhas" aria-label="Link para esta seção">#</a></h2>
+<p>Exibida à esquerda do editor. Pode exibir números absolutos ou <strong>relativos</strong> (estilo Vim):</p>
+<ul>
+<li><code>line_numbers: true</code> - exibe números de linha (padrão)</li>
+<li><code>relative_numbers: true</code> - exibe números relativos ao cursor</li>
+</ul>
+<hr />
+<h2 id="dobramento-de-código-code-folding">Dobramento de Código (Code Folding)<a class="anchor" href="#dobramento-de-código-code-folding" aria-label="Link para esta seção">#</a></h2>
+<p>Regiões de código definidas por indentação ou delimitadores de bloco podem ser dobradas/desdobradas. Clique no triângulo <code>▸</code> na margem esquerda ou use <code>Ctrl+Shift+[</code> / <code>Ctrl+Shift+]</code> (se configurado via plugin).</p>
+<ul>
+<li><code>code_folding: true</code> - ativa o dobramento (padrão).</li>
+</ul>
+<hr />
+<h2 id="sticky-scroll">Sticky Scroll<a class="anchor" href="#sticky-scroll" aria-label="Link para esta seção">#</a></h2>
+<p>Ao rolar o código, os cabeçalhos de escopo (funções, classes, loops) ficam &quot;colados&quot; no topo do editor até que o bloco inteiro saia da tela.</p>
+<ul>
+<li><code>sticky_scroll: true</code> - ativa (padrão).</li>
+</ul>
+<hr />
+<h2 id="highlight-da-linha-atual">Highlight da Linha Atual<a class="anchor" href="#highlight-da-linha-atual" aria-label="Link para esta seção">#</a></h2>
+<p>A linha onde o cursor se encontra recebe um destaque visual diferenciado.</p>
+<ul>
+<li><code>highlight_current_line: true</code> - ativa (padrão).</li>
+</ul>
+<hr />
+<h2 id="correspondência-de-parênteses">Correspondência de Parênteses<a class="anchor" href="#correspondência-de-parênteses" aria-label="Link para esta seção">#</a></h2>
+<p>Ao posicionar o cursor próximo a um parêntese, colchete ou chave, o par correspondente é destacado.</p>
+<ul>
+<li><code>bracket_matching: true</code> - ativa (padrão).</li>
+<li>Para <strong>navegar</strong> ao par correspondente: <code>Ir → Colchete Correspondente</code>.</li>
+</ul>
+<hr />
+<h2 id="guias-de-indentação">Guias de Indentação<a class="anchor" href="#guias-de-indentação" aria-label="Link para esta seção">#</a></h2>
+<p>Linhas verticais sutis indicam os níveis de indentação do código.</p>
+<ul>
+<li><code>indent_guides: true</code> - ativa (padrão).</li>
+</ul>
+<hr />
+<h2 id="renderização-de-espaços-em-branco">Renderização de Espaços em Branco<a class="anchor" href="#renderização-de-espaços-em-branco" aria-label="Link para esta seção">#</a></h2>
+<p>Controla como espaços e tabs são exibidos:</p>
+<ul>
+<li><code>render_whitespace: &quot;none&quot;</code> - não exibe (padrão)</li>
+<li><code>render_whitespace: &quot;boundary&quot;</code> - exibe apenas nos limites de palavras</li>
+<li><code>render_whitespace: &quot;all&quot;</code> - exibe todos os espaços e tabs</li>
+</ul>
+<hr />
+<h2 id="preview-de-cores">Preview de Cores<a class="anchor" href="#preview-de-cores" aria-label="Link para esta seção">#</a></h2>
+<p>Quando <code>color_preview: true</code> (padrão), o editor exibe uma pequena amostra colorida ao lado de valores de cor no código (ex: <code>#4a9eff</code>, <code>rgb(255, 0, 0)</code>). Clique na amostra para abrir o <strong>Color Picker</strong> (<code>Ctrl+Shift+C</code>).</p>
+<hr />
+<h2 id="hints-embutidas-inlay-hints">Hints Embutidas (Inlay Hints)<a class="anchor" href="#hints-embutidas-inlay-hints" aria-label="Link para esta seção">#</a></h2>
+<p>Quando <code>inlay_hints: true</code>, o LSP pode injetar dicas de tipo diretamente no código, exibidas em fonte menor e cor diferente.</p>
+<hr />
+<h2 id="inline-blame-git-blame">Inline Blame (Git Blame)<a class="anchor" href="#inline-blame-git-blame" aria-label="Link para esta seção">#</a></h2>
+<p>Exibe a informação de <code>git blame</code> diretamente no editor:</p>
+<ul>
+<li><code>inline_blame: false</code> - desativado por padrão</li>
+<li><code>inline_blame_mode: &quot;cursor&quot;</code> - mostra blame apenas na linha do cursor</li>
+<li><code>inline_blame_mode: &quot;all&quot;</code> - mostra blame em todas as linhas visíveis</li>
+</ul>
+<hr />
+<h2 id="modo-de-sobrescrita">Modo de Sobrescrita<a class="anchor" href="#modo-de-sobrescrita" aria-label="Link para esta seção">#</a></h2>
+<p>Pressione <code>Insert</code> para alternar entre <strong>inserção</strong> (padrão) e <strong>sobrescrita</strong> (substituição de caracteres à medida que digita).</p>
+<hr />
+<h2 id="modo-somente-leitura">Modo Somente Leitura<a class="anchor" href="#modo-somente-leitura" aria-label="Link para esta seção">#</a></h2>
+<p>Via <code>Ferramentas → Modo Somente Leitura</code>, o editor fica em modo read-only - o texto não pode ser editado. Ideal para revisar código sem risco de alterações acidentais.</p>
+<hr />
+<h2 id="formatação-de-documento">Formatação de Documento<a class="anchor" href="#formatação-de-documento" aria-label="Link para esta seção">#</a></h2>
+<p><code>Shift+Alt+F</code> ou <code>Executar → Formatar Documento</code> invoca o formatador configurado para a linguagem ativa. A formatação chama a ferramenta CLI diretamente via subprocess (não usa o protocolo LSP):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Linguagem</th>
+<th>Ferramenta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>Black (preferido, <code>--line-length 120</code>) → autopep8 (fallback se Black ausente)</td>
+</tr>
+<tr>
+<td>JavaScript / TypeScript</td>
+<td>Prettier</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>Prettier</td>
+</tr>
+<tr>
+<td>CSS / SCSS</td>
+<td>Prettier</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td>Prettier</td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td>Prettier</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Apenas essas linguagens têm formatação automática nativa. Go, Rust e demais linguagens não suportadas exibem um diálogo informando que não há formatador disponível para a linguagem - não há integração com <code>gofmt</code> ou <code>rustfmt</code> nesta versão. Se a ferramenta CLI (Prettier, Black ou autopep8) não estiver instalada no PATH, o mesmo diálogo é exibido.</p>
+</blockquote>
+<hr />
+<h2 id="manipulação-de-linhas">Manipulação de Linhas<a class="anchor" href="#manipulação-de-linhas" aria-label="Link para esta seção">#</a></h2>
+<p>Atalhos de manipulação de linhas disponíveis:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ação</th>
+<th>Atalho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duplicar linha</td>
+<td><code>Ctrl+D</code></td>
+</tr>
+<tr>
+<td>Apagar linha</td>
+<td><code>Ctrl+Shift+K</code></td>
+</tr>
+<tr>
+<td>Mover linha para cima</td>
+<td><code>Alt+↑</code></td>
+</tr>
+<tr>
+<td>Mover linha para baixo</td>
+<td><code>Alt+↓</code></td>
+</tr>
+<tr>
+<td>Juntar linhas</td>
+<td>via menu Editar</td>
+</tr>
+<tr>
+<td>Ordenar linhas (A-Z)</td>
+<td>via menu Editar</td>
+</tr>
+<tr>
+<td>Ordenar linhas (Z-A)</td>
+<td>via menu Editar</td>
+</tr>
+<tr>
+<td>Remover linhas duplicadas</td>
+<td>via menu Editar / Ferramentas</td>
+</tr>
+<tr>
+<td>Remover espaços no fim</td>
+<td>via menu Editar</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="transformações-de-texto">Transformações de Texto<a class="anchor" href="#transformações-de-texto" aria-label="Link para esta seção">#</a></h2>
+<p>Via <code>Editar → Transformar</code>:</p>
+<ul>
+<li><strong>Maiúsculas</strong> - converte seleção para UPPER CASE</li>
+<li><strong>Minúsculas</strong> - converte seleção para lower case</li>
+<li><strong>Title Case</strong> - Converte Seleção Para Title Case</li>
+</ul>
+<hr />
+<h2 id="zoom">Zoom<a class="anchor" href="#zoom" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ação</th>
+<th>Atalho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aumentar zoom</td>
+<td><code>Ctrl+=</code></td>
+</tr>
+<tr>
+<td>Diminuir zoom</td>
+<td><code>Ctrl+-</code></td>
+</tr>
+<tr>
+<td>Resetar zoom (100%)</td>
+<td><code>Ctrl+0</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>O zoom atual é exibido na barra de status e pode ser ajustado clicando nele.</p>
+<hr />
+<h2 id="quebra-de-linha">Quebra de Linha<a class="anchor" href="#quebra-de-linha" aria-label="Link para esta seção">#</a></h2>
+<p><code>Exibir → Quebra de Linha</code> alterna entre linha reta e quebra suave (<code>word_wrap</code>). Estado salvo em <code>config.json</code>.</p>
+<hr />
+<h2 id="arquivos-grandes">Arquivos Grandes<a class="anchor" href="#arquivos-grandes" aria-label="Link para esta seção">#</a></h2>
+<p>Para arquivos acima de 3 MB (configurável via <code>large_file_mb</code>), o Codis ativa um modo simplificado que desativa syntax highlighting e autocomplete para manter a performance.</p>
+<hr />
+<h2 id="file-timeline-histórico-de-versões">File Timeline (Histórico de Versões)<a class="anchor" href="#file-timeline-histórico-de-versões" aria-label="Link para esta seção">#</a></h2>
+<p><code>Exibir → Painéis → File Timeline</code> abre o histórico de versões automáticas do arquivo atual. O Codis salva snapshots em <code>~/.codis/backups/</code> enquanto o arquivo está aberto, e é possível comparar (via diff) e restaurar qualquer versão anterior com um clique - sem depender do Git. Detalhes completos do mecanismo de snapshot em <a href="backups-lixeira-arquivos.html#file-timeline-srcuifiletimelinepy">Backups, Lixeira &amp; Arquivos Compactados</a>.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="troubleshooting.html"><small>Anterior</small>Solução de Problemas</a>
+        <a class="next" href="inteligencia-editor.html"><small>Próxima</small>Inteligência do Editor</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/editor.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/editor.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#syntax-highlighting">Syntax Highlighting</a></li><li class="l2"><a href="#autocompletar">Autocompletar</a></li><li class="l2"><a href="#snippets">Snippets</a></li><li class="l2"><a href="#fechamento-automático-de-pares">Fechamento Automático de Pares</a></li><li class="l2"><a href="#minimapa">Minimapa</a></li><li class="l2"><a href="#numeração-de-linhas">Numeração de Linhas</a></li><li class="l2"><a href="#dobramento-de-código-code-folding">Dobramento de Código (Code Folding)</a></li><li class="l2"><a href="#sticky-scroll">Sticky Scroll</a></li><li class="l2"><a href="#highlight-da-linha-atual">Highlight da Linha Atual</a></li><li class="l2"><a href="#correspondência-de-parênteses">Correspondência de Parênteses</a></li><li class="l2"><a href="#guias-de-indentação">Guias de Indentação</a></li><li class="l2"><a href="#renderização-de-espaços-em-branco">Renderização de Espaços em Branco</a></li><li class="l2"><a href="#preview-de-cores">Preview de Cores</a></li><li class="l2"><a href="#hints-embutidas-inlay-hints">Hints Embutidas (Inlay Hints)</a></li><li class="l2"><a href="#inline-blame-git-blame">Inline Blame (Git Blame)</a></li><li class="l2"><a href="#modo-de-sobrescrita">Modo de Sobrescrita</a></li><li class="l2"><a href="#modo-somente-leitura">Modo Somente Leitura</a></li><li class="l2"><a href="#formatação-de-documento">Formatação de Documento</a></li><li class="l2"><a href="#manipulação-de-linhas">Manipulação de Linhas</a></li><li class="l2"><a href="#transformações-de-texto">Transformações de Texto</a></li><li class="l2"><a href="#zoom">Zoom</a></li><li class="l2"><a href="#quebra-de-linha">Quebra de Linha</a></li><li class="l2"><a href="#arquivos-grandes">Arquivos Grandes</a></li><li class="l2"><a href="#file-timeline-histórico-de-versões">File Timeline (Histórico de Versões)</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

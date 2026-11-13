@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>K-UI - K-UI (Holográfica/Cósmica) · Codis</title>
+<meta name="description" content="O K-UI (também chamado de K-UI) é uma engine de interface visual opcional que transforma o Codis em uma experiência cinematográfica com nebulosas, auroras, partículas quânticas e uma estética sci-fi i" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/kui.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="K-UI - K-UI (Holográfica/Cósmica) · Codis" />
+<meta property="og:description" content="O K-UI (também chamado de K-UI) é uma engine de interface visual opcional que transforma o Codis em uma experiência cinematográfica com nebulosas, auroras, partículas quânticas e uma estética sci-fi i" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/kui.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group" open><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html" class="is-current" aria-current="page">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-k-ui---k-ui-holográficacósmica">✦ K-UI - K-UI (Holográfica/Cósmica)<a class="anchor" href="#-k-ui---k-ui-holográficacósmica" aria-label="Link para esta seção">#</a></h1>
+<p>O <strong>K-UI</strong> (também chamado de K-UI) é uma engine de interface visual opcional que transforma o Codis em uma experiência cinematográfica com nebulosas, auroras, partículas quânticas e uma estética sci-fi imersiva, inspirada em Tron Legacy, Iron Man HUD e Cyberpunk 2077.</p>
+<hr />
+<h2 id="ativando-o-k-ui">Ativando o K-UI<a class="anchor" href="#ativando-o-k-ui" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl+Alt+N</code></td>
+<td>Ativa/desativa o K-UI</td>
+</tr>
+<tr>
+<td>Menu <strong>Ferramentas → ✦ K-UI (toggle)</strong></td>
+<td>Ativa/desativa</td>
+</tr>
+<tr>
+<td>Paleta de Comandos (<code>Ctrl+Shift+P</code>) → &quot;K-UI&quot;</td>
+<td>Ativa</td>
+</tr>
+</tbody>
+</table></div>
+<p>O estado é persistido em <code>config.json</code> (<code>kui_enabled: true/false</code>, padrão <code>false</code>). Ao reiniciar com <code>kui_enabled: true</code>, o K-UI reativa automaticamente após 300 ms.</p>
+<blockquote>
+<p><strong>Nota:</strong> K-UI e Vim Mode são mutuamente exclusivos. Ativar um desativa o outro.</p>
+</blockquote>
+<hr />
+<h2 id="o-que-muda-com-o-k-ui-ativo">O que Muda com o K-UI Ativo<a class="anchor" href="#o-que-muda-com-o-k-ui-ativo" aria-label="Link para esta seção">#</a></h2>
+<h3 id="visual">Visual<a class="anchor" href="#visual" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>Fundo cósmico</strong> - nebulosas e auroras renderizadas em thread separada via PIL, animadas continuamente</li>
+<li><strong>Partículas quânticas</strong> - flutuantes e reativas à velocidade de digitação</li>
+<li><strong>Sistema solar de arquivos</strong> - cada arquivo aberto recente orbita como planeta na tela de boas-vindas</li>
+<li><strong>Buracos negros</strong> - crescem com a quantidade de erros de lint, exercem gravidade sobre meteoros e estrelas</li>
+<li><strong>Wormholes</strong> - portais quânticos que teletransportam partículas entre dois pontos do espaço</li>
+<li><strong>Cometas</strong> - cauda de plasma longa cruzando a tela em intervalos</li>
+<li><strong>Satélites</strong> - objetos lentos atravessando o cosmos com painéis solares</li>
+<li><strong>Nascimento estelar</strong> - nebulosas protoestelares surgindo no cosmos</li>
+<li><strong>Sash holográfico</strong> - divisores do <code>PanedWindow</code> redesenhados com efeito de brilho</li>
+</ul>
+<h3 id="componentes-substituídos">Componentes Substituídos<a class="anchor" href="#componentes-substituídos" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Componente clássico</th>
+<th>Componente K-UI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab Bar (Tkinter Label)</td>
+<td><code>KTabBar</code> holográfica com indicadores de atividade</td>
+</tr>
+<tr>
+<td>Top Bar (menu/toolbar)</td>
+<td><code>KTopBar</code> com glassmorphism</td>
+</tr>
+<tr>
+<td>Status Bar</td>
+<td><code>KStatusBar</code> com displays digitais</td>
+</tr>
+<tr>
+<td>Welcome Screen</td>
+<td><code>KWelcome</code> cósmica com sistema solar</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="spotlight-paleta-de-comandos-holográfica">Spotlight (Paleta de Comandos Holográfica)<a class="anchor" href="#spotlight-paleta-de-comandos-holográfica" aria-label="Link para esta seção">#</a></h2>
+<p>Com o K-UI ativo, <code>Ctrl+Space</code> abre o <strong>Spotlight</strong> - paleta de comandos redesenhada com:</p>
+<ul>
+<li>Interface holográfica com glassmorphism</li>
+<li>Busca fuzzy em tempo real em 100+ comandos</li>
+<li>Ícones por categoria e animação de entrada/saída suave</li>
+</ul>
+<p><strong>Categorias disponíveis:</strong> Arquivo · Editar · Executar/Formatar · Exibir/Temas · Navegação (linha, símbolo) · Painéis · Ferramentas · Modos especiais · LSP · Painéis flutuantes</p>
+<hr />
+<h2 id="painéis-flutuantes-detach">Painéis Flutuantes (Detach)<a class="anchor" href="#painéis-flutuantes-detach" aria-label="Link para esta seção">#</a></h2>
+<p>No modo K-UI, qualquer aba do painel inferior pode ser &quot;despluggada&quot; para uma janela independente:</p>
+<ol>
+<li><strong>Botão <code>⊞</code></strong> na barra de abas do painel inferior</li>
+<li><strong>Menu de contexto</strong> - clique direito em qualquer aba → &quot;⊞ Despluggar 'nome'&quot;</li>
+<li><strong>Spotlight</strong> - busque &quot;Despluggar&quot; + nome do painel</li>
+</ol>
+<p>Painéis que podem ser despluggados: <code>terminal</code> · <code>output</code> · <code>git</code> · <code>debug</code> · <code>regex</code> · <code>problems</code></p>
+<p>Para devolver, clique direito na aba → &quot;⊟ Reancoxar 'nome'&quot;.</p>
+<hr />
+<h2 id="perfis-de-performance">Perfis de Performance<a class="anchor" href="#perfis-de-performance" aria-label="Link para esta seção">#</a></h2>
+<p>Ajustáveis via <strong>Ferramentas → K-UI: Performance</strong> ou Spotlight → &quot;Perf&quot;:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Perfil</th>
+<th>Efeitos</th>
+<th>FPS</th>
+<th>CPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>quantum</code> (alias <code>ultra_plus</code>)</td>
+<td>Tudo: física completa, subatômico, screensaver</td>
+<td>120</td>
+<td>Muito alto</td>
+</tr>
+<tr>
+<td><code>ultra</code></td>
+<td>Alto: nebulosas + partículas + aurora</td>
+<td>60</td>
+<td>Alto</td>
+</tr>
+<tr>
+<td><code>high</code></td>
+<td>Médio-alto: sem subatômico</td>
+<td>45</td>
+<td>Médio-alto</td>
+</tr>
+<tr>
+<td><code>balanced</code></td>
+<td>Padrão: nebulosas + partículas básicas, anéis, scan</td>
+<td>30</td>
+<td>Médio</td>
+</tr>
+<tr>
+<td><code>windows</code> (alias <code>power_saver</code>)</td>
+<td>Reduzido: sem efeito de scan, otimizado para Windows</td>
+<td>30</td>
+<td>Médio-baixo</td>
+</tr>
+<tr>
+<td><code>low</code> (alias <code>minimal</code>)</td>
+<td>Econômico: ainda com partículas, meteoros e sistema solar, mas sem anéis/scan/buracos negros</td>
+<td>24</td>
+<td>Baixo</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Apesar do nome, <code>minimal</code> <strong>não</strong> remove todas as animações - é um alias exato de <code>low</code>, que ainda exibe partículas, meteoros e o sistema solar de arquivos, só com volume reduzido (30 estrelas, 12 partículas) e sem os efeitos mais pesados (anéis, scan, buracos negros, subatômico).</p>
+</blockquote>
+<p>Os perfis <code>quantum</code> e <code>ultra</code> exibem confirmação antes de ativar. O perfil é salvo em <code>config.json</code> (<code>kui_perf</code>) e pode ser alterado em tempo real.</p>
+<hr />
+<h2 id="easter-eggs">Easter Eggs<a class="anchor" href="#easter-eggs" aria-label="Link para esta seção">#</a></h2>
+<p>O K-UI possui easter eggs ativados por sequências de teclado digitadas no terminal integrado (<code>/codis &lt;código&gt;</code>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Efeito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>konami</code></td>
+<td>Explosão de partículas Konami</td>
+</tr>
+<tr>
+<td><code>nova</code></td>
+<td>Supernova + chuva de meteoros</td>
+</tr>
+<tr>
+<td><code>alien</code></td>
+<td>Naves alienígenas invadem o cosmos</td>
+</tr>
+<tr>
+<td><code>nier</code></td>
+<td>Artefatos da humanidade flutuam no vazio</td>
+</tr>
+<tr>
+<td><code>glitch</code></td>
+<td>Glitch cósmico máximo</td>
+</tr>
+<tr>
+<td><code>freeze</code></td>
+<td>Congela a animação (modo debug)</td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>Big Bang - reseta todo o cosmos</td>
+</tr>
+<tr>
+<td><code>horror</code></td>
+<td>Visões subliminares cósmicas</td>
+</tr>
+<tr>
+<td><code>space</code></td>
+<td>Nascimento estelar em massa</td>
+</tr>
+<tr>
+<td><code>codis</code></td>
+<td>Efeito especial do Codis</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="khovertooltip---painel-de-aprendizado-cósmico">KHoverTooltip - Painel de Aprendizado Cósmico<a class="anchor" href="#khovertooltip---painel-de-aprendizado-cósmico" aria-label="Link para esta seção">#</a></h2>
+<p>Ao clicar em elementos da interface K-UI, um tooltip contextual (<code>KHoverTooltip</code>) exibe fatos de física quântica e cosmologia em 14 idiomas. Ativo no perfil <code>balanced</code> ou superior.</p>
+<p>Os fatos cobrem: emaranhamento quântico, singularidades, dilatação temporal, nebulosas, tunelamento, dualidade onda-partícula, Higgs, matéria escura, energia escura, evaporação de buracos negros, wormholes, estrelas de nêutrons, fundo cósmico de micro-ondas, multiverso, espaguetificação, relatividade e constante de Planck.</p>
+<hr />
+<h2 id="integração-com-temas">Integração com Temas<a class="anchor" href="#integração-com-temas" aria-label="Link para esta seção">#</a></h2>
+<p>O K-UI usa sua própria paleta de cores (<code>_pal()</code>) que <strong>ignora propositalmente</strong> os atributos do tema ativo para garantir a estética cósmica:</p>
+<ul>
+<li><code>void = #020209</code> (dark) ou <code>#0d0d2b</code> (light)</li>
+<li><code>text_bg</code>, <code>text_fg</code>, <code>text_cur</code>, <code>text_sel</code> são cores otimizadas para legibilidade sobre o void</li>
+</ul>
+<p>Ao trocar o tema com o K-UI ativo, <code>apply_theme()</code> reconstrói a paleta e reaplicar os efeitos visuais automaticamente.</p>
+<hr />
+<h2 id="compatibilidade">Compatibilidade<a class="anchor" href="#compatibilidade" aria-label="Link para esta seção">#</a></h2>
+<p>O K-UI é completamente <strong>opcional e não-destrutivo</strong>: desativá-lo restaura a interface clássica exatamente como estava, incluindo workspace e arquivos abertos.</p>
+<p><strong>Não compatível com:</strong></p>
+<ul>
+<li>Vim Mode - ativar um desativa o outro automaticamente</li>
+<li>Sistemas sem suporte a transparência nativa de janela</li>
+</ul>
+<p><strong>PIL/Pillow</strong> é necessário para renderizar nebulosas em background. Sem ele, o K-UI usa um fundo de gradiente puro como fallback.</p>
+<hr />
+<h2 id="referências-técnicas">Referências Técnicas<a class="anchor" href="#referências-técnicas" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src/ui/k_ui/_engine.py</code></td>
+<td><code>KEngine</code> + <code>KWelcome</code> - motor principal de animação</td>
+</tr>
+<tr>
+<td><code>src/ui/k_ui/_colors.py</code></td>
+<td>Paletas, interpolação de cor, utilitários de widget</td>
+</tr>
+<tr>
+<td><code>src/ui/k_ui/_perf.py</code></td>
+<td>Definição dos 6 perfis de performance</td>
+</tr>
+<tr>
+<td><code>src/ui/k_ui/_easter.py</code></td>
+<td>Detecção de sequências e disparo de easter eggs</td>
+</tr>
+<tr>
+<td><code>src/ui/k_ui/_bgrenderer.py</code></td>
+<td>Renderização PIL de nebulosas/auroras em thread separada</td>
+</tr>
+<tr>
+<td><code>src/ui/k_ui/_tooltip.py</code></td>
+<td><code>KHoverTooltip</code> - painel de aprendizado contextual</td>
+</tr>
+<tr>
+<td><code>src/ui/k_ui/_widgets.py</code></td>
+<td><code>KGlassPane</code>, <code>KTopBar</code>, <code>KTabBar</code>, <code>KStatusBar</code>, <code>KPortal</code></td>
+</tr>
+<tr>
+<td><code>src/ui/k_ui/__init__.py</code></td>
+<td><code>KUI</code> - controlador principal e re-exports</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="barra-lateral-k-ui-dock">Barra lateral (K-UI Dock)<a class="anchor" href="#barra-lateral-k-ui-dock" aria-label="Link para esta seção">#</a></h2>
+<p>No modo K-UI a barra lateral (Explorador, Busca, Git, etc.) é um painel <strong>flutuante</strong> sobre o conteúdo - a mesma sidebar do modo clássico, sem duplicação.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ação</th>
+<th>Como</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Abrir/fechar</td>
+<td><code>Ctrl+E</code>, ícones da barra de atividades ou botão ▶/◀</td>
+</tr>
+<tr>
+<td>Fechar</td>
+<td><code>✕</code>, clique fora do painel ou clicar de novo no ícone ativo</td>
+</tr>
+<tr>
+<td>Manter aberto</td>
+<td><code>◇</code> no cabeçalho (vira <code>◆</code>); o painel só fecha pelo <code>✕</code></td>
+</tr>
+<tr>
+<td>Redimensionar</td>
+<td>arraste a borda direita (240-520 px)</td>
+</tr>
+</tbody>
+</table></div>
+<p>O painel permanece acima do editor, da tela inicial e do <strong>modo cosmos</strong>. Abrir um arquivo pelo Explorador em modo cosmos volta ao editor automaticamente. Ao desativar o K-UI a sidebar volta ao layout clássico mantendo o estado (aberta/fechada).</p>
+<h2 id="cosmos-vivo-interações">Cosmos vivo (interações)<a class="anchor" href="#cosmos-vivo-interações" aria-label="Link para esta seção">#</a></h2>
+<p>Os fenômenos do cosmos não vivem mais isolados: uma camada de mundo (<code>_world.py</code>) roda antes de cada frame e faz com que eles se influenciem.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Causa</th>
+<th>Efeito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sol, buracos negros, binárias e pulsares</td>
+<td>Gravidade: cometas ganham órbitas e estilingues; poeira cai nos buracos negros</td>
+</tr>
+<tr>
+<td>Cometa se aproxima do Sol</td>
+<td>Cauda aponta para longe do Sol e cresce; perto demais, sublima e se desintegra</td>
+</tr>
+<tr>
+<td>Impacto no Sol ou num planeta (arquivo)</td>
+<td>Faíscas, anel de choque, fragmentos; no Sol, uma erupção</td>
+</tr>
+<tr>
+<td>Buraco negro engole algo</td>
+<td>Cresce, espirais de acreção; após vários, emite uma onda gravitacional</td>
+</tr>
+<tr>
+<td>Supernova</td>
+<td>Onda de choque empurra poeira, detritos, cometas e nuvens; estrelas cintilam; aliens fogem</td>
+</tr>
+<tr>
+<td>Fim da supernova</td>
+<td>Deixa um pulsar ou uma nebulosa; a nebulosa comprimida forma uma nova estrela</td>
+</tr>
+<tr>
+<td>Feixe de pulsar cruza um alvo</td>
+<td>Ilumina planetas, cometas e satélites; aliens &quot;recebem o sinal&quot;</td>
+</tr>
+<tr>
+<td>Mouse</td>
+<td>Arrastar leva a poeira; parado vira um poço (vagalumes); clique cria uma ondulação; aliens curiosos se aproximam se você está calmo</td>
+</tr>
+<tr>
+<td>Digitar</td>
+<td>Vento solar: faíscas saem do Sol; ritmo alto aumenta erupções</td>
+</tr>
+<tr>
+<td>Avisos e erros do editor</td>
+<td>Erupções mais frequentes e tempestades solares (ondas de choque)</td>
+</tr>
+<tr>
+<td>Salvar arquivo</td>
+<td>Nova solar: onda suave que acalma o cosmos</td>
+</tr>
+<tr>
+<td>Abrir arquivo</td>
+<td>Um cometa chega, mirando o Sol</td>
+</tr>
+</tbody>
+</table></div>
+<p>O movimento é baseado em tempo (não em frames): a velocidade se mantém mesmo quando um frame atrasa. A camada se desliga sozinha, sem afetar a animação, se falhar repetidamente.</p>
+<h2 id="solução-de-problemas">Solução de problemas<a class="anchor" href="#solução-de-problemas" aria-label="Link para esta seção">#</a></h2>
+<p><strong>A interface está lenta ou travada.</strong> Rode com o diagnóstico de travamentos:</p>
+<pre><code>CODIS_STALL_TRACE=1 python run.py          # Linux/macOS
+$env:CODIS_STALL_TRACE=1; python run.py    # Windows (PowerShell)
+</code></pre>
+<p>Quando o laço principal fica parado por mais de 1,5 s (ajustável com <code>CODIS_STALL_MS</code>), o log <code>Codis.Stall</code> mostra a pilha do que estava bloqueando, e as fases de inicialização aparecem com seus tempos. Em telas muito grandes, o perfil <code>power_saver</code> ou <code>low</code> reduz ainda mais o custo do cosmos.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="recursos-exclusivos.html"><small>Anterior</small>Recursos Exclusivos</a>
+        <a class="next" href="sistema-performance.html"><small>Próxima</small>Sistema, Performance &amp; Pacotes</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/kui.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/kui.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#ativando-o-k-ui">Ativando o K-UI</a></li><li class="l2"><a href="#o-que-muda-com-o-k-ui-ativo">O que Muda com o K-UI Ativo</a></li><li class="l3"><a href="#visual">Visual</a></li><li class="l3"><a href="#componentes-substituídos">Componentes Substituídos</a></li><li class="l2"><a href="#spotlight-paleta-de-comandos-holográfica">Spotlight (Paleta de Comandos Holográfica)</a></li><li class="l2"><a href="#painéis-flutuantes-detach">Painéis Flutuantes (Detach)</a></li><li class="l2"><a href="#perfis-de-performance">Perfis de Performance</a></li><li class="l2"><a href="#easter-eggs">Easter Eggs</a></li><li class="l2"><a href="#khovertooltip---painel-de-aprendizado-cósmico">KHoverTooltip - Painel de Aprendizado Cósmico</a></li><li class="l2"><a href="#integração-com-temas">Integração com Temas</a></li><li class="l2"><a href="#compatibilidade">Compatibilidade</a></li><li class="l2"><a href="#referências-técnicas">Referências Técnicas</a></li><li class="l2"><a href="#barra-lateral-k-ui-dock">Barra lateral (K-UI Dock)</a></li><li class="l2"><a href="#cosmos-vivo-interações">Cosmos vivo (interações)</a></li><li class="l2"><a href="#solução-de-problemas">Solução de problemas</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

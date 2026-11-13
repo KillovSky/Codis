@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terminal · Codis</title>
+<meta name="description" content="O Codis possui um terminal integrado completo com suporte a múltiplos shells e REPLs interativos." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/terminal.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Terminal · Codis" />
+<meta property="og:description" content="O Codis possui um terminal integrado completo com suporte a múltiplos shells e REPLs interativos." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/terminal.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group" open><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html" class="is-current" aria-current="page">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-terminal">💻 Terminal<a class="anchor" href="#-terminal" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis possui um terminal integrado completo com suporte a múltiplos shells e REPLs interativos.</p>
+<hr />
+<h2 id="abrindo-o-terminal">Abrindo o Terminal<a class="anchor" href="#abrindo-o-terminal" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl+`` </code> ``</td>
+<td>Abre o painel inferior na aba Terminal</td>
+</tr>
+<tr>
+<td>Menu <strong>Terminal → Novo Terminal</strong></td>
+<td>Abre um novo terminal adicional <em>(o menu exibe o rótulo &quot;Ctrl+Shift+`&quot;, mas não há bind de teclado funcional para essa combinação no código atual)</em></td>
+</tr>
+<tr>
+<td>Menu <strong>Terminal → Novo Terminal</strong></td>
+<td>Cria nova instância</td>
+</tr>
+<tr>
+<td>Painel inferior → aba <strong>Terminal</strong></td>
+<td>Clique direto</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="shells-suportados">Shells Suportados<a class="anchor" href="#shells-suportados" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis detecta automaticamente os shells disponíveis no sistema e os lista no seletor da barra de status do terminal.</p>
+<h3 id="windows">Windows<a class="anchor" href="#windows" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Shell</th>
+<th>Executável</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PowerShell</td>
+<td><code>powershell.exe</code></td>
+</tr>
+<tr>
+<td>PowerShell Core</td>
+<td><code>pwsh.exe</code></td>
+</tr>
+<tr>
+<td>CMD</td>
+<td><code>cmd.exe</code></td>
+</tr>
+<tr>
+<td>Bash (Git/Cygwin)</td>
+<td><code>bash.exe --login -i</code></td>
+</tr>
+<tr>
+<td>WSL (padrão)</td>
+<td><code>wsl.exe</code></td>
+</tr>
+<tr>
+<td>BusyBox ash</td>
+<td><code>busybox.exe ash</code></td>
+</tr>
+<tr>
+<td>Dash</td>
+<td><code>dash.exe</code></td>
+</tr>
+<tr>
+<td>Korn Shell</td>
+<td><code>ksh.exe</code></td>
+</tr>
+<tr>
+<td>Tcsh</td>
+<td><code>tcsh.exe</code></td>
+</tr>
+<tr>
+<td>Csh</td>
+<td><code>csh.exe</code></td>
+</tr>
+<tr>
+<td>Elvish</td>
+<td><code>elvish.exe</code></td>
+</tr>
+<tr>
+<td>Nushell</td>
+<td><code>nu.exe</code></td>
+</tr>
+<tr>
+<td>Xonsh</td>
+<td><code>xonsh.exe</code></td>
+</tr>
+<tr>
+<td>Oil</td>
+<td><code>osh.exe</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="linux--macos">Linux / macOS<a class="anchor" href="#linux--macos" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Shell</th>
+<th>Executável</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bash</td>
+<td><code>bash --norc</code></td>
+</tr>
+<tr>
+<td>Zsh</td>
+<td><code>zsh --no-rcs</code></td>
+</tr>
+<tr>
+<td>Fish</td>
+<td><code>fish --no-config</code></td>
+</tr>
+<tr>
+<td>Dash</td>
+<td><code>dash</code></td>
+</tr>
+<tr>
+<td>Korn Shell</td>
+<td><code>ksh</code></td>
+</tr>
+<tr>
+<td>Tcsh</td>
+<td><code>tcsh</code></td>
+</tr>
+<tr>
+<td>Csh</td>
+<td><code>csh</code></td>
+</tr>
+<tr>
+<td>Ash</td>
+<td><code>ash</code></td>
+</tr>
+<tr>
+<td>Elvish</td>
+<td><code>elvish</code></td>
+</tr>
+<tr>
+<td>Nushell</td>
+<td><code>nu</code></td>
+</tr>
+<tr>
+<td>Xonsh</td>
+<td><code>xonsh</code></td>
+</tr>
+<tr>
+<td>Oil</td>
+<td><code>osh</code></td>
+</tr>
+<tr>
+<td>sh (padrão do sistema)</td>
+<td><code>$SHELL</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="repls-de-linguagens-multiplataforma">REPLs de Linguagens (Multiplataforma)<a class="anchor" href="#repls-de-linguagens-multiplataforma" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>REPL</th>
+<th>Condição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python REPL</td>
+<td><code>python3</code>/<code>python</code> disponível (<code>-i -u</code>)</td>
+</tr>
+<tr>
+<td>IPython</td>
+<td><code>ipython</code> disponível</td>
+</tr>
+<tr>
+<td>BPython</td>
+<td><code>bpython</code> disponível</td>
+</tr>
+<tr>
+<td>PTPython</td>
+<td><code>ptpython</code> disponível</td>
+</tr>
+<tr>
+<td>Node.js REPL</td>
+<td><code>node</code> disponível (<code>--interactive</code>)</td>
+</tr>
+<tr>
+<td>Ruby (irb)</td>
+<td><code>irb</code> disponível</td>
+</tr>
+<tr>
+<td>Perl debugger</td>
+<td><code>perl</code> disponível (<code>perl -de 1</code>)</td>
+</tr>
+<tr>
+<td>PHP interativo</td>
+<td><code>php -a</code> disponível</td>
+</tr>
+<tr>
+<td>Lua REPL</td>
+<td><code>lua</code> disponível</td>
+</tr>
+<tr>
+<td>R REPL</td>
+<td><code>R --quiet</code> disponível</td>
+</tr>
+<tr>
+<td>Julia REPL</td>
+<td><code>julia</code> disponível</td>
+</tr>
+<tr>
+<td>Elixir (iex)</td>
+<td><code>iex</code> disponível</td>
+</tr>
+<tr>
+<td>Erlang</td>
+<td><code>erl</code> disponível</td>
+</tr>
+<tr>
+<td>Clojure REPL</td>
+<td><code>clojure</code> disponível</td>
+</tr>
+<tr>
+<td>Scala REPL</td>
+<td><code>scala</code> disponível</td>
+</tr>
+<tr>
+<td>Groovy (groovysh)</td>
+<td><code>groovysh</code> disponível</td>
+</tr>
+<tr>
+<td>Tcl</td>
+<td><code>tclsh</code> disponível</td>
+</tr>
+<tr>
+<td>Gauche Scheme</td>
+<td><code>gosh</code> disponível</td>
+</tr>
+<tr>
+<td>Guile</td>
+<td><code>guile</code> disponível</td>
+</tr>
+<tr>
+<td>Racket</td>
+<td><code>racket -i</code> disponível</td>
+</tr>
+<tr>
+<td>SWI-Prolog</td>
+<td><code>swipl</code> disponível</td>
+</tr>
+</tbody>
+</table></div>
+<p>Se nenhum shell ou REPL estiver disponível, o fallback final é <code>cmd.exe</code> no Windows ou <code>/bin/sh</code> no Linux/macOS.</p>
+<hr />
+<h2 id="configurações-do-terminal">Configurações do Terminal<a class="anchor" href="#configurações-do-terminal" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Opção</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default_shell</code></td>
+<td>detectado automaticamente</td>
+<td>Shell inicial ao abrir o terminal</td>
+</tr>
+<tr>
+<td><code>terminal_font_size</code></td>
+<td><code>12</code></td>
+<td>Tamanho da fonte</td>
+</tr>
+</tbody>
+</table></div>
+<p>O shell padrão pode ser alterado via <code>Ctrl+,</code> ou clicando no nome do shell na barra de status do terminal.</p>
+<hr />
+<h2 id="operações-disponíveis">Operações Disponíveis<a class="anchor" href="#operações-disponíveis" aria-label="Link para esta seção">#</a></h2>
+<h3 id="via-menu-terminal">Via Menu Terminal<a class="anchor" href="#via-menu-terminal" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Atalho</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Novo Terminal</td>
+<td>- <em>(rótulo &quot;Ctrl+Shift+`&quot; no menu, sem bind funcional)</em></td>
+<td>Cria uma nova instância de terminal</td>
+</tr>
+<tr>
+<td>Limpar Terminal</td>
+<td>-</td>
+<td>Limpa o buffer de saída do terminal ativo</td>
+</tr>
+<tr>
+<td>Matar Terminal</td>
+<td>-</td>
+<td>Encerra o processo do terminal ativo</td>
+</tr>
+<tr>
+<td>Executar Seleção</td>
+<td>-</td>
+<td>Envia o texto selecionado no editor para o terminal</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="executar-arquivo-f5">Executar Arquivo (F5)<a class="anchor" href="#executar-arquivo-f5" aria-label="Link para esta seção">#</a></h3>
+<p>Pressionar <code>F5</code> executa o arquivo ativo no terminal usando o <strong>Code Runner</strong> (<code>src/ui/code_runner.py</code>), que suporta 22 linguagens com comando pré-configurado (customizável via <strong>Ferramentas → Code Runners</strong>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Linguagem</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>&lt;python do Codis&gt; &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td><code>node &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td><code>ts-node &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><code>ruby &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>PHP</td>
+<td><code>php &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Go</td>
+<td><code>go run &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><code>cargo script &lt;arquivo&gt;</code> (requer <code>cargo-script</code>)</td>
+</tr>
+<tr>
+<td>Java</td>
+<td><code>java &lt;nome-sem-extensão&gt;</code> (requer compilação prévia)</td>
+</tr>
+<tr>
+<td>Kotlin</td>
+<td><code>kotlin &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Swift</td>
+<td><code>swift &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Lua</td>
+<td><code>lua &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Perl</td>
+<td><code>perl &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Bash</td>
+<td><code>bash &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>PowerShell</td>
+<td><code>powershell -File &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>R</td>
+<td><code>Rscript &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Julia</td>
+<td><code>julia &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Dart</td>
+<td><code>dart run &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Scala</td>
+<td><code>scala &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Elixir</td>
+<td><code>elixir &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>Haskell</td>
+<td><code>runhaskell &lt;arquivo&gt;</code></td>
+</tr>
+<tr>
+<td>C (gcc)</td>
+<td><code>gcc &lt;arquivo&gt; -o &lt;nome&gt; &amp;&amp; ./&lt;nome&gt;</code></td>
+</tr>
+<tr>
+<td>C++ (g++)</td>
+<td><code>g++ &lt;arquivo&gt; -o &lt;nome&gt; &amp;&amp; ./&lt;nome&gt;</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Para outras linguagens sem runner configurado, a barra de status exibe um aviso sugerindo configurar um runner customizado, ou use o terminal diretamente.</p>
+<h3 id="executar-seleção">Executar Seleção<a class="anchor" href="#executar-seleção" aria-label="Link para esta seção">#</a></h3>
+<p>Selecione um trecho de código e use <strong>Terminal → Executar Seleção</strong> para enviar diretamente ao terminal ativo. Se nenhum texto estiver selecionado, envia a linha atual.</p>
+<hr />
+<h2 id="diretório-de-trabalho">Diretório de Trabalho<a class="anchor" href="#diretório-de-trabalho" aria-label="Link para esta seção">#</a></h2>
+<p>Ao abrir um workspace, o terminal é iniciado no diretório raiz do workspace. Se nenhum workspace estiver aberto, o terminal inicia no diretório <code>$HOME</code>.</p>
+<p>Ao abrir um workspace após o terminal já estar ativo, o diretório de trabalho é atualizado automaticamente (<code>set_cwd</code>).</p>
+<p>Em alguns casos, pode ser preciso confirmar o comando para entrar no diretório (embora nos testes isso só tenha ocorrido algumas vezes em powershell).</p>
+<hr />
+<h2 id="múltiplas-instâncias">Múltiplas Instâncias<a class="anchor" href="#múltiplas-instâncias" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis suporta múltiplas instâncias de terminal simultâneas. Cada instância mantém seu próprio processo de shell, histórico e diretório de trabalho.</p>
+<p>Navegue entre instâncias usando as abas internas do terminal ou criando novas via <strong>Terminal → Novo Terminal</strong>.</p>
+<hr />
+<h2 id="easter-eggs-via-terminal">Easter Eggs via Terminal<a class="anchor" href="#easter-eggs-via-terminal" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis possui easter eggs ocultos que podem ser ativados via comandos especiais no terminal. Use o prefixo <code>/codis</code> seguido de um código secreto. Os easter eggs ativam efeitos visuais e animações especiais na interface.
+Dica Direta: Konami Code.</p>
+<hr />
+<h2 id="modo-k-ui-terminal-flutuante">Modo K-UI: Terminal Flutuante<a class="anchor" href="#modo-k-ui-terminal-flutuante" aria-label="Link para esta seção">#</a></h2>
+<p>Quando o <strong>K-UI</strong> está ativo, o painel de Terminal pode ser &quot;despluggado&quot; para uma janela flutuante independente:</p>
+<ol>
+<li>Clique com botão direito na aba &quot;Terminal&quot; no painel inferior</li>
+<li>Selecione <strong>⊞ Despluggar 'terminal'</strong></li>
+</ol>
+<p>A janela flutuante pode ser movida e redimensionada livremente. Para reancorá-la, clique com botão direito na aba novamente.</p>
+<p>Ver <a href="kui.html">K-UI</a> para mais detalhes sobre painéis flutuantes.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="git.html"><small>Anterior</small>Git</a>
+        <a class="next" href="workspace-projeto.html"><small>Próxima</small>Workspace &amp; Produtividade de Projeto</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/terminal.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/terminal.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#abrindo-o-terminal">Abrindo o Terminal</a></li><li class="l2"><a href="#shells-suportados">Shells Suportados</a></li><li class="l3"><a href="#windows">Windows</a></li><li class="l3"><a href="#linux--macos">Linux / macOS</a></li><li class="l3"><a href="#repls-de-linguagens-multiplataforma">REPLs de Linguagens (Multiplataforma)</a></li><li class="l2"><a href="#configurações-do-terminal">Configurações do Terminal</a></li><li class="l2"><a href="#operações-disponíveis">Operações Disponíveis</a></li><li class="l3"><a href="#via-menu-terminal">Via Menu Terminal</a></li><li class="l3"><a href="#executar-arquivo-f5">Executar Arquivo (F5)</a></li><li class="l3"><a href="#executar-seleção">Executar Seleção</a></li><li class="l2"><a href="#diretório-de-trabalho">Diretório de Trabalho</a></li><li class="l2"><a href="#múltiplas-instâncias">Múltiplas Instâncias</a></li><li class="l2"><a href="#easter-eggs-via-terminal">Easter Eggs via Terminal</a></li><li class="l2"><a href="#modo-k-ui-terminal-flutuante">Modo K-UI: Terminal Flutuante</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

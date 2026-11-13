@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Editor de Imagens (Paint) · Codis</title>
+<meta name="description" content="Editor de imagens integrado, inspirado no Paint clássico. Funciona embutido no Codis ou standalone." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/paint.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Editor de Imagens (Paint) · Codis" />
+<meta property="og:description" content="Editor de imagens integrado, inspirado no Paint clássico. Funciona embutido no Codis ou standalone." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/paint.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group" open><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html" class="is-current" aria-current="page">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-editor-de-imagens-paint">🎨 Editor de Imagens (Paint)<a class="anchor" href="#-editor-de-imagens-paint" aria-label="Link para esta seção">#</a></h1>
+<p>Editor de imagens integrado, inspirado no Paint clássico. Funciona embutido no Codis ou standalone.</p>
+<p><strong>Arquitetura</strong> (separada para ser testável): <code>src/ui/paint_engine.py</code> (motor, sem Tk) · <code>src/ui/paint_canvas.py</code> (canvas) · <code>src/ui/paint_panel.py</code> (barra de ferramentas, paleta, arquivos).</p>
+<h2 id="abrindo">Abrindo<a class="anchor" href="#abrindo" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li>Menu <strong>Ferramentas → Editor de Imagens</strong>, ou duplo clique em <code>.png/.jpg/.bmp/.gif/.webp</code> na árvore de arquivos.</li>
+<li>Linha de comando: <code>python run.py --paint [imagem.png]</code></li>
+</ul>
+<h2 id="ferramentas">Ferramentas<a class="anchor" href="#ferramentas" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pincel</td>
+<td>Antialiasing real; a opacidade <strong>não acumula</strong> dentro do mesmo traço</td>
+</tr>
+<tr>
+<td>Pixel</td>
+<td>Traço sem suavização (pixel art)</td>
+</tr>
+<tr>
+<td>Spray</td>
+<td>Aerógrafo acumulativo</td>
+</tr>
+<tr>
+<td>Borracha</td>
+<td>Apaga com a <strong>cor de fundo</strong> (botão direito: cor primária)</td>
+</tr>
+<tr>
+<td>Balde</td>
+<td>Preenchimento com tolerância; <strong>Ctrl+clique</strong> preenche todas as áreas parecidas (não só a conectada)</td>
+</tr>
+<tr>
+<td>Linha / Retângulo / Elipse</td>
+<td>Com antialiasing; <strong>Shift</strong> = 45° / quadrado / círculo; &quot;Preencher&quot; preenche</td>
+</tr>
+<tr>
+<td>Polígono</td>
+<td>Clique adiciona pontos; duplo clique/Enter fecha; Esc cancela</td>
+</tr>
+<tr>
+<td>Texto</td>
+<td>Fonte do sistema (DejaVu/Arial/…) com antialiasing</td>
+</tr>
+<tr>
+<td>Conta-gotas</td>
+<td>Botão esquerdo = cor primária, direito = secundária</td>
+</tr>
+<tr>
+<td>Seleção</td>
+<td>Retângulo; arraste de dentro para <strong>mover</strong> (deixa a cor de fundo no lugar); Ctrl+C/X/V, Delete, Ctrl+A</td>
+</tr>
+<tr>
+<td>Pan (mão)</td>
+<td>Arrasta a imagem</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="atalhos">Atalhos<a class="anchor" href="#atalhos" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atalho</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl+Z / Ctrl+Y (ou Ctrl+Shift+Z)</td>
+<td>Desfazer / refazer</td>
+</tr>
+<tr>
+<td>Ctrl+S / Ctrl+Shift+S / Ctrl+O / Ctrl+N</td>
+<td>Salvar / salvar como / abrir / novo</td>
+</tr>
+<tr>
+<td>Ctrl+C / Ctrl+X / Ctrl+V / Ctrl+A</td>
+<td>Copiar / recortar / colar (aceita imagem da área de transferência do sistema, quando a plataforma permite) / selecionar tudo</td>
+</tr>
+<tr>
+<td>Roda</td>
+<td>Rola na vertical · <strong>Shift+roda</strong> horizontal · <strong>Ctrl+roda</strong> zoom no cursor</td>
+</tr>
+<tr>
+<td>Botão do meio ou <strong>Espaço</strong>+arrastar</td>
+<td>Pan</td>
+</tr>
+<tr>
+<td><code>+</code> / <code>-</code> / Ctrl+0</td>
+<td>Zoom / ajustar à janela</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Cancela o traço, a seleção flutuante ou o polígono</td>
+</tr>
+</tbody>
+</table></div>
+<p>O zoom vai de 6% a 3200%; a grade de pixels aparece a partir de 800%. O título mostra <strong>•</strong> quando há alterações não salvas e <strong>Novo/Abrir</strong> perguntam antes de descartar.</p>
+<h2 id="desempenho-por-que-não-trava-mais">Desempenho (por que não trava mais)<a class="anchor" href="#desempenho-por-que-não-trava-mais" aria-label="Link para esta seção">#</a></h2>
+<p>Medido no mesmo script antes/depois (800×600 | 4000×3000):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Antes</th>
+<th>Depois</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evento de pincel</td>
+<td>22 ms | 650 ms</td>
+<td>2 ms | 1,6 ms</td>
+</tr>
+<tr>
+<td>Evento de pincel com zoom 8× (grade)</td>
+<td>844 ms</td>
+<td>~1 ms</td>
+</tr>
+<tr>
+<td>Balde numa imagem em branco</td>
+<td>1.180 ms | minutos</td>
+<td>37 ms | 560 ms</td>
+</tr>
+<tr>
+<td>Zoom 8× em 4000×3000</td>
+<td><strong>estourava a memória</strong></td>
+<td>17 ms</td>
+</tr>
+<tr>
+<td>Undo</td>
+<td>33 ms (+PNG inteiro por ação)</td>
+<td>8 ms (só blocos alterados)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Como: renderiza <strong>só o retângulo visível/sujo</strong> (sem reescalar a imagem inteira nem criar milhares de itens de canvas para a grade/xadrez); eventos de mouse são coalescidos em um desenho por ciclo ocioso; o pincel acumula uma máscara e compõe só a caixa afetada; o balde trabalha por trechos horizontais; o histórico guarda blocos de 256×256 (limite de ~384 MB, 200 ações).</p>
+<h2 id="salvando">Salvando<a class="anchor" href="#salvando" aria-label="Link para esta seção">#</a></h2>
+<p>PNG/WebP preservam transparência. <strong>JPEG/BMP achatam sobre branco</strong> (antes ficava preto onde era transparente). A gravação é atômica (arquivo temporário + <code>replace</code>): uma falha não corrompe o original. Imagens com orientação EXIF são giradas ao abrir.</p>
+<h2 id="testes">Testes<a class="anchor" href="#testes" aria-label="Link para esta seção">#</a></h2>
+<p><code>tests/test_paint_engine.py</code> (motor: undo contra snapshots, flood fill contra BFS de referência, renderização parcial == total, orçamentos de tempo) e <code>tests_gui/test_paint_canvas.py</code> (compara os pixels <strong>exibidos</strong> com o modelo).</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="acessibilidade.html"><small>Anterior</small>Acessibilidade</a>
+        <a class="next" href="utilitarios-pessoais.html"><small>Próxima</small>Utilitários Pessoais</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/paint.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/paint.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#abrindo">Abrindo</a></li><li class="l2"><a href="#ferramentas">Ferramentas</a></li><li class="l2"><a href="#atalhos">Atalhos</a></li><li class="l2"><a href="#desempenho-por-que-não-trava-mais">Desempenho (por que não trava mais)</a></li><li class="l2"><a href="#salvando">Salvando</a></li><li class="l2"><a href="#testes">Testes</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

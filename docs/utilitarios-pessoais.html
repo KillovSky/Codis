@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Utilitários Pessoais · Codis</title>
+<meta name="description" content="O Codis embute três utilitários de produtividade pessoal que não dependem de projeto ou workspace aberto: Calendário, Calculadora e Relógio. Os três abrem como janelas independentes (Toplevel) e podem" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/utilitarios-pessoais.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Utilitários Pessoais · Codis" />
+<meta property="og:description" content="O Codis embute três utilitários de produtividade pessoal que não dependem de projeto ou workspace aberto: Calendário, Calculadora e Relógio. Os três abrem como janelas independentes (Toplevel) e podem" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/utilitarios-pessoais.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group" open><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html" class="is-current" aria-current="page">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-utilitários-pessoais">📅 Utilitários Pessoais<a class="anchor" href="#-utilitários-pessoais" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis embute três utilitários de produtividade pessoal que não dependem de projeto ou workspace aberto: <strong>Calendário</strong>, <strong>Calculadora</strong> e <strong>Relógio</strong>. Os três abrem como janelas independentes (<code>Toplevel</code>) e podem ficar abertos em paralelo ao editor.</p>
+<p>Acesso: menu <strong>Ferramentas → Calendário &amp; Pessoal</strong>.</p>
+<hr />
+<h2 id="-calendário-srcuicalendar_panelpy">📅 Calendário (<code>src/ui/calendar_panel.py</code>)<a class="anchor" href="#-calendário-srcuicalendar_panelpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho de menu: <strong>Ferramentas → Calendário &amp; Pessoal → 📅 Calendário</strong>.</p>
+<h3 id="funcionalidades">Funcionalidades<a class="anchor" href="#funcionalidades" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Grade mensal navegável com visual polido e indicador do dia atual</li>
+<li>Mini-mapa de eventos: dias com eventos marcados ficam destacados no grid</li>
+<li>Anotações e lembretes associados a uma data específica</li>
+<li>Lista lateral de eventos com horário, cor e descrição</li>
+<li>Pesquisa de eventos por texto</li>
+<li>Lembretes com notificação popup quando a hora chega</li>
+</ul>
+<h3 id="fluxo-de-uso">Fluxo de uso<a class="anchor" href="#fluxo-de-uso" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Abra o calendário pelo menu (janela de 900×640, redimensionável)</li>
+<li>Navegue entre meses pelos controles de seta no topo do grid</li>
+<li>Clique em um dia para ver/criar eventos daquela data</li>
+<li>Cada evento pode ter horário, cor de destaque e descrição livre</li>
+<li>Use a busca para localizar eventos por palavra-chave em qualquer mês</li>
+<li>Eventos com lembrete disparam um popup de notificação no horário configurado</li>
+</ol>
+<p>A persistência dos eventos é local (não há sincronização em nuvem).</p>
+<hr />
+<h2 id="-calculadora-srcuicalculator_panelpy">🔢 Calculadora (<code>src/ui/calculator_panel.py</code>)<a class="anchor" href="#-calculadora-srcuicalculator_panelpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <strong>Ferramentas → Calendário &amp; Pessoal → 🔢 Calculadora</strong> · <code>Ctrl+Alt+C</code>.</p>
+<h3 id="modos-disponíveis">Modos disponíveis<a class="anchor" href="#modos-disponíveis" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>O que oferece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Básico</strong></td>
+<td>Operações aritméticas comuns com display grande</td>
+</tr>
+<tr>
+<td><strong>Científico</strong></td>
+<td>Funções trigonométricas, logarítmicas, potências, constantes (π, e)</td>
+</tr>
+<tr>
+<td><strong>Conversão de unidades</strong></td>
+<td>Comprimento, peso e temperatura</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="funcionalidades-1">Funcionalidades<a class="anchor" href="#funcionalidades-1" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Display elegante com histórico de expressão e resultado lado a lado</li>
+<li>Histórico persistente de cálculos (salvo em <code>calc_history.json</code> na pasta de configuração do usuário), navegável com <code>↑</code>/<code>↓</code> no campo de expressão</li>
+<li>Anotações livres associadas a cada entrada do histórico</li>
+<li>Campo de entrada aceita <strong>expressões Python completas</strong> (não apenas a sintaxe da calculadora), avaliadas em um sandbox restrito de builtins seguros (<code>abs</code>, <code>round</code>, funções de <code>math</code>, etc.) - nenhuma chamada arbitrária do Python é permitida</li>
+<li>Clique duplo em uma entrada do histórico para reutilizá-la</li>
+</ul>
+<h3 id="sandbox-de-avaliação">Sandbox de avaliação<a class="anchor" href="#sandbox-de-avaliação" aria-label="Link para esta seção">#</a></h3>
+<p>A calculadora <strong>não</strong> usa <code>eval()</code> aberto. Apenas um conjunto fixo de builtins matemáticos seguros é exposto ao avaliador, então não é possível executar código arbitrário do sistema através do campo de expressão.</p>
+<hr />
+<h2 id="-relógio-alarmes-e-cronômetro-srcuiclock_panelpy">🕐 Relógio, Alarmes e Cronômetro (<code>src/ui/clock_panel.py</code>)<a class="anchor" href="#-relógio-alarmes-e-cronômetro-srcuiclock_panelpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <strong>Ferramentas → Calendário &amp; Pessoal → 🕐 Relógio</strong> · <code>Ctrl+Alt+K</code>.</p>
+<p>A janela do relógio tem três abas:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Aba</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Relógio</strong></td>
+<td>Relógio analógico desenhado em <code>Canvas</code> com ponteiros suaves + relógio digital com fuso horário configurável</td>
+</tr>
+<tr>
+<td><strong>Alarmes</strong></td>
+<td>Múltiplos alarmes com rótulo próprio e som opcional, criados/editados em diálogo dedicado</td>
+</tr>
+<tr>
+<td><strong>Cronômetro</strong></td>
+<td>Start/stop/reset com registro de voltas (<em>laps</em>) e exportação dos tempos</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="alarmes">Alarmes<a class="anchor" href="#alarmes" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Cada alarme tem horário, rótulo de texto e um som opcional associado</li>
+<li>Vários alarmes podem coexistir e são listados na própria aba</li>
+<li>O diálogo de criação/edição de alarme é uma janela própria (<code>_AlarmDialog</code>)</li>
+</ul>
+<h3 id="cronômetro">Cronômetro<a class="anchor" href="#cronômetro" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Registra voltas individuais durante a contagem</li>
+<li>Os tempos de volta podem ser exportados para análise externa</li>
+<li>Independente do relógio principal - pode rodar em paralelo com o relógio analógico/digital visível</li>
+</ul>
+<hr />
+<h2 id="relação-com-o-menu">Relação com o menu<a class="anchor" href="#relação-com-o-menu" aria-label="Link para esta seção">#</a></h2>
+<p>Os três utilitários ficam agrupados na categoria <strong>Calendário &amp; Pessoal</strong> dentro do menu <strong>Ferramentas</strong>, separados deliberadamente dos utilitários de desenvolvimento (Diff, Formatador, Regex etc.) e das ferramentas de sistema (Pip, Processos), já que não têm relação com o código do projeto aberto - ver <a href="atalhos.html">Atalhos</a> para a lista completa de combinações de teclado.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="paint.html"><small>Anterior</small>Editor de Imagens (Paint)</a>
+        <a class="next" href="embed-e-preview.html"><small>Próxima</small>Incorporar programas e Preview Web</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/utilitarios-pessoais.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/utilitarios-pessoais.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#-calendário-srcuicalendar_panelpy">Calendário (src/ui/calendar_panel.py)</a></li><li class="l3"><a href="#funcionalidades">Funcionalidades</a></li><li class="l3"><a href="#fluxo-de-uso">Fluxo de uso</a></li><li class="l2"><a href="#-calculadora-srcuicalculator_panelpy">Calculadora (src/ui/calculator_panel.py)</a></li><li class="l3"><a href="#modos-disponíveis">Modos disponíveis</a></li><li class="l3"><a href="#funcionalidades-1">Funcionalidades</a></li><li class="l3"><a href="#sandbox-de-avaliação">Sandbox de avaliação</a></li><li class="l2"><a href="#-relógio-alarmes-e-cronômetro-srcuiclock_panelpy">Relógio, Alarmes e Cronômetro (src/ui/clock_panel.py)</a></li><li class="l3"><a href="#alarmes">Alarmes</a></li><li class="l3"><a href="#cronômetro">Cronômetro</a></li><li class="l2"><a href="#relação-com-o-menu">Relação com o menu</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

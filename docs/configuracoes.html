@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Configurações · Codis</title>
+<meta name="description" content="As configurações do Codis são armazenadas em ~/.codis/config.json e gerenciadas pela classe ConfigManager (src/config.py). A janela de Configurações (src/ui/settings_window.py) organiza todas as opçõe" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/configuracoes.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Configurações · Codis" />
+<meta property="og:description" content="As configurações do Codis são armazenadas em ~/.codis/config.json e gerenciadas pela classe ConfigManager (src/config.py). A janela de Configurações (src/ui/settings_window.py) organiza todas as opçõe" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/configuracoes.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group" open><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html" class="is-current" aria-current="page">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-configurações">⚙️ Configurações<a class="anchor" href="#-configurações" aria-label="Link para esta seção">#</a></h1>
+<p>As configurações do Codis são armazenadas em <code>~/.codis/config.json</code> e gerenciadas pela classe <code>ConfigManager</code> (<code>src/config.py</code>). A janela de Configurações (<code>src/ui/settings_window.py</code>) organiza todas as opções em <strong>24 categorias</strong> na sidebar lateral, cada uma documentada nesta página.</p>
+<hr />
+<h2 id="como-acessar-as-configurações">Como Acessar as Configurações<a class="anchor" href="#como-acessar-as-configurações" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Caminho</th>
+<th>O que abre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Configurações → Abrir Configurações...</strong> ou <code>Ctrl+,</code></td>
+<td>Janela gráfica com as 24 categorias, campos editáveis e busca</td>
+</tr>
+<tr>
+<td><strong>Configurações → Atalhos de Teclado...</strong></td>
+<td>Editor dedicado de remapeamento de teclas - ver <a href="workspace-projeto.html#key-remapper-srcuikeyremapperpy">Key Remapper</a></td>
+</tr>
+<tr>
+<td><strong>Configurações → Redefinir / Wizard de Setup...</strong></td>
+<td>Assistente de primeira configuração / reset completo</td>
+</tr>
+<tr>
+<td><strong>Configurações → Avançado → Editar JSON Diretamente...</strong></td>
+<td>Editor de <code>config.json</code> com syntax highlighting, para quem prefere editar o arquivo bruto</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>O menu <strong>Configurações</strong> foi reorganizado para não duplicar itens que já existem em outros menus: <strong>Tema</strong> vive em <code>Exibir → Tema</code> (ver <a href="temas.html">Temas</a>) e <strong>Acessibilidade</strong> tem entrada própria aqui, mas seu conteúdo completo está em <a href="acessibilidade.html">Acessibilidade</a>.</p>
+</blockquote>
+<p>Alterações feitas na janela de Configurações aplicam-se <strong>imediatamente</strong> à sessão atual, sem reiniciar o Codis - cada categoria é renderizada sob demanda e mantida em cache, então alternar entre elas é instantâneo mesmo em janelas com muitas opções.</p>
+<hr />
+<h2 id="as-24-categorias">As 24 Categorias<a class="anchor" href="#as-24-categorias" aria-label="Link para esta seção">#</a></h2>
+<h3 id="-editor">✏ Editor<a class="anchor" href="#-editor" aria-label="Link para esta seção">#</a></h3>
+<p>Opções fundamentais de edição de texto.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>font_family</code></td>
+<td>string</td>
+<td><code>&quot;Consolas&quot;</code></td>
+<td>Fonte monoespaçada do editor</td>
+</tr>
+<tr>
+<td><code>font_size</code></td>
+<td>int</td>
+<td><code>13</code></td>
+<td>Tamanho da fonte do editor (px)</td>
+</tr>
+<tr>
+<td><code>font_ligatures</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Ativa ligaduras tipográficas - ver <a href="inteligencia-editor.html#ligatures-srceditorligaturespy">Ligatures</a></td>
+</tr>
+<tr>
+<td><code>ligature_mode</code></td>
+<td>string</td>
+<td><code>&quot;pseudo&quot;</code></td>
+<td><code>&quot;pseudo&quot;</code> | <code>&quot;native&quot;</code> | <code>&quot;both&quot;</code> | <code>&quot;off&quot;</code></td>
+</tr>
+<tr>
+<td><code>tab_size</code></td>
+<td>int</td>
+<td><code>4</code></td>
+<td>Espaços por nível de indentação</td>
+</tr>
+<tr>
+<td><code>use_spaces</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td><code>true</code> = espaços; <code>false</code> = tabs</td>
+</tr>
+<tr>
+<td><code>word_wrap</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Quebra de linha suave</td>
+</tr>
+<tr>
+<td><code>cursor_style</code></td>
+<td>string</td>
+<td><code>&quot;line&quot;</code></td>
+<td><code>&quot;line&quot;</code> | <code>&quot;block&quot;</code> | <code>&quot;underline&quot;</code></td>
+</tr>
+<tr>
+<td><code>cursor_blinking</code></td>
+<td>string</td>
+<td><code>&quot;blink&quot;</code></td>
+<td><code>&quot;blink&quot;</code> | <code>&quot;solid&quot;</code> | <code>&quot;smooth&quot;</code></td>
+</tr>
+<tr>
+<td><code>smooth_scroll</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Scroll suave</td>
+</tr>
+<tr>
+<td><code>scroll_speed</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td>Velocidade do scroll</td>
+</tr>
+<tr>
+<td><code>multi_cursor</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Suporte a múltiplos cursores - ver <a href="inteligencia-editor.html#multi-cursor-srceditormulticursorpy">Multi-Cursor</a></td>
+</tr>
+<tr>
+<td><code>multicursor_lines</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Multicursor por linhas: <code>Alt+Clique</code> no gutter marca linhas e as teclas se aplicam a todas; <code>Esc</code> limpa</td>
+</tr>
+<tr>
+<td><code>render_whitespace</code></td>
+<td>string</td>
+<td><code>&quot;none&quot;</code></td>
+<td><code>&quot;none&quot;</code> | <code>&quot;boundary&quot;</code> | <code>&quot;all&quot;</code></td>
+</tr>
+<tr>
+<td><code>indent_guides</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Guias verticais de indentação</td>
+</tr>
+<tr>
+<td><code>bracket_matching</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Destaca pares de parênteses/colchetes/chaves</td>
+</tr>
+<tr>
+<td><code>highlight_current_line</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Destaca a linha do cursor</td>
+</tr>
+<tr>
+<td><code>line_numbers</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Exibe numeração de linhas</td>
+</tr>
+<tr>
+<td><code>relative_numbers</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Numeração relativa ao cursor (estilo Vim)</td>
+</tr>
+<tr>
+<td><code>breadcrumbs</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Exibe o breadcrumb de caminho</td>
+</tr>
+<tr>
+<td><code>minimap</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Exibe o minimapa</td>
+</tr>
+<tr>
+<td><code>encoding</code></td>
+<td>string</td>
+<td><code>&quot;utf-8&quot;</code></td>
+<td>Codificação padrão de arquivos</td>
+</tr>
+<tr>
+<td><code>eol</code></td>
+<td>string</td>
+<td><code>&quot;\n&quot;</code></td>
+<td>Fim de linha: <code>&quot;\n&quot;</code> (LF) | <code>&quot;\r\n&quot;</code> (CRLF) | <code>&quot;\r&quot;</code> (CR)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-editor-avançado">− Editor Avançado<a class="anchor" href="#-editor-avançado" aria-label="Link para esta seção">#</a></h3>
+<p>Recursos de produtividade documentados em profundidade em <a href="inteligencia-editor.html">Inteligência do Editor</a>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sticky_scroll</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Cabeçalhos de escopo colados no topo</td>
+</tr>
+<tr>
+<td><code>code_folding</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Dobramento de regiões de código</td>
+</tr>
+<tr>
+<td><code>inline_blame</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Informações de <code>git blame</code> no editor</td>
+</tr>
+<tr>
+<td><code>inline_blame_mode</code></td>
+<td>string</td>
+<td><code>&quot;cursor&quot;</code></td>
+<td><code>&quot;cursor&quot;</code> | <code>&quot;all&quot;</code></td>
+</tr>
+<tr>
+<td><code>color_preview</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Amostras de cor para valores hexadecimais</td>
+</tr>
+<tr>
+<td><code>inlay_hints</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Dicas de tipo injetadas pelo LSP</td>
+</tr>
+<tr>
+<td><code>smart_tips</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Ativa as dicas contextuais - ver <a href="inteligencia-editor.html#smart-tips-srceditorsmarttipspy">Smart Tips</a></td>
+</tr>
+<tr>
+<td><code>smart_tips_interval</code></td>
+<td>int</td>
+<td><code>30</code></td>
+<td>Intervalo entre análises (ms)</td>
+</tr>
+<tr>
+<td><code>smart_tips_large_file_lines</code></td>
+<td>int</td>
+<td>-</td>
+<td>Limiar de linhas para considerar &quot;arquivo grande&quot;</td>
+</tr>
+<tr>
+<td><code>smart_tips_huge_file_lines</code></td>
+<td>int</td>
+<td>-</td>
+<td>Limiar de linhas para &quot;arquivo enorme&quot;</td>
+</tr>
+<tr>
+<td><code>smart_tips_big_function_lines</code></td>
+<td>int</td>
+<td>-</td>
+<td>Limiar de linhas para &quot;função grande&quot;</td>
+</tr>
+<tr>
+<td><code>smart_tips_long_line_chars</code></td>
+<td>int</td>
+<td>-</td>
+<td>Limiar de caracteres para &quot;linha longa&quot;</td>
+</tr>
+<tr>
+<td><code>smart_tips_deep_nesting</code></td>
+<td>int</td>
+<td>-</td>
+<td>Profundidade de aninhamento considerada excessiva</td>
+</tr>
+<tr>
+<td><code>smart_tips_todo_threshold</code></td>
+<td>int</td>
+<td>-</td>
+<td>Quantidade de TODOs antes de avisar</td>
+</tr>
+<tr>
+<td><code>smart_tips_generic_var_threshold</code></td>
+<td>int</td>
+<td>-</td>
+<td>Tolerância para nomes de variável genéricos</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-autocomplete">💬 Autocomplete<a class="anchor" href="#-autocomplete" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>autocomplete</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Ativa o autocomplete</td>
+</tr>
+<tr>
+<td><code>autocomplete_delay</code></td>
+<td>int</td>
+<td><code>200</code></td>
+<td>Delay para exibir sugestões (ms)</td>
+</tr>
+<tr>
+<td><code>snippets</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Ativa expansão de snippets</td>
+</tr>
+<tr>
+<td><code>parameter_hints</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Dicas de parâmetros (LSP)</td>
+</tr>
+<tr>
+<td><code>hover_docs</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Documentação ao passar o mouse (KDocs/LSP)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="a-aparência">A Aparência<a class="anchor" href="#a-aparência" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>theme</code></td>
+<td>string</td>
+<td><code>&quot;fluent_dark&quot;</code></td>
+<td>Tema ativo - ver <a href="temas.html">Temas</a></td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td>string</td>
+<td><code>&quot;pt-BR&quot;</code></td>
+<td>Idioma da interface - ver <a href="#idiomas">Idiomas</a></td>
+</tr>
+<tr>
+<td><code>ui_font_family</code></td>
+<td>string</td>
+<td><code>&quot;Segoe UI&quot;</code></td>
+<td>Fonte da interface (menus, labels)</td>
+</tr>
+<tr>
+<td><code>ui_font_size</code></td>
+<td>int</td>
+<td><code>10</code></td>
+<td>Tamanho da fonte da interface</td>
+</tr>
+<tr>
+<td><code>ui_scale</code></td>
+<td>int</td>
+<td><code>0</code></td>
+<td>Escala geral da interface em %. <code>0</code> = automático (ajusta à resolução/DPI da tela); <code>50</code>–<code>250</code> = manual. Aplicado ao vivo</td>
+</tr>
+<tr>
+<td><code>remote_sync_on_save</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Reenvia ao servidor arquivos remotos ao salvar - ver <a href="remote-ssh.html">Remoto</a></td>
+</tr>
+<tr>
+<td><code>activity_bar</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Exibe a Activity Bar</td>
+</tr>
+<tr>
+<td><code>show_welcome</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Exibe tela de boas-vindas na inicialização</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-cursor">🖱 Cursor<a class="anchor" href="#-cursor" aria-label="Link para esta seção">#</a></h3>
+<p>Categoria especial: em vez de uma lista simples de chaves, embute diretamente o <code>CursorPickerPanel</code> (<code>src/ui/cursor_manager.py</code>) - o seletor visual de cursor customizado (emoji, texto ou imagem). Ver <a href="sistema-performance.html#cursor-customiz%C3%A1vel-srcuicursormanagerpy">Cursor Customizável</a> para os detalhes completos de implementação.</p>
+<h3 id="-interface--layout">🖥 Interface / Layout<a class="anchor" href="#-interface--layout" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sidebar_width</code></td>
+<td>int</td>
+<td><code>320</code></td>
+<td>Largura inicial da sidebar (px)</td>
+</tr>
+<tr>
+<td><code>panel_height</code></td>
+<td>int</td>
+<td><code>240</code></td>
+<td>Altura inicial do painel inferior (px)</td>
+</tr>
+<tr>
+<td><code>minimap_width</code></td>
+<td>int</td>
+<td><code>110</code></td>
+<td>Largura do minimapa (px)</td>
+</tr>
+<tr>
+<td><code>minimap_scale</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td>Escala do minimapa</td>
+</tr>
+<tr>
+<td><code>window_width</code> / <code>window_height</code></td>
+<td>int</td>
+<td>-</td>
+<td>Dimensões da janela principal salvas entre sessões</td>
+</tr>
+<tr>
+<td><code>max_recent</code></td>
+<td>int</td>
+<td><code>20</code></td>
+<td>Máximo de entradas na lista de recentes</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-salvamento">💾 Salvamento<a class="anchor" href="#-salvamento" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>autosave</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Salva automaticamente após inatividade</td>
+</tr>
+<tr>
+<td><code>autosave_delay</code></td>
+<td>int</td>
+<td><code>30</code></td>
+<td>Intervalo de autosave em segundos (5–600)</td>
+</tr>
+<tr>
+<td><code>format_on_save</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Formata o documento ao salvar</td>
+</tr>
+<tr>
+<td><code>trim_trailing_whitespace</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Remove espaços no fim das linhas ao salvar</td>
+</tr>
+<tr>
+<td><code>insert_final_newline</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Garante newline no final do arquivo</td>
+</tr>
+<tr>
+<td><code>session_restore</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Restaura os arquivos abertos ao reiniciar</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-lint">🔍 Lint<a class="anchor" href="#-lint" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lint_enabled</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Ativa o sistema de lint</td>
+</tr>
+<tr>
+<td><code>lint_python</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Lint para Python (pylint, mypy, flake8...)</td>
+</tr>
+<tr>
+<td><code>lint_js</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Lint para JS/TS (ESLint)</td>
+</tr>
+<tr>
+<td><code>lint_html</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Lint para HTML</td>
+</tr>
+<tr>
+<td><code>lint_delay</code></td>
+<td>int</td>
+<td><code>750</code></td>
+<td>Delay após digitação para disparar lint (ms)</td>
+</tr>
+<tr>
+<td><code>eslint_path</code> / <code>pylint_path</code> / <code>flake8_path</code> / <code>mypy_path</code> / <code>prettier_path</code></td>
+<td>string</td>
+<td>nome do binário</td>
+<td>Caminho dos executáveis externos usados pelo lint</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-lsp-language-server-protocol">🔤 LSP (Language Server Protocol)<a class="anchor" href="#-lsp-language-server-protocol" aria-label="Link para esta seção">#</a></h3>
+<p>Categoria própria, antes ausente da documentação - controla a integração com servidores de linguagem usados por Go to Definition, Find References, rename simbólico e mais (ver <a href="editor.html">Editor</a> e <a href="arquitetura.html">Arquitetura</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lsp_enabled</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Habilita integração com servidores LSP</td>
+</tr>
+<tr>
+<td><code>lsp_hover_enabled</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Documentação do LSP ao passar o mouse sobre símbolos</td>
+</tr>
+<tr>
+<td><code>lsp_format_enabled</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td><em>(presente na UI de configurações, mas sem efeito - veja nota abaixo)</em></td>
+</tr>
+<tr>
+<td><code>lsp_diagnostics</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Exibe diagnósticos do LSP no painel Problemas</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-git">🌿 Git<a class="anchor" href="#-git" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git_enabled</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Ativa a integração Git</td>
+</tr>
+<tr>
+<td><code>git_decorations</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Decorações visuais de status Git na file tree</td>
+</tr>
+<tr>
+<td><code>git_auto_fetch</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Fetch automático periódico</td>
+</tr>
+<tr>
+<td><code>git_fetch_interval</code></td>
+<td>int</td>
+<td><code>180</code></td>
+<td>Intervalo de auto-fetch em segundos</td>
+</tr>
+<tr>
+<td><code>updater_url</code></td>
+<td>string</td>
+<td><code>&quot;KillovSky/Codis&quot;</code></td>
+<td>Repositório GitHub para verificação de atualizações (<code>owner/repo</code>)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-terminal">💻 Terminal<a class="anchor" href="#-terminal" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default_shell</code></td>
+<td>string</td>
+<td>detectado automaticamente</td>
+<td>Shell padrão - ver <a href="terminal.html">Terminal</a></td>
+</tr>
+<tr>
+<td><code>terminal_font_size</code></td>
+<td>int</td>
+<td><code>12</code></td>
+<td>Tamanho da fonte do terminal</td>
+</tr>
+<tr>
+<td><code>terminal_max_lines</code></td>
+<td>int</td>
+<td>-</td>
+<td>Limite de linhas no scroll-back</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-árvore-de-arquivos-filetree">📁 Árvore de Arquivos (FileTree)<a class="anchor" href="#-árvore-de-arquivos-filetree" aria-label="Link para esta seção">#</a></h3>
+<p>Categoria própria, antes sem cobertura na wiki.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show_hidden_files</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Exibe arquivos/pastas que começam com ponto (<code>.</code>)</td>
+</tr>
+<tr>
+<td><code>respect_ignore_files</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Oculta arquivos listados no <code>.gitignore</code> da árvore e da busca</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-render">🌐 Render<a class="anchor" href="#-render" aria-label="Link para esta seção">#</a></h3>
+<p>Categoria própria, antes sem cobertura na wiki.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>render_internal</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Usa o renderizador interno para Markdown/HTML; quando desativado, usa o navegador padrão do sistema</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-timeline">🕒 Timeline<a class="anchor" href="#-timeline" aria-label="Link para esta seção">#</a></h3>
+<p>Controla o sistema de snapshots automáticos - ver <a href="backups-lixeira-arquivos.html#file-timeline-srcuifiletimelinepy">File Timeline</a>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timeline_max_backups</code></td>
+<td>int</td>
+<td><code>20</code></td>
+<td>Máximo de snapshots mantidos por arquivo (5–100)</td>
+</tr>
+<tr>
+<td><code>timeline_max_age_days</code></td>
+<td>int</td>
+<td><code>30</code></td>
+<td>Backups mais antigos que isso são removidos automaticamente (1–365 dias)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-flowchart">🔀 Flowchart<a class="anchor" href="#-flowchart" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flowchart_auto</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Gera o diagrama de fluxo automaticamente ao editar o arquivo</td>
+</tr>
+<tr>
+<td><code>flowchart_max_depth</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td>Profundidade máxima de chamadas analisadas (1–8)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-pomodoro">⏱ Pomodoro<a class="anchor" href="#-pomodoro" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pomodoro_work_min</code></td>
+<td>int</td>
+<td><code>25</code></td>
+<td>Duração de cada sessão de trabalho em minutos (5–90)</td>
+</tr>
+<tr>
+<td><code>pomodoro_break_min</code></td>
+<td>int</td>
+<td><code>5</code></td>
+<td>Duração da pausa curta em minutos (1–30)</td>
+</tr>
+<tr>
+<td><code>pomodoro_long_break_min</code></td>
+<td>int</td>
+<td><code>15</code></td>
+<td>Duração da pausa longa após um ciclo completo (5–60)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="p-performance">P Performance<a class="anchor" href="#p-performance" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kui_perf</code></td>
+<td>string</td>
+<td><code>&quot;balanced&quot;</code></td>
+<td>Perfil de animações da K-UI</td>
+</tr>
+<tr>
+<td><code>hl_idle_ms</code></td>
+<td>int</td>
+<td><code>60</code></td>
+<td>Intervalo de atualização do highlighting em idle (ms)</td>
+</tr>
+<tr>
+<td><code>perf_auto_mode</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Detecta travamentos e aplica modo performance automaticamente</td>
+</tr>
+<tr>
+<td><code>perf_freeze_threshold_ms</code></td>
+<td>int</td>
+<td><code>500</code></td>
+<td>Milissegundos sem resposta antes de considerar travamento</td>
+</tr>
+<tr>
+<td><code>perf_mode</code></td>
+<td>string</td>
+<td><code>&quot;auto&quot;</code></td>
+<td><code>&quot;auto&quot;</code> | <code>&quot;balanced&quot;</code> | <code>&quot;fast&quot;</code> | <code>&quot;minimal&quot;</code></td>
+</tr>
+<tr>
+<td><code>perf_native_bindings</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Extensões C nativas (requer compilação; desabilitado por padrão)</td>
+</tr>
+<tr>
+<td><code>perf_kui_fallback</code> / <code>perf_keep_minimap</code> / <code>perf_keep_sticky_scroll</code> / <code>perf_keep_heatmap</code> / <code>perf_keep_rhythm</code> / <code>perf_keep_lint</code> / <code>perf_keep_kui_anim</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Toggles individuais do que <strong>manter ativo</strong> mesmo em modo performance - ver <a href="sistema-performance.html#modo-performance-srcuiperformancepanelpy">Modo Performance</a></td>
+</tr>
+<tr>
+<td><code>autocomplete_min_chars</code></td>
+<td>int</td>
+<td><code>1</code></td>
+<td>Mínimo de caracteres para disparar autocomplete</td>
+</tr>
+<tr>
+<td><code>autocomplete_max_items</code></td>
+<td>int</td>
+<td><code>24</code></td>
+<td>Máximo de itens na lista de sugestões</td>
+</tr>
+<tr>
+<td><code>large_file_mb</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td>Limiar em MB para ativar o modo de arquivo grande</td>
+</tr>
+<tr>
+<td><code>search_max_results</code></td>
+<td>int</td>
+<td><code>2000</code></td>
+<td>Máximo de resultados na busca em arquivos</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-security">🔒 Security<a class="anchor" href="#-security" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>workspace_trust</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Exibe diálogo de confiança ao abrir pastas desconhecidas - ver <a href="workspace-projeto.html#workspace-trust-srcuiworkspacetrustpy">Workspace Trust</a></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="-avançado">⚙ Avançado<a class="anchor" href="#-avançado" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>font_min</code></td>
+<td>int</td>
+<td><code>7</code></td>
+<td>Tamanho mínimo de fonte permitido pelo zoom</td>
+</tr>
+<tr>
+<td><code>font_max</code></td>
+<td>int</td>
+<td><code>36</code></td>
+<td>Tamanho máximo de fonte permitido pelo zoom</td>
+</tr>
+<tr>
+<td><code>debug_dap_enabled</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Usa debugpy/DAP real (breakpoints, stepping, variáveis) quando disponível. Desative para forçar execução simples no Painel de Debug.</td>
+</tr>
+<tr>
+<td><code>debug_dap_port</code></td>
+<td>int</td>
+<td><code>5678</code></td>
+<td>Porta local usada pela conexão DAP com o debugpy. Mude se houver conflito com outra ferramenta usando a mesma porta (ex: VS Code).</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>O <strong>Editor JSON Diretamente</strong> (edição bruta do <code>config.json</code>) é acessado pelo menu <strong>Configurações → Avançado</strong>, não por esta categoria - ela trata apenas dos limites de zoom de fonte e do depurador.</p>
+</blockquote>
+<p>Ver também: <a href="debug.html">Debug</a></p>
+<h3 id="-acessibilidade">♿ Acessibilidade<a class="anchor" href="#-acessibilidade" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a11y_high_contrast</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Alto contraste (WCAG AA)</td>
+</tr>
+<tr>
+<td><code>a11y_colorblind_mode</code></td>
+<td>string</td>
+<td><code>&quot;&quot;</code></td>
+<td><code>&quot;&quot;</code> | <code>&quot;protanopia&quot;</code> | <code>&quot;deuteranopia&quot;</code> | <code>&quot;tritanopia&quot;</code> | <code>&quot;achromatopsia&quot;</code></td>
+</tr>
+<tr>
+<td><code>a11y_screen_reader</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Anúncios TTS para leitores de tela</td>
+</tr>
+<tr>
+<td><code>a11y_keyboard_nav</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Navegação aprimorada por Tab e setas</td>
+</tr>
+<tr>
+<td><code>a11y_large_ui_font</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Força fonte de UI mínima de 13pt</td>
+</tr>
+<tr>
+<td><code>a11y_reduce_motion</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Desativa animações e transições</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ver também: <a href="acessibilidade.html">Acessibilidade</a></p>
+<h3 id="-ssh-remoto">🖧 SSH Remoto<a class="anchor" href="#-ssh-remoto" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssh_default_port</code></td>
+<td>int</td>
+<td><code>22</code></td>
+<td>Porta padrão para novos perfis</td>
+</tr>
+<tr>
+<td><code>ssh_connect_timeout</code></td>
+<td>int</td>
+<td><code>15</code></td>
+<td>Timeout de conexão (segundos)</td>
+</tr>
+<tr>
+<td><code>ssh_keepalive_interval</code></td>
+<td>int</td>
+<td><code>30</code></td>
+<td>Intervalo keepalive em segundos (<code>0</code> desabilita)</td>
+</tr>
+<tr>
+<td><code>ssh_agent_forwarding</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Forwarding do agente SSH</td>
+</tr>
+<tr>
+<td><code>ssh_strict_host_key</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Verifica a chave do host estritamente</td>
+</tr>
+<tr>
+<td><code>ssh_sftp_buffer_kb</code></td>
+<td>int</td>
+<td><code>64</code></td>
+<td>Buffer SFTP em KB</td>
+</tr>
+<tr>
+<td><code>ssh_open_in_editor</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Baixa e abre arquivo remoto diretamente no editor</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>O <strong>Túnel de Debug SSH</strong> (botão <strong>Abrir Túnel Debug</strong> no painel remoto) usa as portas informadas diretamente no próprio diálogo, não as chaves <code>debug_dap_*</code> - essas pertencem ao Painel de Debug <strong>local</strong> (categoria Avançado). São mecanismos independentes; veja <a href="remote-ssh.html#debug-remoto-dap-via-t%C3%BAnel-ssh">Debug Remoto</a> e <a href="debug.html">Debug</a>.</p>
+</blockquote>
+<p>Ver também: <a href="remote-ssh.html">SSH Remoto</a></p>
+<h3 id="-colaboração">👥 Colaboração<a class="anchor" href="#-colaboração" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>collab_enabled</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Habilita ícone de colaboração na Activity Bar</td>
+</tr>
+<tr>
+<td><code>collab_port</code></td>
+<td>int</td>
+<td><code>9001</code></td>
+<td><em>(não utilizada pelo painel atual - veja nota abaixo)</em></td>
+</tr>
+<tr>
+<td><code>collab_max_peers</code></td>
+<td>int</td>
+<td><code>8</code></td>
+<td>Máximo de participantes simultâneos</td>
+</tr>
+<tr>
+<td><code>collab_show_cursors</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Exibe cursores dos participantes remotos</td>
+</tr>
+<tr>
+<td><code>collab_show_chat</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Chat integrado visível</td>
+</tr>
+<tr>
+<td><code>collab_autosave_sync</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Sincroniza auto-save entre participantes</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ver também: <a href="colaboracao.html">Colaboração</a></p>
+<h3 id="-plugins">🔌 Plugins<a class="anchor" href="#-plugins" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plugin_isolation</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Plugins marcados com <code>isolated=True</code> rodam em processo separado</td>
+</tr>
+<tr>
+<td><code>plugin_timeout_s</code></td>
+<td>int</td>
+<td><code>10</code></td>
+<td>Timeout de chamadas síncronas ao worker (segundos)</td>
+</tr>
+<tr>
+<td><code>plugin_heartbeat_s</code></td>
+<td>int</td>
+<td><code>30</code></td>
+<td>Timeout de heartbeat - processo sem resposta é reiniciado</td>
+</tr>
+<tr>
+<td><code>plugin_max_restarts</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td>Reinícios automáticos antes de desabilitar o plugin</td>
+</tr>
+<tr>
+<td><code>plugin_sandbox_network</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Bloqueia acesso à rede em workers isolados (experimental)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ver também: <a href="plugins.html#plugins-em-processo-isolado">Plugins - Processo Isolado</a></p>
+<h3 id="-sintaxe-customizada">🎨 Sintaxe Customizada<a class="anchor" href="#-sintaxe-customizada" aria-label="Link para esta seção">#</a></h3>
+<p>Esta categoria abre o <strong>CustomKeywordsPanel</strong> em vez de uma lista de chaves simples. Permite definir palavras-chave adicionais por linguagem com cor de destaque personalizada, expandindo o highlight de sintaxe além dos padrões embutidos.</p>
+<p>As keywords são persistidas em <code>config.json</code> na chave <code>custom_keywords</code> como lista de objetos:</p>
+<pre><code class="language-json">&quot;custom_keywords&quot;: [
+  { &quot;keyword&quot;: &quot;minha_funcao&quot;, &quot;color&quot;: &quot;#ff79c6&quot;, &quot;lang&quot;: &quot;python&quot; },
+  { &quot;keyword&quot;: &quot;CONSTANTE&quot;,    &quot;color&quot;: &quot;#f1fa8c&quot;, &quot;lang&quot;: &quot;javascript&quot; }
+]
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>keyword</code></td>
+<td>string</td>
+<td>Palavra-chave exata a ser destacada (sensível a maiúsculas)</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>string</td>
+<td>Cor no formato <code>#rrggbb</code> ou <code>#rgb</code></td>
+</tr>
+<tr>
+<td><code>lang</code></td>
+<td>string</td>
+<td>Linguagem alvo (ex: <code>python</code>, <code>javascript</code>, <code>any</code> para todas)</td>
+</tr>
+</tbody>
+</table></div>
+<p>As keywords customizadas são aplicadas pelo highlighter de sintaxe com prioridade <strong>após</strong> os padrões embutidos, podendo sobrescrever a cor de termos já definidos. Alterações são aplicadas imediatamente ao arquivo ativo sem reiniciar o Codis.</p>
+<hr />
+<h2 id="chaves-complementares-do-default_config">Chaves Complementares do <code>DEFAULT_CONFIG</code><a class="anchor" href="#chaves-complementares-do-default_config" aria-label="Link para esta seção">#</a></h2>
+<p>Chaves presentes em <code>DEFAULT_CONFIG</code> (<code>src/constants.py</code>) que complementam as categorias acima.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>menubar_position</code></td>
+<td>string</td>
+<td><code>&quot;top&quot;</code></td>
+<td>Posição da barra de menus: <code>&quot;top&quot;</code> ou <code>&quot;bottom&quot;</code> (menu Exibir)</td>
+</tr>
+<tr>
+<td><code>rulers</code></td>
+<td>lista</td>
+<td><code>[]</code></td>
+<td>Colunas das réguas verticais do editor</td>
+</tr>
+<tr>
+<td><code>lint_php</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Lint para PHP</td>
+</tr>
+<tr>
+<td><code>recent_files</code> / <code>recent_folders</code></td>
+<td>lista</td>
+<td><code>[]</code></td>
+<td>Histórico de arquivos e pastas recentes (gravado automaticamente)</td>
+</tr>
+<tr>
+<td><code>exit_save_mode</code></td>
+<td>string</td>
+<td><code>&quot;ask&quot;</code></td>
+<td>Ao sair com alterações: <code>&quot;ask&quot;</code> pergunta, <code>&quot;save&quot;</code> sempre salva, <code>&quot;discard&quot;</code> descarta</td>
+</tr>
+<tr>
+<td><code>session_save_on_exit</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Grava abas e pasta ao sair; desligado, o Codis abre limpo</td>
+</tr>
+<tr>
+<td><code>confirm_delete</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Pede confirmação antes de excluir arquivos</td>
+</tr>
+<tr>
+<td><code>trash_backend</code></td>
+<td>string</td>
+<td><code>&quot;workspace&quot;</code></td>
+<td><code>&quot;workspace&quot;</code> move para <code>.codis_trash/</code> do projeto; <code>&quot;system&quot;</code> usa a lixeira do SO (<code>send2trash</code>, com fallback para a do projeto)</td>
+</tr>
+<tr>
+<td><code>trash_retention_days</code></td>
+<td>int</td>
+<td><code>0</code></td>
+<td>Dias de retenção na lixeira (<code>0</code> = sem limite)</td>
+</tr>
+<tr>
+<td><code>trash_max_mb</code></td>
+<td>int</td>
+<td><code>0</code></td>
+<td>Tamanho máximo da lixeira em MB (<code>0</code> = sem limite)</td>
+</tr>
+<tr>
+<td><code>kui_enabled</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Liga o <a href="kui.html">K-UI</a></td>
+</tr>
+<tr>
+<td><code>perf_keep_inline_blame</code> / <code>perf_keep_inlay_hints</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Mantém blame inline / inlay hints ativos no modo performance</td>
+</tr>
+<tr>
+<td><code>perf_keep_color_preview</code> / <code>perf_keep_ligatures</code> / <code>perf_keep_autocomplete</code> / <code>perf_keep_folding</code> / <code>perf_keep_hl</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Mantém cada recurso ativo no <a href="sistema-performance.html#modo-performance-srcuiperformancepanelpy">modo performance</a></td>
+</tr>
+<tr>
+<td><code>github_token</code></td>
+<td>string</td>
+<td><code>&quot;&quot;</code></td>
+<td>PAT do GitHub (limite de API do <a href="updater.html">Atualizador</a> e da loja de plugins)</td>
+</tr>
+<tr>
+<td><code>auto_check_updates</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Verifica atualizações silenciosamente ao iniciar</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="chaves-avançadas-e-de-estado">Chaves Avançadas e de Estado<a class="anchor" href="#chaves-avançadas-e-de-estado" aria-label="Link para esta seção">#</a></h2>
+<p>Estas chaves são lidas pelo código (com valor padrão no ponto de uso), mas <strong>não aparecem na janela de Configurações</strong>; várias são gravadas automaticamente pela interface. Edite <code>config.json</code> só se souber o que está fazendo.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user_name</code></td>
+<td>string</td>
+<td><code>&quot;&quot;</code></td>
+<td>Autor padrão preenchido nos <a href="workspace-projeto.html">templates de projeto</a></td>
+</tr>
+<tr>
+<td><code>actbar_visible_items</code></td>
+<td>lista | null</td>
+<td><code>null</code> (todos)</td>
+<td>Itens visíveis da Activity Bar (gravado pelo menu de personalização)</td>
+</tr>
+<tr>
+<td><code>cursor_preset</code></td>
+<td>string</td>
+<td><code>&quot;system&quot;</code></td>
+<td>Preset do <a href="sistema-performance.html">cursor customizado</a></td>
+</tr>
+<tr>
+<td><code>cursor_color</code></td>
+<td>string</td>
+<td><code>&quot;#cdd6f4&quot;</code></td>
+<td>Cor do cursor customizado</td>
+</tr>
+<tr>
+<td><code>cursor_size</code></td>
+<td>int</td>
+<td><code>22</code></td>
+<td>Tamanho do cursor customizado</td>
+</tr>
+<tr>
+<td><code>cursor_emoji</code></td>
+<td>string</td>
+<td><code>&quot;✦&quot;</code></td>
+<td>Emoji usado como cursor (preset emoji)</td>
+</tr>
+<tr>
+<td><code>terminal_scrollback</code></td>
+<td>int</td>
+<td><code>10000</code></td>
+<td>Linhas mantidas no scrollback</td>
+</tr>
+<tr>
+<td><code>terminal_conpty</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Usa ConPTY no Windows quando disponível</td>
+</tr>
+<tr>
+<td><code>terminal_load_shell_rc</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Carrega <code>.bashrc</code>/<code>.zshrc</code> ao abrir o shell</td>
+</tr>
+<tr>
+<td><code>ia_provedor</code></td>
+<td>string</td>
+<td>primeiro provedor disponível</td>
+<td>Provedor de IA ativo</td>
+</tr>
+<tr>
+<td><code>ia_provedores_cfg</code></td>
+<td>dict</td>
+<td><code>{}</code></td>
+<td>Configuração por provedor (modelo, URL, chave)</td>
+</tr>
+<tr>
+<td><code>ia_mode</code></td>
+<td>string</td>
+<td><code>&quot;edit&quot;</code></td>
+<td>Modo da IA (Perguntar / Editar / Agente)</td>
+</tr>
+<tr>
+<td><code>ia_context_tokens</code></td>
+<td>int</td>
+<td><code>24000</code> (mínimo <code>4000</code>)</td>
+<td>Orçamento de tokens de contexto</td>
+</tr>
+<tr>
+<td><code>ia_auto_approve_levels</code></td>
+<td>lista</td>
+<td><code>[&quot;SAFE&quot;]</code></td>
+<td>Níveis de risco aprovados automaticamente pelo <a href="ia.html#approval-gate-aprova%C3%A7%C3%A3o-de-a%C3%A7%C3%B5es">Approval Gate</a></td>
+</tr>
+<tr>
+<td><code>ia_privacy_warning_shown</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Aviso de privacidade da IA já exibido</td>
+</tr>
+<tr>
+<td><code>plugin_store_repo</code></td>
+<td>string</td>
+<td><code>&quot;&quot;</code> (usa o repositório oficial)</td>
+<td>Repositório da loja de plugins</td>
+</tr>
+<tr>
+<td><code>plugin_store_branch</code></td>
+<td>string</td>
+<td><code>&quot;main&quot;</code></td>
+<td>Branch da loja de plugins</td>
+</tr>
+<tr>
+<td><code>kui_dock_pinned</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Dock do K-UI fixado</td>
+</tr>
+<tr>
+<td><code>screensaver_idle_s</code></td>
+<td>int</td>
+<td><code>9999</code></td>
+<td>Segundos de inatividade para o protetor de tela do K-UI</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Os padrões acima refletem os <code>.get(chave, padrão)</code> do código na versão 1.0.0; se divergirem, o código é a fonte da verdade.</p>
+</blockquote>
+<hr />
+<h2 id="idiomas">Idiomas<a class="anchor" href="#idiomas" aria-label="Link para esta seção">#</a></h2>
+<p>A interface do Codis é internacionalizada via <code>src/i18n.py</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Idioma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pt-BR</code></td>
+<td>Português (Brasil) - idioma base, usado como fallback</td>
+</tr>
+<tr>
+<td><code>en</code></td>
+<td>English</td>
+</tr>
+<tr>
+<td><code>es</code></td>
+<td>Español</td>
+</tr>
+<tr>
+<td><code>fr</code></td>
+<td>Français</td>
+</tr>
+<tr>
+<td><code>de</code></td>
+<td>Deutsch</td>
+</tr>
+<tr>
+<td><code>zh-CN</code></td>
+<td>中文（简体）</td>
+</tr>
+<tr>
+<td><code>ja</code></td>
+<td>日本語</td>
+</tr>
+<tr>
+<td><code>ko</code></td>
+<td>한국어</td>
+</tr>
+<tr>
+<td><code>ru</code></td>
+<td>Русский</td>
+</tr>
+<tr>
+<td><code>uk</code></td>
+<td>Українська</td>
+</tr>
+<tr>
+<td><code>pl</code></td>
+<td>Polski</td>
+</tr>
+<tr>
+<td><code>nl</code></td>
+<td>Nederlands</td>
+</tr>
+<tr>
+<td><code>tr</code></td>
+<td>Türkçe</td>
+</tr>
+<tr>
+<td><code>it</code></td>
+<td>Italiano</td>
+</tr>
+</tbody>
+</table></div>
+<p>A troca de idioma reconstrói os menus imediatamente, sem reiniciar o Codis. Toda chave de tradução ausente em um idioma cai automaticamente para o texto em <code>pt-BR</code> (idioma base do sistema de i18n).</p>
+<hr />
+<h2 id="comportamento-do-configmanager">Comportamento do ConfigManager<a class="anchor" href="#comportamento-do-configmanager" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><strong>Escrita atômica:</strong> salva primeiro em <code>.json.tmp</code> e depois renomeia para <code>config.json</code>, evitando corrupção em caso de falha durante a escrita.</li>
+<li><strong>Modo degradado:</strong> se <code>~/.codis/</code> não puder ser criado (permissões), o ConfigManager opera em memória, sem persistência entre sessões.</li>
+<li><strong>Backup automático:</strong> se <code>config.json</code> estiver corrompido, é renomeado para <code>.json.bak</code> e os padrões são usados.</li>
+<li><strong>Coerção de tipos:</strong> valores numéricos lidos como string são convertidos automaticamente.</li>
+<li><strong>Callbacks de mudança:</strong> componentes podem se registrar para receber notificações quando uma chave específica muda, via <code>cfg.on_change(&quot;theme&quot;, callback)</code>.</li>
+</ul>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="atalhos.html"><small>Anterior</small>Atalhos de Teclado</a>
+        <a class="next" href="temas.html"><small>Próxima</small>Temas</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/configuracoes.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/configuracoes.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#como-acessar-as-configurações">Como Acessar as Configurações</a></li><li class="l2"><a href="#as-24-categorias">As 24 Categorias</a></li><li class="l3"><a href="#-editor">Editor</a></li><li class="l3"><a href="#-editor-avançado">− Editor Avançado</a></li><li class="l3"><a href="#-autocomplete">Autocomplete</a></li><li class="l3"><a href="#a-aparência">A Aparência</a></li><li class="l3"><a href="#-cursor">Cursor</a></li><li class="l3"><a href="#-interface--layout">Interface / Layout</a></li><li class="l3"><a href="#-salvamento">Salvamento</a></li><li class="l3"><a href="#-lint">Lint</a></li><li class="l3"><a href="#-lsp-language-server-protocol">LSP (Language Server Protocol)</a></li><li class="l3"><a href="#-git">Git</a></li><li class="l3"><a href="#-terminal">Terminal</a></li><li class="l3"><a href="#-árvore-de-arquivos-filetree">Árvore de Arquivos (FileTree)</a></li><li class="l3"><a href="#-render">Render</a></li><li class="l3"><a href="#-timeline">Timeline</a></li><li class="l3"><a href="#-flowchart">Flowchart</a></li><li class="l3"><a href="#-pomodoro">Pomodoro</a></li><li class="l3"><a href="#p-performance">P Performance</a></li><li class="l3"><a href="#-security">Security</a></li><li class="l3"><a href="#-avançado">Avançado</a></li><li class="l3"><a href="#-acessibilidade">Acessibilidade</a></li><li class="l3"><a href="#-ssh-remoto">SSH Remoto</a></li><li class="l3"><a href="#-colaboração">Colaboração</a></li><li class="l3"><a href="#-plugins">Plugins</a></li><li class="l3"><a href="#-sintaxe-customizada">Sintaxe Customizada</a></li><li class="l2"><a href="#chaves-complementares-do-default_config">Chaves Complementares do DEFAULT_CONFIG</a></li><li class="l2"><a href="#chaves-avançadas-e-de-estado">Chaves Avançadas e de Estado</a></li><li class="l2"><a href="#idiomas">Idiomas</a></li><li class="l2"><a href="#comportamento-do-configmanager">Comportamento do ConfigManager</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

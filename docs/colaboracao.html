@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Edição Colaborativa · Codis</title>
+<meta name="description" content="Edição simultânea do mesmo arquivo por várias pessoas em tempo real, via servidor WebSocket embutido no Codis. A convergência dos textos é garantida por Operational Transformation (OT) com servidor au" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/colaboracao.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Edição Colaborativa · Codis" />
+<meta property="og:description" content="Edição simultânea do mesmo arquivo por várias pessoas em tempo real, via servidor WebSocket embutido no Codis. A convergência dos textos é garantida por Operational Transformation (OT) com servidor au" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/colaboracao.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group" open><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html" class="is-current" aria-current="page">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-edição-colaborativa">👥 Edição Colaborativa<a class="anchor" href="#-edição-colaborativa" aria-label="Link para esta seção">#</a></h1>
+<p>Edição simultânea do mesmo arquivo por várias pessoas em tempo real, via servidor WebSocket embutido no Codis. A convergência dos textos é garantida por <strong>Operational Transformation (OT)</strong> com servidor autoritativo.</p>
+<hr />
+<h2 id="requisitos">Requisitos<a class="anchor" href="#requisitos" aria-label="Link para esta seção">#</a></h2>
+<pre><code class="language-bash">pip install websockets
+</code></pre>
+<p>Sem o pacote, o painel mostra o comando de instalação. Depois de instalar, reinicie o Codis.</p>
+<hr />
+<h2 id="hospedando-uma-sessão">Hospedando uma sessão<a class="anchor" href="#hospedando-uma-sessão" aria-label="Link para esta seção">#</a></h2>
+<ol>
+<li>Abra o arquivo (ou aba) que quer compartilhar.</li>
+<li>Abra o painel <strong>Colaboração</strong> em <strong>Ferramentas → Remoto &amp; Colaboração → Colaboração…</strong> ou pelo ícone 👥 da barra de atividades (visível com <code>collab_enabled = true</code>).</li>
+<li>Informe seu nome e clique em <strong>🌐 Hospedar</strong>. A <strong>senha é obrigatória</strong>: se o campo estiver vazio, o Codis gera uma automaticamente e a mostra.</li>
+<li>Clique em <strong>📋 Copiar convite</strong> e envie aos participantes (IP, porta, ID da sala e senha).</li>
+</ol>
+<p>O painel fica <strong>preso à aba escolhida</strong> ao hospedar. Trocar de aba depois não mistura arquivos; se a aba compartilhada for fechada, a sessão é encerrada com um aviso.</p>
+<p>Para descobrir o IP manualmente: <code>hostname -I</code> (Linux) ou <code>ipconfig</code> (Windows). O convite já traz o IP local.</p>
+<h2 id="entrando-em-uma-sessão">Entrando em uma sessão<a class="anchor" href="#entrando-em-uma-sessão" aria-label="Link para esta seção">#</a></h2>
+<ol>
+<li>Em <strong>🔗 Entrar</strong>, informe host, porta, ID da sala, senha e seu nome.</li>
+<li>O Codis abre uma <strong>aba nova</strong> com o documento da sala. O seu arquivo aberto não é sobrescrito.</li>
+<li>Mensagens de erro claras: sala não encontrada, senha incorreta, nome já em uso, sala cheia.</li>
+</ol>
+<blockquote>
+<p>Só o host cria salas. Digitar um ID inexistente retorna &quot;Sala não encontrada&quot; (antes criava uma sala vazia silenciosamente).</p>
+</blockquote>
+<hr />
+<h2 id="participantes-cursores-e-chat">Participantes, cursores e chat<a class="anchor" href="#participantes-cursores-e-chat" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li>A lista mostra cada participante com cor própria; entradas e saídas aparecem no chat.</li>
+<li>O cursor de cada pessoa aparece no seu editor com uma <strong>etiqueta com o nome</strong>. Desative com <code>collab_show_cursors = false</code>.</li>
+<li>O chat entrega a mensagem a todos, inclusive ao autor, <strong>uma única vez</strong>. O histórico existe só durante a sessão.</li>
+</ul>
+<hr />
+<h2 id="como-a-sincronização-funciona">Como a sincronização funciona<a class="anchor" href="#como-a-sincronização-funciona" aria-label="Link para esta seção">#</a></h2>
+<pre><code> digitação local ──► diff mínimo ──► ClientOT (1 mudança em voo + buffer) ──► servidor
+ servidor ──► ack (sua mudança foi aceita)        ──► libera a próxima do buffer
+ servidor ──► op de outro ──► transforma contra o pendente ──► aplica no editor
+</code></pre>
+<ul>
+<li>Cada mudança aceita pelo servidor é uma <strong>revisão</strong>. O autor recebe <code>ack</code>; os demais recebem o <code>op</code> já transformado.</li>
+<li>O cliente nunca perde edições: antes de integrar qualquer operação remota, o painel captura o que você digitou desde o último ciclo (50 ms).</li>
+<li>Operações remotas são aplicadas <strong>de forma incremental</strong> no editor: cursor, seleção, rolagem e realce são preservados.</li>
+<li>Inserção de outra pessoa dentro de um trecho que você apagou <strong>é preservada</strong> (a deleção é dividida em duas).</li>
+<li>Mudança inválida, ou de um cliente muito atrasado (histórico descartado), faz o servidor reenviar o documento completo para aquele cliente; o painel avisa que edições pendentes foram descartadas.</li>
+<li>Emoji e demais caracteres fora do BMP são tratados corretamente (o Tk os conta como 2 colunas).</li>
+</ul>
+<p>A convergência é verificada por testes de propriedade (dezenas de milhares de pares de operações, simulações com vários clientes) e por testes com sockets reais.</p>
+<hr />
+<h2 id="segurança">Segurança<a class="anchor" href="#segurança" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li>WebSocket simples, <strong>sem TLS</strong>. Em redes que não sejam de confiança, use um túnel SSH: <code>ssh -L 9743:localhost:9743 usuario@host</code>.</li>
+<li>A senha é comparada em tempo constante; sem senha correta o documento não é enviado.</li>
+<li>O servidor escuta em <code>0.0.0.0</code> (LAN). Limites: 100 salas, 50 pessoas por sala (ou <code>collab_max_peers</code>), mensagens de até 32 MiB, documento de até 20 milhões de caracteres, 10 mil operações por mudança.</li>
+<li>Cada sala existe apenas enquanto o host está com a sessão aberta.</li>
+</ul>
+<h2 id="limitações-conhecidas">Limitações conhecidas<a class="anchor" href="#limitações-conhecidas" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li>Funciona melhor em LAN; pela internet use túnel SSH ou <code>ngrok tcp 9743</code>.</li>
+<li>Se a conexão cair, a sessão termina (sem reconexão automática com mesclagem). O texto local permanece no editor.</li>
+<li>Edições simultâneas em vários pontos distantes no mesmo ciclo de 50 ms viram uma única mudança contígua; funciona, mas é mais grossa do que operações por tecla.</li>
+<li>O desfazer (<code>Ctrl+Z</code>) do editor também pode desfazer texto aplicado por outra pessoa.</li>
+<li>Configurações <code>collab_show_chat</code> e <code>collab_autosave_sync</code> existem na tela de Configurações, mas <strong>ainda não</strong> têm efeito.</li>
+</ul>
+<hr />
+<h2 id="configurações">Configurações<a class="anchor" href="#configurações" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Configurações → Colaboração</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Padrão</th>
+<th>Efeito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>collab_enabled</code></td>
+<td><code>False</code></td>
+<td>Mostra o ícone de colaboração na barra de atividades</td>
+</tr>
+<tr>
+<td><code>collab_port</code></td>
+<td><code>9743</code></td>
+<td>Porta padrão sugerida nos campos de hospedar e entrar</td>
+</tr>
+<tr>
+<td><code>collab_max_peers</code></td>
+<td><code>8</code></td>
+<td>Máximo de participantes por sala (limite absoluto 50)</td>
+</tr>
+<tr>
+<td><code>collab_show_cursors</code></td>
+<td><code>True</code></td>
+<td>Exibe cursores e nomes dos outros participantes</td>
+</tr>
+<tr>
+<td><code>collab_show_chat</code></td>
+<td><code>True</code></td>
+<td><em>(ainda não implementado)</em></td>
+</tr>
+<tr>
+<td><code>collab_autosave_sync</code></td>
+<td><code>True</code></td>
+<td><em>(ainda não implementado)</em></td>
+</tr>
+<tr>
+<td><code>collab_username</code></td>
+<td>usuário do sistema</td>
+<td>Nome padrão</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="arquitetura-para-contribuidores">Arquitetura (para contribuidores)<a class="anchor" href="#arquitetura-para-contribuidores" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th>Papel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src/collab/ot.py</code></td>
+<td><code>TextOp</code>, <code>transform</code> (TP1), <code>RoomDoc</code> (servidor), <code>ClientOT</code> (cliente), <code>diff_change</code></td>
+</tr>
+<tr>
+<td><code>src/collab/net.py</code></td>
+<td><code>CollabServer</code> e <code>CollabClient</code> (WebSocket, ACK, validação, fila de eventos)</td>
+</tr>
+<tr>
+<td><code>src/collab/session.py</code></td>
+<td><code>CollabSession</code>: captura local → OT → editor (sem Tk, testável)</td>
+</tr>
+<tr>
+<td><code>src/collab/tk_adapter.py</code></td>
+<td><code>TkTextAdapter</code>: aplicação incremental em <code>tk.Text</code></td>
+</tr>
+<tr>
+<td><code>src/ui/collab_panel.py</code></td>
+<td>Interface (<code>CollabPanel</code>) e overlay de cursores</td>
+</tr>
+</tbody>
+</table></div>
+<p>Regras de projeto: nenhum callback de rede toca o Tk (tudo passa por uma fila drenada na thread de UI); o painel coleta o lixo ao ser destruído para que variáveis Tk não sejam finalizadas em threads de rede.</p>
+<p>Testes: <code>tests/test_collab_ot.py</code> (propriedades), <code>tests/test_collab_net.py</code> (sockets reais), <code>tests_gui/test_collab_adapter.py</code> e <code>tests_gui/test_collab_panel.py</code> (dois painéis ponta a ponta).</p>
+<h2 id="plugins">Plugins<a class="anchor" href="#plugins" aria-label="Link para esta seção">#</a></h2>
+<p>O evento <code>collab_peer_join</code>, citado em versões anteriores desta página, <strong>nunca existiu</strong>: nenhum código o emite. Plugins ainda não conseguem observar a sessão de colaboração.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="remote-ssh.html"><small>Anterior</small>Desenvolvimento Remoto via SSH</a>
+        <a class="next" href="recursos-avancados.html"><small>Próxima</small>Recursos Avançados</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/colaboracao.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/colaboracao.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#requisitos">Requisitos</a></li><li class="l2"><a href="#hospedando-uma-sessão">Hospedando uma sessão</a></li><li class="l2"><a href="#entrando-em-uma-sessão">Entrando em uma sessão</a></li><li class="l2"><a href="#participantes-cursores-e-chat">Participantes, cursores e chat</a></li><li class="l2"><a href="#como-a-sincronização-funciona">Como a sincronização funciona</a></li><li class="l2"><a href="#segurança">Segurança</a></li><li class="l2"><a href="#limitações-conhecidas">Limitações conhecidas</a></li><li class="l2"><a href="#configurações">Configurações</a></li><li class="l2"><a href="#arquitetura-para-contribuidores">Arquitetura (para contribuidores)</a></li><li class="l2"><a href="#plugins">Plugins</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

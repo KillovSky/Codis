@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Debug (DAP via debugpy) · Codis</title>
+<meta name="description" content="O Codis tem um painel de depuração real para Python: breakpoints, step into/over/out, inspeção de variáveis e um console com avaliação de expressões no frame parado - tudo isso conversando de fato com" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/debug.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Debug (DAP via debugpy) · Codis" />
+<meta property="og:description" content="O Codis tem um painel de depuração real para Python: breakpoints, step into/over/out, inspeção de variáveis e um console com avaliação de expressões no frame parado - tudo isso conversando de fato com" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/debug.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group" open><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html" class="is-current" aria-current="page">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-debug-dap-via-debugpy">🐞 Debug (DAP via debugpy)<a class="anchor" href="#-debug-dap-via-debugpy" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis tem um painel de depuração real para Python: breakpoints, step into/over/out, inspeção de variáveis e um console com avaliação de expressões no frame parado - tudo isso conversando de fato com o protocolo <strong>DAP</strong> (Debug Adapter Protocol) através do <a href="https://github.com/microsoft/debugpy" target="_blank" rel="noopener"><code>debugpy</code></a>.</p>
+<p>Diferente de ferramentas que só abrem uma porta e esperam algum cliente externo conectar, <strong>o próprio Codis é o cliente DAP</strong>. Você não precisa instalar nem configurar nenhum IDE adicional - basta ter <code>debugpy</code> disponível no Python que você usa.</p>
+<hr />
+<h2 id="como-usar-passo-a-passo">Como usar (passo a passo)<a class="anchor" href="#como-usar-passo-a-passo" aria-label="Link para esta seção">#</a></h2>
+<ol>
+<li><strong>Instale o <code>debugpy</code></strong>, se ainda não tiver:<pre><code class="language-bash">pip install debugpy
+</code></pre>
+</li>
+<li>Abra um arquivo <code>.py</code> <strong>salvo em disco</strong> no editor (arquivos não salvos não podem ser depurados).</li>
+<li><strong>Clique na margem esquerda do editor</strong> (o gutter, ao lado do número da linha) na linha onde você quer parar. Um marcador de breakpoint aparece ali.</li>
+<li>Abra o <strong>Painel de Debug</strong> (painel inferior → aba <strong>Debug</strong>).</li>
+<li>Clique em <strong>▶ Run</strong>.</li>
+</ol>
+<p>O Codis vai:</p>
+<ul>
+<li>Iniciar o <code>debugpy</code> no arquivo ativo, numa porta local (padrão <code>5678</code>);</li>
+<li>Conectar a ele como cliente DAP automaticamente;</li>
+<li>Enviar os breakpoints marcados no gutter;</li>
+<li>Liberar a execução.</li>
+</ul>
+<p>Quando a execução chegar numa linha marcada, ela <strong>para</strong> (<code>⏸ Stopped: breakpoint</code>), a linha correspondente é destacada no editor, e o painel mostra a pilha de chamadas e as variáveis locais/globais daquele ponto.</p>
+<blockquote>
+<p>Sem nenhum breakpoint marcado, o script roda do início ao fim sem parar - você só verá a saída normal no console do painel. Isso é esperado, não é um bug: marque pelo menos um breakpoint antes de clicar em Run se quiser inspecionar o estado do programa.</p>
+</blockquote>
+<h3 id="controles-da-toolbar">Controles da toolbar<a class="anchor" href="#controles-da-toolbar" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Botão</th>
+<th>Ação</th>
+<th>Atalho sugerido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>▶ Run</td>
+<td>Inicia uma nova sessão de depuração no arquivo ativo</td>
+<td>F5</td>
+</tr>
+<tr>
+<td>⏹ Stop</td>
+<td>Encerra a sessão e o processo depurado</td>
+<td>-</td>
+</tr>
+<tr>
+<td>↻ Restart</td>
+<td>Para e inicia novamente (com os mesmos breakpoints)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>⤵ Step Into</td>
+<td>Entra na próxima função chamada na linha atual</td>
+<td>F11</td>
+</tr>
+<tr>
+<td>⤴ Step Over</td>
+<td>Executa a linha atual sem entrar em chamadas de função</td>
+<td>F10</td>
+</tr>
+<tr>
+<td>⤴⤴ Step Out</td>
+<td>Sai da função atual, voltando ao chamador</td>
+<td>Shift+F11</td>
+</tr>
+<tr>
+<td>⏩ Continue</td>
+<td>Segue a execução até o próximo breakpoint</td>
+<td>F5</td>
+</tr>
+</tbody>
+</table></div>
+<p>Os botões de step/continue só têm efeito quando a execução está de fato parada num breakpoint (<code>⏸ Stopped</code>). Fora disso, o painel avisa que não há sessão parada para avançar.</p>
+<h3 id="breakpoints">Breakpoints<a class="anchor" href="#breakpoints" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>Adicionar/remover:</strong> clique na margem esquerda do editor, ao lado do número da linha.</li>
+<li>A lista de breakpoints no painel reflete sempre o <strong>arquivo/aba ativa</strong> - trocar de aba atualiza a lista automaticamente.</li>
+<li>Se você adicionar ou remover um breakpoint <strong>enquanto uma sessão de debug já está rodando</strong>, a mudança é enviada ao vivo ao <code>debugpy</code> (não é preciso parar e reiniciar a sessão).</li>
+<li>Breakpoints não persistem entre reinicializações do Codis nem entre fechar/reabrir o arquivo.</li>
+</ul>
+<h3 id="console-e-avaliação-de-expressões">Console e avaliação de expressões<a class="anchor" href="#console-e-avaliação-de-expressões" aria-label="Link para esta seção">#</a></h3>
+<p>O campo de entrada do painel funciona como um REPL:</p>
+<ul>
+<li><strong>Sem sessão de debug parada:</strong> avalia num namespace Python local isolado, sem relação com o programa em execução - útil só para cálculos rápidos.</li>
+<li><strong>Com a execução parada num breakpoint:</strong> a expressão é avaliada de fato <strong>no contexto do frame parado</strong>, com acesso real às variáveis locais e globais daquele ponto do programa - o mesmo que um <code>evaluate</code> do DAP faria num IDE completo. Você pode inclusive atribuir valores (<code>x = 10</code>) para alterar o estado em tempo real.</li>
+</ul>
+<h3 id="variáveis-e-call-stack">Variáveis e Call Stack<a class="anchor" href="#variáveis-e-call-stack" aria-label="Link para esta seção">#</a></h3>
+<p>Quando a execução para num breakpoint, o painel busca automaticamente:</p>
+<ul>
+<li>A pilha de chamadas (<code>stackTrace</code>) - o topo da pilha é usado para posicionar o cursor no editor;</li>
+<li>Os escopos <code>Locals</code> e <code>Globals</code> do frame selecionado, com seus respectivos valores.</li>
+</ul>
+<hr />
+<h2 id="detecção-automática">Detecção automática<a class="anchor" href="#detecção-automática" aria-label="Link para esta seção">#</a></h2>
+<p>Por padrão, o Codis <strong>detecta e usa o <code>debugpy</code> automaticamente</strong> sempre que ele estiver disponível no Python/ambiente em uso - não é necessário habilitar nada manualmente. Se <code>debugpy</code> não estiver instalado, o Codis avisa no console e cai para uma execução simples (sem breakpoints reais, só captura de saída).</p>
+<p>Se quiser <strong>desativar</strong> o debug real e forçar sempre a execução simples (por exemplo, para evitar a sobrecarga do debugpy em scripts muito curtos), use a configuração abaixo.</p>
+<h2 id="configurações">Configurações<a class="anchor" href="#configurações" aria-label="Link para esta seção">#</a></h2>
+<p>Acesse em <strong>Configurações → Avançado</strong> (ou <code>Ctrl+,</code> → categoria correspondente):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>debug_dap_enabled</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Usa debugpy/DAP real quando disponível. Desative para forçar execução simples sem breakpoints.</td>
+</tr>
+<tr>
+<td><code>debug_dap_port</code></td>
+<td>int</td>
+<td><code>5678</code></td>
+<td>Porta local usada pelo <code>debugpy</code> para a conexão DAP.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Dica:</strong> se você também usa o VS Code (ou outro editor com depurador Python) <strong>aberto ao mesmo tempo</strong> no mesmo projeto, veja a seção de conflito de porta abaixo - é só mudar <code>debug_dap_port</code> no Codis e o problema desaparece.</p>
+</blockquote>
+<hr />
+<h2 id="limitações-atuais">Limitações atuais<a class="anchor" href="#limitações-atuais" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><strong>Suporte real (DAP completo) apenas para Python.</strong> Outras linguagens executam no painel de forma simples (saída capturada do processo), sem breakpoints/stepping reais.</li>
+<li>Cada sessão de debug depura <strong>um arquivo por vez</strong> - multi-threading/multi-processo do programa depurado funciona, mas múltiplas sessões simultâneas do Codis não são suportadas.</li>
+<li>Breakpoints condicionais, breakpoints de função e exception breakpoints ainda não têm UI dedicada no painel.</li>
+<li>Depuração remota (em outra máquina) é um recurso separado - veja <a href="remote-ssh.html#debug-remoto-dap-via-t%C3%BAnel-ssh">SSH Remoto → Debug Remoto</a>, que usa um mecanismo de túnel independente deste painel local.</li>
+</ul>
+<hr />
+<h2 id="resolução-de-problemas">Resolução de problemas<a class="anchor" href="#resolução-de-problemas" aria-label="Link para esta seção">#</a></h2>
+<h3 id="nenhuma-sessão-de-depuração-ativa-ao-clicar-em-stepcontinue">&quot;Nenhuma sessão de depuração ativa&quot; ao clicar em Step/Continue<a class="anchor" href="#nenhuma-sessão-de-depuração-ativa-ao-clicar-em-stepcontinue" aria-label="Link para esta seção">#</a></h3>
+<p>A sessão anterior já terminou (processo encerrado ou rodou até o fim sem breakpoints). Clique em <strong>▶ Run</strong> para iniciar uma nova sessão.</p>
+<h3 id="o-programa-roda-até-o-fim-e-nada-para">O programa roda até o fim e nada para<a class="anchor" href="#o-programa-roda-até-o-fim-e-nada-para" aria-label="Link para esta seção">#</a></h3>
+<p>Você não marcou nenhum breakpoint antes de clicar em Run. Clique na margem esquerda do editor, na linha desejada, <strong>antes</strong> de iniciar a depuração.</p>
+<h3 id="erro-ao-iniciar--a-porta-já-está-em-uso">Erro ao iniciar / a porta já está em uso<a class="anchor" href="#erro-ao-iniciar--a-porta-já-está-em-uso" aria-label="Link para esta seção">#</a></h3>
+<p>Normalmente significa que outro processo já está escutando na porta configurada (<code>debug_dap_port</code>, padrão <code>5678</code>) - o caso mais comum é <strong>ter o VS Code aberto ao mesmo tempo</strong> depurando Python no mesmo projeto (veja a seção dedicada abaixo). Mude <code>debug_dap_port</code> para outro valor (ex: <code>5690</code>) em <strong>Configurações → Avançado</strong> e tente novamente.</p>
+<h3 id="uso-simultâneo-com-vs-code-ou-outro-ide-causa-conflito">Uso simultâneo com VS Code (ou outro IDE) causa conflito<a class="anchor" href="#uso-simultâneo-com-vs-code-ou-outro-ide-causa-conflito" aria-label="Link para esta seção">#</a></h3>
+<p>O Codis e a extensão Python Debugger do VS Code usam, <strong>por padrão, exatamente a mesma porta</strong> (<code>5678</code>) para o <code>debugpy</code>, porque ambos seguem a mesma convenção da ferramenta. Se os dois estiverem abertos e tentando depurar Python ao mesmo tempo, um deles vai falhar ao abrir a porta, ou o cliente errado pode acabar conectando à sessão do outro.</p>
+<p>Isso não é um bug de incompatibilidade entre os editores - é só os dois competindo pelo mesmo número de porta nos bastidores. A solução é simples:</p>
+<ol>
+<li>Abra <strong>Configurações → Avançado</strong> no Codis (ou <code>Ctrl+,</code>);</li>
+<li>Mude <code>debug_dap_port</code> para um valor diferente do que o VS Code usa (ex: <code>5690</code>, <code>15678</code>, qualquer porta livre);</li>
+<li>Pronto - as duas ferramentas podem depurar ao mesmo tempo, sem conflito.</li>
+</ol>
+<blockquote>
+<p>Isso só é necessário se você realmente for depurar Python <strong>nos dois editores ao mesmo tempo</strong>, no mesmo projeto. Usar só um dos dois por vez nunca tem esse problema.</p>
+</blockquote>
+<h3 id="debugpy-não-encontrado"><code>debugpy não encontrado</code><a class="anchor" href="#debugpy-não-encontrado" aria-label="Link para esta seção">#</a></h3>
+<p>Instale com <code>pip install debugpy</code> no mesmo ambiente/interpretador Python usado pelo Codis para executar seus scripts (verifique se é o mesmo <code>python</code>/<code>venv</code> que aparece na barra de status).</p>
+<h3 id="a-saída-do-programa-print-não-aparece-no-console">A saída do programa (<code>print</code>) não aparece no console<a class="anchor" href="#a-saída-do-programa-print-não-aparece-no-console" aria-label="Link para esta seção">#</a></h3>
+<p>Se isso acontecer, confirme que está usando uma versão atualizada do Codis - versões antigas tinham um bug em que a saída do processo depurado não era redirecionada de volta corretamente. Atualizar resolve.</p>
+<hr />
+<p>Ver também: <a href="recursos-avancados.html">Recursos Avançados</a> · <a href="configuracoes.html">Configurações</a> · <a href="remote-ssh.html">SSH Remoto</a></p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="linting.html"><small>Anterior</small>Linting &amp; LSP</a>
+        <a class="next" href="git.html"><small>Próxima</small>Git</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/debug.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/debug.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#como-usar-passo-a-passo">Como usar (passo a passo)</a></li><li class="l3"><a href="#controles-da-toolbar">Controles da toolbar</a></li><li class="l3"><a href="#breakpoints">Breakpoints</a></li><li class="l3"><a href="#console-e-avaliação-de-expressões">Console e avaliação de expressões</a></li><li class="l3"><a href="#variáveis-e-call-stack">Variáveis e Call Stack</a></li><li class="l2"><a href="#detecção-automática">Detecção automática</a></li><li class="l2"><a href="#configurações">Configurações</a></li><li class="l2"><a href="#limitações-atuais">Limitações atuais</a></li><li class="l2"><a href="#resolução-de-problemas">Resolução de problemas</a></li><li class="l3"><a href="#nenhuma-sessão-de-depuração-ativa-ao-clicar-em-stepcontinue">&quot;Nenhuma sessão de depuração ativa&quot; ao clicar em Step/Continue</a></li><li class="l3"><a href="#o-programa-roda-até-o-fim-e-nada-para">O programa roda até o fim e nada para</a></li><li class="l3"><a href="#erro-ao-iniciar--a-porta-já-está-em-uso">Erro ao iniciar / a porta já está em uso</a></li><li class="l3"><a href="#uso-simultâneo-com-vs-code-ou-outro-ide-causa-conflito">Uso simultâneo com VS Code (ou outro IDE) causa conflito</a></li><li class="l3"><a href="#debugpy-não-encontrado">debugpy não encontrado</a></li><li class="l3"><a href="#a-saída-do-programa-print-não-aparece-no-console">A saída do programa (print) não aparece no console</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

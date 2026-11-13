@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arquitetura · Codis</title>
+<meta name="description" content="Esta página descreve a estrutura interna do Codis: módulos, responsabilidades e fluxo de execução." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/arquitetura.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Arquitetura · Codis" />
+<meta property="og:description" content="Esta página descreve a estrutura interna do Codis: módulos, responsabilidades e fluxo de execução." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/arquitetura.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group" open><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html" class="is-current" aria-current="page">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-arquitetura">🏗️ Arquitetura<a class="anchor" href="#-arquitetura" aria-label="Link para esta seção">#</a></h1>
+<p>Esta página descreve a estrutura interna do Codis: módulos, responsabilidades e fluxo de execução.</p>
+<blockquote>
+<p><strong>Versão:</strong> 1.0.0 · Para contribuir, veja <a href="contributing.html">CONTRIBUTING.md</a>. Para testes, veja <a href="https://github.com/KillovSky/Codis/blob/main/tests/README.md" target="_blank" rel="noopener">tests/README.md</a>.</p>
+</blockquote>
+<hr />
+<h2 id="visão-geral-camadas">Visão Geral (Camadas)<a class="anchor" href="#visão-geral-camadas" aria-label="Link para esta seção">#</a></h2>
+<p>O Codis é um editor de código desktop escrito inteiramente em Python 3.12+ com Tkinter como toolkit gráfico. A arquitetura é deliberadamente monolítica em sua camada de UI (sem servidor de UI separado) mas modular em suas funcionalidades - cada painel, ferramenta e sistema é um módulo independente que se comunica via event bus.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                          run.py                                 │
+│                     (entry point)                               │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+┌───────────────────────────▼─────────────────────────────────────┐
+│                         src/app.py                              │
+│              (App - orquestrador principal)                      │
+│                                                                 │
+│   ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐ │
+│   │ _app_editor  │  │ _app_build   │  │   _app_settings      │ │
+│   │ _app_lsp     │  │ _app_kui     │  │   _app_tools         │ │
+│   └──────────────┘  └──────────────┘  └──────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+                            │
+        ┌───────────────────┼───────────────────┐
+        │                   │                   │
+┌───────▼──────┐   ┌────────▼──────┐   ┌───────▼───────┐
+│  src/editor/ │   │   src/ui/     │   │  src/events/  │
+│  (Editor)    │   │  (Painéis)    │   │  (Event Bus)  │
+└──────────────┘   └───────────────┘   └───────────────┘
+        │                   │
+┌───────▼──────┐   ┌────────▼──────┐
+│  src/lsp/    │   │  src/ia/      │
+│  src/lint/   │   │  src/syntax/  │
+│  src/diff/   │   │  src/theme/   │
+│  src/plugins/│   │  src/i18n.py  │
+└──────────────┘   └───────────────┘
+</code></pre>
+<p><code>run.py</code> é o único ponto de entrada (sem lógica de negócio própria) e <code>src/__main__.py</code> permite execução via <code>python -m src</code>. <code>App</code> (<code>src/app.py</code>) é a classe central: ela não faz nada diretamente, apenas delega para os mixins <code>_App*</code> listados na tabela abaixo, o que mantém <code>app.py</code> legível e permite testar cada domínio de forma isolada.</p>
+<p>A estrutura completa de módulos, arquivo por arquivo, está detalhada logo abaixo.</p>
+<hr />
+<h2 id="estrutura-de-módulos">Estrutura de Módulos<a class="anchor" href="#estrutura-de-módulos" aria-label="Link para esta seção">#</a></h2>
+<pre><code>src/
+├── __init__.py
+├── __main__.py          ← Ponto de entrada: python -m src
+├── main.py              ← Inicialização completa (main())
+├── app.py               ← CodisApp: orquestrador principal
+├── config.py            ← ConfigManager: configuração persistente
+├── constants.py         ← Constantes globais (paths, fontes, linguagens)
+├── i18n.py              ← Sistema de internacionalização (I18n)
+├── standalone.py        ← Roteamento dos 29 modos --flag standalone + 4 aliases (sem o editor completo)
+│
+├── _app_build.py        ← _AppBuildMixin: construção dos painéis principais da UI
+├── _app_editor.py       ← _AppEditorMixin: abrir/salvar/fechar arquivos, tabs, recentes
+├── _app_lsp.py          ← _AppLspMixin: ciclo de vida dos language servers e diagnósticos
+├── _app_settings.py     ← _AppSettingsMixin: janela de config, fonte, tema, idioma em runtime
+├── _app_tools.py        ← _AppToolsMixin: terminal, colaboração, SQL Studio, Pip Manager…
+├── _app_kui.py          ← _AppKuiMixin: ativação e bridge da interface K-UI
+│
+├── editor/              ← Componentes do editor de código
+│   ├── pane.py          ← EditorPane: widget principal de edição
+│   ├── _pane_lsp.py     ← _PaneLSPMixin: integração LSP do EditorPane (hover, autocomplete, go-to-def…)
+│   ├── _pane_utils.py   ← Utilitários compartilhados entre pane.py e _pane_lsp.py
+│   ├── constants.py     ← Constantes do módulo de edição (paths, limites, timeouts)
+│   ├── autocomplete.py  ← AutocompletePopup: sugestões de código
+│   ├── code_folding.py  ← Dobramento de regiões
+│   ├── color_preview.py ← Amostras de cor em linha
+│   ├── complexity_lens.py ← ComplexityLens: badge de complexidade ciclomática em tempo real
+│   ├── diff_pane.py     ← DiffPane: diff lado a lado
+│   ├── file_watcher.py  ← FileWatcher: detecta modificações externas via polling (sem inotify/FSEvents)
+│   ├── focus_block.py   ← FocusBlock: dimming de tudo fora do bloco estrutural atual
+│   ├── heatmap.py       ← EditHeatmap: mapa de calor de edições por linha
+│   ├── inlay_hints.py   ← Hints de tipo injetados (LSP)
+│   ├── inline_blame.py  ← Git blame inline
+│   ├── kdocs.py         ← KDocs: motor de documentação
+│   ├── large_file.py    ← Virtual file buffer em 3 camadas para arquivos gigantes
+│   ├── ligatures.py     ← Ligatures: ligaturas pseudo via destaque visual (-&gt;, !=, &gt;= etc.)
+│   ├── line_numbers.py  ← Painel de numeração de linhas
+│   ├── minimap.py       ← Minimapa do código
+│   ├── multi_cursor.py  ← Edição com múltiplos cursores simultâneos
+│   ├── rhythm.py        ← CodeRhythm: análise de ritmo de digitação em tempo real
+│   ├── smart_selection.py ← Seleção inteligente
+│   ├── smart_tips.py    ← SmartTips: dicas flutuantes contextuais não-intrusivas
+│   ├── snippets.py      ← SnippetEngine: expansão de snippets
+│   ├── sticky_note_gutter.py ← StickyNoteGutter: notas adesivas (💬) por linha no gutter
+│   ├── sticky_scroll.py ← Cabeçalhos colados no topo
+│   ├── text_transforms.py ← Transformações de texto puras sobre seleção/palavra sob cursor
+│   └── vim_mode.py      ← VimMode: janela CLI imersiva
+│
+├── diff/
+│   └── engine.py        ← DiffEngine: algoritmo de Myers
+│
+├── ia/                  ← Assistente de IA
+│   ├── iaspace.py       ← PainelIA: UI de chat
+│   ├── providers.py     ← Provedores (Anthropic, OpenAI, Gemini, Ollama, etc.)
+│   ├── context_builder.py ← Construção do bloco de contexto
+│   ├── dialdiff.py      ← DialDiff: diálogo de diff para aplicar código da IA
+│   ├── actions.py       ← Registry de actions e skills
+│   ├── approval_gate.py ← ApprovalGate: classificação de risco e portal de aprovação
+│   ├── toolbox.py       ← ToolExecutor: ferramentas MCP-style (40 ferramentas)
+│   └── skills_default/  ← Skills padrão em Markdown
+│
+├── lint/
+│   └── manager.py       ← LintManager + Diag: execução assíncrona de linters
+│
+├── locales/             ← Arquivos de tradução JSON (14 idiomas)
+│
+├── lsp/                 ← Language Server Protocol e Debug Adapter Protocol
+│   ├── client.py        ← LSPManager: gerencia processos de servidor LSP
+│   ├── protocol.py      ← Tipos e estruturas LSP (LSPMessage, Range, etc.)
+│   └── dap_client.py    ← DAPClient: cliente DAP real sobre TCP, usado pelo Painel de Debug para falar com debugpy (initialize/attach/setBreakpoints/stepping/variables)
+│
+├── plugins/             ← Sistema de plugins
+│   ├── api.py           ← PluginAPI + PluginManifest
+│   ├── loader.py        ← PluginLoader: carregamento com sandbox AST
+│   ├── process_runner.py ← Execução de plugins isolados em processo separado (multiprocessing)
+│   └── store.py         ← Plugin Store: busca/instalação a partir do repositório GitHub
+│
+├── syntax/              ← Syntax highlighting
+│   ├── highlighter.py   ← Motor de highlight via tags Tkinter
+│   └── patterns.py      ← Padrões regex por linguagem (compilados)
+│
+├── theme/               ← Sistema de temas
+│   ├── base.py          ← Theme dataclass + definições dos 21 temas built-in
+│   ├── manager.py       ← ThemeManager: troca, patches e TTK theming
+│   └── utils.py         ← Funções utilitárias de cor (contraste, interpolação, hex)
+│
+└── ui/                  ← Todos os painéis e widgets de UI
+    ├── accessibility.py ← AccessibilityManager + AccessibilityPanel: alto contraste, navegação por teclado
+    ├── activity_bar.py  ← ActivityBar: barra de atividades vertical
+    ├── archive_panel.py ← ArchivePanel: visualizador de ZIP/RAR/7z
+    ├── bookmarks.py     ← BookmarkManager + BookmarksPanel
+    ├── breadcrumb.py    ← BreadCrumb: caminho do arquivo
+    ├── calculator_panel.py ← CalculatorPanel: calculadora científica integrada
+    ├── calendar_panel.py ← CalendarPanel: calendário e lembretes
+    ├── chat_panel.py    ← ChatPanel: cliente multi-protocolo (IRC/XMPP/Matrix/Slack/Discord/Telegram)
+    ├── clock_panel.py   ← ClockPanel: relógio, alarmes e cronômetro
+    ├── code_outline.py  ← CodeOutline: estrutura do arquivo
+    ├── code_runner.py   ← CodeRunnerDialog + CodeRunnerStore: execução configurável por linguagem
+    ├── code_stats.py    ← CodeStatsPanel: estatísticas do workspace
+    ├── collab_panel.py  ← CollabPanel: edição colaborativa em tempo real via WebSocket
+    ├── color_picker.py  ← ColorPickerPopup: obtenha uma cor com o mouse
+    ├── command_palette.py ← CommandPalette: paleta de comandos fuzzy
+    ├── custom_keywords_panel.py ← CustomKeywordsPanel: palavras-chave de sintaxe customizadas por linguagem
+    ├── cursor_manager.py ← CursorManager + CursorPickerPanel: cursores customizáveis do editor
+    ├── debug_panel.py   ← DebugPanel: depuração real de Python (breakpoints, stepping, variáveis) via cliente DAP próprio (src/lsp/dap_client.py) conectado ao debugpy
+    ├── dependency_graph.py ← DependencyGraphPanel: grafo de dependências entre módulos do projeto
+    ├── diff_panel.py    ← DiffPanel: visualizador de diff standalone
+    ├── docs_panel.py    ← DocsPanel: browser de KDocs na sidebar
+    ├── dropdown.py      ← DropDown: widget dropdown customizado
+    ├── easter_eggs.py   ← EasterEggManager: ???
+    ├── env_manager.py   ← EnvManagerPanel: gerenciador visual de variáveis de ambiente
+    ├── file_timeline.py ← FileTimeline: histórico de versões
+    ├── file_tree.py     ← FileTree: árvore de arquivos
+    ├── find_in_files.py ← FindInFilesPanel: busca em workspace
+    ├── flowchart_panel.py ← FlowchartPanel: python apenas
+    ├── formatter_panel.py ← FormatterPanel: formatador/validador de JSON, YAML e afins
+    ├── git_auth.py      ← GitAuthManager: autenticação Git
+    ├── git_clone_dialog.py ← Diálogo de clone de repositório
+    ├── git_panel.py     ← GitPanel: controle de versão completo
+    ├── grab_safe.py     ← safe_grab_set(): utilitário para grab_set() seguro em Toplevels
+    ├── key_remapper.py  ← KeyRemapperManager + KeyRemapperDialog: remapeamento de atalhos
+    ├── macro_recorder.py ← MacroRecorder + MacroStore: gravação e repetição de macros de teclado
+    ├── menu_bar.py      ← MenuBar: barra de menus customizada holográfica
+    ├── output_panel.py  ← OutputPanel: log com canais
+    ├── paint_panel.py   ← PaintPanel: editor de imagens integrado (estilo Paint)
+    ├── panel_detach.py  ← PanelDetachManager: destacamento de painéis em janelas flutuantes
+    ├── performance_panel.py ← PerformancePanel: 13 features de performance + presets
+    ├── pip_manager.py   ← PipManagerPanel: gerenciador visual de pacotes pip e venvs
+    ├── plugin_panel.py  ← PluginPanel: gerenciador de plugins
+    ├── pomodoro_panel.py ← PomodoroPanel: timer Pomodoro
+    ├── problems.py      ← ProblemsPanel: diagnósticos de lint/LSP
+    ├── process_manager.py ← ProcessManagerPanel: gerenciador de processos do sistema
+    ├── project_templates.py ← ProjectTemplateDialog: criação de projetos a partir de templates
+    ├── regex_playground.py ← RegexPlayground: testes de regexp
+    ├── remote_browser.py ← RemoteBrowserPanel: explorador de arquivos remotos (SSH/SFTP)
+    ├── render_panel.py  ← RenderPanel: preview HTML/Markdown/SVG
+    ├── rest_client.py   ← RestClientPanel: cliente HTTP
+    ├── scratchpad.py    ← ScratchpadPane: rascunho de edição
+    ├── search_bar.py    ← SearchBar: busca/substituição inline
+    ├── settings_editor.py ← SettingsEditor: editor JSON de config
+    ├── settings_window.py ← SettingsWindow: janela de config gráfica
+    ├── snippets_panel.py ← SnippetsPanel: autocomplete manual
+    ├── sql_studio.py    ← SQLStudioPanel: banco de dados integrado (SQLite/PostgreSQL/MySQL/DuckDB)
+    ├── status_bar.py    ← StatusBar: barra de status inferior
+    ├── tab_bar.py       ← TabBar: barra de abas
+    ├── task_manager.py  ← TaskManagerPanel: Kanban + Agendador de comandos
+    ├── terminal.py      ← TerminalPanel: terminal integrado
+    ├── theme_preview_panel.py ← ThemePreviewPanel: pré-visualização de temas
+    ├── time_tracker.py  ← TimeTrackerPanel: Code Time Tracker, tempo gasto por arquivo/projeto
+    ├── todo_panel.py    ← TodoPanel: scanner de TODOs/HACK/FIXME etc
+    ├── trash_manager.py ← TrashManager + TrashPanel: lixeira interna do Codis
+    ├── ux_enhancements.py ← ModernTooltip e demais micro-interações de UX
+    ├── welcome.py       ← WelcomeScreen: tela inicial
+    ├── wizard.py        ← FirstRunWizard: wizard de primeiro uso
+    ├── workspace_switcher.py ← WorkspaceSwitcherDialog: troca rápida entre workspaces
+    ├── workspace_trust.py ← WorkspaceTrust: apenas plugins confiaveis rodam
+    ├── zen_media.py     ← ZenMediaPlayer + HUD + Orb + Dialog
+    ├── zen_player.py    ← ZenPlayerHost/View (janela flutuante ou dock)
+    ├── zen_player_widgets.py ← botões vetoriais, EQ gráfico, fila
+    ├── zen_audio.py     ← EQ/presets, capas, metadados (sem Tk)
+    └── k_ui/            ← K-UI: engine holográfica
+        ├── __init__.py  ← KUI: controlador + re-exports
+        ├── _bgrenderer.py ← BgRenderer: nebulosa/aurora em thread PIL
+        ├── _colors.py   ← Paletas e utilitários de cor
+        ├── _easter.py   ← KUEasterEggs: ???
+        ├── _engine.py   ← KEngine + KWelcome
+        ├── _perf.py     ← Perfis de performance
+        ├── _tooltip.py  ← KHoverTooltip
+        └── _widgets.py  ← KGlassPane, KTopBar, KTabBar, KStatusBar, KPortal, etc.
+</code></pre>
+<hr />
+<h2 id="codisapp-e-os-mixins">CodisApp e os Mixins<a class="anchor" href="#codisapp-e-os-mixins" aria-label="Link para esta seção">#</a></h2>
+<p><code>app.py</code> define a classe <code>CodisApp</code>, o orquestrador principal da aplicação, mas a maior parte de sua lógica vive em seis mixins importados de módulos irmãos na raiz de <code>src/</code>. Essa divisão existe para manter cada arquivo focado em uma responsabilidade única, em vez de um único arquivo monolítico com milhares de linhas:</p>
+<pre><code class="language-python">class CodisApp(
+    _AppBuildMixin,     # src/_app_build.py    - construção da UI
+    _AppEditorMixin,    # src/_app_editor.py   - abrir/salvar/fechar arquivos
+    _AppLspMixin,       # src/_app_lsp.py      - language servers
+    _AppSettingsMixin,  # src/_app_settings.py - configurações em runtime
+    _AppToolsMixin,     # src/_app_tools.py    - painéis opcionais (terminal, SQL, etc.)
+    _AppKuiMixin,       # src/_app_kui.py      - bridge com a engine K-UI
+):
+    ...
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mixin</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_AppBuildMixin</code></td>
+<td>Instancia e conecta todos os painéis visuais (editor, terminal, Git, IA…) que compõem a janela principal</td>
+</tr>
+<tr>
+<td><code>_AppEditorMixin</code></td>
+<td>Abertura, salvamento, fechamento e ciclo de vida dos arquivos, tabs e histórico recente</td>
+</tr>
+<tr>
+<td><code>_AppLspMixin</code></td>
+<td>Ciclo de vida dos language servers, roteamento de diagnósticos, painel LSP</td>
+</tr>
+<tr>
+<td><code>_AppSettingsMixin</code></td>
+<td>Janela de configurações, aplicação de preferências de fonte/tema/indentação/idioma sem reiniciar</td>
+</tr>
+<tr>
+<td><code>_AppToolsMixin</code></td>
+<td>Abertura e gerenciamento dos painéis auxiliares: terminal, colaboração, Pip Manager, Code Runner, SQL Studio, entre outros</td>
+</tr>
+<tr>
+<td><code>_AppKuiMixin</code></td>
+<td>Ativação, configuração e comunicação entre a UI Tkinter tradicional e a engine K-UI</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cada mixin é um arquivo independente e pode ser lido isoladamente; juntos, formam a API pública completa de <code>CodisApp</code>. Essa estrutura também facilita testes e revisão de código, já que uma mudança em &quot;como o terminal abre&quot; só toca <code>_app_tools.py</code>.</p>
+<hr />
+<h2 id="fluxo-de-inicialização">Fluxo de Inicialização<a class="anchor" href="#fluxo-de-inicialização" aria-label="Link para esta seção">#</a></h2>
+<pre><code>run.py / python -m src
+    └── main.py → main()
+        1. Criar diretórios de runtime (~/.codis/*)
+        2. Compilar padrões de sintaxe (_compile_all_patterns)
+        3. Definir e patchar temas (_define_themes, _patch_all_themes)
+        4. Criar janela raiz Tk (oculta)
+        5. Monkey-patch global de ttk.Combobox (fix de dropdown)
+        6. Instalar handler global de exceções não tratadas
+        7. HiDPI Windows (SetProcessDpiAwareness, tk scaling)
+        8. Instanciar ConfigManager + ThemeManager
+        9. Wizard de primeiro uso OU _init_app() direto
+       10. root.mainloop()
+
+_init_app()
+    └── CodisApp(root)
+        1. Instanciar sistemas: ConfigManager, ThemeManager, SnippetEngine, LintManager
+        2. Instanciar LSPManager (opcional, se lsp_enabled)
+        3. Instanciar PluginAPI + PluginLoader
+        4. Inicializar estado interno (editors, workspace, sidebar, etc.)
+        5. _setup_window() - título, geometria, protocolo WM_DELETE
+        6. _build_layout() - Activity Bar, Sidebar, área do editor, painel inferior
+        7. _build_menus() - barra de menus completa
+        8. _bind_shortcuts() - todos os atalhos de teclado
+        9. Conectar callbacks: theme change, locale change, config change
+       10. lint_mgr.attach(root), _load_plugins()
+       11. _restore_session_or_welcome()
+       12. _setup_autosave()
+       13. _init_exclusive_features() - Zen Media, K-UI theme, Easter Eggs, Vim/KUI restore
+</code></pre>
+<hr />
+<h2 id="hierarquia-de-widgets-layout">Hierarquia de Widgets (Layout)<a class="anchor" href="#hierarquia-de-widgets-layout" aria-label="Link para esta seção">#</a></h2>
+<pre><code>root (tk.Tk)
+├── Menu (barra de menus)
+├── StatusBar (pack side=bottom)
+└── PanedWindow H (h_paned)
+    ├── ActivityBar (width=48, stretch=never)
+    ├── Frame sidebar (width=cfg.sidebar_width, stretch=never)
+    │   └── sidebar_stack (Frame)
+    │       ├── FileTree (explorer)
+    │       ├── FindInFilesPanel (search)
+    │       ├── GitPanel (git)
+    │       ├── PluginPanel (extensions)
+    │       ├── SettingsEditor (settings)
+    │       ├── CodeOutline (outline)
+    │       ├── BookmarksPanel (bookmarks)
+    │       ├── ScratchpadPane (scratchpad)
+    │       ├── SnippetsPanel (snippets)
+    │       ├── DocsPanel (docs)
+    │       ├── CodeStatsPanel (codestats)
+    │       ├── TodoPanel (todo)
+    │       ├── RestClientPanel (restclient)
+    │       ├── RenderPanel (preview)
+    │       ├── PomodoroPanel (pomodoro)
+    │       ├── FlowchartPanel (flowchart)
+    │       ├── ProblemsPanel (problems - sidebar instance)
+    │       ├── PainelIA (ia)
+    │       └── placeholder (Frame vazio)
+    └── Frame content_frame (stretch=always)
+        └── PanedWindow V (v_paned)
+            ├── Frame editor_area
+            │   ├── TabBar
+            │   ├── BreadCrumb
+            │   ├── SearchBar (empacotada/desempacotada sob demanda)
+            │   └── Frame editor_container
+            │       ├── WelcomeScreen (ou)
+            │       └── EditorPane[0..N] (empilhados, apenas um visível)
+            └── Frame bottom_frame
+                ├── panel_tabbar (problems | terminal | output | git | diff | debug | regex | sql)
+                └── panel_content
+                    ├── ProblemsPanel
+                    ├── TerminalPanel
+                    ├── OutputPanel
+                    ├── GitPanel (bottom)
+                    ├── DiffPane
+                    ├── DebugPanel
+                    ├── RegexPlayground
+                    └── SQLStudioPanel (bottom, opcional)
+</code></pre>
+<hr />
+<h2 id="padrões-de-design">Padrões de Design<a class="anchor" href="#padrões-de-design" aria-label="Link para esta seção">#</a></h2>
+<h3 id="observer-callbacks">Observer (Callbacks)<a class="anchor" href="#observer-callbacks" aria-label="Link para esta seção">#</a></h3>
+<p>O Codis usa extensivamente callbacks para comunicação entre componentes:</p>
+<ul>
+<li><code>ConfigManager.on_change(key, cb)</code> - notifica quando uma chave muda</li>
+<li><code>ThemeManager.on_change(cb)</code> - notifica mudança de tema</li>
+<li><code>I18n.on_change(cb)</code> - notifica mudança de idioma</li>
+<li><code>EditorPane.on_change</code>, <code>on_cursor</code>, <code>on_title</code> - eventos do editor</li>
+</ul>
+<h3 id="event-bus-hooks-de-plugin">Event Bus (Hooks de Plugin)<a class="anchor" href="#event-bus-hooks-de-plugin" aria-label="Link para esta seção">#</a></h3>
+<p>Plugins se comunicam com o editor via <code>api.on(event, handler)</code>. O CodisApp dispara eventos via <code>_fire_hook(event, data)</code>. Erros em handlers de plugin são capturados e registrados no Output Panel sem derrubar o editor.</p>
+<h3 id="lazy-loading-condicional">Lazy Loading Condicional<a class="anchor" href="#lazy-loading-condicional" aria-label="Link para esta seção">#</a></h3>
+<p>Módulos opcionais (IA, LSP) são importados com <code>try/except ImportError</code>. Se a importação falhar, o Codis continua funcionando normalmente sem os recursos opcionais.</p>
+<h3 id="escrita-atômica">Escrita Atômica<a class="anchor" href="#escrita-atômica" aria-label="Link para esta seção">#</a></h3>
+<p>Tanto <code>ConfigManager</code> quanto <code>_save_session()</code> usam o padrão de escrita atômica: escrever em <code>.tmp</code> e depois <code>rename()</code> para o arquivo final, evitando corrupção em caso de crash.</p>
+<hr />
+<h2 id="constantes-globais">Constantes Globais<a class="anchor" href="#constantes-globais" aria-label="Link para esta seção">#</a></h2>
+<p>Definidas em <code>src/constants.py</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Constante</th>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>APP_NAME</code></td>
+<td><code>&quot;Codis&quot;</code></td>
+<td>Nome da aplicação</td>
+</tr>
+<tr>
+<td><code>APP_VERSION</code></td>
+<td><code>&quot;1.0.0&quot;</code></td>
+<td>Versão</td>
+</tr>
+<tr>
+<td><code>APP_CODENAME</code></td>
+<td><code>&quot;Aether&quot;</code></td>
+<td>Codinome</td>
+</tr>
+<tr>
+<td><code>CONFIG_DIR</code></td>
+<td><code>~/.codis</code></td>
+<td>Diretório de dados</td>
+</tr>
+<tr>
+<td><code>CONFIG_FILE</code></td>
+<td><code>~/.codis/config.json</code></td>
+<td>Arquivo de configuração</td>
+</tr>
+<tr>
+<td><code>PLUGINS_DIR</code></td>
+<td><code>~/.codis/plugins</code></td>
+<td>Diretório de plugins</td>
+</tr>
+<tr>
+<td><code>SNIPPETS_DIR</code></td>
+<td><code>~/.codis/snippets</code></td>
+<td>Diretório de snippets</td>
+</tr>
+<tr>
+<td><code>THEMES_DIR</code></td>
+<td><code>~/.codis/themes</code></td>
+<td>Diretório de temas</td>
+</tr>
+<tr>
+<td><code>SESSIONS_FILE</code></td>
+<td><code>~/.codis/session.json</code></td>
+<td>Arquivo de sessão</td>
+</tr>
+<tr>
+<td><code>WINDOW_SIZE</code></td>
+<td><code>(1200, 800)</code></td>
+<td>Tamanho inicial da janela</td>
+</tr>
+<tr>
+<td><code>WINDOW_MIN</code></td>
+<td><code>(640, 400)</code></td>
+<td>Tamanho mínimo</td>
+</tr>
+<tr>
+<td><code>LINT_DELAY</code></td>
+<td><code>750</code></td>
+<td>Debounce do lint (ms)</td>
+</tr>
+<tr>
+<td><code>LARGE_FILE_BYTES</code></td>
+<td><code>3 * 1024 * 1024</code></td>
+<td>Limite para modo large file</td>
+</tr>
+<tr>
+<td><code>EXT_LANG</code></td>
+<td>dict</td>
+<td>Mapeamento extensão → linguagem</td>
+</tr>
+<tr>
+<td><code>LANG_LABEL</code></td>
+<td>dict</td>
+<td>Mapeamento linguagem → nome de exibição</td>
+</tr>
+<tr>
+<td><code>LANG_COMMENT</code></td>
+<td>dict</td>
+<td>Caractere de comentário por linguagem</td>
+</tr>
+<tr>
+<td><code>LANG_KEYWORDS</code></td>
+<td>dict</td>
+<td>Palavras-chave por linguagem</td>
+</tr>
+<tr>
+<td><code>SHELL_OPTIONS</code></td>
+<td>dict</td>
+<td>Shells detectados no sistema</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="decisões-de-design">Decisões de Design<a class="anchor" href="#decisões-de-design" aria-label="Link para esta seção">#</a></h2>
+<h3 id="por-que-tkinter">Por que Tkinter?<a class="anchor" href="#por-que-tkinter" aria-label="Link para esta seção">#</a></h3>
+<p>Tkinter está presente em toda instalação padrão do Python, em todas as plataformas. Zero dependências obrigatórias significa que qualquer usuário com Python 3.12+ pode executar o Codis com <code>python run.py</code> sem nenhum <code>pip install</code>. Isso torna a distribuição e adoção muito mais simples.</p>
+<h3 id="por-que-não-threads-para-a-ui">Por que não threads para a UI?<a class="anchor" href="#por-que-não-threads-para-a-ui" aria-label="Link para esta seção">#</a></h3>
+<p>Tkinter não é thread-safe. Todo código que toca widgets deve rodar na thread principal. Operações pesadas (LSP, lint, git, IA) são executadas em threads separadas, mas seus resultados são agendados de volta na thread principal via <code>root.after(0, callback)</code>.</p>
+<h3 id="por-que-mixins-em-vez-de-herança-profunda">Por que mixins em vez de herança profunda?<a class="anchor" href="#por-que-mixins-em-vez-de-herança-profunda" aria-label="Link para esta seção">#</a></h3>
+<p><code>App</code> precisa de funcionalidades de múltiplos domínios (editor, LSP, build, settings...). Herança profunda tornaria o código impossível de navegar. Mixins permitem dividir a implementação em arquivos temáticos mantendo uma única classe coesa na superfície.</p>
+<h3 id="por-que-o-eventbus-é-síncrono">Por que o EventBus é síncrono?<a class="anchor" href="#por-que-o-eventbus-é-síncrono" aria-label="Link para esta seção">#</a></h3>
+<p>O Codis não tem operações que precisem de pub/sub assíncrono na camada de UI. Um bus síncrono é mais simples de debugar (stack trace completo), não tem risco de memory leaks por handlers não coletados, e a performance é mais que suficiente para a frequência de eventos de uma aplicação desktop.</p>
+<h3 id="empacotamento-com-pyinstaller">Empacotamento com PyInstaller<a class="anchor" href="#empacotamento-com-pyinstaller" aria-label="Link para esta seção">#</a></h3>
+<p>Para a estratégia atual de empacotamento (<code>--onefile</code> vs <code>--onedir</code>, compressão UPX por plataforma) e o motivo da mudança para <code>--onefile</code> (correção de segfault no Linux), veja <a href="builds.html">wiki/builds.md</a>.</p>
+<hr />
+<h2 id="referências-externas">Referências Externas<a class="anchor" href="#referências-externas" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener">Documentação do protocolo LSP</a></li>
+<li><a href="https://microsoft.github.io/debug-adapter-protocol/" target="_blank" rel="noopener">Documentação do protocolo DAP</a></li>
+<li><a href="https://docs.python.org/3.12/library/tkinter.html" target="_blank" rel="noopener">Tkinter docs (Python 3.12)</a></li>
+<li><a href="https://pyinstaller.org/en/stable/" target="_blank" rel="noopener">PyInstaller docs</a></li>
+</ul>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="plugins.html"><small>Anterior</small>Plugins</a>
+        <a class="next" href="builds.html"><small>Próxima</small>Builds e Empacotamento</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/arquitetura.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/arquitetura.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#visão-geral-camadas">Visão Geral (Camadas)</a></li><li class="l2"><a href="#estrutura-de-módulos">Estrutura de Módulos</a></li><li class="l2"><a href="#codisapp-e-os-mixins">CodisApp e os Mixins</a></li><li class="l2"><a href="#fluxo-de-inicialização">Fluxo de Inicialização</a></li><li class="l2"><a href="#hierarquia-de-widgets-layout">Hierarquia de Widgets (Layout)</a></li><li class="l2"><a href="#padrões-de-design">Padrões de Design</a></li><li class="l3"><a href="#observer-callbacks">Observer (Callbacks)</a></li><li class="l3"><a href="#event-bus-hooks-de-plugin">Event Bus (Hooks de Plugin)</a></li><li class="l3"><a href="#lazy-loading-condicional">Lazy Loading Condicional</a></li><li class="l3"><a href="#escrita-atômica">Escrita Atômica</a></li><li class="l2"><a href="#constantes-globais">Constantes Globais</a></li><li class="l2"><a href="#decisões-de-design">Decisões de Design</a></li><li class="l3"><a href="#por-que-tkinter">Por que Tkinter?</a></li><li class="l3"><a href="#por-que-não-threads-para-a-ui">Por que não threads para a UI?</a></li><li class="l3"><a href="#por-que-mixins-em-vez-de-herança-profunda">Por que mixins em vez de herança profunda?</a></li><li class="l3"><a href="#por-que-o-eventbus-é-síncrono">Por que o EventBus é síncrono?</a></li><li class="l3"><a href="#empacotamento-com-pyinstaller">Empacotamento com PyInstaller</a></li><li class="l2"><a href="#referências-externas">Referências Externas</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

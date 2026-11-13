@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plugins · Codis</title>
+<meta name="description" content="O Codis possui um sistema de plugins completo com sandbox estática, API rica e instalação segura." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/plugins.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Plugins · Codis" />
+<meta property="og:description" content="O Codis possui um sistema de plugins completo com sandbox estática, API rica e instalação segura." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/plugins.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group" open><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html" class="is-current" aria-current="page">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-plugins">🧩 Plugins<a class="anchor" href="#-plugins" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis possui um sistema de plugins completo com sandbox estática, API rica e instalação segura.</p>
+<hr />
+<h2 id="estrutura-de-um-plugin">Estrutura de um Plugin<a class="anchor" href="#estrutura-de-um-plugin" aria-label="Link para esta seção">#</a></h2>
+<p>Um plugin é um módulo Python (<code>.py</code>) ou um arquivo ZIP contendo <code>plugin.py</code>. A estrutura mínima:</p>
+<pre><code class="language-python"># meu_plugin.py
+from src.plugins.api import PluginAPI, PluginManifest
+
+MANIFEST = PluginManifest(
+    name=&quot;meu-plugin&quot;,
+    version=&quot;1.0.0&quot;,
+    author=&quot;Seu Nome&quot;,
+    description=&quot;O que o plugin faz.&quot;,
+    icon=&quot;🔧&quot;,
+    api_version=&quot;1.0&quot;,
+)
+
+def activate(api: PluginAPI) -&gt; None:
+    &quot;&quot;&quot;Chamado quando o plugin é ativado.&quot;&quot;&quot;
+    api.show_message(&quot;Plugin ativado!&quot;)
+
+def deactivate() -&gt; None:
+    &quot;&quot;&quot;Chamado quando o plugin é desativado. Opcional.&quot;&quot;&quot;
+    pass
+</code></pre>
+<hr />
+<h2 id="instalação-de-plugins">Instalação de Plugins<a class="anchor" href="#instalação-de-plugins" aria-label="Link para esta seção">#</a></h2>
+<h3 id="método-1-copiar-para-a-pasta-de-plugins">Método 1: Copiar para a pasta de plugins<a class="anchor" href="#método-1-copiar-para-a-pasta-de-plugins" aria-label="Link para esta seção">#</a></h3>
+<p>Copie o arquivo <code>.py</code> (ou <code>.zip</code>) para <code>~/.codis/plugins/</code>. O Codis carrega os plugins nessa pasta automaticamente na inicialização.</p>
+<h3 id="método-2-via-interface">Método 2: Via Interface<a class="anchor" href="#método-2-via-interface" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Menu <strong>Plugins → Instalar Plugin</strong></li>
+<li>Selecione o arquivo <code>.py</code> ou <code>.zip</code> no diálogo.</li>
+<li>O Codis executa a <strong>análise estática de segurança</strong> antes de instalar.</li>
+</ol>
+<h3 id="método-3-via-painel-de-plugins">Método 3: Via Painel de Plugins<a class="anchor" href="#método-3-via-painel-de-plugins" aria-label="Link para esta seção">#</a></h3>
+<p>Na sidebar → ícone 🔌 (Extensões), clique em <strong>Instalar</strong> e selecione o arquivo.</p>
+<hr />
+<h2 id="sandbox-de-segurança">Sandbox de Segurança<a class="anchor" href="#sandbox-de-segurança" aria-label="Link para esta seção">#</a></h2>
+<p>Antes de carregar qualquer plugin, o <code>PluginLoader</code> realiza uma <strong>análise estática via AST</strong> que verifica:</p>
+<ul>
+<li>Imports de módulos perigosos (<code>os</code>, <code>subprocess</code>, <code>sys</code>, <code>socket</code>, etc.) - classificados como <code>blocked</code> ou <code>warned</code></li>
+<li>Uso de <code>eval</code>, <code>exec</code>, <code>__import__</code></li>
+<li>Acesso a atributos internos do Python</li>
+</ul>
+<p>O resultado da análise é classificado em:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Classificação</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clean</code></td>
+<td>Plugin carregado automaticamente</td>
+</tr>
+<tr>
+<td><code>warned</code></td>
+<td>Diálogo de confirmação exibido ao usuário</td>
+</tr>
+<tr>
+<td><code>blocked</code></td>
+<td>Plugin bloqueado por padrão; usuário deve confirmar explicitamente</td>
+</tr>
+</tbody>
+</table></div>
+<p>Uma vez que o usuário aceita um plugin, ele é adicionado a <code>~/.codis/trusted_plugins.json</code> e carregado automaticamente nas próximas inicializações.</p>
+<blockquote>
+<p>O diálogo de confirmação só aparece ao <strong>instalar pela interface</strong> (<code>Plugins → Instalar Plugin</code> ou arrastar o arquivo). Um arquivo colocado diretamente em <code>~/.codis/plugins/</code> sem nunca ter passado pela instalação é verificado na inicialização automática do Codis - se contiver imports <code>blocked</code>, é recusado silenciosamente (sem diálogo), até que seja instalado uma vez pela interface e marcado como confiável.</p>
+</blockquote>
+<hr />
+<h2 id="api-do-plugin">API do Plugin<a class="anchor" href="#api-do-plugin" aria-label="Link para esta seção">#</a></h2>
+<p>O objeto <code>PluginAPI</code> é passado para a função <code>activate()</code> e fornece acesso controlado ao Codis.</p>
+<h3 id="informações-e-notificações">Informações e Notificações<a class="anchor" href="#informações-e-notificações" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">api.show_message(&quot;Mensagem&quot;)                          # Notificação na status bar (3s)
+api.show_message(&quot;Mensagem&quot;, level=&quot;warning&quot;)          # Níveis: &quot;info&quot;, &quot;warning&quot;, &quot;error&quot;
+api.show_message(&quot;Permanente&quot;, duration=0)              # 0 = não desaparece sozinha
+api.show_info(&quot;Título&quot;, &quot;Texto&quot;)                        # Diálogo modal informativo
+api.show_warning(&quot;Título&quot;, &quot;Texto&quot;)                      # Diálogo modal de aviso
+api.show_error(&quot;Título&quot;, &quot;Texto&quot;)                        # Diálogo modal de erro
+</code></pre>
+<blockquote>
+<p>A versão do Codis está disponível como <code>APP_VERSION</code> em <code>src.constants</code> (não há um método <code>api.get_version()</code>).</p>
+</blockquote>
+<h3 id="editor">Editor<a class="anchor" href="#editor" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">editor = api.get_active_editor()           # EditorPane ativo (ou None)
+content = api.get_text()                   # Texto completo do editor ativo
+selection = api.get_selection()            # Texto selecionado
+api.insert_at_cursor(&quot;texto&quot;)              # Insere no cursor
+api.replace_selection(&quot;novo&quot;)              # Substitui a seleção
+api.set_text(&quot;novo conteúdo&quot;)              # Substitui todo o conteúdo
+api.get_cursor_position()                  # (linha, coluna)
+api.set_cursor_position(42, 0)             # Move o cursor para linha 42, coluna 0
+api.scroll_to_line(42)                     # Rola a view até a linha 42
+api.get_active_file()                      # Path do arquivo ativo (ou None)
+api.get_active_lang()                      # Linguagem do arquivo (ex: &quot;python&quot;)
+</code></pre>
+<h3 id="sintaxe-e-temas">Sintaxe e Temas<a class="anchor" href="#sintaxe-e-temas" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python"># Registrar um novo tema (veja todos os campos obrigatórios em temas.md)
+from src.theme.base import Theme
+api.register_theme(Theme(name=&quot;meu-tema&quot;, dark=True, bg=&quot;#1a1a2e&quot;, fg=&quot;#e0e0e0&quot;, **outros_campos))
+
+# Destacar uma região no editor (coordenadas linha/coluna, não strings tipo &quot;1.0&quot;)
+api.add_highlight(line_start=1, col_start=0, line_end=1, col_end=10,
+                   tag=&quot;erro&quot;, bg=&quot;#ff000033&quot;)
+
+# Adicionar hint inline (texto fantasma após a posição)
+api.add_inlay_hint(line=10, col=5, text=&quot;→ string&quot;)
+
+# Adicionar ícone no gutter (margem esquerda)
+api.add_gutter_icon(line=10, icon=&quot;⚡&quot;, tooltip=&quot;Linha quente&quot;)
+</code></pre>
+<h3 id="comandos-e-menus">Comandos e Menus<a class="anchor" href="#comandos-e-menus" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python"># Registrar um comando (disponível na Paleta de Comandos)
+api.register_command(&quot;meu.comando&quot;, &quot;Descrição do Comando&quot;, minha_funcao)
+
+# Adicionar item de menu
+api.add_menu_item(&quot;Plugins/Meu Plugin&quot;, &quot;Fazer Algo&quot;, minha_funcao)
+
+# Registrar atalho de teclado
+api.add_keybinding(&quot;&lt;Control-Alt-m&gt;&quot;, &quot;meu.comando&quot;)
+</code></pre>
+<h3 id="painéis-e-sidebar">Painéis e Sidebar<a class="anchor" href="#painéis-e-sidebar" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python"># Adicionar um painel na sidebar com botão na Activity Bar
+def criar_painel(parent):
+    import tkinter as tk
+    frame = tk.Frame(parent, bg=&quot;black&quot;)
+    tk.Label(frame, text=&quot;Meu Painel&quot;, fg=&quot;white&quot;, bg=&quot;black&quot;).pack()
+    return frame
+
+api.add_sidebar_panel(&quot;meu-painel&quot;, &quot;🔧&quot;, criar_painel, &quot;Meu Painel&quot;, position=&quot;bottom&quot;)
+</code></pre>
+<h3 id="eventos-hooks">Eventos (Hooks)<a class="anchor" href="#eventos-hooks" aria-label="Link para esta seção">#</a></h3>
+<p>O nome do evento é uma string; os eventos abaixo formam o conjunto <code>CORE_EVENTS</code> (<code>src/plugins/api.py</code>). Qualquer outro nome continua válido para eventos entre plugins (<code>api.emit</code>).</p>
+<pre><code class="language-python"># Registrar handler para um evento
+def ao_salvar(path):
+    print(f&quot;Arquivo salvo: {path}&quot;)
+
+api.on(&quot;file_save&quot;, ao_salvar)
+api.on(&quot;file_open&quot;, lambda path: ...)
+api.on(&quot;text_change&quot;, lambda editor: ...)
+api.on(&quot;tab_change&quot;, lambda idx: ...)
+api.on(&quot;lint_complete&quot;, lambda diags: ...)
+api.on(&quot;cursor_move&quot;, lambda pos: ...)
+api.on(&quot;theme_change&quot;, lambda theme: ...)
+api.on(&quot;lang_change&quot;, lambda lang: ...)
+api.on(&quot;before_format&quot;, lambda editor: ...)
+api.on(&quot;after_format&quot;, lambda editor: ...)
+
+api.once(&quot;app_ready&quot;, lambda: ...)   # dispara uma única vez
+api.off(&quot;file_save&quot;, ao_salvar)       # remove o handler
+api.emit(&quot;meu_plugin.evento&quot;, dados)  # evento customizado entre plugins
+</code></pre>
+<p>Eventos do núcleo: <code>file_open</code>, <code>file_save</code>, <code>file_close</code>, <code>text_change</code>, <code>cursor_move</code>, <code>theme_change</code>, <code>lang_change</code>, <code>app_ready</code>, <code>app_exit</code>, <code>before_save</code>, <code>after_save</code>, <code>before_format</code>, <code>after_format</code>, <code>lint_complete</code>, <code>terminal_line</code>, <code>git_commit</code>, <code>tab_change</code>, <code>workspace_set</code>, <code>workspace_close</code>, <code>plugin_loaded</code>, <code>plugin_unloaded</code>, <code>selection_change</code>, <code>fold_change</code>.</p>
+<blockquote>
+<p>O barramento interno <code>EventKind</code> (93 eventos em <code>src/events/kinds.py</code>, usado por pipelines, correlator e streams) é uma camada separada, voltada ao código do Codis; plugins usam os nomes de hook acima.</p>
+</blockquote>
+<h3 id="canal-de-saída">Canal de Saída<a class="anchor" href="#canal-de-saída" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python"># Canal de saída próprio do plugin
+canal = api.create_output_channel(&quot;Meu Plugin&quot;)
+canal.append(&quot;Linha de log&quot;)
+canal.appendLine(&quot;Outra linha&quot;)
+canal.clear()
+</code></pre>
+<h3 id="armazenamento-persistente">Armazenamento Persistente<a class="anchor" href="#armazenamento-persistente" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python"># Armazenamento por plugin (persistido em ~/.codis/plugins/&lt;id&gt;/storage.json)
+storage = api.get_storage()
+storage.set(&quot;chave&quot;, &quot;valor&quot;)
+valor = storage.get(&quot;chave&quot;, &quot;valor_padrao&quot;)   # 2º argumento é o valor padrão (posicional)
+storage.delete(&quot;chave&quot;)
+storage.keys()      # Lista todas as chaves armazenadas
+storage.clear()      # Apaga todo o armazenamento do plugin
+storage.flush()       # Força gravação síncrona imediata em disco
+</code></pre>
+<h3 id="configurações">Configurações<a class="anchor" href="#configurações" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">valor = api.get_config(&quot;font_size&quot;)        # Lê config do Codis
+api.set_config(&quot;font_size&quot;, 14)            # Altera config do Codis
+</code></pre>
+<h3 id="workspace-e-arquivos">Workspace e Arquivos<a class="anchor" href="#workspace-e-arquivos" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">workspace = api.get_workspace_folder()     # Path da raiz do workspace (ou None)
+api.open_file(Path(&quot;arquivo.py&quot;))          # Abre arquivo no editor
+files = api.get_workspace_files(&quot;**/*.py&quot;, exclude=[&quot;**/.git/**&quot;])  # Busca por padrão glob
+</code></pre>
+<h3 id="formatadores-e-provedores">Formatadores e Provedores<a class="anchor" href="#formatadores-e-provedores" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python"># Registrar formatador para uma linguagem
+def formatar_python(content: str) -&gt; str:
+    return content.upper()  # exemplo trivial
+
+api.register_formatter(&quot;python&quot;, formatar_python)
+
+# Registrar provedor de símbolos
+def obter_simbolos(content: str, lang: str) -&gt; list[str]:
+    return [&quot;MinhaClasse&quot;, &quot;minha_funcao&quot;]
+
+api.register_symbol_provider(&quot;python&quot;, obter_simbolos)
+
+# Registrar provedor de quick-fix / refatoração para uma linguagem
+def provedor_quick_fix(texto, linha, col):
+    return [{&quot;title&quot;: &quot;Adicionar docstring&quot;, &quot;command&quot;: &quot;meu.add_docstring&quot;, &quot;arguments&quot;: [linha]}]
+
+api.register_code_action_provider(&quot;python&quot;, provedor_quick_fix)
+</code></pre>
+<h3 id="temporizadores">Temporizadores<a class="anchor" href="#temporizadores" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python"># Executar após delay (ms) - note: delay_ms vem antes da função
+handle = api.set_timeout(1000, minha_funcao)
+api.clear_timer(handle)               # clear_timer cancela tanto timeout quanto interval
+
+# Executar periodicamente
+handle = api.set_interval(5000, minha_funcao)
+api.clear_timer(handle)               # Para automaticamente também na desativação do plugin
+
+# Debounce: executa apenas após inatividade (delay_ms antes da função)
+debounced = api.debounce(300, minha_funcao)
+
+# Throttle: executa no máximo uma vez por intervalo (interval_ms antes da função)
+throttled = api.throttle(1000, minha_funcao)
+</code></pre>
+<h3 id="indicador-de-progresso">Indicador de Progresso<a class="anchor" href="#indicador-de-progresso" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python"># Gerenciador de contexto que exibe progresso (opcionalmente cancelável)
+with api.with_progress(&quot;Processando...&quot;, cancelavel=True) as prog:
+    for i in range(100):
+        if prog.is_cancelled:
+            break
+        prog.report(i, f&quot;Item {i}/100&quot;)
+</code></pre>
+<h3 id="ipc-entre-plugins">IPC entre Plugins<a class="anchor" href="#ipc-entre-plugins" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python"># Obter instância de outro plugin pelo ID
+outro = api.get_plugin(&quot;outro-plugin-id&quot;)
+if outro:
+    resultado = api.call_plugin(&quot;outro-plugin-id&quot;, &quot;minha_funcao&quot;, arg1, arg2)
+</code></pre>
+<h3 id="logger-estruturado">Logger Estruturado<a class="anchor" href="#logger-estruturado" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">logger = api.get_logger()   # Logger Python com prefixo do plugin
+logger.info(&quot;Mensagem informativa&quot;)
+logger.warning(&quot;Aviso&quot;)
+logger.error(&quot;Erro crítico&quot;)
+</code></pre>
+<h3 id="referência-complementar-da-api">Referência Complementar da API<a class="anchor" href="#referência-complementar-da-api" aria-label="Link para esta seção">#</a></h3>
+<p>Métodos públicos de <code>PluginAPI</code> que complementam as seções anteriores (assinaturas conforme <code>src/plugins/api.py</code>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>register_language(lang_id, patterns=None, keywords=None, label=None, extensions=None, comment=None, comment_block=None, *, indent_rules=None, bracket_pairs=None, lsp_command=None)</code></td>
+<td>Registra uma nova linguagem (highlight, extensões, comentários, indentação, LSP)</td>
+</tr>
+<tr>
+<td><code>register_decorator(name, factory)</code></td>
+<td>Registra um decorador visual do editor (anotações inline)</td>
+</tr>
+<tr>
+<td><code>remove_highlight(tag=&quot;plugin_highlight&quot;)</code></td>
+<td>Remove o highlight da tag no editor ativo</td>
+</tr>
+<tr>
+<td><code>add_status_item(item_id, text_fn, click_fn=None, side=&quot;right&quot;, *, tooltip=&quot;&quot;, priority=0)</code></td>
+<td>Adiciona item na barra de status</td>
+</tr>
+<tr>
+<td><code>update_status_item(item_id)</code> / <code>remove_status_item(item_id)</code></td>
+<td>Atualiza / remove um item da barra de status</td>
+</tr>
+<tr>
+<td><code>add_context_menu_item(context, label, handler, *, when=None)</code></td>
+<td>Adiciona item a um menu de contexto</td>
+</tr>
+<tr>
+<td><code>add_settings_section(category, settings)</code></td>
+<td>Adiciona uma seção do plugin na janela de Configurações</td>
+</tr>
+<tr>
+<td><code>once(event, handler)</code> / <code>off(event, handler)</code></td>
+<td>Assina um evento uma única vez / remove o handler</td>
+</tr>
+<tr>
+<td><code>emit(event, *args, **kwargs)</code></td>
+<td>Dispara um evento entre plugins (use nomes com namespace, ex.: <code>&quot;meu_plugin.dados_prontos&quot;</code>)</td>
+</tr>
+<tr>
+<td><code>get_all_editors()</code></td>
+<td>Lista todos os painéis de editor abertos</td>
+</tr>
+<tr>
+<td><code>get_line(line)</code> / <code>get_line_count()</code> / <code>get_visible_range()</code></td>
+<td>Texto de uma linha (base 1), total de linhas e faixa de linhas visíveis no editor ativo</td>
+</tr>
+<tr>
+<td><code>save_file()</code></td>
+<td>Salva o arquivo ativo</td>
+</tr>
+<tr>
+<td><code>find_files(pattern, *, root=None, max_results=1000)</code></td>
+<td>Busca arquivos por glob sob <code>root</code> (padrão: workspace)</td>
+</tr>
+<tr>
+<td><code>ask_input(prompt, title=&quot;Input&quot;, *, initial=&quot;&quot;)</code></td>
+<td>Diálogo de texto; retorna <code>str</code> ou <code>None</code></td>
+</tr>
+<tr>
+<td><code>ask_yesno(question, title=&quot;Confirmar&quot;)</code></td>
+<td>Diálogo sim/não; retorna <code>bool</code></td>
+</tr>
+<tr>
+<td><code>ask_choice(title, prompt, choices)</code></td>
+<td>Diálogo de escolha; retorna o item ou <code>None</code></td>
+</tr>
+<tr>
+<td><code>open_file_dialog(**kw)</code> / <code>open_files_dialog(**kw)</code> / <code>save_file_dialog(**kw)</code> / <code>ask_directory(**kw)</code></td>
+<td>Diálogos de arquivo/pasta; retornam <code>Path</code>, lista de <code>Path</code> ou <code>None</code></td>
+</tr>
+<tr>
+<td><code>t(key, **kwargs)</code></td>
+<td>Traduz uma chave no idioma atual</td>
+</tr>
+<tr>
+<td><code>watch_config(key, callback)</code> / <code>migrate_config(migrations)</code></td>
+<td>Observa mudanças de uma chave / renomeia chaves de configuração</td>
+</tr>
+<tr>
+<td><code>read_clipboard()</code> / <code>write_clipboard(text)</code></td>
+<td>Lê / grava a área de transferência</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="pluginmanifest---campos-disponíveis">PluginManifest - Campos Disponíveis<a class="anchor" href="#pluginmanifest---campos-disponíveis" aria-label="Link para esta seção">#</a></h2>
+<pre><code class="language-python">@dataclass
+class PluginManifest:
+    name:           str              # Obrigatório. ID único (slug)
+    version:        str = &quot;1.0.0&quot;
+    author:         str = &quot;&quot;
+    description:    str = &quot;&quot;
+    homepage:       str = &quot;&quot;
+    repository:     str = &quot;&quot;         # URL do repositório fonte
+    icon:           str = &quot;🔌&quot;
+    api_version:    str = &quot;1.0&quot;
+    tags:           list[str] = []
+    license:        str = &quot;&quot;
+    category:       str = &quot;Geral&quot;
+    min_codis:      str = &quot;1.0.0&quot;    # Versão mínima do Codis requerida
+    trusted:        bool = False     # Marca como confiável por padrão
+    readme:         str = &quot;&quot;         # Markdown de documentação inline
+    keywords:       list[str] = []
+    capabilities:   list[str] = []   # Ex: [&quot;editor&quot;, &quot;git&quot;, &quot;lsp&quot;]
+    dependencies:   list[str] = []   # IDs de outros plugins requeridos
+    engines:        dict = {}        # Ex: {&quot;python&quot;: &quot;&gt;=3.12&quot;}
+    changelog:      str = &quot;&quot;
+    funding:        str = &quot;&quot;
+    preview:        bool = False     # Marca como experimental
+</code></pre>
+<hr />
+<h2 id="plugins-em-zip">Plugins em ZIP<a class="anchor" href="#plugins-em-zip" aria-label="Link para esta seção">#</a></h2>
+<p>Plugins podem ser distribuídos como <code>.zip</code> contendo:</p>
+<pre><code>meu-plugin.zip
+├── plugin.py        ← Código principal
+├── README.md        ← Documentação (opcional)
+├── assets/          ← Recursos (opcional)
+└── requirements.txt ← Dependências Python (opcional)
+</code></pre>
+<hr />
+<h2 id="gerenciador-de-plugins">Gerenciador de Plugins<a class="anchor" href="#gerenciador-de-plugins" aria-label="Link para esta seção">#</a></h2>
+<p>O painel de Extensões (sidebar → 🔌) exibe:</p>
+<ul>
+<li>Lista de plugins instalados com versão, autor e status (ativo/inativo)</li>
+<li>Botão para ativar/desativar cada plugin</li>
+<li>Botão para abrir a pasta de plugins no explorador do sistema</li>
+<li>Botão para instalar novo plugin</li>
+<li>Erros de carregamento de plugins com traceback</li>
+</ul>
+<hr />
+<h2 id="limpeza-automática-_teardown">Limpeza Automática (<code>_teardown</code>)<a class="anchor" href="#limpeza-automática-_teardown" aria-label="Link para esta seção">#</a></h2>
+<p>Quando um plugin é desativado, a API chama automaticamente <code>_teardown()</code>, que:</p>
+<ul>
+<li>Cancela todos os temporizadores registrados</li>
+<li>Fecha todos os canais de saída</li>
+<li>Remove todos os hooks de evento</li>
+<li>Limpa o armazenamento em memória</li>
+</ul>
+<p>O plugin não precisa implementar limpeza manualmente - apenas declare os recursos via API e eles serão limpos automaticamente.</p>
+<hr />
+<h2 id="plugins-em-processo-isolado">Plugins em Processo Isolado<a class="anchor" href="#plugins-em-processo-isolado" aria-label="Link para esta seção">#</a></h2>
+<p>Plugins que realizam operações pesadas, chamadas de rede ou que acessam recursos externos podem declarar <code>isolated: True</code> no <code>MANIFEST</code>. O Codis os executará em um <strong>processo Python separado</strong>, garantindo que um travamento ou crash no plugin não afete o editor.</p>
+<pre><code class="language-python">MANIFEST = PluginManifest(
+    name=&quot;meu-plugin-pesado&quot;,
+    version=&quot;1.0.0&quot;,
+    author=&quot;Autor&quot;,
+    description=&quot;Faz algo intensivo.&quot;,
+    isolated=True,    # ← executa em processo separado
+)
+</code></pre>
+<h3 id="como-funciona">Como funciona<a class="anchor" href="#como-funciona" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>O <code>PluginLoader</code> detecta <code>MANIFEST.isolated = True</code> na instalação.</li>
+<li>O <code>IsolatedPluginManager</code> lança um processo filho via <code>multiprocessing</code>.</li>
+<li>Toda comunicação entre o plugin e o editor é feita por filas JSON - sem acesso direto ao Tkinter ou ao estado interno do <code>CodisApp</code>.</li>
+<li>Se o processo travar, o monitor detecta ausência de heartbeat e reinicia automaticamente (até o limite <code>plugin_max_restarts</code>).</li>
+</ul>
+<h3 id="configurações-relevantes">Configurações relevantes<a class="anchor" href="#configurações-relevantes" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plugin_isolation</code></td>
+<td><code>True</code></td>
+<td>Habilita/desabilita o isolamento por processo</td>
+</tr>
+<tr>
+<td><code>plugin_timeout_s</code></td>
+<td><code>10</code></td>
+<td>Timeout para chamadas síncronas ao worker (s)</td>
+</tr>
+<tr>
+<td><code>plugin_heartbeat_s</code></td>
+<td><code>30</code></td>
+<td>Tempo sem resposta antes de reiniciar (s)</td>
+</tr>
+<tr>
+<td><code>plugin_max_restarts</code></td>
+<td><code>3</code></td>
+<td>Reinícios automáticos antes de desistir</td>
+</tr>
+<tr>
+<td><code>plugin_sandbox_network</code></td>
+<td><code>False</code></td>
+<td>Bloqueia rede nos workers (experimental)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Acesse em <strong>Configurações → Plugins (Isolamento)</strong>.</p>
+<h3 id="restrições-do-processo-isolado">Restrições do processo isolado<a class="anchor" href="#restrições-do-processo-isolado" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Sem acesso ao Tkinter (não importar <code>tkinter</code> no plugin isolado)</li>
+<li>Sem acesso direto ao editor, abas ou arquivos abertos</li>
+<li>Toda interação com o editor é via mensagens da <code>PluginAPI</code></li>
+<li>Imports de <code>multiprocessing</code>, <code>threading</code> são permitidos dentro do worker</li>
+</ul>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="doom.html"><small>Anterior</small>DOOM embutido (/codis doom)</a>
+        <a class="next" href="arquitetura.html"><small>Próxima</small>Arquitetura</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/plugins.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/plugins.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#estrutura-de-um-plugin">Estrutura de um Plugin</a></li><li class="l2"><a href="#instalação-de-plugins">Instalação de Plugins</a></li><li class="l3"><a href="#método-1-copiar-para-a-pasta-de-plugins">Método 1: Copiar para a pasta de plugins</a></li><li class="l3"><a href="#método-2-via-interface">Método 2: Via Interface</a></li><li class="l3"><a href="#método-3-via-painel-de-plugins">Método 3: Via Painel de Plugins</a></li><li class="l2"><a href="#sandbox-de-segurança">Sandbox de Segurança</a></li><li class="l2"><a href="#api-do-plugin">API do Plugin</a></li><li class="l3"><a href="#informações-e-notificações">Informações e Notificações</a></li><li class="l3"><a href="#editor">Editor</a></li><li class="l3"><a href="#sintaxe-e-temas">Sintaxe e Temas</a></li><li class="l3"><a href="#comandos-e-menus">Comandos e Menus</a></li><li class="l3"><a href="#painéis-e-sidebar">Painéis e Sidebar</a></li><li class="l3"><a href="#eventos-hooks">Eventos (Hooks)</a></li><li class="l3"><a href="#canal-de-saída">Canal de Saída</a></li><li class="l3"><a href="#armazenamento-persistente">Armazenamento Persistente</a></li><li class="l3"><a href="#configurações">Configurações</a></li><li class="l3"><a href="#workspace-e-arquivos">Workspace e Arquivos</a></li><li class="l3"><a href="#formatadores-e-provedores">Formatadores e Provedores</a></li><li class="l3"><a href="#temporizadores">Temporizadores</a></li><li class="l3"><a href="#indicador-de-progresso">Indicador de Progresso</a></li><li class="l3"><a href="#ipc-entre-plugins">IPC entre Plugins</a></li><li class="l3"><a href="#logger-estruturado">Logger Estruturado</a></li><li class="l3"><a href="#referência-complementar-da-api">Referência Complementar da API</a></li><li class="l2"><a href="#pluginmanifest---campos-disponíveis">PluginManifest - Campos Disponíveis</a></li><li class="l2"><a href="#plugins-em-zip">Plugins em ZIP</a></li><li class="l2"><a href="#gerenciador-de-plugins">Gerenciador de Plugins</a></li><li class="l2"><a href="#limpeza-automática-_teardown">Limpeza Automática (_teardown)</a></li><li class="l2"><a href="#plugins-em-processo-isolado">Plugins em Processo Isolado</a></li><li class="l3"><a href="#como-funciona">Como funciona</a></li><li class="l3"><a href="#configurações-relevantes">Configurações relevantes</a></li><li class="l3"><a href="#restrições-do-processo-isolado">Restrições do processo isolado</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

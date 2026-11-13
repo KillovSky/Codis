@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Atualizador · Codis</title>
+<meta name="description" content="O sistema de atualização do Codis (src/updater/) é modular e usa apenas a stdlib: faz backup antes de qualquer mudança, aceita cancelamento a qualquer momento e restaura o backup se algo falhar. O diá" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/updater.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Atualizador · Codis" />
+<meta property="og:description" content="O sistema de atualização do Codis (src/updater/) é modular e usa apenas a stdlib: faz backup antes de qualquer mudança, aceita cancelamento a qualquer momento e restaura o backup se algo falhar. O diá" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/updater.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group" open><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html" class="is-current" aria-current="page">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-atualizador">🔄 Atualizador<a class="anchor" href="#-atualizador" aria-label="Link para esta seção">#</a></h1>
+<p>O sistema de atualização do Codis (<code>src/updater/</code>) é modular e usa apenas a stdlib: faz <strong>backup antes de qualquer mudança</strong>, aceita cancelamento a qualquer momento e restaura o backup se algo falhar. O diálogo de atualização (<code>src/updater/dialog.py</code>, aberto por <code>open_update_dialog</code>) mostra progresso, changelog e a escolha do modo.</p>
+<hr />
+<h2 id="modos-de-atualização">Modos de Atualização<a class="anchor" href="#modos-de-atualização" aria-label="Link para esta seção">#</a></h2>
+<p>Todos os modos passam por <code>UpdateManager.update(mode)</code> e devolvem um <code>UpdateResult</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CHECK_ONLY</code></td>
+<td>Consulta a API do GitHub e compara a versão instalada com a mais recente. Nenhum arquivo é modificado (usado na verificação silenciosa da inicialização)</td>
+</tr>
+<tr>
+<td><code>SMART</code></td>
+<td>Usa a Compare API do GitHub para baixar só os arquivos que mudaram entre as duas versões; cai para ZIP se a Compare API falhar</td>
+</tr>
+<tr>
+<td><code>ZIP</code></td>
+<td>Baixa o ZIP completo da release e sobrescreve a instalação atual</td>
+</tr>
+<tr>
+<td><code>REINSTALL</code></td>
+<td>Remove os arquivos não protegidos e reinstala do zero via ZIP (corrige instalações corrompidas)</td>
+</tr>
+<tr>
+<td><code>FORCE</code></td>
+<td>Igual a <code>REINSTALL</code>, mas ignora a checagem de versão: reinstala mesmo já estando na última versão</td>
+</tr>
+<tr>
+<td><code>BINARY</code></td>
+<td>Substitui o executável PyInstaller. Em Linux/macOS usa rename atômico; no Windows agenda a troca por um script <code>.bat</code> após o reinício. Só funciona em builds empacotados</td>
+</tr>
+</tbody>
+</table></div>
+<p>Os estados possíveis de um resultado (<code>UpdateStatus</code>) são <code>UP_TO_DATE</code>, <code>UPDATE_AVAILABLE</code>, <code>SUCCESS</code>, <code>PENDING_RESTART</code>, <code>ERROR</code> e <code>CANCELLED</code>.</p>
+<hr />
+<h2 id="arquitetura">Arquitetura<a class="anchor" href="#arquitetura" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Arquivo</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UpdateManager</code></td>
+<td><code>manager.py</code></td>
+<td>Orquestra os modos. Expõe <code>check()</code>, <code>update(mode, *, target_tag=&quot;&quot;, dry_run=False)</code>, <code>cancel()</code>, <code>run_in_thread(...)</code> e <code>restart_app()</code>. Thread-safe via <code>threading.Lock</code></td>
+</tr>
+<tr>
+<td><code>UpdateChannel</code></td>
+<td><code>channel.py</code></td>
+<td>Toda a comunicação com a API do GitHub, só com <code>urllib</code>. Aceita token pessoal (PAT) para elevar o rate limit</td>
+</tr>
+<tr>
+<td><code>BackupManager</code></td>
+<td><code>backup.py</code></td>
+<td>Snapshot do diretório do app antes de modificar, restauração em falha e limpeza após sucesso. Funciona como context manager</td>
+</tr>
+<tr>
+<td><code>UpdateResult</code> / <code>ReleaseInfo</code> / <code>UpdateMode</code> / <code>UpdateStatus</code></td>
+<td><code>result.py</code></td>
+<td>Dataclasses e enums. <code>UpdateResult.ok</code> e <code>.update_available</code> são propriedades calculadas</td>
+</tr>
+<tr>
+<td><code>UpdateDialog</code></td>
+<td><code>dialog.py</code></td>
+<td>Interface Tkinter com visual consistente com o K-UI</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="proteção-de-dados">Proteção de Dados<a class="anchor" href="#proteção-de-dados" aria-label="Link para esta seção">#</a></h2>
+<p>Os caminhos em <code>_PROTECTED</code> (<code>manager.py</code>) são verificados antes de qualquer escrita ou remoção; nenhum modo os modifica.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Caminho protegido</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config.json</code></td>
+<td>Configurações do usuário</td>
+</tr>
+<tr>
+<td><code>.codis</code></td>
+<td>Diretório de dados do editor</td>
+</tr>
+<tr>
+<td><code>session.json</code></td>
+<td>Estado da sessão (arquivos abertos)</td>
+</tr>
+<tr>
+<td><code>keybindings.json</code></td>
+<td>Atalhos customizados</td>
+</tr>
+<tr>
+<td><code>plugins</code></td>
+<td>Plugins instalados</td>
+</tr>
+<tr>
+<td><code>themes</code></td>
+<td>Temas customizados</td>
+</tr>
+<tr>
+<td><code>snippets</code></td>
+<td>Snippets personalizados</td>
+</tr>
+<tr>
+<td><code>logs</code></td>
+<td>Arquivos de log</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="api">API<a class="anchor" href="#api" aria-label="Link para esta seção">#</a></h2>
+<p>Verificação silenciosa na inicialização (não bloqueia a UI; roda em thread daemon):</p>
+<pre><code class="language-python">from src.updater import UpdateManager, UpdateMode
+from src.constants import APP_VERSION
+
+mgr = UpdateManager(APP_VERSION)
+
+def _on_result(result):
+    if result.update_available:
+        self.after(0, lambda: self._notify_update(result))
+
+mgr.run_in_thread(mode=UpdateMode.CHECK_ONLY, callback=_on_result)
+</code></pre>
+<p>Atualização com progresso:</p>
+<pre><code class="language-python">def _on_progress(message: str, percent: float) -&gt; None:
+    progressbar.set(percent)
+    status_label.config(text=message)
+
+mgr = UpdateManager(
+    current_version=&quot;1.0.0&quot;,
+    github_token=config.get(&quot;github_token&quot;, &quot;&quot;),
+    on_progress=_on_progress,
+)
+
+result = mgr.update(UpdateMode.SMART)
+
+if result.ok and result.restart_required:
+    if messagebox.askyesno(&quot;Reiniciar?&quot;, &quot;Atualização aplicada. Reiniciar agora?&quot;):
+        UpdateManager.restart_app()
+</code></pre>
+<p>Simulação (<code>dry_run</code>), sem modificar nada:</p>
+<pre><code class="language-python">result = mgr.update(UpdateMode.SMART, dry_run=True)
+print(f&quot;Arquivos que seriam atualizados: {result.files_updated}&quot;)
+</code></pre>
+<p><code>BackupManager</code> como context manager:</p>
+<pre><code class="language-python">from src.updater.backup import BackupManager
+from pathlib import Path
+
+with BackupManager(Path(&quot;/caminho/para/codis&quot;)) as bm:
+    bm.create(label=&quot;pre-update&quot;)
+    # Se uma exceção ocorrer aqui, restore() é chamado automaticamente
+    perform_risky_operation()
+# Sem exceção -&gt; cleanup() remove o backup temporário
+</code></pre>
+<hr />
+<h2 id="segurança-backup--aplicar--confirmar--limpar">Segurança: Backup → Aplicar → Confirmar → Limpar<a class="anchor" href="#segurança-backup--aplicar--confirmar--limpar" aria-label="Link para esta seção">#</a></h2>
+<ol>
+<li><strong>Backup automático:</strong> <code>BackupManager.create()</code> copia o diretório do app para um diretório temporário (sem <code>__pycache__</code> nem <code>.pyc</code>).</li>
+<li><strong>Aplicação com checagem de cancelamento:</strong> o evento <code>_cancelled</code> é verificado a cada arquivo; se cancelado, a operação para e o backup é restaurado.</li>
+<li><strong>Confirmação:</strong> só após todas as operações terminarem, <code>backup.cleanup()</code> remove o snapshot.</li>
+<li><strong>Rollback em falha:</strong> qualquer exceção dispara <code>restore()</code> + <code>cleanup()</code> e o erro vira <code>UpdateStatus.ERROR</code>.</li>
+</ol>
+<hr />
+<h2 id="configuração">Configuração<a class="anchor" href="#configuração" aria-label="Link para esta seção">#</a></h2>
+<p>Sem token, a API do GitHub permite 60 requisições por hora por IP; com um PAT, o limite sobe para 5.000 por hora.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chave em <code>config.json</code></th>
+<th>Tipo</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>github_token</code></td>
+<td>string</td>
+<td><code>&quot;&quot;</code></td>
+<td>PAT do GitHub. Vazio = sem autenticação</td>
+</tr>
+<tr>
+<td><code>auto_check_updates</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Verifica silenciosamente ao iniciar</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="testes">Testes<a class="anchor" href="#testes" aria-label="Link para esta seção">#</a></h2>
+<p><code>tests/test_updater.py</code> (87 casos) roda 100% offline: o canal é mockado com <code>unittest.mock</code> e os ZIPs são gerados em memória.</p>
+<pre><code class="language-bash">pytest tests/test_updater.py -v
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Classe de teste</th>
+<th style="text-align:right">Casos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TestReleaseInfo</code></td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td><code>TestUpdateResult</code></td>
+<td style="text-align:right">10</td>
+</tr>
+<tr>
+<td><code>TestVersionTuple</code></td>
+<td style="text-align:right">7</td>
+</tr>
+<tr>
+<td><code>TestFmtBytes</code></td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><code>TestIsProtected</code></td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td><code>TestCheck</code></td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td><code>TestUpdateSmart</code></td>
+<td style="text-align:right">7</td>
+</tr>
+<tr>
+<td><code>TestUpdateZip</code></td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td><code>TestUpdateReinstall</code></td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><code>TestUpdateForce</code></td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td><code>TestTargetTag</code></td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td><code>TestCancel</code></td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td><code>TestRunInThread</code></td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><code>TestBackupManager</code></td>
+<td style="text-align:right">8</td>
+</tr>
+<tr>
+<td><code>TestUpdateChannelHeaders</code></td>
+<td style="text-align:right">11</td>
+</tr>
+<tr>
+<td><code>TestOverwriteFromDir</code></td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td><code>TestClearPycache</code></td>
+<td style="text-align:right">2</td>
+</tr>
+</tbody>
+</table></div>
+<p>Veja também <a href="builds.html">Builds &amp; Empacotamento</a> e <a href="arquitetura.html">Arquitetura</a>.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="builds.html"><small>Anterior</small>Builds e Empacotamento</a>
+        <a class="next" href="testes.html"><small>Próxima</small>Testes</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/updater.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/updater.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#modos-de-atualização">Modos de Atualização</a></li><li class="l2"><a href="#arquitetura">Arquitetura</a></li><li class="l2"><a href="#proteção-de-dados">Proteção de Dados</a></li><li class="l2"><a href="#api">API</a></li><li class="l2"><a href="#segurança-backup--aplicar--confirmar--limpar">Segurança: Backup Aplicar Confirmar Limpar</a></li><li class="l2"><a href="#configuração">Configuração</a></li><li class="l2"><a href="#testes">Testes</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

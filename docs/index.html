@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codis · Aether - Editor de Código Python</title>
+  <meta name="description" content="Editor de código desktop completo, 100% Python + Tkinter. Sem Electron, sem Node. IA multi-provedor, SQL Studio, K-UI holográfico, LSP, Git, 25 linguagens com highlight e 14 idiomas." />
+  <meta name="keywords" content="code editor, python, tkinter, ide, vim mode, sql studio, ai assistant, git, lsp, open source, electron alternative" />
+  <meta name="author" content="KillovSky" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://killovsky.github.io/Codis/" />
+  <meta property="og:title" content="Codis · Aether - Editor de Código Python" />
+  <meta property="og:description" content="Editor moderno, 100% Python + Tkinter. IA multi-provedor, SQL Studio, Git, K-UI holográfico e 14 idiomas." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Codis · Aether" />
+  <meta name="twitter:description" content="Editor moderno 100% Python + Tkinter, sem Electron." />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+  <link rel="canonical" href="https://killovsky.github.io/Codis/" />
+
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* ── Nav-card grid (only on home) ── */
+    .nav-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 52px; }
+    .nav-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 30px; text-decoration: none; color: var(--fg); transition: all .25s; display: block;
+    }
+    .nav-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .nav-card-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+    .nav-card-title { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+    .nav-card-desc { font-size: 13px; color: var(--fg2); line-height: 1.6; margin-bottom: 14px; }
+    .nav-card-link { font-size: 13px; font-weight: 700; color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <span class="star">✦</span>
+      Codis
+      <span class="version">v1.0.0 · AETHER</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-eyebrow">
+      <span class="badge badge-purple">✦ v1.0.0 · Aether</span>
+    </div>
+
+    <h1>
+      Um editor de código<br>
+      <span class="grad">100% Python.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Sem Electron. Sem Node.js. Apenas Python 3 + Tkinter -
+      com IA multi-provedor, SQL Studio, Git integrado, Vim Mode imersivo
+      e uma engine visual cósmica chamada K-UI.
+    </p>
+
+    <div class="hero-actions">
+      <a href="primeiros-passos.html" class="btn btn-primary">🚀 Começar agora</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" class="btn btn-secondary">⭐ GitHub</a>
+      <a href="documentacao.html" class="btn btn-secondary">📖 Documentação</a>
+    </div>
+
+    <div class="hero-badges">
+      <img src="https://img.shields.io/github/v/release/KillovSky/Codis?style=flat-square&color=6c63ff&labelColor=0d0d1a&label=versão" alt="versão">
+      <img src="https://img.shields.io/badge/python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=0d0d1a" alt="python">
+      <img src="https://img.shields.io/badge/licença-MIT-22c55e?style=flat-square&labelColor=0d0d1a" alt="MIT">
+      <img src="https://img.shields.io/github/stars/KillovSky/Codis?style=flat-square&color=f59e0b&labelColor=0d0d1a" alt="stars">
+      <img src="https://img.shields.io/github/actions/workflow/status/KillovSky/Codis/ci.yml?branch=main&style=flat-square&logo=github-actions&logoColor=white&labelColor=0d0d1a&label=CI" alt="CI">
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div><div class="stat-number">25</div><div class="stat-label">Linguagens com highlight</div></div>
+      <div><div class="stat-number">21</div><div class="stat-label">Temas built-in</div></div>
+      <div><div class="stat-number">14</div><div class="stat-label">Idiomas de interface</div></div>
+      <div><div class="stat-number">40</div><div class="stat-label">Ferramentas para a IA</div></div>
+      <div><div class="stat-number">15</div><div class="stat-label">Skills de IA</div></div>
+      <div><div class="stat-number">1683</div><div class="stat-label">Testes automatizados</div></div>
+      <div><div class="stat-number">29</div><div class="stat-label">Modos standalone</div></div>
+      <div><div class="stat-number">2</div><div class="stat-label">Deps Python obrigatórias*</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="container">
+    <div class="section-label">Recursos</div>
+    <h2 class="section-title">Tudo que você espera de um IDE moderno</h2>
+    <p class="section-sub">Construído do zero em Python puro, sem abrir mão de nenhum recurso essencial de um editor profissional.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">✏️</span>
+        <div class="feature-title">Editor Completo</div>
+        <div class="feature-desc">Syntax highlighting para 25 linguagens (48 reconhecidas por extensão), autocomplete inteligente, snippets compatíveis com VSCode, multi-cursor, code folding, minimap, sticky scroll e Vim Mode imersivo em janela separada.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">Multi-cursor</span>
+          <span class="feature-tag">Vim Mode</span>
+          <span class="feature-tag">Minimap</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🤖</span>
+        <div class="feature-title">IA Multi-Provedor</div>
+        <div class="feature-desc">Anthropic, OpenAI, OpenAI-compatível, Gemini, Ollama e GGUF local. 15 Skills especializadas, 40 ferramentas e Approval Gate de 5 níveis de risco antes de qualquer ação no seu código.</div>
+        <div class="feature-tags"><span class="feature-tag">Agent Mode</span></div>
+        <div style="margin-top:14px;"><a href="ia.html" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;">Ver detalhes →</a></div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🗄</span>
+        <div class="feature-title">SQL Studio</div>
+        <div class="feature-desc">SQLite, PostgreSQL, MySQL e DuckDB integrados diretamente ao editor. Browser de esquema, autocomplete SQL, EXPLAIN e exportação CSV/JSON.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">SQLite</span><span class="feature-tag">PostgreSQL</span><span class="feature-tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🌿</span>
+        <div class="feature-title">Git Integrado</div>
+        <div class="feature-desc">Stage, commit, push/pull, branches, diff visual lado a lado, clone com progresso e blame inline por linha com autenticação HTTPS/SSH.</div>
+        <div class="feature-tags"><span class="feature-tag">Blame Inline</span><span class="feature-tag">SSH/HTTPS</span></div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📚</span>
+        <div class="feature-title">KDocs - Documentação Universal</div>
+        <div class="feature-desc">Analisa docstrings diretamente no arquivo, sem LSP. 27 linguagens: Python, Rust, Go, Ruby, Lua, Doxygen, C# XML, JSDoc/TSDoc.</div>
+        <div class="feature-tags"><span class="feature-tag">Sem LSP</span></div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">✦</span>
+        <div class="feature-title">K-UI - Engine Cósmica</div>
+        <div class="feature-desc">Modo visual opcional em thread separada via PIL: nebulosas, sistema solar de arquivos, partículas reativas e buracos negros proporcionais a erros de lint.</div>
+        <div class="feature-tags"><span class="feature-tag">Ctrl+Alt+N</span></div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">✅</span>
+        <div class="feature-title">Gerenciador de Tarefas</div>
+        <div class="feature-desc">Kanban com quatro colunas e um Agendador de Comandos Shell com modos one-shot, intervalo, diário e semanal - com log de execução persistente.</div>
+        <div class="feature-tags"><span class="feature-tag">Kanban</span><span class="feature-tag">Scheduler</span></div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🧩</span>
+        <div class="feature-title">Sistema de Plugins</div>
+        <div class="feature-desc">API com eventos priorizados, painéis customizados, storage persistente, sandbox via análise AST estática e isolamento por subprocess.</div>
+        <div class="feature-tags"><span class="feature-tag">AST Sandbox</span></div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🔍</span>
+        <div class="feature-title">Linting & LSP</div>
+        <div class="feature-desc">ESLint, Flake8, Mypy, Pylint e Stylelint com diagnósticos inline. Integração com language servers externos: Go to Definition, Rename Symbol e hover semântico.</div>
+        <div class="feature-tags"><span class="feature-tag">LSP</span></div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">💬</span>
+        <div class="feature-title">Chat Universal</div>
+        <div class="feature-desc">Cliente multi-protocolo embutido: IRC, XMPP, Matrix, Slack, Discord, Telegram, Mattermost, MQTT e WebSocket genérico.</div>
+        <div class="feature-tags"><span class="feature-tag">9 protocolos</span></div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">👥</span>
+        <div class="feature-title">Colaboração em Tempo Real</div>
+        <div class="feature-desc">Edição simultânea do mesmo arquivo via servidor WebSocket interno, com Operational Transformation simplificado e cursores remotos.</div>
+        <div class="feature-tags"><span class="feature-tag">WebSocket</span></div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🌍</span>
+        <div class="feature-title">Internacionalização</div>
+        <div class="feature-desc">14 idiomas de interface com PT-BR como locale de referência, 4.633 chaves de tradução e propagação via <code>sync_locales.py</code>.</div>
+        <div class="feature-tags"><span class="feature-tag">14 idiomas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-bg-alt">
+  <div class="container">
+    <div class="section-label">Por que Codis?</div>
+    <h2 class="section-title">Python puro. Zero Electron.</h2>
+    <p class="section-sub">A maioria dos editores modernos usa Electron (Node.js + Chromium). O Codis prova que Python + Tkinter é suficiente para construir uma experiência completa, fluida e visualmente expressiva.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-header bad">❌ Electron (VSCode, Cursor, etc.)</div>
+        <pre><code><span class="c"># Dependências típicas</span>
+Node.js + npm
+Chromium embedded (~150MB)
+Electron runtime
+~200–500 MB download
+RAM idle: 300–800 MB
+<span class="c"># Cada processo filho = novo Chromium</span></code></pre>
+      </div>
+      <div class="compare-card">
+        <div class="compare-header good">✅ Codis (Python + Tkinter)</div>
+        <pre><code><span class="c"># Dependências obrigatórias</span>
+Python 3.12+ (já instalado)
+Tkinter (incluso no Python)
+~5 MB download (source)
+RAM idle: ~60 MB
+<span class="c"># Um único processo Python</span>
+<span class="c"># Tudo mais é opcional, sob demanda</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Explore</div>
+    <h2 class="section-title">Saiba mais sobre cada parte do Codis</h2>
+    <p class="section-sub">A documentação completa está dividida em páginas dedicadas - escolha por onde quer começar.</p>
+
+    <div class="nav-card-grid">
+      <a href="ia.html" class="nav-card">
+        <span class="nav-card-icon">🤖</span>
+        <div class="nav-card-title">Assistente de IA</div>
+        <div class="nav-card-desc">6 provedores, 15 Skills, 40 ferramentas e o Approval Gate de 5 níveis de risco.</div>
+        <div class="nav-card-link">Ver página →</div>
+      </a>
+      <a href="arquitetura.html" class="nav-card">
+        <span class="nav-card-icon">🏗️</span>
+        <div class="nav-card-title">Arquitetura</div>
+        <div class="nav-card-desc">Como o Codis é organizado em camadas: core, IA, UI e engines especializadas.</div>
+        <div class="nav-card-link">Ver página →</div>
+      </a>
+      <a href="primeiros-passos.html" class="nav-card">
+        <span class="nav-card-icon">🚀</span>
+        <div class="nav-card-title">Instalação</div>
+        <div class="nav-card-desc">Linux, Windows, Ubuntu/Debian, releases binários e tabela de requisitos.</div>
+        <div class="nav-card-link">Ver página →</div>
+      </a>
+      <a href="builds.html#github-actions" class="nav-card">
+        <span class="nav-card-icon">⚙️</span>
+        <div class="nav-card-title">Builds &amp; CI/CD</div>
+        <div class="nav-card-desc">Empacotamento, pipelines de qualidade, build multiplataforma, segurança e releases automáticos.</div>
+        <div class="nav-card-link">Ver página →</div>
+      </a>
+      <a href="plugins.html" class="nav-card">
+        <span class="nav-card-icon">🧩</span>
+        <div class="nav-card-title">Plugins</div>
+        <div class="nav-card-desc">API de plugins, eventos, painéis, sandbox estática e armazenamento persistente.</div>
+        <div class="nav-card-link">Ver página →</div>
+      </a>
+      <a href="updater.html" class="nav-card">
+        <span class="nav-card-icon">🔄</span>
+        <div class="nav-card-title">Atualizador</div>
+        <div class="nav-card-desc">Seis modos de atualização, backup automático, rollback e caminhos protegidos.</div>
+        <div class="nav-card-link">Ver página →</div>
+      </a>
+      <a href="documentacao.html" class="nav-card">
+        <span class="nav-card-icon">📖</span>
+        <div class="nav-card-title">Toda a documentação</div>
+        <div class="nav-card-desc">Os 36 guias da wiki, organizados por tema, com busca e navegação lateral.</div>
+        <div class="nav-card-link">Ver índice →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Pronto para começar?</h2>
+    <p>Clone o repositório, rode <code>python run.py</code> e veja o que Python + criatividade conseguem fazer.</p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://github.com/KillovSky/Codis" target="_blank" class="btn btn-primary">⭐ Ver no GitHub</a>
+      <a href="primeiros-passos.html" class="btn btn-secondary">🚀 Guia de Instalação</a>
+      <a href="https://github.com/KillovSky/Codis/releases" target="_blank" class="btn btn-secondary">📦 Download</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo"><span>✦</span> Codis</div>
+        <p>Editor de código desktop completo, 100% Python + Tkinter. Sem Electron, sem Node.js. Apenas Python e criatividade.</p>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <h4>Site</h4>
+          <a href="index.html">Início</a>
+          <a href="ia.html">Assistente de IA</a>
+          <a href="arquitetura.html">Arquitetura</a>
+          <a href="primeiros-passos.html">Instalação</a>
+          <a href="builds.html#github-actions">Builds &amp; CI/CD</a>
+          <a href="updater.html">Atualizador</a>
+          <a href="documentacao.html">Documentação</a>
+          <a href="changelog.html">Changelog</a>
+          <a href="roadmap.html">Roadmap</a>
+        </div>
+        <div class="footer-col">
+          <h4>Projeto</h4>
+          <a href="https://github.com/KillovSky/Codis" target="_blank">GitHub</a>
+          <a href="https://github.com/KillovSky/Codis/releases" target="_blank">Releases</a>
+          <a href="https://github.com/KillovSky/Codis/issues" target="_blank">Issues</a>
+        </div>
+        <div class="footer-col">
+          <h4>Docs</h4>
+          <a href="https://github.com/KillovSky/Codis/wiki" target="_blank">Wiki (GitHub)</a>
+          <a href="https://github.com/KillovSky/Codis/blob/main/CONTRIBUTING.md" target="_blank">Contribuir</a>
+          <a href="https://github.com/KillovSky/Codis/blob/main/LICENSE" target="_blank">MIT License</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Feito com ♥ por <a href="https://github.com/KillovSky" target="_blank">Lucas R. · KillovSky</a></span>
+      <span style="color: var(--accent);">Codis v1.0.0 · Aether</span>
+      <span>* Python 3.12+ e Tkinter. Tudo o mais é opcional.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recursos Avançados · Codis</title>
+<meta name="description" content="Esta página documenta funcionalidades avançadas do Codis que vão além do editor básico." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/recursos-avancados.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Recursos Avançados · Codis" />
+<meta property="og:description" content="Esta página documenta funcionalidades avançadas do Codis que vão além do editor básico." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/recursos-avancados.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group" open><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html" class="is-current" aria-current="page">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-recursos-avançados">🚀 Recursos Avançados<a class="anchor" href="#-recursos-avançados" aria-label="Link para esta seção">#</a></h1>
+<p>Esta página documenta funcionalidades avançadas do Codis que vão além do editor básico.</p>
+<hr />
+<h2 id="lsp---language-server-protocol">LSP - Language Server Protocol<a class="anchor" href="#lsp---language-server-protocol" aria-label="Link para esta seção">#</a></h2>
+<p>O LSP integra servidores de linguagem externos para fornecer inteligência de código avançada. Gerenciado pela classe <code>LSPManager</code> (<code>src/lsp/client.py</code>).</p>
+<h3 id="servidores-suportados-auto-detectados">Servidores Suportados (Auto-detectados)<a class="anchor" href="#servidores-suportados-auto-detectados" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Linguagem</th>
+<th>Servidores candidatos (em ordem de preferência)</th>
+<th>Instalação</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>pylsp</code>, <code>pyright-langserver</code>, <code>jedi-language-server</code></td>
+<td><code>pip install python-lsp-server[all]</code></td>
+<td>✅ Completo</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td><code>typescript-language-server</code>, <code>tsserver</code></td>
+<td><code>npm install -g typescript-language-server</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td><code>typescript-language-server</code></td>
+<td><code>npm install -g typescript-language-server</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><code>rust-analyzer</code></td>
+<td><a href="https://rust-analyzer.github.io" target="_blank" rel="noopener">rust-analyzer.github.io</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Go</td>
+<td><code>gopls</code></td>
+<td><code>go install golang.org/x/tools/gopls@latest</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>C/C++</td>
+<td><code>clangd</code></td>
+<td><code>sudo apt install clangd</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td><code>vscode-json-languageserver</code></td>
+<td><code>npm install -g vscode-langservers-extracted</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td><code>vscode-html-languageserver</code></td>
+<td><code>npm install -g vscode-langservers-extracted</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td><code>vscode-css-languageserver</code></td>
+<td><code>npm install -g vscode-langservers-extracted</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td><code>marksman</code></td>
+<td><a href="https://github.com/artempyanykh/marksman" target="_blank" rel="noopener">github.com/artempyanykh/marksman</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Java</td>
+<td><code>eclipse.jdt.ls</code></td>
+<td><a href="https://github.com/eclipse/eclipse.jdt.ls" target="_blank" rel="noopener">eclipse.org/jdt-ls</a></td>
+<td>⚠️ Limitações conhecidas</td>
+</tr>
+<tr>
+<td>PHP</td>
+<td><code>intelephense</code></td>
+<td><code>npm install -g intelephense</code></td>
+<td>⚠️ Limitações conhecidas</td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><code>solargraph</code></td>
+<td><code>gem install solargraph</code></td>
+<td>⚠️ Limitações conhecidas</td>
+</tr>
+<tr>
+<td>Lua</td>
+<td><code>lua-language-server</code></td>
+<td><a href="https://github.com/LuaLS/lua-language-server" target="_blank" rel="noopener">github.com/LuaLS/lua-language-server</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Bash</td>
+<td><code>bash-language-server</code></td>
+<td><code>npm install -g bash-language-server</code></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Legenda:</strong> ✅ Testado e funcional · ⚠️ Funcional com limitações conhecidas</p>
+</blockquote>
+<h3 id="funcionalidades-lsp">Funcionalidades LSP<a class="anchor" href="#funcionalidades-lsp" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Atalho</th>
+<th>Requisição LSP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hover documentation</td>
+<td>Passar mouse</td>
+<td><code>textDocument/hover</code></td>
+</tr>
+<tr>
+<td>Autocomplete</td>
+<td>Automático</td>
+<td><code>textDocument/completion</code></td>
+</tr>
+<tr>
+<td>Ir para definição</td>
+<td><code>F12</code></td>
+<td><code>textDocument/definition</code></td>
+</tr>
+<tr>
+<td>Encontrar referências</td>
+<td><code>Shift+F12</code></td>
+<td><code>textDocument/references</code></td>
+</tr>
+<tr>
+<td>Hints de parâmetros</td>
+<td>Ao digitar <code>(</code></td>
+<td><code>textDocument/signatureHelp</code></td>
+</tr>
+<tr>
+<td>Outline do documento</td>
+<td>Activity Bar → 📚</td>
+<td><code>textDocument/documentSymbol</code></td>
+</tr>
+<tr>
+<td>Busca de símbolo no workspace</td>
+<td><code>Ctrl+Shift+O</code></td>
+<td><code>workspace/symbol</code></td>
+</tr>
+<tr>
+<td>Formatar via LSP</td>
+<td><code>Shift+Alt+F</code></td>
+<td><code>textDocument/formatting</code></td>
+</tr>
+<tr>
+<td>Renomear símbolo</td>
+<td><code>F6</code></td>
+<td><code>textDocument/rename</code></td>
+</tr>
+<tr>
+<td>Diagnósticos</td>
+<td>Automático</td>
+<td><code>textDocument/publishDiagnostics</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="configuração">Configuração<a class="anchor" href="#configuração" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-json">&quot;lsp_enabled&quot;: true
+</code></pre>
+<p>O LSP é ativado automaticamente ao abrir um arquivo de uma linguagem suportada. Cada linguagem tem seu próprio processo de servidor LSP independente.</p>
+<hr />
+<h2 id="code-outline">Code Outline<a class="anchor" href="#code-outline" aria-label="Link para esta seção">#</a></h2>
+<p>O painel <strong>Code Outline</strong> (Activity Bar → 📚) exibe a estrutura hierárquica do arquivo ativo: funções, classes, variáveis, imports e outros símbolos. Atualiza automaticamente quando o arquivo é modificado.</p>
+<p>Clicar em qualquer símbolo no outline navega diretamente para a definição no editor.</p>
+<hr />
+<h2 id="bookmarks">Bookmarks<a class="anchor" href="#bookmarks" aria-label="Link para esta seção">#</a></h2>
+<p>O sistema de bookmarks permite marcar posições específicas nos arquivos para navegação rápida.</p>
+<h3 id="criando-bookmarks">Criando Bookmarks<a class="anchor" href="#criando-bookmarks" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><code>Ctrl+F2</code> ou <strong>Ferramentas → Adicionar Bookmark</strong></li>
+<li>Ao criar, um diálogo solicita uma nota opcional para identificar o marcador.</li>
+</ul>
+<h3 id="navegando-por-bookmarks">Navegando por Bookmarks<a class="anchor" href="#navegando-por-bookmarks" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ação</th>
+<th>Atalho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Próximo bookmark</td>
+<td><code>F2</code></td>
+</tr>
+<tr>
+<td>Bookmark anterior</td>
+<td><code>Shift+F2</code></td>
+</tr>
+<tr>
+<td>Listar todos</td>
+<td>Activity Bar → 🔖</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="painel-de-bookmarks">Painel de Bookmarks<a class="anchor" href="#painel-de-bookmarks" aria-label="Link para esta seção">#</a></h3>
+<p>O painel de Bookmarks (sidebar → 🔖) lista todos os marcadores de todos os arquivos, com:</p>
+<ul>
+<li>Arquivo, linha, coluna e snippet da linha</li>
+<li>Nota associada ao bookmark</li>
+<li>Clique para navegar diretamente</li>
+</ul>
+<hr />
+<h2 id="snippets">Snippets<a class="anchor" href="#snippets" aria-label="Link para esta seção">#</a></h2>
+<h3 id="painel-de-snippets">Painel de Snippets<a class="anchor" href="#painel-de-snippets" aria-label="Link para esta seção">#</a></h3>
+<p>O painel de Snippets (<code>Ctrl+Shift+J</code>) exibe todos os snippets disponíveis, filtrados pela linguagem do arquivo ativo.</p>
+<h3 id="estrutura-de-um-snippet">Estrutura de um Snippet<a class="anchor" href="#estrutura-de-um-snippet" aria-label="Link para esta seção">#</a></h3>
+<p>Snippets são arquivos JSON em <code>~/.codis/snippets/</code>:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;função Python&quot;,
+  &quot;prefix&quot;: &quot;def&quot;,
+  &quot;language&quot;: &quot;python&quot;,
+  &quot;body&quot;: &quot;def ${1:nome}(${2:parâmetros}):\n    ${3:pass}&quot;,
+  &quot;description&quot;: &quot;Criar uma nova função Python&quot;
+}
+</code></pre>
+<p>Campos:</p>
+<ul>
+<li><code>prefix</code> - gatilho de expansão (digitar + Tab)</li>
+<li><code>body</code> - corpo do snippet com <code>${N:placeholder}</code> para campos de edição</li>
+<li><code>language</code> - linguagem específica ou <code>&quot;*&quot;</code> para todas</li>
+</ul>
+<h3 id="inserindo-snippets">Inserindo Snippets<a class="anchor" href="#inserindo-snippets" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Digite o prefixo e pressione <code>Tab</code> para expandir.</li>
+<li>Navegue entre campos com <code>Tab</code> / <code>Shift+Tab</code>.</li>
+<li>O painel de Snippets também permite inserção por clique duplo.</li>
+</ul>
+<hr />
+<h2 id="diff-engine">Diff Engine<a class="anchor" href="#diff-engine" aria-label="Link para esta seção">#</a></h2>
+<h3 id="diff-arquivo-vs-versão-salva">Diff: Arquivo vs. Versão Salva<a class="anchor" href="#diff-arquivo-vs-versão-salva" aria-label="Link para esta seção">#</a></h3>
+<p><strong>Ferramentas → Diff: Arquivo vs. Versão Salva</strong> compara o conteúdo atual (com modificações não salvas) com a última versão em disco.</p>
+<h3 id="diff-dois-arquivos">Diff: Dois Arquivos<a class="anchor" href="#diff-dois-arquivos" aria-label="Link para esta seção">#</a></h3>
+<p><strong>Ferramentas → Diff: Dois Arquivos</strong> abre um seletor de arquivo duplo e exibe o diff lado a lado.</p>
+<h3 id="navegação-no-diff">Navegação no Diff<a class="anchor" href="#navegação-no-diff" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ação</th>
+<th>Atalho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Próximo hunk</td>
+<td><code>F7</code></td>
+</tr>
+<tr>
+<td>Hunk anterior</td>
+<td><code>Shift+F7</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>O diff engine (<code>src/diff/engine.py</code>) usa o algoritmo de Myers para gerar diffs com linha de contexto.</p>
+<hr />
+<h2 id="find-in-files-busca-em-arquivos">Find in Files (Busca em Arquivos)<a class="anchor" href="#find-in-files-busca-em-arquivos" aria-label="Link para esta seção">#</a></h2>
+<p>A busca em arquivos (<code>Ctrl+Shift+F</code>) pesquisa texto em todo o workspace.</p>
+<p><strong>Funcionalidades:</strong></p>
+<ul>
+<li>Suporte a expressões regulares</li>
+<li>Filtros de inclusão: <code>*.py</code>, <code>src/**</code></li>
+<li>Filtros de exclusão: <code>!node_modules</code>, <code>!*.min.js</code></li>
+<li>Respeita <code>.gitignore</code> quando <code>respect_ignore_files: true</code></li>
+<li>Máximo de <code>search_max_results</code> resultados (padrão: 2000)</li>
+</ul>
+<p><strong>Atalho no resultado:</strong> clique em qualquer resultado para abrir o arquivo na linha correspondente.</p>
+<hr />
+<h2 id="debug-panel">Debug Panel<a class="anchor" href="#debug-panel" aria-label="Link para esta seção">#</a></h2>
+<p>O Painel de Debug (painel inferior → aba <strong>Debug</strong>) oferece depuração real de Python via DAP/<code>debugpy</code>: breakpoints (clique na margem do editor), step into/over/out, inspeção de variáveis e call stack, e um console com avaliação de expressões no frame parado.</p>
+<blockquote>
+<p>Guia completo, configurações e resolução de problemas (incluindo conflitos de porta com VS Code): <a href="debug.html">Debug</a>.</p>
+</blockquote>
+<p>Para outras linguagens além de Python, o painel executa o arquivo de forma simples (captura de saída), sem breakpoints/stepping reais por enquanto.</p>
+<hr />
+<h2 id="regex-playground">Regex Playground<a class="anchor" href="#regex-playground" aria-label="Link para esta seção">#</a></h2>
+<p><code>Ctrl+Shift+R</code> ou painel inferior → aba <strong>Regex</strong> abre um playground interativo para testar expressões regulares:</p>
+<ul>
+<li>Campo de padrão regex com syntax highlighting</li>
+<li>Flags: <code>i</code> (case-insensitive), <code>m</code> (multiline), <code>s</code> (dotall)</li>
+<li>Resultado em tempo real: matches destacados no texto de teste</li>
+<li>Botão <strong>Aplicar no Editor</strong> - substitui no arquivo ativo via <code>_regex_replace()</code></li>
+</ul>
+<hr />
+<h2 id="color-picker">Color Picker<a class="anchor" href="#color-picker" aria-label="Link para esta seção">#</a></h2>
+<p><code>Ctrl+Shift+C</code> abre o seletor de cores. Detecta automaticamente a cor sob o cursor (valores <code>#rrggbb</code>, <code>rgb()</code>, etc.) e inicializa o picker com ela.</p>
+<p>Ao confirmar:</p>
+<ol>
+<li>A cor selecionada é inserida no cursor.</li>
+<li>A cor é copiada para o clipboard.</li>
+</ol>
+<hr />
+<h2 id="scratchpad">Scratchpad<a class="anchor" href="#scratchpad" aria-label="Link para esta seção">#</a></h2>
+<p>O Scratchpad (<code>Ctrl+Shift+N</code>) é um editor de texto temporário persistente - ideal para notas rápidas, código de rascunho ou qualquer texto que não precisa de um arquivo.</p>
+<p>O conteúdo é salvo automaticamente e sobrevive ao reinício do Codis.</p>
+<hr />
+<h2 id="code-stats">Code Stats<a class="anchor" href="#code-stats" aria-label="Link para esta seção">#</a></h2>
+<p>O painel <strong>📊 Code Stats</strong> (Activity Bar → 📊) exibe estatísticas do workspace:</p>
+<ul>
+<li>Contagem de arquivos por linguagem</li>
+<li>Total de linhas de código</li>
+<li>Tamanho total dos arquivos</li>
+<li>Distribuição por tipo de arquivo (gráfico de barras)</li>
+</ul>
+<hr />
+<h2 id="todo-tree">Todo Tree<a class="anchor" href="#todo-tree" aria-label="Link para esta seção">#</a></h2>
+<p>O painel <strong>✅ Todo Tree</strong> (Activity Bar → ✅) varre todos os arquivos do workspace em busca de comentários <code>TODO</code>, <code>FIXME</code>, <code>HACK</code>, <code>NOTE</code> e exibe uma lista navegável. Clicar em um item abre o arquivo na linha correspondente.</p>
+<hr />
+<h2 id="rest-client">REST Client<a class="anchor" href="#rest-client" aria-label="Link para esta seção">#</a></h2>
+<p>O painel <strong>🌍 REST Client</strong> (Activity Bar → 🌍) permite fazer requisições HTTP diretamente do editor:</p>
+<ul>
+<li>Métodos: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS</li>
+<li>Headers customizáveis</li>
+<li>Body (JSON, form-data, raw)</li>
+<li>Exibição formatada da resposta</li>
+</ul>
+<hr />
+<h2 id="preview--render-panel">Preview / Render Panel<a class="anchor" href="#preview--render-panel" aria-label="Link para esta seção">#</a></h2>
+<p>O painel <strong>🌐 Preview</strong> (Activity Bar → 🌐) renderiza o arquivo ativo:</p>
+<ul>
+<li><strong>HTML</strong> - renderiza como página web com suporte a CSS e JavaScript local</li>
+<li><strong>Markdown</strong> - converte e exibe com formatação rica (detecta tema claro/escuro pelo brilho do tema ativo)</li>
+<li><strong>SVG</strong> - renderiza o gráfico diretamente</li>
+</ul>
+<p>Atualiza automaticamente ao salvar o arquivo.</p>
+<hr />
+<h2 id="flowchart-panel">Flowchart Panel<a class="anchor" href="#flowchart-panel" aria-label="Link para esta seção">#</a></h2>
+<p>O painel <strong>🔀 Flowchart</strong> (Activity Bar → 🔀) gera um fluxograma visual do código ativo automaticamente, usando análise de fluxo de controle.</p>
+<hr />
+<h2 id="pomodoro-timer">Pomodoro Timer<a class="anchor" href="#pomodoro-timer" aria-label="Link para esta seção">#</a></h2>
+<p>O painel <strong>⏱ Pomodoro</strong> (<code>Ctrl+Alt+P</code>) implementa a técnica Pomodoro:</p>
+<ul>
+<li>Temporizadores configuráveis para sessão de trabalho e pausa</li>
+<li>Notificações na barra de status ao fim de cada intervalo</li>
+</ul>
+<hr />
+<h2 id="notas-de-sessão">Notas de Sessão<a class="anchor" href="#notas-de-sessão" aria-label="Link para esta seção">#</a></h2>
+<p><strong>Ferramentas → Notas de Sessão</strong> abre uma janela flutuante de notas persistentes vinculadas ao workspace atual. O conteúdo é salvo automaticamente em <code>~/.codis/notes_&lt;hash&gt;.txt</code> a cada 600 ms de inatividade.</p>
+<hr />
+<h2 id="histórico-de-colagem">Histórico de Colagem<a class="anchor" href="#histórico-de-colagem" aria-label="Link para esta seção">#</a></h2>
+<p><code>Ctrl+Shift+V</code> abre o histórico das últimas 50 entradas do clipboard. Clique duplo ou pressione Enter para colar o item selecionado no editor ativo.</p>
+<hr />
+<h2 id="ferramentas-de-texto">Ferramentas de Texto<a class="anchor" href="#ferramentas-de-texto" aria-label="Link para esta seção">#</a></h2>
+<p>Via menu <strong>Ferramentas</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contador de Palavras</td>
+<td>Conta palavras, linhas, chars (seleção ou arquivo)</td>
+</tr>
+<tr>
+<td>Base64 Encode</td>
+<td>Codifica a seleção em Base64</td>
+</tr>
+<tr>
+<td>Base64 Decode</td>
+<td>Decodifica a seleção de Base64</td>
+</tr>
+<tr>
+<td>URL Encode</td>
+<td>Percent-encoding da seleção</td>
+</tr>
+<tr>
+<td>URL Decode</td>
+<td>Decodifica percent-encoding</td>
+</tr>
+<tr>
+<td>MD5 Hash</td>
+<td>Calcula MD5 da seleção (copia para clipboard)</td>
+</tr>
+<tr>
+<td>SHA-256 Hash</td>
+<td>Calcula SHA-256 da seleção</td>
+</tr>
+<tr>
+<td>Inserir Sequência</td>
+<td>Insere sequência numérica com passo configurável</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="sql-studio">SQL Studio<a class="anchor" href="#sql-studio" aria-label="Link para esta seção">#</a></h2>
+<p>O <strong>SQL Studio</strong> é um ambiente completo de banco de dados integrado ao Codis, disponível na Activity Bar (<code>🗄</code>), na aba inferior (<code>🗄 SQL</code>) e pelo atalho <code>Ctrl+Shift+Q</code>.</p>
+<h3 id="drivers-suportados">Drivers suportados<a class="anchor" href="#drivers-suportados" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Instalação</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SQLite</strong></td>
+<td>Embutido no Python</td>
+<td>Zero dependências, padrão</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td><code>pip install psycopg2-binary</code></td>
+<td>Host, porta, usuário, senha, database</td>
+</tr>
+<tr>
+<td><strong>MySQL / MariaDB</strong></td>
+<td><code>pip install pymysql</code></td>
+<td>Mesmos campos do PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>DuckDB</strong></td>
+<td><code>pip install duckdb</code></td>
+<td>Arquivo <code>.duckdb</code> ou <code>:memory:</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="gerenciamento-de-conexões">Gerenciamento de Conexões<a class="anchor" href="#gerenciamento-de-conexões" aria-label="Link para esta seção">#</a></h3>
+<p>Conexões são salvas em <code>~/.codis/sql_connections.json</code>. Cada perfil inclui:</p>
+<ul>
+<li>Nome, driver, caminho (SQLite/DuckDB) ou host/porta/database/usuário/senha (outros)</li>
+<li>Flag somente leitura para conexões SQLite/DuckDB em modo seguro</li>
+<li>Botão <strong>🔗 Testar</strong> antes de salvar verifica se a conexão funciona</li>
+</ul>
+<h3 id="editor-sql">Editor SQL<a class="anchor" href="#editor-sql" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Syntax highlighting: palavras-chave em azul, strings, números e comentários <code>--</code> / <code>/* */</code></li>
+<li>Números de linha integrados</li>
+<li>Autocomplete <code>Ctrl+Space</code> - keywords SQL + tabelas + colunas do esquema ativo</li>
+<li><code>F5</code> ou <code>Ctrl+Enter</code> - executa a query completa</li>
+<li>Botão <strong>▶ Seleção</strong> - executa apenas o texto selecionado</li>
+<li>Botão <strong>📊 EXPLAIN</strong> - exibe o plano de execução sem rodar a query</li>
+<li>Botão <strong>⬛ Formatar</strong> - UPPER-CASE em keywords e quebras de linha semânticas</li>
+<li>Salvar / abrir arquivos <code>.sql</code> diretamente</li>
+</ul>
+<h3 id="browser-de-esquema">Browser de Esquema<a class="anchor" href="#browser-de-esquema" aria-label="Link para esta seção">#</a></h3>
+<p>A coluna lateral esquerda exibe a árvore de tabelas do banco conectado:</p>
+<ul>
+<li><code>📋 nome_tabela</code> - nó expansível</li>
+<li><code>🔑 coluna</code> - chave primária</li>
+<li><code>coluna TIPO!</code> - <code>!</code> indica <code>NOT NULL</code></li>
+<li>Duplo clique em tabela → insere <code>SELECT * FROM &quot;tabela&quot; LIMIT 100;</code> no editor</li>
+<li>Duplo clique em coluna → insere o nome da coluna no cursor</li>
+<li>Botão direito → menu de contexto com <code>SELECT *</code>, <code>COUNT(*)</code>, <code>DROP TABLE</code>, <code>Ver Esquema DDL</code></li>
+<li>Campo de busca no topo para filtrar tabelas por nome</li>
+</ul>
+<h3 id="grid-de-resultados">Grid de Resultados<a class="anchor" href="#grid-de-resultados" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Clique no cabeçalho de qualquer coluna para ordenar</li>
+<li><strong>📤 CSV</strong> - exporta os resultados para arquivo <code>.csv</code></li>
+<li><strong>📤 JSON</strong> - exporta para arquivo <code>.json</code> com objetos por linha</li>
+<li>Máximo de 5.000 linhas exibidas por query (configurável em <code>src/ui/sql_studio.py</code>)</li>
+</ul>
+<h3 id="histórico">Histórico<a class="anchor" href="#histórico" aria-label="Link para esta seção">#</a></h3>
+<p>Até 500 queries salvas automaticamente em <code>~/.codis/sql_history.json</code>, acessíveis pelo botão <strong>⏱ Histórico</strong>. A janela de histórico mostra timestamp, prévia da query e permite inserção por duplo clique.</p>
+<hr />
+<h2 id="gerenciador-de-tarefas">Gerenciador de Tarefas<a class="anchor" href="#gerenciador-de-tarefas" aria-label="Link para esta seção">#</a></h2>
+<p>O <strong>Gerenciador de Tarefas</strong> (Activity Bar → <code>✅</code>, sem atalho de teclado dedicado) oferece três visões:</p>
+<h3 id="kanban">Kanban<a class="anchor" href="#kanban" aria-label="Link para esta seção">#</a></h3>
+<p>Quadro visual com quatro colunas configuráveis:</p>
+<pre><code>Backlog  →  Em Andamento  →  Revisão  →  Concluído
+</code></pre>
+<p>Cada cartão exibe:</p>
+<ul>
+<li>Faixa de cor por prioridade (🔴 Crítico · 🟠 Alto · 🟡 Médio · 🟢 Baixo)</li>
+<li>Título, preview da descrição</li>
+<li>Badge de vencimento com cores por urgência (atraso em vermelho, hoje em amarelo, próximo em laranja)</li>
+<li>Tags coloridas (cor calculada automaticamente por hash do nome)</li>
+</ul>
+<p>Duplo clique em qualquer cartão abre o editor. Botão direito → mover para coluna, arquivar, deletar.</p>
+<h3 id="lista">Lista<a class="anchor" href="#lista" aria-label="Link para esta seção">#</a></h3>
+<p>Tabela com todas as tarefas filtráveis por texto e prioridade, com opção de mostrar tarefas arquivadas.</p>
+<h3 id="agendador-de-comandos">Agendador de Comandos<a class="anchor" href="#agendador-de-comandos" aria-label="Link para esta seção">#</a></h3>
+<p>Aba <strong>⏰ Agendador</strong> para execução automática de comandos shell:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Uma vez</strong></td>
+<td>Executa em data/hora específica e desabilita após</td>
+</tr>
+<tr>
+<td><strong>A cada N minutos</strong></td>
+<td>Executa a cada N minutos a partir da última execução</td>
+</tr>
+<tr>
+<td><strong>A cada N horas</strong></td>
+<td>Executa a cada N horas</td>
+</tr>
+<tr>
+<td><strong>Todo dia</strong></td>
+<td>Executa diariamente no horário <code>HH:MM</code> configurado</td>
+</tr>
+<tr>
+<td><strong>Toda semana</strong></td>
+<td>Executa no dia da semana + horário <code>HH:MM</code> configurados</td>
+</tr>
+</tbody>
+</table></div>
+<p>O <strong>Scheduler</strong> é um thread daemon que verifica as tarefas a cada 10 segundos. Suporta comandos simples (<code>python backup.py</code>) e shell complexos com pipes e redirecionamentos (<code>echo hi | tee log.txt</code>). O botão <strong>▶ Executar Agora</strong> força execução imediata da tarefa selecionada.</p>
+<p>Agendamentos salvos em <code>~/.codis/scheduled_tasks.json</code>. O log de execuções exibe saída real com cores verde (sucesso) / vermelho (erro).</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="colaboracao.html"><small>Anterior</small>Edição Colaborativa</a>
+        <a class="next" href="recursos-exclusivos.html"><small>Próxima</small>Recursos Exclusivos</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/recursos-avancados.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/recursos-avancados.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#lsp---language-server-protocol">LSP - Language Server Protocol</a></li><li class="l3"><a href="#servidores-suportados-auto-detectados">Servidores Suportados (Auto-detectados)</a></li><li class="l3"><a href="#funcionalidades-lsp">Funcionalidades LSP</a></li><li class="l3"><a href="#configuração">Configuração</a></li><li class="l2"><a href="#code-outline">Code Outline</a></li><li class="l2"><a href="#bookmarks">Bookmarks</a></li><li class="l3"><a href="#criando-bookmarks">Criando Bookmarks</a></li><li class="l3"><a href="#navegando-por-bookmarks">Navegando por Bookmarks</a></li><li class="l3"><a href="#painel-de-bookmarks">Painel de Bookmarks</a></li><li class="l2"><a href="#snippets">Snippets</a></li><li class="l3"><a href="#painel-de-snippets">Painel de Snippets</a></li><li class="l3"><a href="#estrutura-de-um-snippet">Estrutura de um Snippet</a></li><li class="l3"><a href="#inserindo-snippets">Inserindo Snippets</a></li><li class="l2"><a href="#diff-engine">Diff Engine</a></li><li class="l3"><a href="#diff-arquivo-vs-versão-salva">Diff: Arquivo vs. Versão Salva</a></li><li class="l3"><a href="#diff-dois-arquivos">Diff: Dois Arquivos</a></li><li class="l3"><a href="#navegação-no-diff">Navegação no Diff</a></li><li class="l2"><a href="#find-in-files-busca-em-arquivos">Find in Files (Busca em Arquivos)</a></li><li class="l2"><a href="#debug-panel">Debug Panel</a></li><li class="l2"><a href="#regex-playground">Regex Playground</a></li><li class="l2"><a href="#color-picker">Color Picker</a></li><li class="l2"><a href="#scratchpad">Scratchpad</a></li><li class="l2"><a href="#code-stats">Code Stats</a></li><li class="l2"><a href="#todo-tree">Todo Tree</a></li><li class="l2"><a href="#rest-client">REST Client</a></li><li class="l2"><a href="#preview--render-panel">Preview / Render Panel</a></li><li class="l2"><a href="#flowchart-panel">Flowchart Panel</a></li><li class="l2"><a href="#pomodoro-timer">Pomodoro Timer</a></li><li class="l2"><a href="#notas-de-sessão">Notas de Sessão</a></li><li class="l2"><a href="#histórico-de-colagem">Histórico de Colagem</a></li><li class="l2"><a href="#ferramentas-de-texto">Ferramentas de Texto</a></li><li class="l2"><a href="#sql-studio">SQL Studio</a></li><li class="l3"><a href="#drivers-suportados">Drivers suportados</a></li><li class="l3"><a href="#gerenciamento-de-conexões">Gerenciamento de Conexões</a></li><li class="l3"><a href="#editor-sql">Editor SQL</a></li><li class="l3"><a href="#browser-de-esquema">Browser de Esquema</a></li><li class="l3"><a href="#grid-de-resultados">Grid de Resultados</a></li><li class="l3"><a href="#histórico">Histórico</a></li><li class="l2"><a href="#gerenciador-de-tarefas">Gerenciador de Tarefas</a></li><li class="l3"><a href="#kanban">Kanban</a></li><li class="l3"><a href="#lista">Lista</a></li><li class="l3"><a href="#agendador-de-comandos">Agendador de Comandos</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

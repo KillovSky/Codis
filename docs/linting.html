@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Linting &amp; LSP · Codis</title>
+<meta name="description" content="O Codis possui um sistema de diagnósticos em dois níveis: Lint Nativo (executado internamente) e LSP (servidor de linguagem externo). Ambos convergem para o mesmo sistema de exibição." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/linting.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Linting &amp; LSP · Codis" />
+<meta property="og:description" content="O Codis possui um sistema de diagnósticos em dois níveis: Lint Nativo (executado internamente) e LSP (servidor de linguagem externo). Ambos convergem para o mesmo sistema de exibição." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/linting.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group" open><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html" class="is-current" aria-current="page">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-linting--lsp">🔍 Linting &amp; LSP<a class="anchor" href="#-linting--lsp" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis possui um sistema de diagnósticos em dois níveis: <strong>Lint Nativo</strong> (executado internamente) e <strong>LSP</strong> (servidor de linguagem externo). Ambos convergem para o mesmo sistema de exibição.</p>
+<hr />
+<h2 id="como-funciona">Como Funciona<a class="anchor" href="#como-funciona" aria-label="Link para esta seção">#</a></h2>
+<ol>
+<li>Ao abrir ou modificar um arquivo, o <code>LintManager</code> agenda a execução do lint com um debounce de <code>lint_delay</code> ms (padrão: 750 ms).</li>
+<li>Os linters são executados em <strong>threads daemon</strong> separadas - nunca bloqueiam a UI.</li>
+<li>Os resultados são convertidos em objetos <code>Diag</code> e entregues ao <code>EditorPane</code> ativo, ao <code>ProblemsPanel</code> (painel inferior e sidebar) e à barra de status.</li>
+<li>O minimapa exibe marcadores coloridos nas linhas com diagnósticos.</li>
+</ol>
+<hr />
+<h2 id="linters-por-linguagem">Linters por Linguagem<a class="anchor" href="#linters-por-linguagem" aria-label="Link para esta seção">#</a></h2>
+<h3 id="python">Python<a class="anchor" href="#python" aria-label="Link para esta seção">#</a></h3>
+<p>Os linters Python são executados em sequência (os disponíveis no <code>PATH</code>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>O que verifica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>py_compile</code></td>
+<td>Sintaxe (embutido no Python - sempre disponível)</td>
+</tr>
+<tr>
+<td><code>pyflakes</code></td>
+<td>Erros semânticos simples (variáveis indefinidas, imports não usados)</td>
+</tr>
+<tr>
+<td><code>flake8</code></td>
+<td>Estilo (PEP 8) + erros</td>
+</tr>
+<tr>
+<td><code>mypy</code></td>
+<td>Checagem de tipos estática</td>
+</tr>
+</tbody>
+</table></div>
+<p>Configuração no <code>config.json</code>:</p>
+<pre><code class="language-json">&quot;lint_python&quot;: true,
+&quot;pylint_path&quot;: &quot;pylint&quot;,
+&quot;mypy_path&quot;: &quot;mypy&quot;,
+&quot;flake8_path&quot;: &quot;flake8&quot;
+</code></pre>
+<h3 id="javascript-e-typescript">JavaScript e TypeScript<a class="anchor" href="#javascript-e-typescript" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>O que verifica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESLint</td>
+<td>Erros de sintaxe, estilo, boas práticas</td>
+</tr>
+<tr>
+<td>Prettier</td>
+<td>Verificação de formatação</td>
+</tr>
+</tbody>
+</table></div>
+<p>O Codis detecta automaticamente a configuração do ESLint no workspace (<code>.eslintrc</code>, <code>.eslintrc.json</code>, <code>eslint.config.js</code>, etc.). O lint JS também cobre <code>.jsx</code>, <code>.tsx</code>, <code>.mjs</code>, <code>.cjs</code>, e os arquivos de componentes <strong>Vue</strong> e <strong>Svelte</strong> (<code>.vue</code>, <code>.svelte</code>) são roteados para o mesmo pipeline ESLint.</p>
+<pre><code class="language-json">&quot;lint_js&quot;: true,
+&quot;eslint_path&quot;: &quot;eslint&quot;,
+&quot;prettier_path&quot;: &quot;prettier&quot;
+</code></pre>
+<h3 id="html--svg--xml">HTML / SVG / XML<a class="anchor" href="#html--svg--xml" aria-label="Link para esta seção">#</a></h3>
+<p>Validação via <strong>tidy-html5</strong> (<code>tidy</code>), se disponível no <code>PATH</code>. Sem <code>tidy</code> instalado, o Codis cai automaticamente para um <strong>validador heurístico interno</strong> (sem dependências externas) que detecta tags não fechadas e tags de fechamento inesperadas, percorrendo o conteúdo linha a linha.</p>
+<blockquote>
+<p>A chave <code>lint_html</code> existe em <code>config.json</code> (padrão <code>true</code>), mas atualmente não é lida pelo dispatcher de lint - o lint de HTML roda sempre que <code>lint_enabled</code> global está ativo, independente do valor de <code>lint_html</code>.</p>
+</blockquote>
+<h3 id="php">PHP<a class="anchor" href="#php" aria-label="Link para esta seção">#</a></h3>
+<p>Validação de sintaxe via <code>php -l</code> (recurso nativo do próprio interpretador PHP, instalado junto com o PHP - sem ferramenta adicional). Detecta apenas erros de parse/fatais, não faz análise de estilo.</p>
+<blockquote>
+<p>Assim como <code>lint_html</code>, a chave <code>lint_php</code> (padrão <code>true</code>) não é lida pelo dispatcher de lint - roda sempre que <code>lint_enabled</code> global está ativo.</p>
+</blockquote>
+<h3 id="css--scss--less">CSS / SCSS / Less<a class="anchor" href="#css--scss--less" aria-label="Link para esta seção">#</a></h3>
+<p>O lint de CSS é feito via <strong>stylelint</strong> (executado como subprocesso, no mesmo padrão do ESLint). Diferente de pylint/mypy/flake8/eslint, o caminho do <code>stylelint</code> <strong>não é configurável</strong> via <code>config.json</code> - o Codis busca apenas por <code>shutil.which(&quot;stylelint&quot;)</code> no <code>PATH</code> do sistema e, como segunda tentativa, em <code>node_modules/.bin/stylelint</code> do workspace atual.</p>
+<p>Sem o <code>stylelint</code> instalado e acessível em uma dessas duas formas, nenhum diagnóstico de CSS/SCSS é gerado (a função retorna lista vazia silenciosamente, sem erro visível).</p>
+<hr />
+<h2 id="painel-de-problemas">Painel de Problemas<a class="anchor" href="#painel-de-problemas" aria-label="Link para esta seção">#</a></h2>
+<p>O painel de Problemas (<code>Ctrl+M</code>) exibe todos os diagnósticos dos arquivos abertos.</p>
+<p>Cada entrada mostra:</p>
+<ul>
+<li><strong>Ícone de severidade:</strong> ✖ (erro) | ⚠ (aviso) | ℹ (info) | 💡 (hint)</li>
+<li><strong>Mensagem</strong> do diagnóstico</li>
+<li><strong>Regra</strong> aplicada (ex: <code>E501</code>, <code>no-unused-vars</code>)</li>
+<li><strong>Fonte</strong> (ex: <code>pylint</code>, <code>eslint</code>, <code>LSP</code>)</li>
+<li><strong>Localização:</strong> arquivo + linha + coluna</li>
+</ul>
+<p>Clicar em um diagnóstico abre o arquivo e posiciona o cursor na linha correspondente.</p>
+<p>O painel de Problemas existe em dois lugares:</p>
+<ol>
+<li><strong>Painel inferior</strong> (sempre visível quando aberto)</li>
+<li><strong>Sidebar</strong> - uma instância espelhada</li>
+</ol>
+<hr />
+<h2 id="navegação-por-diagnósticos">Navegação por Diagnósticos<a class="anchor" href="#navegação-por-diagnósticos" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Atalho</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F8</code></td>
+<td>Ir para o próximo diagnóstico no arquivo ativo</td>
+</tr>
+<tr>
+<td><code>Shift+F8</code></td>
+<td>Ir para o diagnóstico anterior</td>
+</tr>
+</tbody>
+</table></div>
+<p>A navegação é circular - ao chegar ao último diagnóstico, volta ao primeiro.</p>
+<hr />
+<h2 id="diagnósticos-no-editor">Diagnósticos no Editor<a class="anchor" href="#diagnósticos-no-editor" aria-label="Link para esta seção">#</a></h2>
+<p>Os diagnósticos são exibidos diretamente no editor com sublinhados coloridos:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Severidade</th>
+<th>Cor</th>
+<th>Sublinhado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Erro (1)</td>
+<td>vermelho</td>
+<td>ondulado</td>
+</tr>
+<tr>
+<td>Aviso (2)</td>
+<td>amarelo</td>
+<td>ondulado</td>
+</tr>
+<tr>
+<td>Info (3)</td>
+<td>azul</td>
+<td>pontilhado</td>
+</tr>
+<tr>
+<td>Hint (4)</td>
+<td>cinza</td>
+<td>pontilhado</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="estrutura-do-objeto-diag">Estrutura do Objeto <code>Diag</code><a class="anchor" href="#estrutura-do-objeto-diag" aria-label="Link para esta seção">#</a></h2>
+<pre><code class="language-python">@dataclass
+class Diag:
+    line:     int                  # Linha do diagnóstico (base 1)
+    col:      int                  # Coluna de início
+    end_col:  int                  # Coluna de fim
+    severity: int                  # 1=erro, 2=aviso, 3=info, 4=hint
+    message:  str                  # Texto do diagnóstico
+    rule:     str = &quot;&quot;             # Identificador da regra (ex: &quot;E501&quot;)
+    source:   str = &quot;&quot;             # Origem (ex: &quot;pylint&quot;, &quot;eslint&quot;, &quot;LSP&quot;)
+    fix:      dict | None = None   # Sugestão de correção automática (opcional)
+    related:  list = field(default_factory=list)  # Locais relacionados (opcional)
+</code></pre>
+<hr />
+<h2 id="correção-automática">Correção Automática<a class="anchor" href="#correção-automática" aria-label="Link para esta seção">#</a></h2>
+<p><code>Executar → Corrigir Tudo</code> (ou via Paleta de Comandos → &quot;Fix All&quot;) aplica todas as correções automáticas disponíveis no arquivo ativo. Apenas diagnósticos com objeto <code>fix</code> são corrigidos.</p>
+<hr />
+<h2 id="lsp-como-fonte-de-diagnósticos">LSP como Fonte de Diagnósticos<a class="anchor" href="#lsp-como-fonte-de-diagnósticos" aria-label="Link para esta seção">#</a></h2>
+<p>Servidores de linguagem (LSP) também enviam diagnósticos via <code>textDocument/publishDiagnostics</code>. O Codis converte esses diagnósticos no formato interno <code>Diag</code> e os exibe nos mesmos painéis.</p>
+<p>Diagnósticos LSP e de lint nativo são exibidos juntos no painel de Problemas, diferenciados pelo campo <code>source</code>.</p>
+<p>Ver <a href="recursos-avancados.html#lsp---language-server-protocol">Recursos Avançados → LSP</a> para configuração dos servidores.</p>
+<hr />
+<h2 id="barra-de-atividades---badge-de-problemas">Barra de Atividades - Badge de Problemas<a class="anchor" href="#barra-de-atividades---badge-de-problemas" aria-label="Link para esta seção">#</a></h2>
+<p>O ícone na Activity Bar que controla o painel de Problemas exibe um badge numérico com a contagem total de erros + avisos no workspace atual.</p>
+<hr />
+<h2 id="saída-do-lint-no-output-panel">Saída do Lint no Output Panel<a class="anchor" href="#saída-do-lint-no-output-panel" aria-label="Link para esta seção">#</a></h2>
+<p>Os resultados do lint são também enviados ao <strong>Painel de Saída</strong> (Output) nos canais:</p>
+<ul>
+<li><code>Python</code> - diagnósticos de linters Python</li>
+<li><code>ESLint</code> - diagnósticos do ESLint</li>
+<li><code>LSP</code> - mensagens do servidor de linguagem</li>
+<li><code>Codis</code> - logs internos</li>
+</ul>
+<p>Ver <a href="output.html">Painel de Saída</a> para mais detalhes.</p>
+<hr />
+<h2 id="configurações-de-lint">Configurações de Lint<a class="anchor" href="#configurações-de-lint" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Opção</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lint_enabled</code></td>
+<td><code>true</code></td>
+<td>Ativa/desativa o lint globalmente - única chave que afeta CSS, HTML e PHP</td>
+</tr>
+<tr>
+<td><code>lint_delay</code></td>
+<td><code>750</code></td>
+<td>Debounce após digitação (ms)</td>
+</tr>
+<tr>
+<td><code>lint_js</code></td>
+<td><code>true</code></td>
+<td>Habilita lint JS/TS/JSX/TSX/Vue/Svelte (efetivamente checada)</td>
+</tr>
+<tr>
+<td><code>lint_python</code></td>
+<td><code>true</code></td>
+<td>Habilita lint Python (efetivamente checada)</td>
+</tr>
+<tr>
+<td><code>lint_css</code></td>
+<td>-</td>
+<td>Existe na config, mas não é lida pelo lint atual (veja nota acima)</td>
+</tr>
+<tr>
+<td><code>lint_html</code></td>
+<td><code>true</code></td>
+<td>Existe na config, mas não é lida pelo lint atual (veja nota acima)</td>
+</tr>
+<tr>
+<td><code>lint_php</code></td>
+<td><code>true</code></td>
+<td>Existe na config, mas não é lida pelo lint atual (veja nota acima)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Todas as opções podem ser ajustadas via <code>Ctrl+,</code>.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="kdocs.html"><small>Anterior</small>KDocs - Documentação Nativa Universal</a>
+        <a class="next" href="debug.html"><small>Próxima</small>Debug (DAP via debugpy)</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/linting.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/linting.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#como-funciona">Como Funciona</a></li><li class="l2"><a href="#linters-por-linguagem">Linters por Linguagem</a></li><li class="l3"><a href="#python">Python</a></li><li class="l3"><a href="#javascript-e-typescript">JavaScript e TypeScript</a></li><li class="l3"><a href="#html--svg--xml">HTML / SVG / XML</a></li><li class="l3"><a href="#php">PHP</a></li><li class="l3"><a href="#css--scss--less">CSS / SCSS / Less</a></li><li class="l2"><a href="#painel-de-problemas">Painel de Problemas</a></li><li class="l2"><a href="#navegação-por-diagnósticos">Navegação por Diagnósticos</a></li><li class="l2"><a href="#diagnósticos-no-editor">Diagnósticos no Editor</a></li><li class="l2"><a href="#estrutura-do-objeto-diag">Estrutura do Objeto Diag</a></li><li class="l2"><a href="#correção-automática">Correção Automática</a></li><li class="l2"><a href="#lsp-como-fonte-de-diagnósticos">LSP como Fonte de Diagnósticos</a></li><li class="l2"><a href="#barra-de-atividades---badge-de-problemas">Barra de Atividades - Badge de Problemas</a></li><li class="l2"><a href="#saída-do-lint-no-output-panel">Saída do Lint no Output Panel</a></li><li class="l2"><a href="#configurações-de-lint">Configurações de Lint</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

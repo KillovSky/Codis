@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Documentação · Codis</title>
+<meta name="description" content="Documentação do Codis · Aether (v1.0.0). Os arquivos desta pasta alimentam a GitHub Wiki e o site. CHANGELOG, ROADMAP, CONTRIBUTING e SECURITY ficam na raiz do repositório." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/documentacao.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Documentação · Codis" />
+<meta property="og:description" content="Documentação do Codis · Aether (v1.0.0). Os arquivos desta pasta alimentam a GitHub Wiki e o site. CHANGELOG, ROADMAP, CONTRIBUTING e SECURITY ficam na raiz do repositório." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/documentacao.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html" aria-current="page">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home is-current" href="documentacao.html" aria-current="page">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-documentação-do-codis">📖 Documentação do Codis<a class="anchor" href="#-documentação-do-codis" aria-label="Link para esta seção">#</a></h1>
+<p>Documentação do Codis · Aether (v1.0.0). Os arquivos desta pasta alimentam a GitHub Wiki e o <a href="https://killovsky.github.io/Codis/" target="_blank" rel="noopener">site</a>. CHANGELOG, ROADMAP, CONTRIBUTING e SECURITY ficam na raiz do repositório.</p>
+<h2 id="começando">Começando<a class="anchor" href="#começando" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Documento</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🚀</td>
+<td><a href="primeiros-passos.html">Primeiros Passos</a></td>
+<td>Instalação, requisitos, execução, wizard inicial</td>
+</tr>
+<tr>
+<td>🖥️</td>
+<td><a href="interface.html">Interface</a></td>
+<td>Layout geral: Activity Bar, Sidebar, painéis, barra de status</td>
+</tr>
+<tr>
+<td>⌨️</td>
+<td><a href="atalhos.html">Atalhos</a></td>
+<td>Referência completa de todos os atalhos e cheat sheet</td>
+</tr>
+<tr>
+<td>⚙️</td>
+<td><a href="configuracoes.html">Configurações</a></td>
+<td>As 24 categorias de <code>config.json</code>, com tipo e valor padrão</td>
+</tr>
+<tr>
+<td>🎨</td>
+<td><a href="temas.html">Temas</a></td>
+<td>Temas built-in, pré-visualização, criação customizada e via plugin</td>
+</tr>
+<tr>
+<td>❓</td>
+<td><a href="faq.html">FAQ</a></td>
+<td>Perguntas frequentes e solução de problemas</td>
+</tr>
+<tr>
+<td>🛠️</td>
+<td><a href="troubleshooting.html">Solução de Problemas</a></td>
+<td>Diagnóstico técnico avançado: comandos, logs, causas</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="editando">Editando<a class="anchor" href="#editando" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Documento</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✏️</td>
+<td><a href="editor.html">Editor</a></td>
+<td>Syntax highlighting, autocomplete, snippets, minimap, dobramento</td>
+</tr>
+<tr>
+<td>🧠</td>
+<td><a href="inteligencia-editor.html">Inteligência do Editor</a></td>
+<td>Multi-Cursor, Smart Tips, Complexity Lens, Code Rhythm, Edit Heatmap</td>
+</tr>
+<tr>
+<td>📚</td>
+<td><a href="kdocs.html">KDocs</a></td>
+<td>Documentação nativa (Python/Rust/Go/Ruby/Lua/C++/C#/JSDoc), hover balloon</td>
+</tr>
+<tr>
+<td>🔍</td>
+<td><a href="linting.html">Linting &amp; LSP</a></td>
+<td>ESLint, Flake8, Mypy, Pylint, language servers externos</td>
+</tr>
+<tr>
+<td>🐞</td>
+<td><a href="debug.html">Debug</a></td>
+<td>Depuração real via DAP/debugpy: breakpoints, stepping, variáveis, console</td>
+</tr>
+<tr>
+<td>🌿</td>
+<td><a href="git.html">Git</a></td>
+<td>Painel Git completo, autenticação HTTPS/SSH, blame inline</td>
+</tr>
+<tr>
+<td>💻</td>
+<td><a href="terminal.html">Terminal</a></td>
+<td>Shell integrado, múltiplas sessões, REPLs</td>
+</tr>
+<tr>
+<td>🗂️</td>
+<td><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></td>
+<td>Workspace Switcher, Templates, Code Runner, Macros, Key Remapper, Trust</td>
+</tr>
+<tr>
+<td>🛠️</td>
+<td><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></td>
+<td>Formatador, Variáveis de Ambiente, Grafo de Dependências</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="assistente-e-conectividade">Assistente e conectividade<a class="anchor" href="#assistente-e-conectividade" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Documento</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🤖</td>
+<td><a href="ia.html">Assistente de IA</a></td>
+<td>Providers, Skills, 40 ferramentas, Approval Gate, Diff interativo</td>
+</tr>
+<tr>
+<td>💬</td>
+<td><a href="chat.html">Chat ao Vivo</a></td>
+<td>Cliente multi-protocolo: IRC, XMPP, Matrix, Slack, Discord, Telegram, Mattermost, MQTT e WebSocket</td>
+</tr>
+<tr>
+<td>🌐</td>
+<td><a href="remote-ssh.html">SSH Remoto</a></td>
+<td>Edição de arquivos em servidores remotos via SSH/SFTP</td>
+</tr>
+<tr>
+<td>👥</td>
+<td><a href="colaboracao.html">Colaboração em Tempo Real</a></td>
+<td>Edição simultânea do mesmo arquivo via WebSocket, cursores remotos</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="ferramentas-e-extras">Ferramentas e extras<a class="anchor" href="#ferramentas-e-extras" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Documento</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>💎</td>
+<td><a href="recursos-avancados.html">Recursos Avançados</a></td>
+<td>SQL Studio, Task Manager, LSP, Diff visual, Bookmarks</td>
+</tr>
+<tr>
+<td>🌟</td>
+<td><a href="recursos-exclusivos.html">Recursos Exclusivos</a></td>
+<td>Vim Mode imersivo, Zen Mode, Zen Media, easter eggs</td>
+</tr>
+<tr>
+<td>✦</td>
+<td><a href="kui.html">K-UI</a></td>
+<td>Engine holográfica: nebulosas, animações cósmicas, easter eggs</td>
+</tr>
+<tr>
+<td>⚡</td>
+<td><a href="sistema-performance.html">Sistema &amp; Performance</a></td>
+<td>Pip Manager, Process Manager, Modo Performance, Cursor, Remote Browser</td>
+</tr>
+<tr>
+<td>🗄️</td>
+<td><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></td>
+<td>File Timeline, Lixeira, Visualizador de ZIP/RAR/7z</td>
+</tr>
+<tr>
+<td>📤</td>
+<td><a href="output.html">Painel de Saída</a></td>
+<td>Output Panel: canais, níveis de log e bridge de logging</td>
+</tr>
+<tr>
+<td>♿</td>
+<td><a href="acessibilidade.html">Acessibilidade</a></td>
+<td>Alto contraste, modos para daltonismo, navegação por teclado</td>
+</tr>
+<tr>
+<td>🖌️</td>
+<td><a href="paint.html">Editor de Imagens (Paint)</a></td>
+<td>Editor de imagens básico, embutido ou standalone</td>
+</tr>
+<tr>
+<td>📅</td>
+<td><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></td>
+<td>Calendário, Calculadora, Relógio/Alarmes/Cronômetro</td>
+</tr>
+<tr>
+<td>🪟</td>
+<td><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></td>
+<td><code>/codis app</code> (adotar/iniciar janelas) e navegador real embutido</td>
+</tr>
+<tr>
+<td>👹</td>
+<td><a href="doom.html">DOOM Embutido</a></td>
+<td><code>/codis doom</code>: motor, IWAD e reparentamento da janela</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="para-quem-desenvolve">Para quem desenvolve<a class="anchor" href="#para-quem-desenvolve" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Documento</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🧩</td>
+<td><a href="plugins.html">Plugins</a></td>
+<td>API: eventos, painéis, storage, sandbox, hot-reload</td>
+</tr>
+<tr>
+<td>🏗️</td>
+<td><a href="arquitetura.html">Arquitetura</a></td>
+<td>Estrutura de módulos, fluxo de inicialização, dependências</td>
+</tr>
+<tr>
+<td>📦</td>
+<td><a href="builds.html">Builds &amp; CI/CD</a></td>
+<td>Empacotamento (PyInstaller/ZIP) e os 10 workflows do GitHub Actions (pipeline commit → build → release)</td>
+</tr>
+<tr>
+<td>🔄</td>
+<td><a href="updater.html">Atualizador</a></td>
+<td>Modos SMART/ZIP/REINSTALL/FORCE/BINARY, backup e rollback, caminhos protegidos</td>
+</tr>
+<tr>
+<td>🧪</td>
+<td><a href="testes.html">Testes</a></td>
+<td>Suíte de testes, fixtures, convenções e como contribuir com testes</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="visão-geral">Visão Geral<a class="anchor" href="#visão-geral" aria-label="Link para esta seção">#</a></h2>
+<p>O <strong>Codis</strong> é um editor de código desktop completo construído sobre Python 3 e Tkinter. Apesar de usar uma stack de UI clássica, o projeto leva o Tkinter além dos seus limites:</p>
+<ul>
+<li><strong>K-UI</strong> - engine de renderização cósmica com nebulosas, auroras e partículas animadas em thread separada (PIL)</li>
+<li><strong>Vim Mode</strong> - janela CLI imersiva separada com 6 modos do Vim</li>
+<li><strong>Zen Media</strong> - player de mídia integrado ao Modo Zen com backend VLC/MPV não-bloqueante</li>
+<li><strong>KDocs</strong> - motor de documentação universal com suporte nativo a Python (Google/NumPy/Sphinx), Rust, Go, Ruby, Lua, C/C++, C# e mais</li>
+<li><strong>LSP</strong> - integração nativa com servidores de linguagem externos (pylsp, tsserver, rust-analyzer…)</li>
+<li><strong>IA multi-provedor</strong> - Anthropic, OpenAI, OpenAI-compatível, Gemini, Ollama e modelos GGUF locais, com 15 Skills e 40 ferramentas</li>
+<li><strong>SQL Studio</strong> - banco de dados integrado com suporte a SQLite, PostgreSQL, MySQL e DuckDB</li>
+<li><strong>Task Manager</strong> - quadro Kanban com agendador de comandos shell integrado</li>
+<li><strong>Plugins</strong> - API completa com sandbox estática, eventos com prioridade e armazenamento persistente por plugin</li>
+</ul>
+<hr />
+<h2 id="licença">Licença<a class="anchor" href="#licença" aria-label="Link para esta seção">#</a></h2>
+<p>MIT - © KillovSky</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <span></span>
+        <a class="next" href="primeiros-passos.html"><small>Próxima</small>Primeiros Passos</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/Home.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/Home.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#começando">Começando</a></li><li class="l2"><a href="#editando">Editando</a></li><li class="l2"><a href="#assistente-e-conectividade">Assistente e conectividade</a></li><li class="l2"><a href="#ferramentas-e-extras">Ferramentas e extras</a></li><li class="l2"><a href="#para-quem-desenvolve">Para quem desenvolve</a></li><li class="l2"><a href="#visão-geral">Visão Geral</a></li><li class="l2"><a href="#licença">Licença</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

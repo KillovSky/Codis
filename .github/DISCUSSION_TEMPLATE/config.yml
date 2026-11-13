@@ -1,0 +1,26 @@
+blank_issues_enabled: true
+
+contact_links:
+  - name: "💬 Dúvida de uso (Q&A)"
+    url: https://github.com/KillovSky/Codis/discussions/new?category=q-a
+    about: "Instalação, configuração, plugins, temas - qualquer dúvida de uso"
+
+  - name: "💡 Ideia ou sugestão"
+    url: https://github.com/KillovSky/Codis/discussions/new?category=ideas
+    about: "Ideias para novas funcionalidades antes de virar uma issue formal"
+
+  - name: "🎨 Mostre seu trabalho"
+    url: https://github.com/KillovSky/Codis/discussions/new?category=show-and-tell
+    about: "Plugins, temas, projetos e customizações feitas com o Codis"
+
+  - name: "📢 Anúncios"
+    url: https://github.com/KillovSky/Codis/discussions?discussions_q=category%3AAnnouncements
+    about: "Novidades sobre releases, mudanças importantes e direção do projeto"
+
+  - name: "📖 Wiki completa"
+    url: https://github.com/KillovSky/Codis/wiki
+    about: "Documentação detalhada de todos os recursos"
+
+  - name: "🔐 Vulnerabilidade de segurança"
+    url: https://github.com/KillovSky/Codis/blob/main/SECURITY.md
+    about: "NÃO abra discussão pública - leia a política de segurança"

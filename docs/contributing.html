@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contribuindo · Codis</title>
+<meta name="description" content="Obrigado por considerar contribuir com o Codis! Este guia explica tudo que você precisa saber para ter sua contribuição aceita." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/contributing.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Contribuindo · Codis" />
+<meta property="og:description" content="Obrigado por considerar contribuir com o Codis! Este guia explica tudo que você precisa saber para ter sua contribuição aceita." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/contributing.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group" open><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html" class="is-current" aria-current="page">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-guia-de-contribuição---codis">🤝 Guia de Contribuição - Codis<a class="anchor" href="#-guia-de-contribuição---codis" aria-label="Link para esta seção">#</a></h1>
+<p>Obrigado por considerar contribuir com o Codis! Este guia explica tudo que você precisa saber para ter sua contribuição aceita.</p>
+<hr />
+<h2 id="formas-de-contribuir">Formas de Contribuir<a class="anchor" href="#formas-de-contribuir" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Forma</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🐛 <strong>Reportar bug</strong></td>
+<td><a href="https://github.com/KillovSky/Codis/issues/new?template=bug_report.yml" target="_blank" rel="noopener">Issue (Bug)</a></td>
+</tr>
+<tr>
+<td>💡 <strong>Sugerir feature</strong></td>
+<td><a href="https://github.com/KillovSky/Codis/issues/new?template=feature_request.yml" target="_blank" rel="noopener">Feature Request</a></td>
+</tr>
+<tr>
+<td>🖼️ <strong>Screenshots</strong></td>
+<td>Capturas do editor em diferentes SOs, temas e painéis para a wiki</td>
+</tr>
+<tr>
+<td>🌍 <strong>Traduções</strong></td>
+<td>Edite em <code>src/locales/</code> ou via plugin</td>
+</tr>
+<tr>
+<td>🎨 <strong>Criar tema</strong></td>
+<td>Veja <a href="#criando-um-tema">Criando um Tema</a></td>
+</tr>
+<tr>
+<td>🧩 <strong>Criar plugin</strong></td>
+<td>Veja <a href="plugins.html">wiki/plugins.md</a></td>
+</tr>
+<tr>
+<td>📝 <strong>Melhorar docs</strong></td>
+<td>Edite os arquivos em <code>wiki/</code></td>
+</tr>
+<tr>
+<td>🧪 <strong>Testes</strong></td>
+<td>Expanda <code>tests/</code> para <code>src/ui/</code> e integração</td>
+</tr>
+<tr>
+<td>💻 <strong>Código</strong></td>
+<td>Veja o <a href="#fluxo-de-contribui%C3%A7%C3%A3o">Fluxo de Contribuição</a></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="fluxo-de-contribuição">Fluxo de Contribuição<a class="anchor" href="#fluxo-de-contribuição" aria-label="Link para esta seção">#</a></h2>
+<h3 id="1-fork-e-clone">1. Fork e Clone<a class="anchor" href="#1-fork-e-clone" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash">git clone https://github.com/SEU_USUARIO/Codis.git
+cd Codis
+git remote add upstream https://github.com/KillovSky/Codis.git
+</code></pre>
+<h3 id="2-crie-uma-branch">2. Crie uma Branch<a class="anchor" href="#2-crie-uma-branch" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash">git checkout -b fix/sql-thread-lock          # correções
+git checkout -b feature/new-panel            # features
+git checkout -b docs/update-plugins-wiki     # documentação
+git checkout -b theme/nord-variant-light     # temas
+git checkout -b test/ui-editor-coverage      # testes
+git checkout -b i18n/update-fr-locale        # traduções
+</code></pre>
+<h3 id="3-configure-o-ambiente">3. Configure o Ambiente<a class="anchor" href="#3-configure-o-ambiente" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash">pip install -r requirements.txt
+pip install pytest pytest-cov flake8 pylint
+</code></pre>
+<p>Linux - instale o Tkinter:</p>
+<pre><code class="language-bash">sudo apt install python3-tk   # Ubuntu/Debian
+sudo pacman -S tk              # Arch
+sudo dnf install python3-tkinter  # Fedora
+</code></pre>
+<h3 id="4-faça-as-mudanças">4. Faça as Mudanças<a class="anchor" href="#4-faça-as-mudanças" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Siga as <a href="#conven%C3%A7%C3%B5es-de-c%C3%B3digo">Convenções de Código</a></li>
+<li>Commits pequenos e descritivos</li>
+<li>Uma mudança por commit (não misture feature com bugfix)</li>
+</ul>
+<h3 id="5-verifique-antes-de-submeter">5. Verifique Antes de Submeter<a class="anchor" href="#5-verifique-antes-de-submeter" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash"># Sintaxe de todos os arquivos Python
+find src/ -name &quot;*.py&quot; -print0 | xargs -0 python -m py_compile
+
+# Testes headless (sem display gráfico)
+pytest tests/ -v
+
+# Com cobertura
+pytest tests/ --cov=src --cov-report=term-missing
+
+# Módulo específico
+pytest tests/test_config.py -v
+
+# Para no primeiro falho
+pytest tests/ -x
+
+# Estilo
+flake8 src/ run.py --max-line-length=180
+
+# Imports principais
+python -c &quot;from src.config import ConfigManager; print('OK')&quot;
+python -c &quot;from src.app import CodisApp; print('OK')&quot;
+</code></pre>
+<p>→ <a href="https://github.com/KillovSky/Codis/blob/main/tests/README.md" target="_blank" rel="noopener">Documentação completa dos testes</a></p>
+<h3 id="6-sincronize-com-o-upstream">6. Sincronize com o Upstream<a class="anchor" href="#6-sincronize-com-o-upstream" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash">git fetch upstream
+git rebase upstream/main
+</code></pre>
+<h3 id="7-submeta-o-pull-request">7. Submeta o Pull Request<a class="anchor" href="#7-submeta-o-pull-request" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash">git push origin sua-branch
+</code></pre>
+<p>Abra o PR no GitHub preenchendo o template - especialmente a seção <strong>&quot;Como Testar&quot;</strong>.</p>
+<hr />
+<h2 id="convenções-de-código">Convenções de Código<a class="anchor" href="#convenções-de-código" aria-label="Link para esta seção">#</a></h2>
+<h3 id="estilo-geral">Estilo Geral<a class="anchor" href="#estilo-geral" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>Python 3.12+</strong> - use f-strings, <code>match</code>, <code>dataclass</code>, type hints</li>
+<li><strong>Type hints</strong> em todas as assinaturas públicas</li>
+<li><strong>Docstrings</strong> em funções e classes públicas (Google Style em PT-BR)</li>
+</ul>
+<h3 id="docstrings">Docstrings<a class="anchor" href="#docstrings" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">def minha_funcao(param1: str, param2: int = 0) -&gt; bool:
+    &quot;&quot;&quot;Descrição concisa do que a função faz.
+
+    Args:
+        param1: Descrição do parâmetro.
+        param2: Descrição do parâmetro opcional.
+
+    Returns:
+        bool: O que o valor de retorno significa.
+
+    Raises:
+        ValueError: Quando acontece X.
+    &quot;&quot;&quot;
+</code></pre>
+<h3 id="thread-safety---crítico">Thread Safety - CRÍTICO<a class="anchor" href="#thread-safety---crítico" aria-label="Link para esta seção">#</a></h3>
+<p>O Tkinter <strong>não é thread-safe total</strong>. Toda manipulação de widget deve ocorrer na main thread:</p>
+<pre><code class="language-python"># ❌ ERRADO - pode crashar ou corromper o estado da UI
+def minha_thread():
+    self._label.config(text=&quot;novo texto&quot;)
+
+# ✅ CORRETO - agenda na main thread
+def minha_thread():
+    self.after(0, lambda: self._label.config(text=&quot;novo texto&quot;))
+
+# ✅ CORRETO - com dados de retorno
+def minha_thread():
+    result = calcular_algo()
+    self.after(0, lambda r=result: self._apply_result(r))
+</code></pre>
+<h3 id="internacionalização-i18n">Internacionalização (i18n)<a class="anchor" href="#internacionalização-i18n" aria-label="Link para esta seção">#</a></h3>
+<p>Toda string visível ao usuário deve usar <code>_t()</code>:</p>
+<pre><code class="language-python">from src.i18n import _t
+
+# ❌ ERRADO
+tk.Label(self, text=&quot;Salvar arquivo&quot;)
+
+# ✅ CORRETO
+tk.Label(self, text=_t(&quot;ui.save_file&quot;, &quot;Salvar arquivo&quot;))
+</code></pre>
+<p><strong>Fluxo para novas strings:</strong></p>
+<ol>
+<li>Adicione a chave <strong>apenas em <code>src/locales/pt-BR.json</code></strong> com o valor em português.</li>
+<li>Execute <code>python sync_locales.py</code> - propaga para todos os outros idiomas marcando com <code>[TODO]</code> para tradução futura.</li>
+<li>Nunca edite os outros arquivos de locale manualmente para novas chaves - sempre via sync.</li>
+</ol>
+<pre><code class="language-bash"># Após adicionar chaves em pt-BR.json:
+python sync_locales.py
+
+# Automaticamente traduzir em todos os outros idiomas
+# Apesar de permitido, evite quando puder; Sempre revise!
+python translator.py
+</code></pre>
+<hr />
+<h2 id="criando-um-tema">Criando um Tema<a class="anchor" href="#criando-um-tema" aria-label="Link para esta seção">#</a></h2>
+<p>Temas ficam em <code>src/theme/base.py</code>. Para criar um novo, adicione dentro de <code>_define_themes()</code>:</p>
+<pre><code class="language-python">_add(Theme(
+    name=&quot;meu_tema&quot;,
+    dark=True,
+    bg=&quot;#1a1a2e&quot;,
+    fg=&quot;#e0e0ff&quot;,
+    editor_bg=&quot;#12122a&quot;,
+    cursor=&quot;#6c63ff&quot;,
+    accent=&quot;#6c63ff&quot;,
+    # ... todos os campos obrigatórios
+))
+</code></pre>
+<p>Adicione <code>&quot;meu_tema&quot;</code> na lista <code>THEME_ORDER</code> na posição desejada. Para temas distribuídos como plugins, veja <a href="plugins.html#temas-via-plugins">wiki/plugins.md</a>.</p>
+<hr />
+<h2 id="criando-uma-tradução">Criando uma Tradução<a class="anchor" href="#criando-uma-tradução" aria-label="Link para esta seção">#</a></h2>
+<p>Os arquivos de locale ficam em <code>src/locales/&lt;código&gt;.json</code>. O Codis usa 4.633 chaves de i18n (pt-BR e en são completos; <code>sync_locales.py</code> propaga as novas para os demais):</p>
+<pre><code class="language-bash"># Copiar o template do inglês para um novo idioma
+cp src/locales/en.json src/locales/pl.json
+# Abra o arquivo e traduza os valores - nunca as chaves!
+</code></pre>
+<p>Para adicionar um idioma via plugin (sem PR), veja <a href="plugins.html#plugins-de-locale">wiki/plugins.md</a>.</p>
+<hr />
+<h2 id="adicionando-um-novo-painel">Adicionando um Novo Painel<a class="anchor" href="#adicionando-um-novo-painel" aria-label="Link para esta seção">#</a></h2>
+<p>Os painéis do Codis seguem um padrão de integração definido:</p>
+<ol>
+<li>Crie o módulo em <code>src/ui/meu_painel.py</code> com uma classe que estenda <code>tk.Frame</code>.</li>
+<li>Implemente <code>apply_theme(tmgr)</code> para recoloração dinâmica de tema.</li>
+<li>Registre na Activity Bar em <code>src/_app_build.py</code> (<code>_actbar.add_plugin_item(...)</code>).</li>
+<li>Adicione ao <code>panel_map</code> em <code>src/_app_editor.py</code> (<code>_on_activity</code>).</li>
+<li>Se for painel inferior: adicione a aba em <code>_build_bottom_panel</code> e ao <code>panel_map</code> em <code>src/_app_lsp.py</code> (<code>_show_panel</code>).</li>
+<li>Adicione ao bloco <code>apply_theme</code> em <code>src/app.py</code>.</li>
+<li>Adicione as chaves i18n em <code>pt-BR.json</code> e execute <code>sync_locales.py</code>.</li>
+</ol>
+<hr />
+<h2 id="modos-standalone---como-testar">Modos Standalone - como testar<a class="anchor" href="#modos-standalone---como-testar" aria-label="Link para esta seção">#</a></h2>
+<p>Úteis para isolar bugs sem iniciar o editor completo. Há <strong>29 modos</strong> disponíveis:</p>
+<pre><code class="language-bash"># Editor e visualizadores
+python run.py scratch       # Bloco de notas multi-aba
+python run.py paint         # Editor de imagens
+python run.py diff A.py B.py # Diff Viewer
+python run.py render doc.md # Preview HTML/Markdown/SVG
+python run.py flowchart src/app.py # Fluxograma AST
+
+# Banco de dados e dados
+python run.py sql           # SQL Studio
+python run.py formatter     # Formatador JSON/YAML/TOML/XML
+
+# Ferramentas de dev
+python run.py regex         # Regex Playground
+python run.py rest          # REST Client
+python run.py git .         # Painel Git
+python run.py terminal .    # Terminal integrado
+python run.py stats src/    # Estatísticas de código
+
+# Sistema e ambiente
+python run.py pip           # Gerenciador de pacotes Pip
+python run.py processes     # Gerenciador de processos
+python run.py env           # Variáveis de ambiente
+python run.py ssh           # Conexão SSH
+
+# Produtividade
+python run.py player        # Zen Media Player
+python run.py pomodoro      # Timer Pomodoro
+python run.py todo          # Lista de tarefas
+python run.py tasks         # Kanban de tarefas
+python run.py calendar      # Calendário
+python run.py clock         # Relógio / Alarmes
+python run.py calculator    # Calculadora científica
+
+# Utilitários
+python run.py snippets      # Gerenciador de snippets
+python run.py color-picker  # Seletor de cores
+python run.py archive arq.zip # Visualizador de arquivos compactados
+python run.py output        # Painel de output
+python run.py accessibility # Painel de acessibilidade
+python run.py plugins       # Gerenciador de plugins
+
+# Também via python -m src
+python -m src paint
+python -m src sql
+</code></pre>
+<hr />
+<h2 id="documentação">Documentação<a class="anchor" href="#documentação" aria-label="Link para esta seção">#</a></h2>
+<p>Cada informação fica em um único lugar, para os textos não divergirem entre si.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Onde</th>
+<th>O que contém</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.md</code></td>
+<td>Vitrine do projeto e início rápido</td>
+<td>Só resumo; detalhes ficam na wiki</td>
+</tr>
+<tr>
+<td><code>wiki/*.md</code></td>
+<td>Guias de usuário e de desenvolvedor</td>
+<td>Fonte dos guias. <code>wiki/Home.md</code> é o índice (grupos e ordem) e <code>wiki/_Sidebar.md</code> é o menu da GitHub Wiki</td>
+</tr>
+<tr>
+<td><code>CHANGELOG.md</code>, <code>ROADMAP.md</code>, <code>CONTRIBUTING.md</code>, <code>SECURITY.md</code>, <code>AUTHORS.md</code></td>
+<td>Documentos do projeto</td>
+<td>Ficam na raiz (convenção do GitHub)</td>
+</tr>
+<tr>
+<td><code>docs/</code></td>
+<td>Site (GitHub Pages)</td>
+<td><code>index.html</code> é escrito à mão; as demais páginas são geradas, não edite direto</td>
+</tr>
+<tr>
+<td><code>tools/docs_facts.py</code></td>
+<td>Extrai números do código e confere os docs</td>
+<td><code>python tools/docs_facts.py --check</code></td>
+</tr>
+<tr>
+<td><code>tools/build_site.py</code></td>
+<td>Gera <code>docs/*.html</code> a partir dos <code>.md</code></td>
+<td><code>make docs</code> (precisa de <code>pip install -r tools/requirements-docs.txt</code>)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ao adicionar uma página na wiki: crie <code>wiki/&lt;nome-em-minusculas&gt;.md</code>, liste-a em <code>wiki/Home.md</code> e em <code>wiki/_Sidebar.md</code>, rode <code>make docs</code> e faça commit dos arquivos gerados. O job <code>check</code> do <code>docs.yml</code> falha no PR se <code>docs/</code> estiver desatualizado ou se um número dos docs não bater com o código.</p>
+<hr />
+<h2 id="áreas-que-precisam-de-contribuição">Áreas que Precisam de Contribuição<a class="anchor" href="#áreas-que-precisam-de-contribuição" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Área</th>
+<th>O que precisamos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🖼️ <strong>Screenshots</strong></td>
+<td>Capturas do editor em diferentes SOs e temas para a wiki</td>
+</tr>
+<tr>
+<td>🌍 <strong>Traduções</strong></td>
+<td>Todos os idiomas podem ter strings com <code>[TODO]</code></td>
+</tr>
+<tr>
+<td>🎨 <strong>Temas</strong></td>
+<td>Gruvbox Hard, Tokyo Storm, Catppuccin Latte</td>
+</tr>
+<tr>
+<td>🧪 <strong>Testes</strong></td>
+<td>Expandir cobertura para <code>src/ui/</code> e testes de integração</td>
+</tr>
+<tr>
+<td>📝 <strong>Docs</strong></td>
+<td>Exemplos práticos na wiki, especialmente para plugins e IA</td>
+</tr>
+<tr>
+<td>🐛 <strong>Bugs</strong></td>
+<td><a href="https://github.com/KillovSky/Codis/issues?q=label%3Abug" target="_blank" rel="noopener">Issues com label <code>bug</code></a></td>
+</tr>
+<tr>
+<td>✨ <strong>Features</strong></td>
+<td><a href="https://github.com/KillovSky/Codis/issues?q=label%3A%22help+wanted%22" target="_blank" rel="noopener">Issues com label <code>help wanted</code></a></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="perguntas">Perguntas?<a class="anchor" href="#perguntas" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><a href="https://github.com/KillovSky/Codis/discussions" target="_blank" rel="noopener">💬 Discussões</a> para dúvidas gerais</li>
+<li>Leia a <a href="https://github.com/KillovSky/Codis/blob/main/.github/GOVERNANCE.md" target="_blank" rel="noopener">Governança</a> para entender o processo de decisão</li>
+</ul>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="roadmap.html"><small>Anterior</small>Roadmap</a>
+        <a class="next" href="security.html"><small>Próxima</small>Segurança</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>CONTRIBUTING.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#formas-de-contribuir">Formas de Contribuir</a></li><li class="l2"><a href="#fluxo-de-contribuição">Fluxo de Contribuição</a></li><li class="l3"><a href="#1-fork-e-clone">1. Fork e Clone</a></li><li class="l3"><a href="#2-crie-uma-branch">2. Crie uma Branch</a></li><li class="l3"><a href="#3-configure-o-ambiente">3. Configure o Ambiente</a></li><li class="l3"><a href="#4-faça-as-mudanças">4. Faça as Mudanças</a></li><li class="l3"><a href="#5-verifique-antes-de-submeter">5. Verifique Antes de Submeter</a></li><li class="l3"><a href="#6-sincronize-com-o-upstream">6. Sincronize com o Upstream</a></li><li class="l3"><a href="#7-submeta-o-pull-request">7. Submeta o Pull Request</a></li><li class="l2"><a href="#convenções-de-código">Convenções de Código</a></li><li class="l3"><a href="#estilo-geral">Estilo Geral</a></li><li class="l3"><a href="#docstrings">Docstrings</a></li><li class="l3"><a href="#thread-safety---crítico">Thread Safety - CRÍTICO</a></li><li class="l3"><a href="#internacionalização-i18n">Internacionalização (i18n)</a></li><li class="l2"><a href="#criando-um-tema">Criando um Tema</a></li><li class="l2"><a href="#criando-uma-tradução">Criando uma Tradução</a></li><li class="l2"><a href="#adicionando-um-novo-painel">Adicionando um Novo Painel</a></li><li class="l2"><a href="#modos-standalone---como-testar">Modos Standalone - como testar</a></li><li class="l2"><a href="#documentação">Documentação</a></li><li class="l2"><a href="#áreas-que-precisam-de-contribuição">Áreas que Precisam de Contribuição</a></li><li class="l2"><a href="#perguntas">Perguntas?</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

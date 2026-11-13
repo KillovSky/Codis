@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KDocs - Documentação Nativa Universal · Codis</title>
+<meta name="description" content="O KDocs (src/editor/kdocs.py) é o sistema de documentação integrado ao Codis. Ele analisa comentários e docstrings nativamente em 27 linguagens (mais um perfil genérico de fallback) e exibe um balloon" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/kdocs.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="KDocs - Documentação Nativa Universal · Codis" />
+<meta property="og:description" content="O KDocs (src/editor/kdocs.py) é o sistema de documentação integrado ao Codis. Ele analisa comentários e docstrings nativamente em 27 linguagens (mais um perfil genérico de fallback) e exibe um balloon" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/kdocs.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group" open><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html" class="is-current" aria-current="page">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-kdocs---documentação-nativa-universal">📚 KDocs - Documentação Nativa Universal<a class="anchor" href="#-kdocs---documentação-nativa-universal" aria-label="Link para esta seção">#</a></h1>
+<p>O <strong>KDocs</strong> (<code>src/editor/kdocs.py</code>) é o sistema de documentação integrado ao Codis. Ele analisa comentários e docstrings nativamente em 27 linguagens (mais um perfil genérico de fallback) e exibe um balloon de documentação rico ao passar o mouse sobre qualquer símbolo documentado - sem depender de LSP.</p>
+<hr />
+<h2 id="o-que-é-o-kdocs">O Que é o KDocs?<a class="anchor" href="#o-que-é-o-kdocs" aria-label="Link para esta seção">#</a></h2>
+<p>O KDocs é um motor de análise estática que funciona <strong>diretamente sobre o texto do arquivo</strong>, detectando automaticamente o estilo de documentação pela extensão do arquivo:</p>
+<ul>
+<li><strong>Detecção automática de linguagem</strong> - <code>.py</code> → Python, <code>.rs</code> → Rust, <code>.go</code> → Go, etc.</li>
+<li><strong>Badge de linguagem colorido</strong> no balloon - <code>PYTHON</code> azul <code>#3572a5</code>, <code>RUST</code> laranja <code>#dea584</code>, <code>GO</code> ciano <code>#00add8</code></li>
+<li><strong>Múltiplos estilos por linguagem</strong> - Python suporta Google Style, NumPy Style e Sphinx/reST simultaneamente</li>
+<li><strong>Anotações <code>@kdocs:</code></strong> em qualquer linguagem (comentários da própria linguagem)</li>
+<li><strong>Cache LRU de 64 entradas</strong> para performance em arquivos grandes</li>
+<li><strong>Integração com o Painel Docs</strong> - lista filtrável de todos os símbolos documentados do arquivo ativo</li>
+</ul>
+<hr />
+<h2 id="detecção-automática-de-linguagem">Detecção Automática de Linguagem<a class="anchor" href="#detecção-automática-de-linguagem" aria-label="Link para esta seção">#</a></h2>
+<p>O KDocs detecta a linguagem pela extensão do arquivo e seleciona o parser correto. Ao todo são <strong>27 perfis de linguagem</strong> (<code>LanguageProfile</code>) mais um perfil genérico de fallback:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Extensão</th>
+<th>Linguagem</th>
+<th>Estilo detectado</th>
+<th>Badge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.py</code>, <code>.pyw</code>, <code>.pyi</code></td>
+<td>Python</td>
+<td>Google · NumPy · Sphinx/reST (auto)</td>
+<td><code>PYTHON</code> azul <code>#3572a5</code></td>
+</tr>
+<tr>
+<td><code>.rs</code></td>
+<td>Rust</td>
+<td><code>///</code> doc comments com Markdown</td>
+<td><code>RUST</code> laranja <code>#dea584</code></td>
+</tr>
+<tr>
+<td><code>.go</code></td>
+<td>Go</td>
+<td>godoc - comentários antes de declarações</td>
+<td><code>GO</code> ciano <code>#00add8</code></td>
+</tr>
+<tr>
+<td><code>.java</code></td>
+<td>Java</td>
+<td>JSDoc / Javadoc</td>
+<td><code>JAVA</code> marrom <code>#b07219</code></td>
+</tr>
+<tr>
+<td><code>.kt</code>, <code>.kts</code></td>
+<td>Kotlin</td>
+<td>JSDoc / KDoc</td>
+<td><code>KOTLIN</code> roxo <code>#a97bff</code></td>
+</tr>
+<tr>
+<td><code>.swift</code></td>
+<td>Swift</td>
+<td>JSDoc</td>
+<td><code>SWIFT</code> laranja <code>#f05138</code></td>
+</tr>
+<tr>
+<td><code>.cs</code></td>
+<td>C#</td>
+<td>Doxygen-style (sintaxe XML: <code>&lt;summary&gt;</code>, <code>&lt;param&gt;</code>)</td>
+<td><code>CSHARP</code> verde <code>#178600</code></td>
+</tr>
+<tr>
+<td><code>.cpp</code>, <code>.cc</code>, <code>.cxx</code>, <code>.hpp</code>, <code>.h</code></td>
+<td>C++</td>
+<td>Doxygen (<code>@param</code>, <code>\brief</code>, <code>@returns</code>)</td>
+<td><code>CPP</code> rosa <code>#f34b7d</code></td>
+</tr>
+<tr>
+<td><code>.c</code></td>
+<td>C</td>
+<td>Doxygen</td>
+<td><code>C</code> cinza <code>#555555</code></td>
+</tr>
+<tr>
+<td><code>.rb</code>, <code>.rake</code></td>
+<td>Ruby</td>
+<td>RDoc/YARD (<code>@param</code>, <code>@return</code>, <code>@raise</code>)</td>
+<td><code>RUBY</code> vermelho <code>#cc342d</code></td>
+</tr>
+<tr>
+<td><code>.lua</code></td>
+<td>Lua</td>
+<td>LDoc (<code>---</code>, <code>@tparam</code>, <code>@treturn</code>)</td>
+<td><code>LUA</code> azul marinho <code>#000080</code></td>
+</tr>
+<tr>
+<td><code>.sql</code></td>
+<td>SQL</td>
+<td>Comentários <code>--</code> estilo dash</td>
+<td><code>SQL</code> (cor padrão <code>jsdoc</code>)</td>
+</tr>
+<tr>
+<td><code>.sh</code>, <code>.bash</code>, <code>.zsh</code></td>
+<td>Shell</td>
+<td>Comentários <code>#</code> estilo hash</td>
+<td><code>SHELL</code> (cor padrão <code>jsdoc</code>)</td>
+</tr>
+<tr>
+<td><code>.yml</code>, <code>.yaml</code></td>
+<td>YAML</td>
+<td>Comentários <code>#</code> estilo hash</td>
+<td><code>YAML</code> (cor padrão <code>jsdoc</code>)</td>
+</tr>
+<tr>
+<td><code>.html</code>, <code>.htm</code></td>
+<td>HTML</td>
+<td>Comentários <code>&lt;!-- --&gt;</code></td>
+<td><code>HTML</code> (cor padrão <code>jsdoc</code>)</td>
+</tr>
+<tr>
+<td><code>.css</code></td>
+<td>CSS</td>
+<td>JSDoc-style em <code>/* */</code></td>
+<td><code>CSS</code> (cor padrão <code>jsdoc</code>)</td>
+</tr>
+<tr>
+<td><code>.scss</code>, <code>.sass</code></td>
+<td>SCSS</td>
+<td>JSDoc-style em <code>/* */</code></td>
+<td><code>SCSS</code> (cor padrão <code>jsdoc</code>)</td>
+</tr>
+<tr>
+<td><code>.js</code>, <code>.mjs</code>, <code>.cjs</code></td>
+<td>JavaScript</td>
+<td>JSDoc / TSDoc</td>
+<td><code>JAVASCRIPT</code> amarelo <code>#f7df1e</code></td>
+</tr>
+<tr>
+<td><code>.ts</code>, <code>.tsx</code>, <code>.d.ts</code></td>
+<td>TypeScript</td>
+<td>JSDoc / TSDoc</td>
+<td><code>TYPESCRIPT</code> azul <code>#3178c6</code></td>
+</tr>
+<tr>
+<td><code>.jsx</code></td>
+<td>JSX</td>
+<td>JSDoc</td>
+<td><code>JSX</code> (cor padrão <code>jsdoc</code>)</td>
+</tr>
+<tr>
+<td><code>.php</code></td>
+<td>PHP</td>
+<td>JSDoc</td>
+<td><code>PHP</code> lilás <code>#4f5d95</code></td>
+</tr>
+<tr>
+<td><code>.dart</code></td>
+<td>Dart</td>
+<td>JSDoc</td>
+<td><code>DART</code> ciano <code>#00b4ab</code></td>
+</tr>
+<tr>
+<td><code>.ex</code>, <code>.exs</code></td>
+<td>Elixir</td>
+<td>Python-style docstrings (<code>&quot;&quot;&quot;</code>)</td>
+<td><code>ELIXIR</code> roxo <code>#6e4a7e</code></td>
+</tr>
+<tr>
+<td><code>.r</code>, <code>.R</code></td>
+<td>R</td>
+<td>Roxygen2 (<code>#'</code>)</td>
+<td><code>R</code> azul <code>#198ce7</code></td>
+</tr>
+<tr>
+<td><code>.jl</code></td>
+<td>Julia</td>
+<td>Python-style docstrings (<code>&quot;&quot;&quot;</code>)</td>
+<td><code>JULIA</code> roxo <code>#a270ba</code></td>
+</tr>
+<tr>
+<td><code>.hs</code>, <code>.lhs</code></td>
+<td>Haskell</td>
+<td>Comentários <code>--</code> estilo dash, bloco <code>{- ... -}</code></td>
+<td><code>HASKELL</code> roxo <code>#5e5086</code></td>
+</tr>
+<tr>
+<td><code>.toml</code></td>
+<td>TOML</td>
+<td>Comentários <code>#</code> estilo hash</td>
+<td><code>TOML</code> (cor padrão <code>jsdoc</code>)</td>
+</tr>
+<tr>
+<td>outras extensões</td>
+<td>Genérico (fallback)</td>
+<td>JSDoc</td>
+<td><code>Doc</code> lilás <code>#cba6f7</code> (cor padrão)</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Linguagens sem cor de badge própria no código (SQL, Shell, YAML, HTML, CSS, SCSS, JSX, TOML) usam a cor padrão lilás <code>#cba6f7</code> reservada para <code>jsdoc</code>/fallback.</p>
+</blockquote>
+<hr />
+<h2 id="estilos-de-documentação-suportados">Estilos de Documentação Suportados<a class="anchor" href="#estilos-de-documentação-suportados" aria-label="Link para esta seção">#</a></h2>
+<h3 id="javascript--typescript---jsdoc--tsdoc">JavaScript / TypeScript - JSDoc / TSDoc<a class="anchor" href="#javascript--typescript---jsdoc--tsdoc" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-javascript">/**
+ * Calcula o fatorial de um número.
+ * @param {number} n - O número inteiro não negativo.
+ * @returns {number} O fatorial de n.
+ * @throws {Error} Se n for negativo.
+ * @example
+ * factorial(5); // 120
+ */
+function factorial(n) { ... }
+</code></pre>
+<p>Tags JSDoc reconhecidas: <code>@param</code>, <code>@returns</code>, <code>@throws</code>, <code>@example</code>, <code>@deprecated</code>, <code>@since</code>, <code>@author</code>, <code>@see</code>, <code>@type</code>, <code>@typedef</code>, <code>@callback</code>, <code>@template</code>, <code>@override</code>, <code>@abstract</code>.</p>
+<h3 id="python---google-style">Python - Google Style<a class="anchor" href="#python---google-style" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">def divide(a: float, b: float) -&gt; float:
+    &quot;&quot;&quot;Divide dois números.
+
+    Args:
+        a: Numerador.
+        b: Denominador. Não pode ser zero.
+
+    Returns:
+        O resultado da divisão.
+
+    Raises:
+        ValueError: Se b for zero.
+
+    Example:
+        &gt;&gt;&gt; divide(10, 2)
+        5.0
+    &quot;&quot;&quot;
+</code></pre>
+<h3 id="python---numpy-style">Python - NumPy Style<a class="anchor" href="#python---numpy-style" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">def soma(a, b):
+    &quot;&quot;&quot;
+    Soma dois valores.
+
+    Parameters
+    ----------
+    a : int
+        Primeiro operando.
+    b : int
+        Segundo operando.
+
+    Returns
+    -------
+    int
+        Resultado da soma.
+    &quot;&quot;&quot;
+</code></pre>
+<h3 id="python---sphinx--rest">Python - Sphinx / reST<a class="anchor" href="#python---sphinx--rest" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-python">def greet(name: str) -&gt; str:
+    &quot;&quot;&quot;Gera uma saudação.
+
+    :param name: Nome da pessoa.
+    :type name: str
+    :returns: String de saudação.
+    :rtype: str
+    :raises TypeError: Se name não for string.
+    &quot;&quot;&quot;
+</code></pre>
+<h3 id="rust---doc-comments-">Rust - Doc Comments (<code>///</code>)<a class="anchor" href="#rust---doc-comments-" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-rust">/// Calcula a raiz quadrada de um número.
+///
+/// # Arguments
+///
+/// * `x` - O número a calcular. Deve ser não negativo.
+///
+/// # Returns
+///
+/// A raiz quadrada de `x`.
+///
+/// # Panics
+///
+/// Entra em panic se `x` for negativo.
+pub fn sqrt(x: f64) -&gt; f64 { ... }
+</code></pre>
+<h3 id="go---godoc">Go - Godoc<a class="anchor" href="#go---godoc" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-go">// Fetch realiza uma requisição HTTP GET para a URL fornecida.
+// Retorna o corpo da resposta como string ou um erro.
+// Exemplo:
+//
+//	body, err := Fetch(&quot;https://example.com&quot;)
+func Fetch(url string) (string, error) { ... }
+</code></pre>
+<h3 id="ruby---yard">Ruby - YARD<a class="anchor" href="#ruby---yard" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-ruby"># Calcula o IMC de uma pessoa.
+#
+# @param peso [Float] Peso em quilogramas.
+# @param altura [Float] Altura em metros.
+# @return [Float] O índice de massa corporal.
+# @raise [ArgumentError] Se altura for zero.
+def imc(peso, altura)
+</code></pre>
+<h3 id="lua---ldoc">Lua - LDoc<a class="anchor" href="#lua---ldoc" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-lua">--- Faz login no servidor.
+-- @param usuario string O nome de usuário.
+-- @param senha string A senha do usuário.
+-- @return boolean true se o login foi bem-sucedido.
+-- @usage login(&quot;admin&quot;, &quot;senha123&quot;)
+function login(usuario, senha)
+</code></pre>
+<h3 id="doxygen-ccphpjava">Doxygen (C/C++/PHP/Java)<a class="anchor" href="#doxygen-ccphpjava" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-cpp">/**
+ * @brief Inicializa o módulo de rede.
+ *
+ * @param host Endereço do servidor.
+ * @param port Porta de conexão (padrão: 8080).
+ * @return int 0 em sucesso, código de erro negativo em falha.
+ * @warning Esta função não é thread-safe.
+ */
+int net_init(const char* host, int port);
+</code></pre>
+<h3 id="c---xml-documentation">C# - XML Documentation<a class="anchor" href="#c---xml-documentation" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// Converte uma string para Base64.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;input&quot;&gt;A string a ser codificada.&lt;/param&gt;
+/// &lt;returns&gt;A representação Base64 da string.&lt;/returns&gt;
+/// &lt;exception cref=&quot;ArgumentNullException&quot;&gt;Se input for null.&lt;/exception&gt;
+public static string ToBase64(string input) { ... }
+</code></pre>
+<hr />
+<h2 id="anotações-kdocs-especiais">Anotações KDocs Especiais<a class="anchor" href="#anotações-kdocs-especiais" aria-label="Link para esta seção">#</a></h2>
+<p>As anotações <code>@kdocs:&lt;tipo&gt;</code> funcionam em <strong>qualquer linguagem</strong>, independente do estilo de comentário (<code>//</code>, <code>#</code>, <code>--</code>, <code>&lt;!-- --&gt;</code>). O <code>&lt;tipo&gt;</code> não é uma lista fechada pré-definida - o parser aceita qualquer palavra após <code>@kdocs:</code>, mas os tipos abaixo têm tratamento e renderização especiais no balloon:</p>
+<pre><code class="language-python"># @kdocs:since 1.0.0
+# @kdocs:author KillovSky
+# @kdocs:stability stable
+# @kdocs:warn [fs] Não use de forma síncrona em produção! [@alice] [!high] [#nosync]
+# [!due:2025-12-31]
+# [!ticket:PROJ-123]
+def minha_funcao():
+    ...
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Anotação</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@kdocs:since &lt;versão&gt;</code></td>
+<td>Versão em que o símbolo foi introduzido</td>
+</tr>
+<tr>
+<td><code>@kdocs:author &lt;nome&gt;</code></td>
+<td>Autor do símbolo</td>
+</tr>
+<tr>
+<td><code>@kdocs:stability &lt;status&gt;</code></td>
+<td>Texto livre - convenção sugerida: <code>stable</code>, <code>experimental</code>, <code>deprecated</code></td>
+</tr>
+<tr>
+<td><code>@kdocs:see &lt;referência&gt;</code> / <code>@kdocs:link &lt;referência&gt;</code></td>
+<td>Referência cruzada para outro símbolo ou arquivo</td>
+</tr>
+<tr>
+<td><code>@kdocs:type &lt;nome&gt;</code></td>
+<td>Anota o tipo de uma variável/parâmetro explicitamente</td>
+</tr>
+<tr>
+<td><code>@kdocs:warn &lt;texto&gt;</code></td>
+<td>Aviso destacado no balloon (ex: alertas de uso)</td>
+</tr>
+<tr>
+<td><code>@kdocs:note &lt;texto&gt;</code></td>
+<td>Nota informativa adicional</td>
+</tr>
+<tr>
+<td><code>@kdocs:deprecated &lt;texto&gt;</code></td>
+<td>Marca o símbolo como obsoleto, com o motivo</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="modificadores-entre-colchetes">Modificadores entre colchetes<a class="anchor" href="#modificadores-entre-colchetes" aria-label="Link para esta seção">#</a></h3>
+<p>Podem ser combinados livremente dentro do texto de qualquer anotação <code>@kdocs:</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modificador</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[!due:YYYY-MM-DD]</code></td>
+<td>Data limite vinculada ao símbolo</td>
+</tr>
+<tr>
+<td><code>[!ticket:ID]</code></td>
+<td>Ticket de issue tracker vinculado</td>
+</tr>
+<tr>
+<td><code>[!low]</code> <code>[!normal]</code> <code>[!high]</code> <code>[!critical]</code></td>
+<td>Nível de prioridade (case-insensitive)</td>
+</tr>
+<tr>
+<td><code>[@nome.de-usuario]</code></td>
+<td>Pessoa responsável/atribuída</td>
+</tr>
+<tr>
+<td><code>[#tag1,tag2]</code></td>
+<td>Tags livres separadas por vírgula</td>
+</tr>
+</tbody>
+</table></div>
+<p>URLs em qualquer anotação são convertidas em links clicáveis no balloon.</p>
+<hr />
+<h2 id="balloon-de-documentação">Balloon de Documentação<a class="anchor" href="#balloon-de-documentação" aria-label="Link para esta seção">#</a></h2>
+<p>Ao passar o mouse sobre um símbolo documentado, um balloon é exibido com:</p>
+<ul>
+<li><strong>Badge de linguagem</strong> - identifica visualmente a linguagem do arquivo</li>
+<li><strong>Nome do símbolo</strong> e tipo (função, classe, variável)</li>
+<li><strong>Descrição</strong> extraída do comentário</li>
+<li><strong>Parâmetros</strong> com tipos e descrições</li>
+<li><strong>Retorno</strong> com tipo e descrição</li>
+<li><strong>Exceções / Erros</strong> documentados</li>
+<li><strong>Exemplos de uso</strong> com syntax highlighting</li>
+<li><strong>Metadados KDocs</strong> (<code>@since</code>, <code>@author</code>, <code>[!ticket:]</code>, <code>[!due:]</code>)</li>
+<li><strong>Locais de uso</strong> do símbolo no arquivo (até 200 ocorrências escaneadas)</li>
+</ul>
+<p>O balloon usa debounce para evitar disparos acidentais e fecha automaticamente ao mover o cursor.</p>
+<hr />
+<h2 id="cache-lru">Cache LRU<a class="anchor" href="#cache-lru" aria-label="Link para esta seção">#</a></h2>
+<p>O KDocs mantém um cache LRU (<code>_DocCache</code>) com capacidade de <strong>64 entradas</strong>. Arquivos grandes com muitas definições são parseados uma única vez e os resultados ficam em cache até que o conteúdo do arquivo mude.</p>
+<hr />
+<h2 id="configuração">Configuração<a class="anchor" href="#configuração" aria-label="Link para esta seção">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Opção</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hover_docs</code></td>
+<td><code>true</code></td>
+<td>Exibe o balloon ao passar o mouse</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="painel-kdocs-na-sidebar">Painel KDocs na Sidebar<a class="anchor" href="#painel-kdocs-na-sidebar" aria-label="Link para esta seção">#</a></h2>
+<p>O painel <strong>📚 KDocs</strong> (Activity Bar → 📚) exibe uma navegação estruturada de todas as definições documentadas do arquivo ativo. Clique em qualquer entrada para ir à definição.</p>
+<hr />
+<h2 id="compatibilidade">Compatibilidade<a class="anchor" href="#compatibilidade" aria-label="Link para esta seção">#</a></h2>
+<p>O KDocs é compatível com JSDoc. Nenhuma migração de comentários é necessária - o motor detecta automaticamente o estilo usado.</p>
+<p>O KDocs opera de forma <strong>complementar ao LSP</strong>: quando um servidor de linguagem está ativo e fornece hover documentation, o LSP tem prioridade. O KDocs é o fallback quando o LSP não está disponível ou não possui documentação para o símbolo.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="inteligencia-editor.html"><small>Anterior</small>Inteligência do Editor</a>
+        <a class="next" href="linting.html"><small>Próxima</small>Linting &amp; LSP</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/kdocs.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/kdocs.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#o-que-é-o-kdocs">O Que é o KDocs?</a></li><li class="l2"><a href="#detecção-automática-de-linguagem">Detecção Automática de Linguagem</a></li><li class="l2"><a href="#estilos-de-documentação-suportados">Estilos de Documentação Suportados</a></li><li class="l3"><a href="#javascript--typescript---jsdoc--tsdoc">JavaScript / TypeScript - JSDoc / TSDoc</a></li><li class="l3"><a href="#python---google-style">Python - Google Style</a></li><li class="l3"><a href="#python---numpy-style">Python - NumPy Style</a></li><li class="l3"><a href="#python---sphinx--rest">Python - Sphinx / reST</a></li><li class="l3"><a href="#rust---doc-comments-">Rust - Doc Comments (///)</a></li><li class="l3"><a href="#go---godoc">Go - Godoc</a></li><li class="l3"><a href="#ruby---yard">Ruby - YARD</a></li><li class="l3"><a href="#lua---ldoc">Lua - LDoc</a></li><li class="l3"><a href="#doxygen-ccphpjava">Doxygen (C/C++/PHP/Java)</a></li><li class="l3"><a href="#c---xml-documentation">C# - XML Documentation</a></li><li class="l2"><a href="#anotações-kdocs-especiais">Anotações KDocs Especiais</a></li><li class="l3"><a href="#modificadores-entre-colchetes">Modificadores entre colchetes</a></li><li class="l2"><a href="#balloon-de-documentação">Balloon de Documentação</a></li><li class="l2"><a href="#cache-lru">Cache LRU</a></li><li class="l2"><a href="#configuração">Configuração</a></li><li class="l2"><a href="#painel-kdocs-na-sidebar">Painel KDocs na Sidebar</a></li><li class="l2"><a href="#compatibilidade">Compatibilidade</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

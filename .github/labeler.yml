@@ -1,0 +1,82 @@
+"editor":
+  - changed-files:
+      - any-glob-to-any-file: "src/editor/**"
+
+"ui":
+  - changed-files:
+      - any-glob-to-any-file: "src/ui/**"
+
+"k-ui":
+  - changed-files:
+      - any-glob-to-any-file: "src/ui/k_ui/**"
+
+"git":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/ui/git_panel.py"
+          - "src/ui/git_auth.py"
+          - "src/ui/git_clone_dialog.py"
+
+"plugin":
+  - changed-files:
+      - any-glob-to-any-file: "src/plugins/**"
+
+"ia":
+  - changed-files:
+      - any-glob-to-any-file: "src/ia/**"
+
+"lsp":
+  - changed-files:
+      - any-glob-to-any-file: "src/lsp/**"
+
+"lint":
+  - changed-files:
+      - any-glob-to-any-file: "src/lint/**"
+
+"tema":
+  - changed-files:
+      - any-glob-to-any-file: "src/theme/**"
+
+"syntax":
+  - changed-files:
+      - any-glob-to-any-file: "src/syntax/**"
+
+"i18n":
+  - changed-files:
+      - any-glob-to-any-file: "src/locales/**"
+
+"ci/cd":
+  - changed-files:
+      - any-glob-to-any-file: ".github/workflows/**"
+
+"dependencies":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "requirements.txt"
+          - ".github/dependabot.yml"
+
+"build":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "package_codis.py"
+          - "setup.py"
+          - "run.py"
+
+"documentação":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "wiki/**"
+          - "*.md"
+          - ".github/*.md"
+
+"testes":
+  - changed-files:
+      - any-glob-to-any-file: "tests/**"
+
+"configuração":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/config.py"
+          - "src/constants.py"
+          - ".pylintrc"
+          - ".editorconfig"

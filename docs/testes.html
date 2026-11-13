@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Testes · Codis</title>
+<meta name="description" content="O Codis possui uma suíte de testes automatizados projetada para rodar completamente headless (sem display gráfico), permitindo que todo o CI/CD execute em runners Linux sem configuração especial. 1.68" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/testes.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Testes · Codis" />
+<meta property="og:description" content="O Codis possui uma suíte de testes automatizados projetada para rodar completamente headless (sem display gráfico), permitindo que todo o CI/CD execute em runners Linux sem configuração especial. 1.68" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/testes.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group" open><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html" class="is-current" aria-current="page">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-testes">🧪 Testes<a class="anchor" href="#-testes" aria-label="Link para esta seção">#</a></h1>
+<p>O Codis possui uma suíte de testes automatizados projetada para rodar completamente <strong>headless</strong> (sem display gráfico), permitindo que todo o CI/CD execute em runners Linux sem configuração especial. <strong>1.683 casos</strong> em 70 arquivos cobrem os subsistemas mais críticos - eventos, transformações de texto, IA, sintaxe das 25 linguagens, LSP, providers, plugins, diff, atualizador, chat, terminal e roteamento standalone.</p>
+<hr />
+<h2 id="executar-os-testes">Executar os Testes<a class="anchor" href="#executar-os-testes" aria-label="Link para esta seção">#</a></h2>
+<h3 id="instalação">Instalação<a class="anchor" href="#instalação" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash">pip install pytest pytest-cov
+</code></pre>
+<p>Todas as outras dependências são as mesmas do Codis (<code>requirements.txt</code>).</p>
+<h3 id="comandos">Comandos<a class="anchor" href="#comandos" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash"># Todos os testes
+pytest tests/
+
+# Com relatório de cobertura no terminal
+pytest tests/ --cov=src --cov-report=term-missing
+
+# Com cobertura em HTML (abre em browser)
+pytest tests/ --cov=src --cov-report=html
+open htmlcov/index.html
+
+# Arquivo específico
+pytest tests/test_syntax_patterns.py -v
+
+# Módulo específico por palavra-chave
+pytest tests/ -k &quot;TestDiffEngine&quot;
+
+# Parar no primeiro falho
+pytest tests/ -x
+
+# Ignorar testes de providers (mais rápido, sem I/O de rede simulado)
+pytest tests/ --ignore=tests/test_ia_providers.py
+
+# Saída mínima (apenas erros)
+pytest tests/ -q
+</code></pre>
+<hr />
+<h2 id="inventário-por-arquivo">Inventário por Arquivo<a class="anchor" href="#inventário-por-arquivo" aria-label="Link para esta seção">#</a></h2>
+<p>Lista tirada da coleta do pytest. A coluna de módulos mostra os <code>src.*</code> que cada arquivo importa.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Arquivo de teste</th>
+<th>Módulos exercitados</th>
+<th style="text-align:right">Casos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test_syntax_patterns.py</code></td>
+<td><code>src.syntax.patterns</code></td>
+<td style="text-align:right">92</td>
+</tr>
+<tr>
+<td><code>test_updater.py</code></td>
+<td><code>src.updater</code>, <code>src.updater.backup</code>, <code>src.updater.result</code></td>
+<td style="text-align:right">87</td>
+</tr>
+<tr>
+<td><code>test_text_transforms.py</code></td>
+<td><code>src.editor.text_transforms</code></td>
+<td style="text-align:right">79</td>
+</tr>
+<tr>
+<td><code>test_collab_ot.py</code></td>
+<td><code>src.collab.ot</code></td>
+<td style="text-align:right">56</td>
+</tr>
+<tr>
+<td><code>test_events_bus.py</code></td>
+<td><code>src.events</code>, <code>src.events.bus</code>, <code>src.events.kinds</code></td>
+<td style="text-align:right">54</td>
+</tr>
+<tr>
+<td><code>test_snippets.py</code></td>
+<td><code>src.editor.snippets</code></td>
+<td style="text-align:right">50</td>
+</tr>
+<tr>
+<td><code>test_paint_engine.py</code></td>
+<td><code>src.ui</code></td>
+<td style="text-align:right">49</td>
+</tr>
+<tr>
+<td><code>test_constants.py</code></td>
+<td><code>src.constants</code></td>
+<td style="text-align:right">48</td>
+</tr>
+<tr>
+<td><code>test_kui_colors.py</code></td>
+<td><code>src.ui.k_ui._colors</code></td>
+<td style="text-align:right">46</td>
+</tr>
+<tr>
+<td><code>test_suggest.py</code></td>
+<td><code>src.editor</code></td>
+<td style="text-align:right">46</td>
+</tr>
+<tr>
+<td><code>test_plugins.py</code></td>
+<td><code>src.constants</code>, <code>src.plugins.api</code></td>
+<td style="text-align:right">45</td>
+</tr>
+<tr>
+<td><code>test_theme_utils.py</code></td>
+<td><code>src.theme.utils</code></td>
+<td style="text-align:right">43</td>
+</tr>
+<tr>
+<td><code>test_events_pipeline_correlator_window.py</code></td>
+<td><code>src.events.bus</code>, <code>src.events.correlator</code>, <code>src.events.kinds</code></td>
+<td style="text-align:right">41</td>
+</tr>
+<tr>
+<td><code>test_remote_adapters.py</code></td>
+<td><code>src.ui</code></td>
+<td style="text-align:right">40</td>
+</tr>
+<tr>
+<td><code>test_ia_providers.py</code></td>
+<td><code>src.ia.providers</code></td>
+<td style="text-align:right">38</td>
+</tr>
+<tr>
+<td><code>test_approval_gate.py</code></td>
+<td><code>src.ia.approval_gate</code></td>
+<td style="text-align:right">37</td>
+</tr>
+<tr>
+<td><code>test_lsp_protocol.py</code></td>
+<td><code>src.lsp.protocol</code></td>
+<td style="text-align:right">37</td>
+</tr>
+<tr>
+<td><code>test_terminal_keys.py</code></td>
+<td><code>src.terminal.keys</code></td>
+<td style="text-align:right">37</td>
+</tr>
+<tr>
+<td><code>test_standalone.py</code></td>
+<td><code>src.standalone</code></td>
+<td style="text-align:right">35</td>
+</tr>
+<tr>
+<td><code>test_kui_world.py</code></td>
+<td><code>src.ui.k_ui._world</code></td>
+<td style="text-align:right">30</td>
+</tr>
+<tr>
+<td><code>test_i18n.py</code></td>
+<td><code>src.i18n</code></td>
+<td style="text-align:right">28</td>
+</tr>
+<tr>
+<td><code>test_kui_engine.py</code></td>
+<td><code>src.ui.k_ui._colors</code>, <code>src.ui.k_ui._perf</code>, <code>src.ui.k_ui._engine</code></td>
+<td style="text-align:right">28</td>
+</tr>
+<tr>
+<td><code>test_pyexec.py</code></td>
+<td><code>src.terminal.backends</code>, <code>src.lsp</code></td>
+<td style="text-align:right">28</td>
+</tr>
+<tr>
+<td><code>test_events_stream.py</code></td>
+<td><code>src.events.bus</code>, <code>src.events.kinds</code></td>
+<td style="text-align:right">27</td>
+</tr>
+<tr>
+<td><code>test_doom_embed.py</code></td>
+<td><code>src.ui</code></td>
+<td style="text-align:right">26</td>
+</tr>
+<tr>
+<td><code>test_theme_preview_panel.py</code></td>
+<td><code>src.theme.base</code></td>
+<td style="text-align:right">25</td>
+</tr>
+<tr>
+<td><code>test_terminal_vt.py</code></td>
+<td><code>src.terminal.palette</code>, <code>src.terminal.vt</code></td>
+<td style="text-align:right">24</td>
+</tr>
+<tr>
+<td><code>test_config.py</code></td>
+<td><code>src.constants</code>, <code>src.config</code></td>
+<td style="text-align:right">23</td>
+</tr>
+<tr>
+<td><code>test_calculator_safe_eval.py</code></td>
+<td><code>src.ui.calculator_panel</code></td>
+<td style="text-align:right">22</td>
+</tr>
+<tr>
+<td><code>test_diff_engine.py</code></td>
+<td><code>src.diff.engine</code></td>
+<td style="text-align:right">22</td>
+</tr>
+<tr>
+<td><code>test_theme.py</code></td>
+<td><code>src.theme.base</code>, <code>src.theme.manager</code></td>
+<td style="text-align:right">21</td>
+</tr>
+<tr>
+<td><code>test_trash_core.py</code></td>
+<td>-</td>
+<td style="text-align:right">21</td>
+</tr>
+<tr>
+<td><code>test_ia_context_builder.py</code></td>
+<td><code>src.ia.context_builder</code></td>
+<td style="text-align:right">19</td>
+</tr>
+<tr>
+<td><code>test_ia_pair.py</code></td>
+<td><code>src.ia</code>, <code>src.ia.toolbox</code></td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td><code>test_lint_diag.py</code></td>
+<td><code>src.lint.manager</code></td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td><code>test_wizard_options.py</code></td>
+<td><code>src.theme.base</code>, <code>src.constants</code></td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td><code>test_toolbox_security.py</code></td>
+<td><code>src.ia.toolbox</code></td>
+<td style="text-align:right">17</td>
+</tr>
+<tr>
+<td><code>test_kui_perf.py</code></td>
+<td><code>src.ui.k_ui._perf</code></td>
+<td style="text-align:right">16</td>
+</tr>
+<tr>
+<td><code>test_collab_net.py</code></td>
+<td><code>src.collab.net</code>, <code>src.collab.ot</code>, <code>src.collab.session</code></td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td><code>test_ia_session.py</code></td>
+<td><code>src.ia</code></td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td><code>test_terminal_session.py</code></td>
+<td><code>src.terminal.backends</code>, <code>src.terminal.session</code></td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td><code>test_ia_checkpoints.py</code></td>
+<td><code>src.ia.checkpoints</code>, <code>src.ia</code></td>
+<td style="text-align:right">14</td>
+</tr>
+<tr>
+<td><code>test_menu_bar_switching.py</code></td>
+<td><code>src.ui</code></td>
+<td style="text-align:right">14</td>
+</tr>
+<tr>
+<td><code>test_utils_and_sync.py</code></td>
+<td><code>src.editor._pane_utils</code></td>
+<td style="text-align:right">14</td>
+</tr>
+<tr>
+<td><code>test_sql_studio_helpers.py</code></td>
+<td><code>src.ui.sql_studio</code></td>
+<td style="text-align:right">13</td>
+</tr>
+<tr>
+<td><code>test_toolbox_checkpoints.py</code></td>
+<td><code>src.ia.toolbox</code></td>
+<td style="text-align:right">13</td>
+</tr>
+<tr>
+<td><code>test_zen_audio.py</code></td>
+<td><code>src.ui</code></td>
+<td style="text-align:right">13</td>
+</tr>
+<tr>
+<td><code>test_terminal_renderer.py</code></td>
+<td><code>src.terminal.backends</code>, <code>src.terminal.session</code>, <code>src.terminal.view</code></td>
+<td style="text-align:right">12</td>
+</tr>
+<tr>
+<td><code>test_collab_security.py</code></td>
+<td><code>src.ui.collab_panel</code></td>
+<td style="text-align:right">11</td>
+</tr>
+<tr>
+<td><code>test_exit_save.py</code></td>
+<td>-</td>
+<td style="text-align:right">11</td>
+</tr>
+<tr>
+<td><code>test_terminal_panel_logic.py</code></td>
+<td><code>src.ui.terminal</code></td>
+<td style="text-align:right">11</td>
+</tr>
+<tr>
+<td><code>test_terminal_shells.py</code></td>
+<td><code>src.terminal.shells</code></td>
+<td style="text-align:right">11</td>
+</tr>
+<tr>
+<td><code>test_webdev.py</code></td>
+<td><code>src.ui</code></td>
+<td style="text-align:right">11</td>
+</tr>
+<tr>
+<td><code>test_chat_irc.py</code></td>
+<td><code>src.chat.adapters.irc</code>, <code>src.chat.models</code>, <code>src.chat.session</code></td>
+<td style="text-align:right">10</td>
+</tr>
+<tr>
+<td><code>test_kui_bgrenderer.py</code></td>
+<td><code>src.ui.k_ui._bgrenderer</code>, <code>src.ui.k_ui._perf</code></td>
+<td style="text-align:right">10</td>
+</tr>
+<tr>
+<td><code>test_persistence_utils.py</code></td>
+<td><code>src.ui._persistence_utils</code></td>
+<td style="text-align:right">10</td>
+</tr>
+<tr>
+<td><code>test_app_embed.py</code></td>
+<td><code>src.ui</code></td>
+<td style="text-align:right">7</td>
+</tr>
+<tr>
+<td><code>test_chat_ws_adapters.py</code></td>
+<td><code>src.chat.models</code>, <code>src.chat.session</code>, <code>src.chat.adapters.slack</code></td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td><code>test_ia_provider_races.py</code></td>
+<td><code>src.ia</code></td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td><code>test_task_manager_helpers.py</code></td>
+<td><code>src.ui.task_manager</code></td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td><code>test_workspace_trust_enforcement.py</code></td>
+<td><code>src.ia.toolbox</code></td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td><code>test_chat_mqtt_ws.py</code></td>
+<td><code>src.chat.adapters</code>, <code>src.chat.models</code>, <code>src.chat.session</code></td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td><code>test_font_safety.py</code></td>
+<td>-</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td><code>test_chat_http_adapters.py</code></td>
+<td><code>src.chat.models</code>, <code>src.chat.session</code></td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><code>test_chat_render.py</code></td>
+<td><code>src.ui.chat_render</code></td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><code>test_chat_xmpp.py</code></td>
+<td><code>src.chat.models</code>, <code>src.chat.session</code></td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><code>test_diag_hover_throttle.py</code></td>
+<td><code>src.editor</code></td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><code>test_ia_skills.py</code></td>
+<td><code>src.ia.actions</code></td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><code>test_lsp_shutdown.py</code></td>
+<td><code>src.lsp</code>, <code>src.lsp.client</code></td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><code>test_stall_trace.py</code></td>
+<td><code>src.stall_trace</code></td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><strong>Total (70 arquivos)</strong></td>
+<td></td>
+<td style="text-align:right"><strong>1.683</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Os 191 testes de <code>tests_gui/</code> (18 arquivos) exigem display real e <strong>não</strong> entram no total acima. <code>test_chat_mqtt_ws.py</code> e <code>test_chat_ws_adapters.py</code> (11 casos) só rodam com <code>websockets</code> instalado; sem ele, o pytest coleta 1.672 casos.</p>
+</blockquote>
+<hr />
+<h2 id="cobertura-por-subsistema">Cobertura por Subsistema<a class="anchor" href="#cobertura-por-subsistema" aria-label="Link para esta seção">#</a></h2>
+<blockquote>
+<p>Medição de referência (<code>pytest --cov</code>), <strong>não</strong> regenerada automaticamente - rode <code>pytest tests/ --cov=src</code> para valores atuais.</p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Subsistema</th>
+<th style="text-align:right">Stmts</th>
+<th style="text-align:right">Cobertos</th>
+<th style="text-align:right">Cobertura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>events/</code></td>
+<td style="text-align:right">971</td>
+<td style="text-align:right">917</td>
+<td style="text-align:right"><strong>94%</strong></td>
+</tr>
+<tr>
+<td><code>diff/</code></td>
+<td style="text-align:right">101</td>
+<td style="text-align:right">95</td>
+<td style="text-align:right"><strong>94%</strong></td>
+</tr>
+<tr>
+<td><code>theme/</code></td>
+<td style="text-align:right">559</td>
+<td style="text-align:right">455</td>
+<td style="text-align:right"><strong>81%</strong></td>
+</tr>
+<tr>
+<td><code>lsp/</code></td>
+<td style="text-align:right">1 458</td>
+<td style="text-align:right">429</td>
+<td style="text-align:right">29%</td>
+</tr>
+<tr>
+<td><code>ia/</code></td>
+<td style="text-align:right">3 283</td>
+<td style="text-align:right">441</td>
+<td style="text-align:right">13%</td>
+</tr>
+<tr>
+<td><code>plugins/</code></td>
+<td style="text-align:right">1 955</td>
+<td style="text-align:right">294</td>
+<td style="text-align:right">15%</td>
+</tr>
+<tr>
+<td><code>lint/</code></td>
+<td style="text-align:right">539</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">21%</td>
+</tr>
+<tr>
+<td><code>syntax/</code></td>
+<td style="text-align:right">476</td>
+<td style="text-align:right">43</td>
+<td style="text-align:right">9%</td>
+</tr>
+<tr>
+<td><code>core</code> (config, i18n, standalone…)</td>
+<td style="text-align:right">5 506</td>
+<td style="text-align:right">374</td>
+<td style="text-align:right">7%</td>
+</tr>
+<tr>
+<td><code>editor/</code></td>
+<td style="text-align:right">10 234</td>
+<td style="text-align:right">189</td>
+<td style="text-align:right">2%</td>
+</tr>
+<tr>
+<td><code>ui/</code></td>
+<td style="text-align:right">33 244</td>
+<td style="text-align:right">691</td>
+<td style="text-align:right">2%</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td style="text-align:right"><strong>58 326</strong></td>
+<td style="text-align:right"><strong>4 044</strong></td>
+<td style="text-align:right"><strong>6,9%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Por que a cobertura global é baixa?</strong> O projeto tem ~50 000 statements de código UI/Tkinter que só executam com display gráfico real. A cobertura dos módulos de <strong>lógica pura</strong> - events (94%), diff (94%), theme (81%), LSP, IA, plugins - é significativamente maior e reflete a qualidade real da suíte headless.</p>
+</blockquote>
+<hr />
+<h2 id="como-a-suíte-funciona">Como a Suíte Funciona<a class="anchor" href="#como-a-suíte-funciona" aria-label="Link para esta seção">#</a></h2>
+<h3 id="headless-sem-display-gráfico">Headless sem display gráfico<a class="anchor" href="#headless-sem-display-gráfico" aria-label="Link para esta seção">#</a></h3>
+<p>O <code>conftest.py</code> instala um stub completo de Tkinter <strong>antes</strong> de qualquer importação do projeto. Isso permite que todos os módulos com <code>import tkinter</code> carreguem normalmente em runners CI sem display (sem <code>$DISPLAY</code> nem Xvfb).</p>
+<p>O stub cobre: <code>tkinter</code>, <code>tkinter.ttk</code>, <code>tkinter.font</code>, <code>tkinter.filedialog</code>, <code>tkinter.messagebox</code>, <code>tkinter.simpledialog</code> e <code>tkinter.colorchooser</code>.</p>
+<p>O stub <code>_W</code> (widget base) salva todos os kwargs recebidos em <code>__init__</code> e os retorna corretamente via <code>cget()</code>, permitindo testar widgets como <code>Chip</code>, <code>Toast</code> e <code>ProgressBar</code> sem display.</p>
+<h3 id="isolamento-de-configuração">Isolamento de configuração<a class="anchor" href="#isolamento-de-configuração" aria-label="Link para esta seção">#</a></h3>
+<p>A fixture <code>isolated_config_dir</code> (com <code>autouse=True</code>) redireciona <code>CONFIG_DIR</code> e <code>CONFIG_FILE</code> para um diretório temporário único por teste. Isso garante que:</p>
+<ul>
+<li>Os testes nunca leem nem escrevem na configuração real do usuário (<code>~/.codis/</code>)</li>
+<li>Cada teste começa com estado limpo</li>
+<li>Testes paralelos não interferem entre si</li>
+</ul>
+<h3 id="sem-dependências-de-rede">Sem dependências de rede<a class="anchor" href="#sem-dependências-de-rede" aria-label="Link para esta seção">#</a></h3>
+<p>Testes de provedores de IA verificam apenas comportamento de erro, cancelamento e configuração - sem fazer chamadas reais para Anthropic, OpenAI, Google ou Ollama. Testes de LSP verificam apenas a estrutura das mensagens JSON-RPC, não se comunicam com servers reais.</p>
+<hr />
+<h2 id="fixtures-disponíveis">Fixtures Disponíveis<a class="anchor" href="#fixtures-disponíveis" aria-label="Link para esta seção">#</a></h2>
+<p>Documentadas em <code>conftest.py</code>, disponíveis em todos os arquivos de teste via injeção do pytest:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Fixture</th>
+<th>Escopo</th>
+<th>O que provê</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cfg</code></td>
+<td><code>function</code></td>
+<td>Instância limpa de <code>ConfigManager</code> em diretório temporário</td>
+</tr>
+<tr>
+<td><code>tmp_py_file</code></td>
+<td><code>function</code></td>
+<td>Arquivo <code>.py</code> temporário com código Python de exemplo</td>
+</tr>
+<tr>
+<td><code>tmp_js_file</code></td>
+<td><code>function</code></td>
+<td>Arquivo <code>.js</code> temporário com código JavaScript de exemplo</td>
+</tr>
+<tr>
+<td><code>mock_workspace</code></td>
+<td><code>function</code></td>
+<td>Pasta temporária com <code>main.py</code>, <code>utils.py</code>, <code>requirements.txt</code> e <code>README.md</code></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="convenções-de-código-de-teste">Convenções de Código de Teste<a class="anchor" href="#convenções-de-código-de-teste" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><strong>Classes de teste</strong> agrupam casos relacionados: <code>class TestGetSet</code>, <code>class TestPersistence</code>.</li>
+<li><strong>Fixtures de escopo de função</strong> garantem isolamento total entre testes.</li>
+<li><strong>Mocks mínimos</strong> - <code>unittest.mock.MagicMock</code> apenas quando necessário, preferindo testar a lógica real.</li>
+<li><strong>Mensagens de asserção em português</strong>, consistentes com o padrão do projeto.</li>
+<li><strong>Nomes descritivos</strong>: <code>test_diff_empty_strings_returns_empty_hunks</code> é melhor que <code>test_edge_case_1</code>.</li>
+<li><strong>threading.Event</strong> para sincronizar testes assíncronos com timeout explícito.</li>
+</ul>
+<hr />
+<h2 id="adicionar-novos-testes">Adicionar Novos Testes<a class="anchor" href="#adicionar-novos-testes" aria-label="Link para esta seção">#</a></h2>
+<ol>
+<li>Crie <code>tests/test_seu_modulo.py</code></li>
+<li>Importe o stub de Tkinter via <code>conftest.py</code> automaticamente (não precisa fazer nada)</li>
+<li>Use as fixtures disponíveis para isolamento</li>
+<li>Agrupe casos em classes por funcionalidade</li>
+<li>Execute localmente: <code>pytest tests/test_seu_modulo.py -v</code></li>
+</ol>
+<p>Pull requests que adicionam features devem incluir testes cobrindo o caminho feliz e pelo menos um caso de erro esperado.</p>
+<hr />
+<h2 id="áreas-sem-cobertura-atual">Áreas Sem Cobertura Atual<a class="anchor" href="#áreas-sem-cobertura-atual" aria-label="Link para esta seção">#</a></h2>
+<p>As seguintes áreas ainda não têm testes automatizados e são alvo do roadmap:</p>
+<ul>
+<li><code>src/ui/</code> - painéis e widgets de UI (exceto K-UI e alguns painéis como calculadora e embed)</li>
+<li><code>src/ia/iaspace.py</code> - UI do painel de IA</li>
+<li><code>src/ia/toolbox.py</code> - execução das 40 ferramentas (requer mocks de I/O complexos)</li>
+<li><code>src/standalone.py</code> - funções <code>run_*</code> individuais (abrem janelas Tkinter)</li>
+<li>Testes de integração (múltiplos subsistemas juntos)</li>
+<li>Testes de performance (tempo de carregamento, uso de memória)</li>
+</ul>
+<p>Contribuições de testes para essas áreas são especialmente bem-vindas. Veja <a href="contributing.html">CONTRIBUTING.md</a> para o fluxo de pull request.</p>
+<hr />
+<h2 id="cicd">CI/CD<a class="anchor" href="#cicd" aria-label="Link para esta seção">#</a></h2>
+<p>A suíte roda automaticamente no GitHub Actions (job <code>quality</code> do <code>pipeline.yml</code>) a cada push e pull request que mude código, em paralelo ao build. Veja <a href="builds.html">wiki/builds.md</a> para detalhes dos workflows.</p>
+<pre><code>pytest tests/ --cov=src --cov-report=xml --junit-xml=test-results.xml
+</code></pre>
+<p>O CI <strong>falha</strong> se qualquer teste falhar - isso é intencional. Relatórios de cobertura são publicados como artefatos de cada run para acompanhamento de tendência ao longo do tempo.</p>
+<hr />
+<h2 id="testes-do-navegador-remoto-e-da-escala-da-interface">Testes do Navegador Remoto e da escala da interface<a class="anchor" href="#testes-do-navegador-remoto-e-da-escala-da-interface" aria-label="Link para esta seção">#</a></h2>
+<ul>
+<li><code>tests/test_remote_adapters.py</code> - parsers puros (ls, LIST Unix/IIS, índices Apache/nginx, URLs) e protocolos contra <strong>servidores reais</strong> levantados em threads: <code>http.server</code>, <code>pyftpdlib</code> (FTP) e <code>wsgidav</code>+<code>cheroot</code> (WebDAV). São pulados se as bibliotecas não estiverem instaladas (<code>pip install pyftpdlib wsgidav cheroot</code>).</li>
+<li>SSH real é opcional: com um <code>sshd</code> local de teste, exporte <code>CODIS_TEST_SSH=&quot;127.0.0.1:2222:usuario:senha&quot;</code> (a pasta <code>~/proj</code> do usuário precisa ter <code>a.txt</code>, <code>2024</code> e <code>dir with space/</code>) antes de rodar o pytest.</li>
+<li><code>tests_gui/test_remote_browser_panel.py</code> - painel com servidor em memória (respostas fora de ordem, conflito, falha de upload, sync ao salvar) e um teste ponta a ponta com FTP real.</li>
+<li><code>tests_gui/test_ui_scale.py</code> - escala da interface (sem acúmulo, widgets novos, barras fixas, Treeview).</li>
+</ul>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="updater.html"><small>Anterior</small>Atualizador</a>
+        <a class="next" href="changelog.html"><small>Próxima</small>Changelog</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/testes.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/testes.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#executar-os-testes">Executar os Testes</a></li><li class="l3"><a href="#instalação">Instalação</a></li><li class="l3"><a href="#comandos">Comandos</a></li><li class="l2"><a href="#inventário-por-arquivo">Inventário por Arquivo</a></li><li class="l2"><a href="#cobertura-por-subsistema">Cobertura por Subsistema</a></li><li class="l2"><a href="#como-a-suíte-funciona">Como a Suíte Funciona</a></li><li class="l3"><a href="#headless-sem-display-gráfico">Headless sem display gráfico</a></li><li class="l3"><a href="#isolamento-de-configuração">Isolamento de configuração</a></li><li class="l3"><a href="#sem-dependências-de-rede">Sem dependências de rede</a></li><li class="l2"><a href="#fixtures-disponíveis">Fixtures Disponíveis</a></li><li class="l2"><a href="#convenções-de-código-de-teste">Convenções de Código de Teste</a></li><li class="l2"><a href="#adicionar-novos-testes">Adicionar Novos Testes</a></li><li class="l2"><a href="#áreas-sem-cobertura-atual">Áreas Sem Cobertura Atual</a></li><li class="l2"><a href="#cicd">CI/CD</a></li><li class="l2"><a href="#testes-do-navegador-remoto-e-da-escala-da-interface">Testes do Navegador Remoto e da escala da interface</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

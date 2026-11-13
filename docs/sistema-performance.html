@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sistema, Performance &amp; Pacotes · Codis</title>
+<meta name="description" content="Esta página cobre as ferramentas de Ferramentas → Sistema &amp; Processos: Gerenciador de Pacotes Pip, Gerenciador de Processos e Modo Performance - além do Cursor Customizável e do Explorador de Arquivos" />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/sistema-performance.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Sistema, Performance &amp; Pacotes · Codis" />
+<meta property="og:description" content="Esta página cobre as ferramentas de Ferramentas → Sistema &amp; Processos: Gerenciador de Pacotes Pip, Gerenciador de Processos e Modo Performance - além do Cursor Customizável e do Explorador de Arquivos" />
+<meta property="og:url" content="https://killovsky.github.io/Codis/sistema-performance.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group"><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group" open><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html" class="is-current" aria-current="page">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-sistema-performance--pacotes">⚙️ Sistema, Performance &amp; Pacotes<a class="anchor" href="#-sistema-performance--pacotes" aria-label="Link para esta seção">#</a></h1>
+<p>Esta página cobre as ferramentas de <strong>Ferramentas → Sistema &amp; Processos</strong>: Gerenciador de Pacotes Pip, Gerenciador de Processos e Modo Performance - além do Cursor Customizável e do Explorador de Arquivos Remotos, que vivem em outras partes do menu mas são, na essência, ferramentas de sistema. Também inclui uma seção técnica sobre a arquitetura de performance do editor, metas, benchmarks e como diagnosticar lentidão.</p>
+<hr />
+<h2 id="-gerenciador-de-pacotes-pip-srcuipip_managerpy">📦 Gerenciador de Pacotes Pip (<code>src/ui/pip_manager.py</code>)<a class="anchor" href="#-gerenciador-de-pacotes-pip-srcuipip_managerpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <strong>Ferramentas → Sistema &amp; Processos → 📦 Gerenciador Pip</strong>.</p>
+<p>Interface gráfica completa para <code>pip</code>, organizada em quatro abas:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Aba</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Instalados</strong></td>
+<td>Cards visuais por pacote: versão, licença, links do projeto, badge de status</td>
+</tr>
+<tr>
+<td><strong>PyPI</strong></td>
+<td>Busca de pacotes no PyPI com cards ricos (descrição, autor, contagem de downloads, botão de instalar direto)</td>
+</tr>
+<tr>
+<td><strong>Ambientes</strong></td>
+<td>Lista, cria e ativa ambientes virtuais (<code>venv</code>)</td>
+</tr>
+<tr>
+<td><strong>Outdated</strong></td>
+<td>Lista pacotes com atualização disponível, com opção de atualização em massa</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="funcionalidades">Funcionalidades<a class="anchor" href="#funcionalidades" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Log de operações em tempo real, com cores distintas para sucesso/aviso/erro</li>
+<li>Instalar, atualizar e desinstalar pacotes com barra de progresso</li>
+<li>Exportar e importar <code>requirements.txt</code> diretamente da interface</li>
+<li>Criação de novo ambiente virtual sem sair do Codis</li>
+</ul>
+<hr />
+<h2 id="-gerenciador-de-processos-srcuiprocess_managerpy">🖥️ Gerenciador de Processos (<code>src/ui/process_manager.py</code>)<a class="anchor" href="#-gerenciador-de-processos-srcuiprocess_managerpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <code>Ctrl+Alt+M</code> ou <strong>Ferramentas → Sistema &amp; Processos → Gerenciador de Processos</strong>.</p>
+<p>Duas abas:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Aba</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sistema</strong></td>
+<td>Todos os processos do sistema operacional, com CPU, memória, status e usuário</td>
+</tr>
+<tr>
+<td><strong>Codis</strong></td>
+<td>Painéis internos abertos, threads internas e subprocessos gerados pelo próprio editor</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="funcionalidades-1">Funcionalidades<a class="anchor" href="#funcionalidades-1" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Gráficos de uso de CPU e memória em tempo real</li>
+<li>Painel de informações do sistema: RAM total, número de núcleos, uptime</li>
+<li>Filtro em tempo real por nome de processo ou PID</li>
+<li>Encerrar processo individual (com confirmação) ou encerrar a árvore completa de processos</li>
+<li>Detalhes expandidos por processo: linha de comando completa, threads, arquivos abertos</li>
+<li>Auto-atualização configurável (1s / 2s / 5s)</li>
+</ul>
+<blockquote>
+<p><strong>Dependência opcional:</strong> requer <code>psutil</code> (<code>pip install psutil</code>). Sem ele, o painel degrada graciosamente - a aba <strong>Sistema</strong> fica indisponível, mas a aba <strong>Codis</strong> continua funcionando, já que não depende de <code>psutil</code>.</p>
+</blockquote>
+<hr />
+<h2 id="-modo-performance-srcuiperformance_panelpy">🚀 Modo Performance (<code>src/ui/performance_panel.py</code>)<a class="anchor" href="#-modo-performance-srcuiperformance_panelpy" aria-label="Link para esta seção">#</a></h2>
+<p>Atalho: <strong>Ferramentas → Sistema &amp; Processos → Modo Performance</strong>.</p>
+<p>Permite controlar <strong>individualmente</strong> quais funcionalidades visuais são desativadas quando o monitor automático de travamentos é acionado, ou ao ativar o modo manualmente. Janela de 700×680.</p>
+<h3 id="funcionalidades-controláveis">Funcionalidades controláveis<a class="anchor" href="#funcionalidades-controláveis" aria-label="Link para esta seção">#</a></h3>
+<p><strong>Editor:</strong>
+Minimap, Syntax Highlighting (debounce), Sticky Scroll, Code Folding, Inline Blame, Color Preview, Inlay Hints, Ligatures, Edit Heatmap, Code Rhythm, Autocomplete.</p>
+<p><strong>K-UI:</strong>
+Perfil de animações (dropdown de intensidade do motor holográfico).</p>
+<p><strong>Linting:</strong>
+Lint automático ao salvar.</p>
+<h3 id="monitor-automático">Monitor automático<a class="anchor" href="#monitor-automático" aria-label="Link para esta seção">#</a></h3>
+<p>O Codis monitora o tempo de resposta da interface continuamente. Quando detecta um travamento acima de um limiar configurável (<code>perf_freeze_threshold_ms</code>, padrão <strong>500ms</strong>), aciona automaticamente o conjunto de desativações escolhido pelo usuário neste painel - sem precisar de intervenção manual.</p>
+<p>O botão <strong>Aplicar Agora</strong> permite acionar manualmente o modo performance mesmo sem ter ocorrido um travamento, útil antes de abrir um arquivo muito grande.</p>
+<hr />
+<h2 id="-performance-técnica-benchmarks-e-diagnóstico">📊 Performance Técnica, Benchmarks e Diagnóstico<a class="anchor" href="#-performance-técnica-benchmarks-e-diagnóstico" aria-label="Link para esta seção">#</a></h2>
+<p>Seção voltada a quem quer entender <em>como</em> o Codis atinge sua performance e como diagnosticar lentidão - não é sobre um painel específico, mas sobre a arquitetura de performance do editor como um todo.</p>
+<h3 id="metas-de-performance">Metas de Performance<a class="anchor" href="#metas-de-performance" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Meta</th>
+<th>Medição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tempo de inicialização (cold start)</td>
+<td>&lt; 1.5s</td>
+<td>Da execução de <code>python run.py</code> até a janela visível</td>
+</tr>
+<tr>
+<td>Abertura de arquivo (&lt; 1 MB)</td>
+<td>&lt; 100ms</td>
+<td>Do clique até o texto renderizado</td>
+</tr>
+<tr>
+<td>Abertura de arquivo grande (1–10 MB)</td>
+<td>&lt; 500ms</td>
+<td>Com modo de arquivo grande ativado</td>
+</tr>
+<tr>
+<td>Syntax highlight (&lt; 500 linhas)</td>
+<td>&lt; 16ms</td>
+<td>Por frame (60fps)</td>
+</tr>
+<tr>
+<td>Autocomplete (primeira sugestão)</td>
+<td>&lt; 200ms</td>
+<td>Com LSP ativo</td>
+</tr>
+<tr>
+<td>Busca global (projeto 10k arquivos)</td>
+<td>&lt; 2s</td>
+<td>Com indexação em cache</td>
+</tr>
+<tr>
+<td>Render de minimap</td>
+<td>&lt; 8ms</td>
+<td>Por frame</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="threading">Threading<a class="anchor" href="#threading" aria-label="Link para esta seção">#</a></h3>
+<p>O Codis usa threads para todas as operações que não tocam na UI:</p>
+<pre><code>Thread principal (Tkinter mainloop)
+  ├── LSP I/O thread            ← leitura/escrita stdio com servidor LSP
+  ├── Lint thread               ← execução de linters externos
+  ├── Git thread                ← operações git (status, blame, log)
+  ├── File watcher thread       ← inotify/FSEvents/ReadDirectoryChangesW
+  ├── Plugin worker thread      ← execução de plugins via ProcessRunner
+  └── IA inference thread       ← chamadas HTTP para APIs de IA
+</code></pre>
+<p>Resultados das threads são agendados de volta na thread principal via <code>root.after(0, callback)</code> - Tkinter não é thread-safe, então nenhum código de outra thread pode tocar widgets diretamente.</p>
+<h3 id="debounce-e-throttle">Debounce e Throttle<a class="anchor" href="#debounce-e-throttle" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Estratégia</th>
+<th>Delay</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Syntax highlighting</td>
+<td>Debounce</td>
+<td>50ms após última digitação</td>
+</tr>
+<tr>
+<td>Lint</td>
+<td>Debounce</td>
+<td>500ms após última digitação</td>
+</tr>
+<tr>
+<td>LSP <code>textDocument/didChange</code></td>
+<td>Debounce</td>
+<td>100ms</td>
+</tr>
+<tr>
+<td>Minimap render</td>
+<td>Throttle</td>
+<td>60ms (≈16fps)</td>
+</tr>
+<tr>
+<td>File tree refresh</td>
+<td>Debounce</td>
+<td>200ms</td>
+</tr>
+<tr>
+<td>Busca incremental</td>
+<td>Debounce</td>
+<td>150ms</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="modo-arquivo-grande">Modo Arquivo Grande<a class="anchor" href="#modo-arquivo-grande" aria-label="Link para esta seção">#</a></h3>
+<p>Arquivos com mais de <strong>500 KB</strong> ou <strong>10.000 linhas</strong> ativam automaticamente o modo de arquivo grande (<code>src/editor/large_file.py</code>):</p>
+<ul>
+<li>Syntax highlighting <strong>desativado</strong> (o Tkinter Tag system não escala para centenas de milhares de tags).</li>
+<li>Minimap em modo <strong>low-res</strong> (1 pixel por linha em vez de renderização completa).</li>
+<li>Code folding, Inline blame e Inlay hints <strong>desativados</strong>.</li>
+</ul>
+<p>O arquivo ainda é completamente editável - apenas as features visuais pesadas são suspensas.</p>
+<h3 id="cache-de-syntax-highlighting">Cache de Syntax Highlighting<a class="anchor" href="#cache-de-syntax-highlighting" aria-label="Link para esta seção">#</a></h3>
+<p>O highlighter (<code>src/syntax/highlighter.py</code>) mantém um cache de resultados por hash do conteúdo. Re-highlight de um arquivo não modificado é um lookup de O(1). Qualquer edição invalida apenas o cache do arquivo editado, não o cache global.</p>
+<h3 id="diagnosticando-lentidão-manualmente">Diagnosticando lentidão manualmente<a class="anchor" href="#diagnosticando-lentidão-manualmente" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash"># Perfil de inicialização
+python -m cProfile -o startup.prof -m src
+python -m pstats startup.prof
+
+# Perfil de operação específica (ex: abertura de arquivo grande)
+# Adicione ao código:
+import cProfile
+cProfile.enable()
+# ... operação ...
+cProfile.disable()
+cProfile.print_stats(sort='cumulative')
+</code></pre>
+<p>O <code>EventBus</code> loga automaticamente handlers que demoram mais de <strong>50ms</strong> em modo debug:</p>
+<pre><code class="language-bash">CODIS_DEBUG=1 python run.py
+</code></pre>
+<pre><code>[EventBus] SLOW handler: git_panel.on_file_saved took 87ms for event editor:file:saved
+</code></pre>
+<h3 id="limites-conhecidos-do-tkinter">Limites conhecidos do Tkinter<a class="anchor" href="#limites-conhecidos-do-tkinter" aria-label="Link para esta seção">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Limitação</th>
+<th>Impacto</th>
+<th>Mitigação no Codis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tags no widget Text são O(n) para overlap</td>
+<td>Highlight lento em arquivos grandes</td>
+<td>Modo arquivo grande desativa tags</td>
+</tr>
+<tr>
+<td>Canvas não usa aceleração GPU</td>
+<td>Animações limitadas a ~60fps em CPU</td>
+<td>K-UI usa deltas mínimos por frame</td>
+</tr>
+<tr>
+<td>Font rendering depende do sistema</td>
+<td>Ligatures inconsistentes entre SOs</td>
+<td><code>src/editor/ligatures.py</code> normaliza</td>
+</tr>
+<tr>
+<td>Sem suporte a sub-pixel rendering</td>
+<td>Texto levemente diferente entre SOs</td>
+<td>Aceito como limitação da plataforma</td>
+</tr>
+<tr>
+<td><code>after()</code> não é tempo real</td>
+<td>Delays variáveis sob carga de CPU</td>
+<td>Throttle adaptativo baseado em frame time</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="benchmarks-de-referência">Benchmarks de referência<a class="anchor" href="#benchmarks-de-referência" aria-label="Link para esta seção">#</a></h3>
+<p>Medidos em: Ryzen 5 3600, 16GB RAM, SSD NVMe, Python 3.12.3, Ubuntu 22.04.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Tempo médio</th>
+<th>Desvio padrão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cold start</td>
+<td>890ms</td>
+<td>±45ms</td>
+</tr>
+<tr>
+<td>Abertura arquivo 100KB Python</td>
+<td>42ms</td>
+<td>±8ms</td>
+</tr>
+<tr>
+<td>Abertura arquivo 5MB JSON</td>
+<td>310ms</td>
+<td>±25ms</td>
+</tr>
+<tr>
+<td>Highlight 500 linhas Python</td>
+<td>11ms</td>
+<td>±2ms</td>
+</tr>
+<tr>
+<td>Highlight 2000 linhas Python</td>
+<td>38ms</td>
+<td>±5ms</td>
+</tr>
+<tr>
+<td>Busca regex em projeto 1000 arquivos</td>
+<td>680ms</td>
+<td>±90ms</td>
+</tr>
+<tr>
+<td>LSP completion (pylsp local)</td>
+<td>85ms</td>
+<td>±30ms</td>
+</tr>
+<tr>
+<td>Git status (repo 5000 commits)</td>
+<td>120ms</td>
+<td>±20ms</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Benchmarks reproduzíveis via <code>python -m pytest tests/ -m slow -v</code></p>
+</blockquote>
+<h3 id="tuning-pelo-usuário">Tuning pelo usuário<a class="anchor" href="#tuning-pelo-usuário" aria-label="Link para esta seção">#</a></h3>
+<p>Em <strong>Configurações → Performance</strong>, o usuário pode ajustar:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Configuração</th>
+<th>Padrão</th>
+<th>Impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>highlight_delay_ms</code></td>
+<td>50</td>
+<td>Latência vs. CPU</td>
+</tr>
+<tr>
+<td><code>lint_delay_ms</code></td>
+<td>500</td>
+<td>Frequência de lint</td>
+</tr>
+<tr>
+<td><code>large_file_threshold_kb</code></td>
+<td>500</td>
+<td>Quando ativar modo arquivo grande</td>
+</tr>
+<tr>
+<td><code>minimap_enabled</code></td>
+<td>true</td>
+<td>Desativar reduz CPU em ~5%</td>
+</tr>
+<tr>
+<td><code>animations_enabled</code></td>
+<td>true</td>
+<td>Desativar reduz CPU em ~3%</td>
+</tr>
+<tr>
+<td><code>git_auto_refresh_ms</code></td>
+<td>2000</td>
+<td>Frequência do git status automático</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="-cursor-customizável-srcuicursor_managerpy">🖱️ Cursor Customizável (<code>src/ui/cursor_manager.py</code>)<a class="anchor" href="#-cursor-customizável-srcuicursor_managerpy" aria-label="Link para esta seção">#</a></h2>
+<p>Acesso: integrado ao seletor de tema/aparência (categoria <strong>Cursor</strong> dentro de <a href="configuracoes.html">Configurações</a>).</p>
+<p>Substitui o ponteiro do mouse do sistema por um cursor de software: emoji, texto, imagem (PNG/SVG via Pillow) ou combinações.</p>
+<h3 id="como-funciona-internamente">Como funciona internamente<a class="anchor" href="#como-funciona-internamente" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>O cursor nativo do sistema é ocultado na janela (<code>root.config(cursor=&quot;none&quot;)</code>)</li>
+<li>Um <code>Toplevel</code> transparente e clicável segue o mouse em tempo real</li>
+<li>Esse <code>Toplevel</code> exibe o cursor escolhido como <code>Label</code> ou <code>Canvas</code></li>
+<li>Os cliques atravessam normalmente o overlay: no Windows via <code>SetWindowLong</code> (passthrough nativo) e configuração de <code>-transparentcolor</code>; no Linux/macOS via <code>Toplevel</code> ultra-fino de 1px com <code>wm_attributes(&quot;-alpha&quot;, 0.99)</code></li>
+</ul>
+<h3 id="limitações-conhecidas">Limitações conhecidas<a class="anchor" href="#limitações-conhecidas" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Emojis dependem da fonte disponível no sistema operacional</li>
+<li>Cursores de imagem requerem Pillow instalado (<code>pip install Pillow</code>)</li>
+<li>Existe uma latência de até ~1 frame (≤16ms) entre o cursor real e o de software, imperceptível na maioria dos casos</li>
+</ul>
+<hr />
+<h2 id="-explorador-de-arquivos-remotos-srcuiremote_browserpy">🌐 Explorador de Arquivos Remotos (<code>src/ui/remote_browser.py</code>)<a class="anchor" href="#-explorador-de-arquivos-remotos-srcuiremote_browserpy" aria-label="Link para esta seção">#</a></h2>
+<p>Suporta múltiplos protocolos de acesso remoto a arquivos em uma única interface unificada:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Protocolo</th>
+<th>Implementação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH / SFTP</td>
+<td>Via cliente SSH do próprio sistema (<code>scp</code>/<code>sftp</code>)</td>
+</tr>
+<tr>
+<td>FTP</td>
+<td>Via <code>ftplib</code> (biblioteca padrão)</td>
+</tr>
+<tr>
+<td>FTPS</td>
+<td>FTP sobre TLS, via <code>ftplib</code></td>
+</tr>
+<tr>
+<td>HTTP/HTTPS</td>
+<td>Listagem de índices Apache/Nginx + download</td>
+</tr>
+<tr>
+<td>WebDAV</td>
+<td>Via <code>requests</code> + <code>xml.etree</code> (requer <code>pip install requests</code>)</td>
+</tr>
+<tr>
+<td>Local/SMB</td>
+<td>Montagens de rede já visíveis no sistema de arquivos local</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="funcionalidades-2">Funcionalidades<a class="anchor" href="#funcionalidades-2" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Gerenciamento de conexões com perfis persistentes em JSON</li>
+<li>Navegação em árvore com duplo-clique para entrar em pastas</li>
+<li>Download e upload bidirecional</li>
+<li>Abertura direta de arquivos remotos no editor do Codis (texto, código, imagem ou notebook)</li>
+<li><strong>Sync automático ao salvar</strong>: ao editar um arquivo aberto remotamente e salvar, o Codis faz upload de volta ao servidor automaticamente</li>
+<li>Menu de contexto com ações rápidas e filtro de busca</li>
+</ul>
+<p>Cada protocolo é implementado como um <code>_Adapter</code> próprio, seguindo o mesmo padrão arquitetural usado no <a href="chat.html">Chat Panel</a>.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="kui.html"><small>Anterior</small>K-UI - K-UI (Holográfica/Cósmica)</a>
+        <a class="next" href="backups-lixeira-arquivos.html"><small>Próxima</small>Backups, Lixeira &amp; Arquivos Compactados</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/sistema-performance.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/sistema-performance.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#-gerenciador-de-pacotes-pip-srcuipip_managerpy">Gerenciador de Pacotes Pip (src/ui/pip_manager.py)</a></li><li class="l3"><a href="#funcionalidades">Funcionalidades</a></li><li class="l2"><a href="#-gerenciador-de-processos-srcuiprocess_managerpy">Gerenciador de Processos (src/ui/process_manager.py)</a></li><li class="l3"><a href="#funcionalidades-1">Funcionalidades</a></li><li class="l2"><a href="#-modo-performance-srcuiperformance_panelpy">Modo Performance (src/ui/performance_panel.py)</a></li><li class="l3"><a href="#funcionalidades-controláveis">Funcionalidades controláveis</a></li><li class="l3"><a href="#monitor-automático">Monitor automático</a></li><li class="l2"><a href="#-performance-técnica-benchmarks-e-diagnóstico">Performance Técnica, Benchmarks e Diagnóstico</a></li><li class="l3"><a href="#metas-de-performance">Metas de Performance</a></li><li class="l3"><a href="#threading">Threading</a></li><li class="l3"><a href="#debounce-e-throttle">Debounce e Throttle</a></li><li class="l3"><a href="#modo-arquivo-grande">Modo Arquivo Grande</a></li><li class="l3"><a href="#cache-de-syntax-highlighting">Cache de Syntax Highlighting</a></li><li class="l3"><a href="#diagnosticando-lentidão-manualmente">Diagnosticando lentidão manualmente</a></li><li class="l3"><a href="#limites-conhecidos-do-tkinter">Limites conhecidos do Tkinter</a></li><li class="l3"><a href="#benchmarks-de-referência">Benchmarks de referência</a></li><li class="l3"><a href="#tuning-pelo-usuário">Tuning pelo usuário</a></li><li class="l2"><a href="#-cursor-customizável-srcuicursor_managerpy">Cursor Customizável (src/ui/cursor_manager.py)</a></li><li class="l3"><a href="#como-funciona-internamente">Como funciona internamente</a></li><li class="l3"><a href="#limitações-conhecidas">Limitações conhecidas</a></li><li class="l2"><a href="#-explorador-de-arquivos-remotos-srcuiremote_browserpy">Explorador de Arquivos Remotos (src/ui/remote_browser.py)</a></li><li class="l3"><a href="#funcionalidades-2">Funcionalidades</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

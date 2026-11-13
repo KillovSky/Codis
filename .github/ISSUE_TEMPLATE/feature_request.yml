@@ -1,0 +1,116 @@
+name: "💡 Sugestão de Feature"
+description: "Proponha uma nova funcionalidade ou melhoria para o Codis."
+title: "[FEATURE] "
+labels: ["melhoria", "precisa de triagem"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+
+        Antes de abrir esta issue:
+        - Verifique se a funcionalidade **já não existe** na [Wiki](https://github.com/KillovSky/Codis/wiki)
+        - Pesquise nas [issues existentes](https://github.com/KillovSky/Codis/issues?q=is%3Aissue+label%3Amelhoria) e [discussions](https://github.com/KillovSky/Codis/discussions)
+        - Considere se a funcionalidade pode ser implementada como um **[Plugin](https://github.com/KillovSky/Codis/wiki/plugins)** - sem precisar alterar o core
+
+  - type: checkboxes
+    id: pre-checks
+    attributes:
+      label: "Checklist inicial"
+      options:
+        - label: "Pesquisei as issues existentes e não encontrei esta sugestão"
+          required: true
+        - label: "Verifiquei que a funcionalidade não pode ser feita com um plugin"
+          required: false
+
+  - type: textarea
+    id: problema
+    attributes:
+      label: "🎯 Qual problema esta feature resolve?"
+      description: "Descreva a dificuldade ou limitação atual. Foque no problema, não na solução."
+      placeholder: "Quando estou fazendo X, preciso fazer Y manualmente toda vez, o que é tedioso porque..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solucao
+    attributes:
+      label: "💡 Solução Proposta"
+      description: "Como você imagina que isso funcionaria no Codis?"
+      placeholder: |
+        O Codis deveria ter um painel/botão/atalho que...
+        O comportamento seria: ...
+        A interação seria: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: "🔄 Alternativas Consideradas"
+      placeholder: |
+        - Tentei usar X, mas não funciona porque...
+        - Considerei fazer como plugin, mas...
+        - No VSCode isso funciona assim: ...
+
+  - type: dropdown
+    id: categoria
+    attributes:
+      label: "🗂️ Categoria"
+      multiple: false
+      options:
+        - "Editor - digitação, autocomplete, syntax highlighting"
+        - "Interface - layout, temas, Activity Bar, painéis"
+        - "Git - integração, autenticação, branches"
+        - "Ferramentas - terminal, REST client, regex, color picker"
+        - "IA - providers, skills, actions"
+        - "KDocs / LSP - documentação inline, hover"
+        - "Plugins - API, extensões, hooks"
+        - "Performance - velocidade, uso de memória"
+        - "Acessibilidade - contraste, navegação por teclado"
+        - "Internacionalização - idiomas, traduções"
+        - "CI/CD - build, releases, automação"
+        - "Documentação - wiki, README"
+        - "Outro"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impacto
+    attributes:
+      label: "📈 Impacto para Você"
+      options:
+        - "Bloqueante - não consigo trabalhar direito sem ela"
+        - "Alto - usaria diariamente, melhoraria muito meu fluxo"
+        - "Médio - usaria algumas vezes por semana"
+        - "Baixo - seria legal ter, mas não é urgente"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexidade
+    attributes:
+      label: "⚙️ Estimativa de Complexidade"
+      description: "Sua percepção - não precisa ser precisa"
+      options:
+        - "Pequena - parece algo simples de implementar"
+        - "Média - requer algum esforço"
+        - "Grande - mudança arquitetural ou muitos arquivos"
+        - "Não sei avaliar"
+
+  - type: textarea
+    id: referencias
+    attributes:
+      label: "🔗 Referências e Contexto"
+      placeholder: |
+        - Como outros editores fazem isso: [link/imagem]
+        - Mockup ou screenshot de como deveria ser:
+        - Discussão relacionada: #123
+        - Outras ferramentas que já têm isso: ...
+
+  - type: checkboxes
+    id: contribuir
+    attributes:
+      label: "🤝 Você gostaria de ajudar a implementar?"
+      options:
+        - label: "Sim, posso abrir um Pull Request com a implementação"

@@ -1,0 +1,358 @@
+name: "Qualidade (reutilizável)"
+
+# Verificações de código. Chamado SOMENTE por pipeline.yml (job "quality"),
+# que decide se há algo a validar - por isso não tem triggers próprios,
+# filtros de caminho nem concurrency: nada aqui roda fora do pipeline.
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    name: "Sintaxe Python ${{ matrix.python-version }}"
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: "Compilar todos os .py"
+        env:
+          PYTHONIOENCODING: "utf-8"
+        run: |
+          echo "## Verificacao de Sintaxe - Python ${{ matrix.python-version }}" >> "$GITHUB_STEP_SUMMARY"
+          ERRORS=0
+          while IFS= read -r -d '' f; do
+            if ! python -m py_compile "$f" 2>/tmp/err_out; then
+              echo "ERRO: $f" >> "$GITHUB_STEP_SUMMARY"
+              cat /tmp/err_out >> "$GITHUB_STEP_SUMMARY"
+              ERRORS=$((ERRORS+1))
+            fi
+          done < <(find src/ -name "*.py" -print0)
+          python -m py_compile run.py package_codis.py
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "FALHA: ${ERRORS} arquivo(s) com erro de sintaxe" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          COUNT=$(find src/ -name "*.py" | wc -l)
+          echo "OK: ${COUNT} arquivos sem erros de sintaxe" >> "$GITHUB_STEP_SUMMARY"
+
+  deps:
+    name: "Deps - ${{ matrix.os }} / Python ${{ matrix.python-version }}"
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: "Instalar Tkinter (Linux)"
+        if: runner.os == 'Linux'
+        run: sudo apt-get install -y python3-tk
+
+      - name: "Instalar dependências"
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: "Verificar imports principais"
+        env:
+          PYTHONIOENCODING: "utf-8"
+        run: |
+          python -c "from src.config import ConfigManager; print('OK config')"
+          python -c "from src.constants import APP_NAME, APP_VERSION; print('OK constants:', APP_NAME, APP_VERSION)"
+          python -c "from src.theme.base import THEMES, THEME_ORDER; print('OK themes:', len(THEMES))"
+          python -c "from src.i18n import I18n, _t; print('OK i18n')"
+          python -c "from src.syntax.patterns import LANG_RE; print('OK syntax:', len(LANG_RE), 'linguagens')"
+          python -c "from src.lint.manager import LintManager; print('OK lint')"
+          python -c "from src.diff.engine import DiffEngine; print('OK diff')"
+          python -c "from src.plugins.api import PluginAPI; print('OK plugin api')"
+          python -c "from src.plugins.loader import PluginLoader; print('OK plugin loader')"
+          python -c "from src.ia.actions import SkillRegistry; print('OK ia.actions')"
+          python -c "from src.events.bus import EventBus; print('OK events.bus')"
+
+  flake8:
+    name: "Flake8"
+    runs-on: ubuntu-latest
+    needs: syntax
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - run: |
+          pip install flake8
+          pip install -r requirements.txt
+
+      - name: "Executar Flake8"
+        run: |
+          flake8 src/ run.py \
+            --max-line-length=180 \
+            --extend-ignore=E203,W503,E501,W291,W293,E302,E303 \
+            --exclude=__pycache__,.git,.venv,build,dist \
+            --statistics --count \
+            --format='%(path)s:%(row)d:%(col)d: %(code)s %(text)s' \
+            | tee flake8-report.txt || true
+          TOTAL=$(tail -1 flake8-report.txt 2>/dev/null | grep -oE '[0-9]+' | head -1 || echo "0")
+          echo "## Flake8 - ${TOTAL:-0} ocorrencia(s)" >> "$GITHUB_STEP_SUMMARY"
+        continue-on-error: true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flake8-report-${{ github.sha }}
+          path: flake8-report.txt
+          retention-days: 14
+
+  pylint:
+    name: "Pylint"
+    runs-on: ubuntu-latest
+    needs: syntax
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - run: |
+          pip install pylint
+          pip install -r requirements.txt
+          pip install Pillow markdown
+
+      - name: "Executar Pylint"
+        run: |
+          pylint src/ \
+            --score=yes \
+            --output-format=colorized \
+            --disable=C0103,C0114,C0115,C0116,C0301,C0302,C0321,C0325 \
+            --disable=C0410,C0411,C0413,C0415 \
+            --disable=R0902,R0903,R0904,R0911,R0912,R0913,R0914,R0915 \
+            --disable=R1705,R1732,R1735,R6101,R6102,R6103 \
+            --disable=W0201,W0212,W0401,W0611,W0613,W0640,W0718 \
+            --disable=W1404,W1405,W1510,W6001 \
+            --disable=E0401,E0602,E1102 \
+            --max-line-length=180 \
+            2>&1 | tee pylint-report.txt || true
+          SCORE=$(grep -oE 'rated at [0-9]+\.[0-9]+' pylint-report.txt | head -1 || echo "rated at N/A")
+          echo "## Pylint - ${SCORE}/10" >> "$GITHUB_STEP_SUMMARY"
+        continue-on-error: true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pylint-report-${{ github.sha }}
+          path: pylint-report.txt
+          retention-days: 14
+
+  tests:
+    name: "Testes - Python ${{ matrix.python-version }}"
+    runs-on: ubuntu-latest
+    needs: syntax
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - run: sudo apt-get install -y python3-tk
+
+      - run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      - name: "Executar testes"
+        run: |
+          pytest tests/ \
+            --tb=short \
+            --cov=src \
+            --cov-report=term-missing \
+            --cov-report=xml \
+            --cov-report=json \
+            -v \
+            --junit-xml=test-results.xml
+
+      - name: "Publicar resultados no sumário"
+        if: always()
+        run: |
+          python3 - <<'PYEOF'
+          import json, os
+          try:
+              with open("coverage.json") as f:
+                  data = json.load(f)
+              total = data["totals"]["percent_covered"]
+              covered = data["totals"]["covered_lines"]
+              missing = data["totals"]["missing_lines"]
+              with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as s:
+                  s.write(f"## Cobertura - Python ${{ matrix.python-version }}\n\n")
+                  s.write(f"| Metrica | Valor |\n|---|---|\n")
+                  s.write(f"| Cobertura total | **{total:.1f}%** |\n")
+                  s.write(f"| Linhas cobertas | {covered} |\n")
+                  s.write(f"| Linhas sem cobertura | {missing} |\n")
+          except Exception as e:
+              print(f"Aviso: {e}")
+          PYEOF
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-py${{ matrix.python-version }}-${{ github.sha }}
+          path: |
+            coverage.xml
+            coverage.json
+            test-results.xml
+          retention-days: 14
+
+  i18n-check:
+    name: "Verificacao i18n"
+    runs-on: ubuntu-latest
+    needs: syntax
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: "Verificar strings hardcoded em widgets Tkinter"
+        run: |
+          python3 - <<'PYEOF'
+          import re, glob, sys, os
+          pattern = re.compile(
+              r'(?:text|title|label)\s*=\s*["\'"]([A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇ][^"\']{4,})["\']'
+          )
+          skip_files   = {"easter_eggs.py", "constants.py"}
+          skip_strings = {"[TODO]", "utf-8", "%(", "{", "http"}
+          violations   = []
+          for fpath in glob.glob("src/**/*.py", recursive=True):
+              fname = fpath.split("/")[-1]
+              if fname in skip_files:
+                  continue
+              lines = open(fpath, encoding="utf-8", errors="ignore").readlines()
+              for i, line in enumerate(lines, 1):
+                  if "_t(" in line or "logger" in line or line.strip().startswith("#"):
+                      continue
+                  for m in pattern.finditer(line):
+                      txt = m.group(1)
+                      if not any(s in txt for s in skip_strings):
+                          violations.append(f"  {fpath}:{i}  {txt[:60]}")
+          summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "/dev/null")
+          with open(summary_path, "a") as s:
+              s.write("## Verificacao i18n\n\n")
+              if violations:
+                  s.write(f"Atencao: {len(violations)} string(s) potencialmente hardcoded:\n\n")
+                  for v in violations[:20]:
+                      s.write(f"- `{v.strip()}`\n")
+                  s.write("\nUse `_t('chave', 'valor')` para todas as strings visiveis ao usuario.\n")
+                  print(f"Atencao: {len(violations)} strings potencialmente hardcoded")
+                  for v in violations[:30]:
+                      print(v)
+              else:
+                  s.write("OK: Nenhuma string hardcoded encontrada.\n")
+                  print("OK: Nenhuma string hardcoded encontrada")
+          PYEOF
+        continue-on-error: true
+
+  locale-check:
+    name: "Consistencia de Locales"
+    runs-on: ubuntu-latest
+    needs: syntax
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: "Verificar sincronização e completude"
+        run: |
+          python sync_locales.py --dry-run 2>&1 | tee sync_output.txt
+          python3 - <<'PYEOF'
+          import json, pathlib, os, sys
+          locales_dir = pathlib.Path("src/locales")
+          # ".translate_manifest.json" é arquivo de controle do translator.py, não um locale
+          files = sorted(f for f in locales_dir.glob("*.json") if not f.name.startswith("."))
+          counts = {}
+          for f in files:
+              data = json.loads(f.read_text(encoding="utf-8"))
+              todo = sum(1 for v in data.values() if "[TODO]" in str(v))
+              counts[f.name] = (len(data), todo)
+          max_keys = max(c[0] for c in counts.values())
+          summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "/dev/null")
+          out_of_sync = []
+          with open(summary_path, "a") as s:
+              s.write("## Status dos Locales\n\n")
+              s.write(f"| Arquivo | Chaves | [TODO] | Status |\n|---|---|---|---|\n")
+              for fname, (n, todo) in counts.items():
+                  if fname == "pt-BR.json":
+                      status = "OK referencia"
+                  elif n == max_keys and todo == 0:
+                      status = "OK atualizado"
+                  elif n == max_keys:
+                      status = f"Pendente: {todo} chaves com TODO"
+                  else:
+                      status = f"Faltam {max_keys - n} chaves"
+                      out_of_sync.append(fname)
+                  s.write(f"| {fname} | {n} | {todo} | {status} |\n")
+          if out_of_sync:
+              print(f"FALHA: {len(out_of_sync)} locale(s) com chaves faltando: {out_of_sync}")
+              print("Execute 'python sync_locales.py' localmente e faça commit, ou use o")
+              print("workflow 'Verificacao e Sync de Locales' com apply=true.")
+              sys.exit(1)
+          PYEOF
+
+  ci-summary:
+    name: "Sumario Qualidade"
+    needs: [syntax, deps, flake8, pylint, tests, i18n-check, locale-check]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: "Gerar sumário final"
+        run: |
+          echo "## Qualidade - ${{ github.ref_name }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Verificacao | Resultado |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Sintaxe Python | ${{ needs.syntax.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Dependencias | ${{ needs.deps.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Flake8 (informativo) | ${{ needs.flake8.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Pylint (informativo) | ${{ needs.pylint.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Testes | ${{ needs.tests.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| i18n (informativo) | ${{ needs.i18n-check.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Locales | ${{ needs.locale-check.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Commit:** \`${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Ref:** \`${{ github.ref_name }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Trigger:** \`${{ github.event_name }}\`" >> "$GITHUB_STEP_SUMMARY"

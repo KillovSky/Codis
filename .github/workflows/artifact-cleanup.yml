@@ -1,0 +1,166 @@
+name: "🧹 Limpeza de Artifacts"
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Modo simulação (não apaga nada, só lista o que seria apagado)"
+        required: false
+        default: "false"
+      min_age_days:
+        description: "Idade mínima em dias para um artifact ser elegível para remoção"
+        required: false
+        default: "7"
+      keep_last_builds:
+        description: "Quantas execuções recentes de pipeline.yml sempre proteger (independente da idade)"
+        required: false
+        default: "3"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cleanup:
+    name: "🧹 Limpar artifacts antigos"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Limpar artifacts com retenção customizada"
+        id: cleanup
+        uses: actions/github-script@v7
+        env:
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+          MIN_AGE_DAYS: ${{ inputs.min_age_days || '7' }}
+          KEEP_LAST_BUILDS: ${{ inputs.keep_last_builds || '3' }}
+        with:
+          script: |
+            const dryRun        = process.env.DRY_RUN === 'true';
+            const minAgeDays    = parseInt(process.env.MIN_AGE_DAYS, 10) || 7;
+            const keepLastBuilds = parseInt(process.env.KEEP_LAST_BUILDS, 10) || 3;
+            const minAgeMs      = minAgeDays * 24 * 60 * 60 * 1000;
+            const now           = Date.now();
+
+            const { owner, repo } = context.repo;
+
+            // ── 1. Descobrir as execuções de pipeline.yml mais recentes ─────────
+            // Seus artifacts (independente da idade) nunca são apagados aqui -
+            // são os "últimos N builds bons" que o usuário quer sempre manter
+            // disponíveis para download rápido.
+            core.info(`Buscando as ${keepLastBuilds} execuções mais recentes de pipeline.yml (protegidas)...`);
+
+            const buildRuns = await github.paginate(
+              github.rest.actions.listWorkflowRuns,
+              {
+                owner,
+                repo,
+                workflow_id: "pipeline.yml",
+                status: "success",
+                per_page: 100,
+              },
+              (response, done) => {
+                if (response.data.length >= keepLastBuilds) done();
+                return response.data;
+              }
+            );
+
+            buildRuns.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            const protectedRunIds = new Set(
+              buildRuns.slice(0, keepLastBuilds).map((run) => run.id)
+            );
+
+            core.info(
+              `Execuções protegidas de pipeline.yml: [${[...protectedRunIds].join(", ")}]`
+            );
+
+            // ── 2. Listar TODOS os artifacts do repositório (paginado) ───────
+            const artifacts = await github.paginate(
+              github.rest.actions.listArtifactsForRepo,
+              { owner, repo, per_page: 100 }
+            );
+
+            core.info(`Total de artifacts encontrados: ${artifacts.length}`);
+
+            // ── 3. Aplicar a regra de retenção e apagar os elegíveis ──────────
+            let deletedCount = 0;
+            let freedBytes = 0;
+            let protectedCount = 0;
+            let tooRecentCount = 0;
+            const deletedNames = [];
+
+            for (const artifact of artifacts) {
+              if (artifact.expired) {
+                continue; // o GitHub já expirou este artifact sozinho
+              }
+
+              const ageMs = now - new Date(artifact.created_at).getTime();
+              const runId = artifact.workflow_run ? artifact.workflow_run.id : null;
+
+              if (runId !== null && protectedRunIds.has(runId)) {
+                protectedCount++;
+                continue; // pertence a um dos últimos N builds - nunca apagar
+              }
+
+              if (ageMs < minAgeMs) {
+                tooRecentCount++;
+                continue; // ainda não completou a idade mínima
+              }
+
+              const ageDaysActual = (ageMs / (24 * 60 * 60 * 1000)).toFixed(1);
+              const sizeMb = (artifact.size_in_bytes / (1024 * 1024)).toFixed(2);
+              core.info(
+                `${dryRun ? "[dry-run] Apagaria" : "Apagando"}: ` +
+                `"${artifact.name}" (id=${artifact.id}, ${sizeMb}MB, ${ageDaysActual}d, run=${runId})`
+              );
+
+              if (!dryRun) {
+                try {
+                  await github.rest.actions.deleteArtifact({
+                    owner,
+                    repo,
+                    artifact_id: artifact.id,
+                  });
+                } catch (err) {
+                  core.warning(`Falha ao apagar artifact ${artifact.id}: ${err.message}`);
+                  continue;
+                }
+              }
+
+              deletedCount++;
+              freedBytes += artifact.size_in_bytes;
+              deletedNames.push(`${artifact.name} (${sizeMb}MB)`);
+            }
+
+            const freedMb = (freedBytes / (1024 * 1024)).toFixed(2);
+
+            // ── 4. Sumário ─────────────────────────────────────────────────
+            core.summary
+              .addHeading("🧹 Limpeza de Artifacts", 2)
+              .addTable([
+                [{ data: "Métrica", header: true }, { data: "Valor", header: true }],
+                ["Modo", dryRun ? "Simulação (dry-run)" : "Execução real"],
+                ["Idade mínima", `${minAgeDays} dia(s)`],
+                ["Builds sempre protegidos", `últimos ${keepLastBuilds} de pipeline.yml`],
+                ["Total de artifacts analisados", String(artifacts.length)],
+                ["Protegidos (últimos builds)", String(protectedCount)],
+                ["Muito recentes (< idade mínima)", String(tooRecentCount)],
+                [dryRun ? "Seriam apagados" : "Apagados", String(deletedCount)],
+                [dryRun ? "Espaço que seria liberado" : "Espaço liberado", `${freedMb} MB`],
+              ]);
+
+            if (deletedNames.length > 0) {
+              core.summary.addHeading(dryRun ? "Seriam apagados" : "Apagados", 3);
+              core.summary.addList(deletedNames.slice(0, 50));
+              if (deletedNames.length > 50) {
+                core.summary.addRaw(`\n_...e mais ${deletedNames.length - 50} artifact(s)._\n`);
+              }
+            }
+
+            await core.summary.write();
+
+            core.info(
+              `Concluído: ${deletedCount} artifact(s) ${dryRun ? "seriam apagados" : "apagados"}, ` +
+              `${freedMb}MB ${dryRun ? "seriam liberados" : "liberados"}.`
+            );

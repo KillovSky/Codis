@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQ - Perguntas Frequentes · Codis</title>
+<meta name="description" content="Para diagnóstico técnico mais profundo (comandos de log, causas detalhadas, coleta de informações para bug report), veja 🛠️ Solução de Problemas." />
+<meta name="author" content="KillovSky" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#080812" />
+<link rel="canonical" href="https://killovsky.github.io/Codis/faq.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="FAQ - Perguntas Frequentes · Codis" />
+<meta property="og:description" content="Para diagnóstico técnico mais profundo (comandos de log, causas detalhadas, coleta de informações para bug report), veja 🛠️ Solução de Problemas." />
+<meta property="og:url" content="https://killovsky.github.io/Codis/faq.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/KillovSky/Codis/main/.github/Banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="shared.css" />
+<link rel="stylesheet" href="docs.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="docs">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="topbar" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Recursos</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="ia.html">IA</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="arquitetura.html">Arquitetura</a>
+      <a href="primeiros-passos.html">Instalar</a>
+      <a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="search" role="search">
+      <label class="sr" for="q">Buscar na documentação</label>
+      <input id="q" type="search" placeholder="Buscar na documentação ( / )" autocomplete="off" />
+      <ul id="results" class="results" hidden></ul>
+    </div>
+    <nav class="side" aria-label="Documentação">
+<a class="side-home" href="documentacao.html">Índice da documentação</a>
+<details class="side-group" open><summary>Começando</summary><ul>
+<li><a href="primeiros-passos.html">Primeiros Passos</a></li>
+<li><a href="interface.html">Interface</a></li>
+<li><a href="atalhos.html">Atalhos</a></li>
+<li><a href="configuracoes.html">Configurações</a></li>
+<li><a href="temas.html">Temas</a></li>
+<li><a href="faq.html" class="is-current" aria-current="page">FAQ</a></li>
+<li><a href="troubleshooting.html">Solução de Problemas</a></li>
+</ul></details>
+<details class="side-group"><summary>Editando</summary><ul>
+<li><a href="editor.html">Editor</a></li>
+<li><a href="inteligencia-editor.html">Inteligência do Editor</a></li>
+<li><a href="kdocs.html">KDocs</a></li>
+<li><a href="linting.html">Linting &amp; LSP</a></li>
+<li><a href="debug.html">Debug</a></li>
+<li><a href="git.html">Git</a></li>
+<li><a href="terminal.html">Terminal</a></li>
+<li><a href="workspace-projeto.html">Workspace &amp; Produtividade</a></li>
+<li><a href="utilitarios-dev.html">Utilitários de Desenvolvimento</a></li>
+</ul></details>
+<details class="side-group"><summary>Assistente e conectividade</summary><ul>
+<li><a href="ia.html">Assistente de IA</a></li>
+<li><a href="chat.html">Chat ao Vivo</a></li>
+<li><a href="remote-ssh.html">SSH Remoto</a></li>
+<li><a href="colaboracao.html">Colaboração em Tempo Real</a></li>
+</ul></details>
+<details class="side-group"><summary>Ferramentas e extras</summary><ul>
+<li><a href="recursos-avancados.html">Recursos Avançados</a></li>
+<li><a href="recursos-exclusivos.html">Recursos Exclusivos</a></li>
+<li><a href="kui.html">K-UI</a></li>
+<li><a href="sistema-performance.html">Sistema &amp; Performance</a></li>
+<li><a href="backups-lixeira-arquivos.html">Backups, Lixeira &amp; Arquivos</a></li>
+<li><a href="output.html">Painel de Saída</a></li>
+<li><a href="acessibilidade.html">Acessibilidade</a></li>
+<li><a href="paint.html">Editor de Imagens (Paint)</a></li>
+<li><a href="utilitarios-pessoais.html">Utilitários Pessoais</a></li>
+<li><a href="embed-e-preview.html">Incorporar Programas e Preview Web</a></li>
+<li><a href="doom.html">DOOM Embutido</a></li>
+</ul></details>
+<details class="side-group"><summary>Para quem desenvolve</summary><ul>
+<li><a href="plugins.html">Plugins</a></li>
+<li><a href="arquitetura.html">Arquitetura</a></li>
+<li><a href="builds.html">Builds &amp; CI/CD</a></li>
+<li><a href="updater.html">Atualizador</a></li>
+<li><a href="testes.html">Testes</a></li>
+</ul></details>
+<details class="side-group"><summary>Projeto</summary><ul>
+<li><a href="changelog.html">Changelog</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="contributing.html">Contribuindo</a></li>
+<li><a href="security.html">Segurança</a></li>
+<li><a href="authors.html">Autores</a></li>
+</ul></details></nav>
+  </aside>
+  <main id="conteudo" class="doc" tabindex="-1">
+    <button class="rail-toggle" type="button" aria-controls="rail" aria-expanded="false">☰ Menu da documentação</button>
+    <article class="prose">
+<h1 id="-faq---perguntas-frequentes">❓ FAQ - Perguntas Frequentes<a class="anchor" href="#-faq---perguntas-frequentes" aria-label="Link para esta seção">#</a></h1>
+<blockquote>
+<p>Para diagnóstico técnico mais profundo (comandos de log, causas detalhadas, coleta de informações para bug report), veja <a href="troubleshooting.html">🛠️ Solução de Problemas</a>.</p>
+</blockquote>
+<hr />
+<h2 id="instalação-e-inicialização">Instalação e Inicialização<a class="anchor" href="#instalação-e-inicialização" aria-label="Link para esta seção">#</a></h2>
+<h3 id="o-codis-não-abre-o-que-fazer">O Codis não abre. O que fazer?<a class="anchor" href="#o-codis-não-abre-o-que-fazer" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Verifique o Python 3.12+: <code>python --version</code></li>
+<li>Verifique o Tkinter: <code>python -c &quot;import tkinter&quot;</code> (sem erro = OK)</li>
+<li>Rode pelo terminal para ver erros: <code>python run.py</code></li>
+<li>Se houver erro de configuração corrompida, delete <code>~/.codis/config.json</code> e reinicie</li>
+</ol>
+<blockquote>
+<p>O Codis <strong>não</strong> requer nenhum <code>pip install</code> para abrir. Se ainda falhar após os passos acima, veja o diagnóstico completo em <a href="troubleshooting.html#o-codis-n%C3%A3o-abre--tela-preta">troubleshooting.md#o-codis-não-abre--tela-preta</a> ou abra uma issue no GitHub com a mensagem de erro completa.</p>
+</blockquote>
+<h3 id="o-wizard-de-primeiro-uso-não-apareceu">O wizard de primeiro uso não apareceu.<a class="anchor" href="#o-wizard-de-primeiro-uso-não-apareceu" aria-label="Link para esta seção">#</a></h3>
+<p>O wizard só aparece quando <code>first_run_done</code> não está em <code>config.json</code>. Para forçá-lo: delete <code>~/.codis/config.json</code> e reinicie.</p>
+<h3 id="a-janela-abre-mas-está-em-branco-ou-travada">A janela abre mas está em branco ou travada.<a class="anchor" href="#a-janela-abre-mas-está-em-branco-ou-travada" aria-label="Link para esta seção">#</a></h3>
+<p>Pode ser sessão corrompida. Delete <code>~/.codis/session.json</code> e reinicie.</p>
+<hr />
+<h2 id="editor">Editor<a class="anchor" href="#editor" aria-label="Link para esta seção">#</a></h2>
+<h3 id="o-syntax-highlighting-não-funciona-para-minha-linguagem">O syntax highlighting não funciona para minha linguagem.<a class="anchor" href="#o-syntax-highlighting-não-funciona-para-minha-linguagem" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Verifique se a extensão está mapeada em <code>EXT_LANG</code> (<code>src/constants.py</code>)</li>
+<li>Mude a linguagem manualmente clicando no nome na barra de status</li>
+<li>Se a linguagem não existir no seletor, ela não tem parser implementado - contribuições são bem-vindas!</li>
+</ol>
+<h3 id="o-autocomplete-não-aparece">O autocomplete não aparece.<a class="anchor" href="#o-autocomplete-não-aparece" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li>Verifique <code>autocomplete: true</code> em <code>config.json</code></li>
+<li>Aguarde o <code>autocomplete_delay</code> após digitar (padrão: 200 ms)</li>
+<li>Requer pelo menos <code>autocomplete_min_chars</code> caractere (padrão: 1)</li>
+</ul>
+<h3 id="o-ctrlc--ctrlv-não-funciona-em-certos-contextos">O Ctrl+C / Ctrl+V não funciona em certos contextos.<a class="anchor" href="#o-ctrlc--ctrlv-não-funciona-em-certos-contextos" aria-label="Link para esta seção">#</a></h3>
+<p>O Codis tem um handler global de clipboard contextual:</p>
+<ul>
+<li>Foco em <code>Entry</code> → opera sobre o campo de texto</li>
+<li>Foco no editor <code>Text</code> → delega ao handler interno</li>
+<li>Outros casos → opera sobre o editor ativo</li>
+</ul>
+<p>Se não funcionar, verifique qual widget tem foco. <code>Ctrl+A</code> também é contextual.</p>
+<hr />
+<h2 id="interface">Interface<a class="anchor" href="#interface" aria-label="Link para esta seção">#</a></h2>
+<h3 id="cliquei-num-item-de-menu-e-parece-que-nada-aconteceu">Cliquei num item de menu e parece que nada aconteceu.<a class="anchor" href="#cliquei-num-item-de-menu-e-parece-que-nada-aconteceu" aria-label="Link para esta seção">#</a></h3>
+<p>Se a ação correspondente falhar internamente, o Codis mostra um diálogo de erro e registra o problema no log, em vez de simplesmente não fazer nada. Se você vir esse diálogo, copie a mensagem e <a href="#como-reportar-um-bug">reporte um bug</a> - ele ajuda bastante a identificar a causa. Se nenhum diálogo aparecer e o item realmente não tiver efeito algum, isso também é um bug válido para reportar.</p>
+<hr />
+<h2 id="temas">Temas<a class="anchor" href="#temas" aria-label="Link para esta seção">#</a></h2>
+<h3 id="troquei-o-tema-mas-partes-ainda-têm-a-cor-antiga">Troquei o tema mas partes ainda têm a cor antiga.<a class="anchor" href="#troquei-o-tema-mas-partes-ainda-têm-a-cor-antiga" aria-label="Link para esta seção">#</a></h3>
+<p>Use o <strong>Modo Completo</strong> de troca de tema (não o Modo Rápido) para reconstruir toda a interface com o novo tema.</p>
+<h3 id="como-criar-um-tema">Como criar um tema?<a class="anchor" href="#como-criar-um-tema" aria-label="Link para esta seção">#</a></h3>
+<p>Veja <a href="temas.html#criando-um-tema-customizado">Temas → Criando um Tema Customizado</a>.</p>
+<hr />
+<h2 id="linting">Linting<a class="anchor" href="#linting" aria-label="Link para esta seção">#</a></h2>
+<h3 id="o-lint-não-funciona-para-python">O lint não funciona para Python.<a class="anchor" href="#o-lint-não-funciona-para-python" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li><code>py_compile</code> (sempre disponível) funciona para erros de sintaxe</li>
+<li>Para pylint/mypy/flake8: <code>pip install pylint mypy flake8</code></li>
+<li>Verifique os caminhos em <code>config.json</code>: <code>pylint_path</code>, <code>mypy_path</code>, <code>flake8_path</code></li>
+<li>Confira o Output Panel → canal <code>Python</code> para erros</li>
+</ol>
+<h3 id="o-eslint-não-encontra-a-configuração-do-projeto">O ESLint não encontra a configuração do projeto.<a class="anchor" href="#o-eslint-não-encontra-a-configuração-do-projeto" aria-label="Link para esta seção">#</a></h3>
+<p>O <code>LintManager</code> executa o ESLint no diretório raiz do workspace. O arquivo de configuração (<code>.eslintrc</code>, <code>eslint.config.js</code>, etc.) deve estar na raiz do workspace aberto.</p>
+<h3 id="o-lint-está-lento-ou-travando-o-editor">O lint está lento ou travando o editor.<a class="anchor" href="#o-lint-está-lento-ou-travando-o-editor" aria-label="Link para esta seção">#</a></h3>
+<p>O lint roda em thread separada e não deve travar a UI. Se perceber lentidão:</p>
+<ul>
+<li>Aumente <code>lint_delay</code> em <code>config.json</code> (ex: <code>1500</code> ms)</li>
+<li>Desative linters pesados: <code>&quot;pylint_path&quot;: &quot;&quot;</code> ou <code>&quot;lint_python&quot;: false</code></li>
+<li>Para arquivos grandes: <code>&quot;lint_enabled&quot;: false</code></li>
+</ul>
+<hr />
+<h2 id="terminal">Terminal<a class="anchor" href="#terminal" aria-label="Link para esta seção">#</a></h2>
+<h3 id="o-terminal-não-abre--shell-não-encontrado">O terminal não abre / shell não encontrado.<a class="anchor" href="#o-terminal-não-abre--shell-não-encontrado" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Verifique se o shell (<code>default_shell</code>) está no <code>PATH</code></li>
+<li>Se em branco, o Codis detecta o primeiro shell disponível automaticamente</li>
+<li>No Windows, pelo menos <code>cmd.exe</code> deve estar disponível</li>
+<li>Confira o Output Panel para mensagens de erro</li>
+</ol>
+<h3 id="como-mudar-o-shell-padrão">Como mudar o shell padrão?<a class="anchor" href="#como-mudar-o-shell-padrão" aria-label="Link para esta seção">#</a></h3>
+<p><code>Ctrl+,</code> → campo <code>default_shell</code> → nome do shell (<code>&quot;bash&quot;</code>, <code>&quot;zsh&quot;</code>, <code>&quot;PowerShell&quot;</code>)<br />
+Ou clique no nome do shell na barra de status do terminal.</p>
+<hr />
+<h2 id="git">Git<a class="anchor" href="#git" aria-label="Link para esta seção">#</a></h2>
+<h3 id="o-painel-git-não-detecta-meu-repositório">O painel Git não detecta meu repositório.<a class="anchor" href="#o-painel-git-não-detecta-meu-repositório" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Verifique se o Git está instalado: <code>git --version</code></li>
+<li>Abra uma pasta que seja repositório Git (contém <code>.git/</code>)</li>
+<li>Verifique se <code>git_enabled: true</code> em <code>config.json</code></li>
+</ol>
+<h3 id="pushpull-falha-com-erro-de-autenticação">Push/Pull falha com erro de autenticação.<a class="anchor" href="#pushpull-falha-com-erro-de-autenticação" aria-label="Link para esta seção">#</a></h3>
+<p>O painel Git exibe um diálogo de credenciais ao detectar erros. Insira seu usuário e token de acesso pessoal (PAT). Para SSH, certifique-se de que a chave SSH está configurada no sistema.</p>
+<hr />
+<h2 id="debug">Debug<a class="anchor" href="#debug" aria-label="Link para esta seção">#</a></h2>
+<h3 id="cliquei-em-run-no-painel-de-debug-mas-o-programa-roda-até-o-fim-sem-parar">Cliquei em Run no Painel de Debug mas o programa roda até o fim sem parar.<a class="anchor" href="#cliquei-em-run-no-painel-de-debug-mas-o-programa-roda-até-o-fim-sem-parar" aria-label="Link para esta seção">#</a></h3>
+<p>Isso acontece quando <strong>nenhum breakpoint foi marcado</strong> antes de clicar em Run - sem breakpoints, o <code>debugpy</code> libera a execução e o script roda normalmente do início ao fim. Não é um bug: clique na margem esquerda do editor (gutter), ao lado do número da linha, para marcar um breakpoint <strong>antes</strong> de iniciar a depuração. Veja o guia completo em <a href="debug.html">Debug</a>.</p>
+<h3 id="erro-ao-iniciar-a-depuração--porta-já-em-uso--address-already-in-use">Erro ao iniciar a depuração / &quot;porta já em uso&quot; / &quot;Address already in use&quot;.<a class="anchor" href="#erro-ao-iniciar-a-depuração--porta-já-em-uso--address-already-in-use" aria-label="Link para esta seção">#</a></h3>
+<p>A porta configurada para o DAP (<code>debug_dap_port</code>, padrão <code>5678</code>) já está sendo usada por outro processo. As causas mais comuns:</p>
+<ul>
+<li><strong>Outra sessão de debug do Codis ainda está rodando</strong> - clique em <strong>⏹ Stop</strong> no painel antes de iniciar uma nova.</li>
+<li><strong>VS Code aberto ao mesmo tempo</strong>, depurando Python no mesmo projeto - veja a próxima pergunta.</li>
+<li>Algum outro processo manual (<code>python -m debugpy ...</code>) deixado rodando em segundo plano.</li>
+</ul>
+<p><strong>Solução rápida:</strong> mude <code>debug_dap_port</code> para outro valor (ex: <code>5690</code>) em <strong>Configurações → Avançado</strong>, ou <code>Ctrl+,</code> → Avançado.</p>
+<h3 id="uso-o-codis-e-o-vs-code-juntos-no-mesmo-projeto-e-a-depuração-de-um-deles-para-de-funcionar">Uso o Codis e o VS Code juntos no mesmo projeto e a depuração de um deles para de funcionar.<a class="anchor" href="#uso-o-codis-e-o-vs-code-juntos-no-mesmo-projeto-e-a-depuração-de-um-deles-para-de-funcionar" aria-label="Link para esta seção">#</a></h3>
+<p>Isso é esperado, não um defeito de nenhum dos dois editores: <strong>o Codis e a extensão Python Debugger do VS Code usam, por padrão, exatamente a mesma porta (<code>5678</code>)</strong> para conversar com o <code>debugpy</code>, porque os dois seguem a mesma convenção da ferramenta. Com ambos abertos e tentando depurar Python ao mesmo tempo, um deles falha ao abrir a porta, ou acaba conectando à sessão errada.</p>
+<p>A solução é simples - não é preciso fechar nenhum dos dois editores:</p>
+<ol>
+<li>No Codis, vá em <strong>Configurações → Avançado</strong> (<code>Ctrl+,</code>);</li>
+<li>Mude <code>debug_dap_port</code> para um valor diferente do padrão (ex: <code>5690</code>, <code>15678</code>, qualquer porta livre);</li>
+<li>Pronto. Os dois editores podem depurar Python ao mesmo tempo, cada um na sua porta, sem disputar o mesmo recurso.</li>
+</ol>
+<p>Isso só importa se você for depurar <strong>nos dois ao mesmo tempo</strong>; usando um por vez nunca há conflito.</p>
+<h3 id="debugpy-não-encontrado-no-console-do-painel-de-debug"><code>debugpy não encontrado</code> no console do painel de Debug.<a class="anchor" href="#debugpy-não-encontrado-no-console-do-painel-de-debug" aria-label="Link para esta seção">#</a></h3>
+<p>Instale com <code>pip install debugpy</code>, no mesmo Python/ambiente virtual que o Codis usa para executar seus scripts (confira o interpretador na barra de status). Sem o <code>debugpy</code>, o painel ainda executa o arquivo, mas sem breakpoints/stepping reais.</p>
+<h3 id="os-botões-de-step-intooveroutcontinue-não-fazem-nada">Os botões de Step Into/Over/Out/Continue não fazem nada.<a class="anchor" href="#os-botões-de-step-intooveroutcontinue-não-fazem-nada" aria-label="Link para esta seção">#</a></h3>
+<p>Eles só têm efeito quando a execução está <strong>parada num breakpoint</strong> (status <code>⏸ Stopped</code>). Se não houver uma sessão parada (ela ainda não rodou até um breakpoint, já terminou, ou nunca foi iniciada), o painel avisa no console em vez de fingir que algo aconteceu.</p>
+<hr />
+<h2 id="lsp">LSP<a class="anchor" href="#lsp" aria-label="Link para esta seção">#</a></h2>
+<h3 id="o-lsp-não-funciona-para-minha-linguagem">O LSP não funciona para minha linguagem.<a class="anchor" href="#o-lsp-não-funciona-para-minha-linguagem" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Instale o servidor LSP (ex: <code>pip install python-lsp-server</code> para Python)</li>
+<li>O servidor deve estar no <code>PATH</code></li>
+<li>Verifique o Output Panel → canal <code>LSP</code> para erros</li>
+<li>Confirme <code>lsp_enabled: true</code> em <code>config.json</code></li>
+</ol>
+<h3 id="como-verificar-se-o-lsp-está-ativo">Como verificar se o LSP está ativo?<a class="anchor" href="#como-verificar-se-o-lsp-está-ativo" aria-label="Link para esta seção">#</a></h3>
+<p>Abra um arquivo Python e pressione <code>F12</code> sobre uma função (Ir para Definição). Se funcionar, o LSP está ativo. Mensagens também aparecem no canal <code>LSP</code> do Output Panel.</p>
+<hr />
+<h2 id="k-ui">K-UI<a class="anchor" href="#k-ui" aria-label="Link para esta seção">#</a></h2>
+<h3 id="o-k-ui-ativou-mas-a-interface-parece-bugada">O K-UI ativou mas a interface parece bugada.<a class="anchor" href="#o-k-ui-ativou-mas-a-interface-parece-bugada" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Desative com <code>Ctrl+Alt+N</code></li>
+<li>Se não voltar ao normal, reinicie o Codis</li>
+<li>Se persistir, delete <code>~/.codis/config.json</code> para resetar</li>
+</ol>
+<h3 id="o-k-ui-está-pesado--lento">O K-UI está pesado / lento.<a class="anchor" href="#o-k-ui-está-pesado--lento" aria-label="Link para esta seção">#</a></h3>
+<p>Mude o perfil de performance para <code>low</code> ou <code>minimal</code>:</p>
+<ul>
+<li><strong>Ferramentas → K-UI: Performance</strong></li>
+<li>Spotlight (<code>Ctrl+Space</code>) → &quot;Perf&quot;</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Perfil</th>
+<th>CPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>quantum</code></td>
+<td>Muito alto</td>
+</tr>
+<tr>
+<td><code>ultra</code></td>
+<td>Alto</td>
+</tr>
+<tr>
+<td><code>high</code></td>
+<td>Médio-alto</td>
+</tr>
+<tr>
+<td><code>balanced</code></td>
+<td>Médio</td>
+</tr>
+<tr>
+<td><code>windows</code></td>
+<td>Médio-baixo</td>
+</tr>
+<tr>
+<td><code>low</code></td>
+<td>Baixo</td>
+</tr>
+<tr>
+<td><code>minimal</code></td>
+<td>Mínimo (alias de <code>low</code> - ainda tem partículas/meteoros, não é &quot;sem animações&quot;)</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><code>ultra_plus</code> também existe como alias de <code>quantum</code>, e <code>power_saver</code> como alias de <code>windows</code> (mesmos perfis, nomes alternativos).</p>
+</blockquote>
+<h3 id="as-nebulosas-não-aparecem-no-k-ui">As nebulosas não aparecem no K-UI.<a class="anchor" href="#as-nebulosas-não-aparecem-no-k-ui" aria-label="Link para esta seção">#</a></h3>
+<p>O K-UI usa PIL/Pillow para renderizar as nebulosas em background. Instale com <code>pip install Pillow</code>. Sem PIL, o K-UI usa gradiente puro como fallback.</p>
+<h3 id="criei-uma-sequência-mas-o-easter-egg-não-ativou">Criei uma sequência mas o easter egg não ativou.<a class="anchor" href="#criei-uma-sequência-mas-o-easter-egg-não-ativou" aria-label="Link para esta seção">#</a></h3>
+<p>Os easter eggs são ativados via comando no terminal integrado: <code>/codis &lt;código&gt;</code>. Exemplo: <code>/codis nova</code>. Ver a lista completa em <a href="kui.html#easter-eggs">K-UI → Easter Eggs</a>.</p>
+<hr />
+<h2 id="plugins">Plugins<a class="anchor" href="#plugins" aria-label="Link para esta seção">#</a></h2>
+<h3 id="meu-plugin-não-está-sendo-carregado">Meu plugin não está sendo carregado.<a class="anchor" href="#meu-plugin-não-está-sendo-carregado" aria-label="Link para esta seção">#</a></h3>
+<ol>
+<li>Verifique se está em <code>~/.codis/plugins/</code></li>
+<li>Output Panel → canal <code>Extensions</code> para erros</li>
+<li>Verifique se a análise estática de segurança não bloqueou o plugin</li>
+<li>Certifique-se de que o plugin define <code>MANIFEST</code> e <code>activate(api)</code></li>
+</ol>
+<h3 id="a-análise-de-segurança-bloqueou-meu-plugin-por-usar-os">A análise de segurança bloqueou meu plugin por usar <code>os</code>.<a class="anchor" href="#a-análise-de-segurança-bloqueou-meu-plugin-por-usar-os" aria-label="Link para esta seção">#</a></h3>
+<p>O analisador de imports (<code>_sandbox_check_imports</code> em <code>src/plugins/api.py</code>) classifica <code>os</code>, <code>pathlib</code>, <code>shutil</code>, <code>requests</code>, <code>threading</code>, <code>pickle</code> e outros como <strong>avisos</strong>; já <code>subprocess</code>, <code>socket</code>, <code>ssl</code>, <code>ctypes</code>, <code>multiprocessing</code>, <code>winreg</code> e similares são classificados como <strong>bloqueados</strong> - mais arriscados.</p>
+<p>O que acontece depois depende de como o plugin chegou ao Codis:</p>
+<ul>
+<li><strong>Instalando pela interface</strong> (<code>Plugins → Instalar Plugin</code>): tanto avisos quanto bloqueios mostram um diálogo de confirmação. Aceitar adiciona o plugin a <code>~/.codis/trusted_plugins.json</code>, e ele passa a carregar normalmente nas próximas inicializações.</li>
+<li><strong>Arquivo já presente em <code>~/.codis/plugins/</code></strong> sem nunca ter passado pela instalação (ex: copiado manualmente): se contiver imports <strong>bloqueados</strong>, é recusado automaticamente, sem diálogo - só passa a carregar depois de ser instalado uma vez pela interface.</li>
+</ul>
+<hr />
+<h2 id="testes">Testes<a class="anchor" href="#testes" aria-label="Link para esta seção">#</a></h2>
+<h3 id="como-rodar-os-testes-do-codis">Como rodar os testes do Codis?<a class="anchor" href="#como-rodar-os-testes-do-codis" aria-label="Link para esta seção">#</a></h3>
+<pre><code class="language-bash">pip install pytest pytest-cov
+pytest tests/ -v
+</code></pre>
+<p>A suíte roda headless (sem display gráfico). Ver <a href="https://github.com/KillovSky/Codis/blob/main/tests/README.md" target="_blank" rel="noopener">tests/README.md</a>.</p>
+<h3 id="os-testes-falham-com-erros-de-importação-do-tkinter">Os testes falham com erros de importação do Tkinter.<a class="anchor" href="#os-testes-falham-com-erros-de-importação-do-tkinter" aria-label="Link para esta seção">#</a></h3>
+<p>O <code>conftest.py</code> instala stubs de Tkinter automaticamente antes de qualquer importação. Certifique-se de rodar <code>pytest</code> a partir da raiz do projeto (<code>cd Codis &amp;&amp; pytest tests/</code>).</p>
+<hr />
+<h2 id="performance-geral">Performance Geral<a class="anchor" href="#performance-geral" aria-label="Link para esta seção">#</a></h2>
+<h3 id="o-codis-está-lento-ao-abrir-arquivos-grandes">O Codis está lento ao abrir arquivos grandes.<a class="anchor" href="#o-codis-está-lento-ao-abrir-arquivos-grandes" aria-label="Link para esta seção">#</a></h3>
+<p>Para arquivos acima de 3 MB, o modo simplificado é ativado automaticamente (syntax highlighting e autocomplete desativados). O limite é configurável via <code>large_file_mb</code> em <code>config.json</code>.</p>
+<h3 id="o-codis-usa-muita-memória">O Codis usa muita memória.<a class="anchor" href="#o-codis-usa-muita-memória" aria-label="Link para esta seção">#</a></h3>
+<p>O conteúdo completo de todos os arquivos abertos fica em memória. Feche abas não utilizadas. O K-UI com perfis <code>ultra</code> ou <code>quantum</code> também consome mais CPU e memória.</p>
+<hr />
+<h2 id="outros">Outros<a class="anchor" href="#outros" aria-label="Link para esta seção">#</a></h2>
+<h3 id="como-reportar-um-bug">Como reportar um bug?<a class="anchor" href="#como-reportar-um-bug" aria-label="Link para esta seção">#</a></h3>
+<p>Abra uma <a href="https://github.com/KillovSky/Codis/issues" target="_blank" rel="noopener">issue no GitHub</a> incluindo:</p>
+<ul>
+<li>Versão do Codis (<code>Ajuda → About Codis</code>)</li>
+<li>Sistema operacional e versão do Python</li>
+<li>Passos para reproduzir</li>
+<li>Mensagens de erro do terminal ou Output Panel</li>
+</ul>
+<h3 id="como-contribuir">Como contribuir?<a class="anchor" href="#como-contribuir" aria-label="Link para esta seção">#</a></h3>
+<p>Veja <a href="contributing.html">CONTRIBUTING.md</a>.</p>
+
+    </article>
+    <footer class="pager">
+      <nav class="pn" aria-label="Páginas vizinhas">
+        <a class="prev" href="temas.html"><small>Anterior</small>Temas</a>
+        <a class="next" href="troubleshooting.html"><small>Próxima</small>Solução de Problemas</a>
+      </nav>
+      <p class="edit"><a href="https://github.com/KillovSky/Codis/blob/main/wiki/faq.md" target="_blank" rel="noopener">Editar esta página no GitHub</a> (<code>wiki/faq.md</code>)</p>
+    </footer>
+  </main>
+  <aside class="toc" aria-label="Nesta página">
+    <p class="toc-t">Nesta página</p>
+    <ul><li class="l2"><a href="#instalação-e-inicialização">Instalação e Inicialização</a></li><li class="l3"><a href="#o-codis-não-abre-o-que-fazer">O Codis não abre. O que fazer?</a></li><li class="l3"><a href="#o-wizard-de-primeiro-uso-não-apareceu">O wizard de primeiro uso não apareceu.</a></li><li class="l3"><a href="#a-janela-abre-mas-está-em-branco-ou-travada">A janela abre mas está em branco ou travada.</a></li><li class="l2"><a href="#editor">Editor</a></li><li class="l3"><a href="#o-syntax-highlighting-não-funciona-para-minha-linguagem">O syntax highlighting não funciona para minha linguagem.</a></li><li class="l3"><a href="#o-autocomplete-não-aparece">O autocomplete não aparece.</a></li><li class="l3"><a href="#o-ctrlc--ctrlv-não-funciona-em-certos-contextos">O Ctrl+C / Ctrl+V não funciona em certos contextos.</a></li><li class="l2"><a href="#interface">Interface</a></li><li class="l3"><a href="#cliquei-num-item-de-menu-e-parece-que-nada-aconteceu">Cliquei num item de menu e parece que nada aconteceu.</a></li><li class="l2"><a href="#temas">Temas</a></li><li class="l3"><a href="#troquei-o-tema-mas-partes-ainda-têm-a-cor-antiga">Troquei o tema mas partes ainda têm a cor antiga.</a></li><li class="l3"><a href="#como-criar-um-tema">Como criar um tema?</a></li><li class="l2"><a href="#linting">Linting</a></li><li class="l3"><a href="#o-lint-não-funciona-para-python">O lint não funciona para Python.</a></li><li class="l3"><a href="#o-eslint-não-encontra-a-configuração-do-projeto">O ESLint não encontra a configuração do projeto.</a></li><li class="l3"><a href="#o-lint-está-lento-ou-travando-o-editor">O lint está lento ou travando o editor.</a></li><li class="l2"><a href="#terminal">Terminal</a></li><li class="l3"><a href="#o-terminal-não-abre--shell-não-encontrado">O terminal não abre / shell não encontrado.</a></li><li class="l3"><a href="#como-mudar-o-shell-padrão">Como mudar o shell padrão?</a></li><li class="l2"><a href="#git">Git</a></li><li class="l3"><a href="#o-painel-git-não-detecta-meu-repositório">O painel Git não detecta meu repositório.</a></li><li class="l3"><a href="#pushpull-falha-com-erro-de-autenticação">Push/Pull falha com erro de autenticação.</a></li><li class="l2"><a href="#debug">Debug</a></li><li class="l3"><a href="#cliquei-em-run-no-painel-de-debug-mas-o-programa-roda-até-o-fim-sem-parar">Cliquei em Run no Painel de Debug mas o programa roda até o fim sem parar.</a></li><li class="l3"><a href="#erro-ao-iniciar-a-depuração--porta-já-em-uso--address-already-in-use">Erro ao iniciar a depuração / &quot;porta já em uso&quot; / &quot;Address already in use&quot;.</a></li><li class="l3"><a href="#uso-o-codis-e-o-vs-code-juntos-no-mesmo-projeto-e-a-depuração-de-um-deles-para-de-funcionar">Uso o Codis e o VS Code juntos no mesmo projeto e a depuração de um deles para de funcionar.</a></li><li class="l3"><a href="#debugpy-não-encontrado-no-console-do-painel-de-debug">debugpy não encontrado no console do painel de Debug.</a></li><li class="l3"><a href="#os-botões-de-step-intooveroutcontinue-não-fazem-nada">Os botões de Step Into/Over/Out/Continue não fazem nada.</a></li><li class="l2"><a href="#lsp">LSP</a></li><li class="l3"><a href="#o-lsp-não-funciona-para-minha-linguagem">O LSP não funciona para minha linguagem.</a></li><li class="l3"><a href="#como-verificar-se-o-lsp-está-ativo">Como verificar se o LSP está ativo?</a></li><li class="l2"><a href="#k-ui">K-UI</a></li><li class="l3"><a href="#o-k-ui-ativou-mas-a-interface-parece-bugada">O K-UI ativou mas a interface parece bugada.</a></li><li class="l3"><a href="#o-k-ui-está-pesado--lento">O K-UI está pesado / lento.</a></li><li class="l3"><a href="#as-nebulosas-não-aparecem-no-k-ui">As nebulosas não aparecem no K-UI.</a></li><li class="l3"><a href="#criei-uma-sequência-mas-o-easter-egg-não-ativou">Criei uma sequência mas o easter egg não ativou.</a></li><li class="l2"><a href="#plugins">Plugins</a></li><li class="l3"><a href="#meu-plugin-não-está-sendo-carregado">Meu plugin não está sendo carregado.</a></li><li class="l3"><a href="#a-análise-de-segurança-bloqueou-meu-plugin-por-usar-os">A análise de segurança bloqueou meu plugin por usar os.</a></li><li class="l2"><a href="#testes">Testes</a></li><li class="l3"><a href="#como-rodar-os-testes-do-codis">Como rodar os testes do Codis?</a></li><li class="l3"><a href="#os-testes-falham-com-erros-de-importação-do-tkinter">Os testes falham com erros de importação do Tkinter.</a></li><li class="l2"><a href="#performance-geral">Performance Geral</a></li><li class="l3"><a href="#o-codis-está-lento-ao-abrir-arquivos-grandes">O Codis está lento ao abrir arquivos grandes.</a></li><li class="l3"><a href="#o-codis-usa-muita-memória">O Codis usa muita memória.</a></li><li class="l2"><a href="#outros">Outros</a></li><li class="l3"><a href="#como-reportar-um-bug">Como reportar um bug?</a></li><li class="l3"><a href="#como-contribuir">Como contribuir?</a></li></ul>
+  </aside>
+</div>
+<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<script src="docs.js" defer></script>
+</body>
+</html>

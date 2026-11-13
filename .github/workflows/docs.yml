@@ -1,0 +1,165 @@
+name: "Docs - Verificar, Publicar Site e Wiki"
+
+# Tudo o que envolve documentação em um único workflow:
+#   pull_request  -> check  (números dos docs × código; docs/ em dia com wiki/)
+#   push em main  -> site   (gera docs/ e publica no GitHub Pages)
+#                    wiki   (sincroniza wiki/ com a GitHub Wiki, se wiki/ mudou)
+#
+# src/constants.py está nos filtros porque o site exibe a versão (APP_VERSION):
+# um commit de release republica o site sozinho. (Releases criadas pelo
+# pipeline não disparam o evento "release", por isso ele não é mais usado.)
+on:
+  pull_request:
+    paths:
+      - "wiki/**"
+      - "docs/**"
+      - "*.md"
+      - "src/**"
+      - "tests/**"
+      - "tools/**"
+      - ".github/workflows/docs.yml"
+  push:
+    branches: ["main", "master"]
+    paths:
+      - "docs/**"
+      - "wiki/**"
+      - "*.md"
+      - "tools/**"
+      - "src/constants.py"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: docs-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: "Docs batem com o código e o site está atualizado"
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: tools/requirements-docs.txt
+
+      - name: "Dependências"
+        run: pip install -r tools/requirements-docs.txt pytest websockets
+
+      - name: "Números citados nos .md/.html conferem com o código"
+        run: python tools/docs_facts.py --check
+
+      - name: "docs/ está em dia com wiki/ e com os .md da raiz"
+        run: python tools/build_site.py --check
+
+  site:
+    name: "Gerar site"
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: tools/requirements-docs.txt
+
+      - name: "Gerar páginas da documentação (wiki/ -> docs/)"
+        run: |
+          pip install -r tools/requirements-docs.txt
+          python tools/build_site.py
+
+      - name: "Validar HTML"
+        run: |
+          if [ ! -f "docs/index.html" ]; then
+            echo "::error::docs/index.html não encontrado"
+            exit 1
+          fi
+          SIZE=$(wc -c < "docs/index.html")
+          if [ "$SIZE" -lt 1000 ]; then
+            echo "::error::docs/index.html parece vazio ou incompleto (${SIZE} bytes)"
+            exit 1
+          fi
+          echo "docs/index.html encontrado (${SIZE} bytes)"
+          touch docs/.nojekyll
+
+      - name: "Listar arquivos do site"
+        run: |
+          echo "## Conteúdo de docs/" >> "$GITHUB_STEP_SUMMARY"
+          find docs/ -type f | sort | while read -r f; do
+            echo "- \`$f\` ($(du -sh "$f" | cut -f1))" >> "$GITHUB_STEP_SUMMARY"
+          done
+
+      - uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: "docs/"
+
+  deploy:
+    name: "Deploy para GitHub Pages"
+    needs: site
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: "Deploy"
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: "Sumário do deploy"
+        run: |
+          {
+            echo "## GitHub Pages publicado"
+            echo ""
+            echo "- **URL:** ${{ steps.deployment.outputs.page_url }}"
+            echo "- **Commit:** \`${{ github.sha }}\`"
+            echo "- **Publicado em:** $(date -u '+%Y-%m-%d %H:%M UTC')"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  wiki:
+    name: "Sincronizar wiki/"
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: "wiki/ mudou neste push?"
+        id: changed
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          # Disparo manual sempre sincroniza; em push, só se wiki/ mudou.
+          if [ "$EVENT" = "workflow_dispatch" ] || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          elif git diff --quiet "$BEFORE" HEAD -- wiki/; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "wiki/ não mudou: nada a sincronizar."
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: "Sincronizar para GitHub Wiki"
+        if: steps.changed.outputs.run == 'true'
+        uses: Andrew-Chen-Wang/github-wiki-action@v4
+        with:
+          path: wiki/
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: sync wiki from main [${{ github.sha }}]"
