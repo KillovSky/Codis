@@ -8,7 +8,8 @@ Este documento descreve como reportar vulnerabilidades de segurança e como o pr
 
 | Versão | Suporte de Segurança |
 |---|---|
-| `1.0.0` | ✅ Ativa - patches enviados assim que possível |
+| `1.0.1` | ✅ Ativa - patches enviados assim que possível |
+| `1.0.0` | ⚠️ Atualize para a 1.0.1 (correções de segurança) |
 | Forks, distribuições não oficiais, versões modificadas | ❌ Fora do escopo deste repositório |
 
 ---

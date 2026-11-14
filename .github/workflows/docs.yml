@@ -156,8 +156,25 @@ jobs:
             echo "run=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: "Sincronizar para GitHub Wiki"
+      - name: "A GitHub Wiki já foi inicializada?"
         if: steps.changed.outputs.run == 'true'
+        id: wikirepo
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          # O repositório <repo>.wiki.git só passa a existir depois que a primeira
+          # página é criada pela interface (Settings > Features > Wikis, depois
+          # "Create the first page"). Sem isso o clone falha com "Repository not found".
+          if git ls-remote "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.wiki.git" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "::warning title=Wiki não inicializada::Ative Wikis em Settings > Features e crie a primeira página em https://github.com/${REPO}/wiki - a sincronização foi ignorada."
+          fi
+
+      - name: "Sincronizar para GitHub Wiki"
+        if: steps.changed.outputs.run == 'true' && steps.wikirepo.outputs.exists == 'true'
         uses: Andrew-Chen-Wang/github-wiki-action@v4
         with:
           path: wiki/

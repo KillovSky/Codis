@@ -47,7 +47,8 @@ _SCOPE_PATTERNS: list[tuple[re.Pattern, str]] = [
     (re.compile(r"^(\s*)([.#\w&\[\*][^{]+)\s*\{"), "css"),
     (
         re.compile(
-            r"^(\s*)<(div|section|article|header|footer|nav|main|aside|form|table|ul|ol|template|component|script|style)[\s>]"
+            r"^(\s*)<(div|section|article|header|footer|nav|main|aside|form|table|ul|ol|template|component|script|style)[\s>]",
+            re.IGNORECASE,
         ),
         "html",
     ),

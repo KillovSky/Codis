@@ -51,7 +51,7 @@ def _read_app_version() -> str:
         )
         if m:
             return m.group(1)
-    return "1.0.0"
+    return "1.0.1"
 
 
 APP_VERSION = _read_app_version()

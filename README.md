@@ -277,7 +277,7 @@ Toda a documentação detalhada vive em [`wiki/`](wiki/Home.md) (também publica
 
 | Para quem | Páginas |
 |---|---|
-| Quem vai usar | [Primeiros Passos](wiki/primeiros-passos.md) · [Interface](wiki/interface.md) · [Editor](wiki/editor.md) · [Atalhos](wiki/atalhos.md) · [Configurações](wiki/configuracoes.md) · [Temas](wiki/temas.md) |
+| Quem vai usar | [Primeiros Passos](wiki/primeiros-passos.md) · [Interface](wiki/interface.md) · [Previews](wiki/previews.md) · [Editor](wiki/editor.md) · [Atalhos](wiki/atalhos.md) · [Configurações](wiki/configuracoes.md) · [Temas](wiki/temas.md) |
 | Recursos | [IA](wiki/ia.md) · [Git](wiki/git.md) · [Terminal](wiki/terminal.md) · [Linting & LSP](wiki/linting.md) · [Debug](wiki/debug.md) · [KDocs](wiki/kdocs.md) · [K-UI](wiki/kui.md) · [Chat](wiki/chat.md) · [SQL Studio e Tarefas](wiki/recursos-avancados.md) |
 | Quem vai estender | [Plugins](wiki/plugins.md) · [Arquitetura](wiki/arquitetura.md) · [Builds e CI/CD](wiki/builds.md) · [Atualizador](wiki/updater.md) · [Testes](wiki/testes.md) |
 | Ajuda | [FAQ](wiki/faq.md) · [Solução de Problemas](wiki/troubleshooting.md) |

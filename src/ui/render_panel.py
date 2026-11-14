@@ -652,11 +652,11 @@ class _TextRenderer(tk.Frame):
         formatação inline. Corrige o bug do 'not tok' que descartava
         texto normal entre tokens.
         """
-        html = re.sub(r"<head[^>]*>.*?</head>", "",
+        html = re.sub(r"<head\b[^>]*>.*?</head\b[^>]*>", "",
                       html, flags=re.DOTALL | re.I)
-        html = re.sub(r"<script[^>]*>.*?</script>",
+        html = re.sub(r"<script\b[^>]*>.*?</script\b[^>]*>",
                       "", html, flags=re.DOTALL | re.I)
-        html = re.sub(r"<style[^>]*>.*?</style>", "",
+        html = re.sub(r"<style\b[^>]*>.*?</style\b[^>]*>", "",
                       html, flags=re.DOTALL | re.I)
 
         for i in range(1, 7):

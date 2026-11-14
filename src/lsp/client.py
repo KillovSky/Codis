@@ -90,6 +90,7 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
+from src.constants import APP_VERSION
 from src.terminal.backends import child_process_env
 
 from .protocol import (
@@ -1383,7 +1384,7 @@ class LSPClient:
                 "initialize",
                 {
                     "processId": os.getpid(),
-                    "clientInfo": {"name": "Codis", "version": "1.0.0"},
+                    "clientInfo": {"name": "Codis", "version": APP_VERSION},
                     "rootUri": root_uri,
                     "workspaceFolders": (
                         [

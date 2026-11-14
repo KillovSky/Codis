@@ -62,11 +62,11 @@ def split_chars(text: str, limit: int) -> list[str]:
 
 
 def ssl_context(verify: bool = True) -> ssl.SSLContext:
-    if verify:
-        return ssl.create_default_context()
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
+    ctx.minimum_version = ssl.TLSVersion.TLSv1_2  # nunca negocia TLS 1.0/1.1/SSL
+    if not verify:
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
     return ctx
 
 

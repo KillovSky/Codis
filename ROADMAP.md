@@ -17,9 +17,9 @@ O Codis segue alguns princípios que guiam o que entra no roadmap:
 
 ---
 
-## Estado Atual - v1.0.0
+## Estado Atual - v1.0.1
 
-A versão 1.0.0 representa o editor completo como base sólida:
+A versão 1.0.1 representa o editor completo como base sólida:
 
 - Editor com 48 linguagens reconhecidas (25 com highlight de sintaxe), LSP, Git, Vim Mode, minimap, multi-cursor
 - Assistente de IA multi-provedor (Anthropic, OpenAI, OpenAI-compatível, Gemini, Ollama, GGUF)
@@ -92,4 +92,4 @@ Features implementadas como plugins pela comunidade podem eventualmente ser prom
 
 ---
 
-*Última atualização: v1.0.0*
+*Última atualização: v1.0.1*

@@ -5,6 +5,7 @@
 
 - [Primeiros Passos](primeiros-passos)
 - [Interface](interface)
+- [Previews](previews)
 - [Atalhos](atalhos)
 - [Configurações](configuracoes)
 - [Temas](temas)

@@ -202,7 +202,7 @@ def test_host_stop_notifies_guest_and_frees_port(env):
         socket.create_connection(("127.0.0.1", port), timeout=1).close()
     with socket.socket() as s:
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        s.bind(("0.0.0.0", port))
+        s.bind(("127.0.0.1", port))
 
 
 def test_app_glue_binds_real_editor_and_joins_in_new_tab(tk_root, monkeypatch):

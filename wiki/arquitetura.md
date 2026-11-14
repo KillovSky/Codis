@@ -2,7 +2,7 @@
 
 Esta página descreve a estrutura interna do Codis: módulos, responsabilidades e fluxo de execução.
 
-> **Versão:** 1.0.0 · Para contribuir, veja [CONTRIBUTING.md](../CONTRIBUTING.md). Para testes, veja [tests/README.md](../tests/README.md).
+> **Versão:** 1.0.1 · Para contribuir, veja [CONTRIBUTING.md](../CONTRIBUTING.md). Para testes, veja [tests/README.md](../tests/README.md).
 
 ---
 
@@ -371,7 +371,7 @@ Definidas em `src/constants.py`:
 | Constante | Valor | Descrição |
 |-----------|-------|-----------|
 | `APP_NAME` | `"Codis"` | Nome da aplicação |
-| `APP_VERSION` | `"1.0.0"` | Versão |
+| `APP_VERSION` | `"1.0.1"` | Versão |
 | `APP_CODENAME` | `"Aether"` | Codinome |
 | `CONFIG_DIR` | `~/.codis` | Diretório de dados |
 | `CONFIG_FILE` | `~/.codis/config.json` | Arquivo de configuração |

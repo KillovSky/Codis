@@ -816,7 +816,7 @@ class RemoteBrowserPanel(tk.Frame):
         self._set_status(_t("rbrowser.copied", "Caminho copiado."))
 
     def _local_for(self, profile: RemoteProfile, remote: str) -> Path:
-        digest = hashlib.sha1(f"{profile.uid}:{remote}".encode(), usedforsecurity=False).hexdigest()[:8]
+        digest = hashlib.sha256(f"{profile.uid}:{remote}".encode()).hexdigest()[:8]
         folder = self._workdir / profile.uid / digest
         folder.mkdir(parents=True, exist_ok=True)
         return folder / (remote.rsplit("/", 1)[-1] or "arquivo")

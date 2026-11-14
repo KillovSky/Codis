@@ -23,7 +23,7 @@
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <nav class="topbar" aria-label="Principal">
   <div class="nav-inner">
-    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.0 · Aether</span></a>
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Codis <span class="version">v1.0.1 · Aether</span></a>
     <div class="nav-links">
       <a href="index.html#features">Recursos</a>
       <a href="documentacao.html">Documentação</a>
@@ -47,6 +47,7 @@
 <details class="side-group"><summary>Começando</summary><ul>
 <li><a href="primeiros-passos.html">Primeiros Passos</a></li>
 <li><a href="interface.html">Interface</a></li>
+<li><a href="previews.html">Previews</a></li>
 <li><a href="atalhos.html">Atalhos</a></li>
 <li><a href="configuracoes.html">Configurações</a></li>
 <li><a href="temas.html">Temas</a></li>
@@ -104,9 +105,32 @@
 <h1 id="changelog---codis">Changelog - Codis<a class="anchor" href="#changelog---codis" aria-label="Link para esta seção">#</a></h1>
 <p>Formato baseado em <a href="https://keepachangelog.com/pt-BR/1.0.0/" target="_blank" rel="noopener">Keep a Changelog</a>,
 seguindo o <a href="https://semver.org/lang/pt-BR/" target="_blank" rel="noopener">Versionamento Semântico</a>.</p>
+<h2 id="101">[1.0.1]<a class="anchor" href="#101" aria-label="Link para esta seção">#</a></h2>
+<p>Correções de segurança apontadas pelo CodeQL e ajustes de CI.</p>
+<h3 id="adicionado">Adicionado<a class="anchor" href="#adicionado" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>Documentação:</strong> página <a href="previews.html">Previews</a> com um tour visual do editor, painel por painel, e a pasta <code>docs/img/previews/</code> para as capturas (com checklist de nomes e o script <code>tools/check_previews.py</code> que lista as que faltam).</li>
+</ul>
+<h3 id="modificado">Modificado<a class="anchor" href="#modificado" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>LSP:</strong> o <code>clientInfo</code> enviado aos servidores passa a informar a versão real do Codis (<code>APP_VERSION</code>) em vez de um valor fixo.</li>
+</ul>
+<h3 id="corrigido">Corrigido<a class="anchor" href="#corrigido" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>CI:</strong> a análise CodeQL falhava na extração Python (<code>NotADirectoryError: 'run.py'</code>) porque <code>paths</code> do <code>codeql.yml</code> listava um arquivo; agora lista só diretórios (<code>src</code>).</li>
+<li><strong>CI:</strong> a sincronização da wiki deixa de quebrar o workflow de documentação quando a GitHub Wiki ainda não foi inicializada; o passo é ignorado com um aviso explicando como criá-la.</li>
+</ul>
+<h3 id="segurança">Segurança<a class="anchor" href="#segurança" aria-label="Link para esta seção">#</a></h3>
+<ul>
+<li><strong>Terminal:</strong> expressões regulares das sequências DCS/SOS/PM/APC reescritas em tempo linear, eliminando o backtracking exponencial (ReDoS) com entrada maliciosa.</li>
+<li><strong>Chat:</strong> conexões IRC, MQTT, XMPP e a sonda de servidor exigem no mínimo TLS 1.2.</li>
+<li><strong>Preview/Render:</strong> <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code> e <code>&lt;head&gt;</code> agora são removidos mesmo com fechamento do tipo <code>&lt;/script &gt;</code>; o sticky scroll reconhece tags HTML em maiúsculas.</li>
+<li><strong>Zen Media:</strong> a detecção de links do YouTube compara o host da URL em vez de uma substring (<code>evil.com/?youtube.com</code> não é mais aceito).</li>
+<li><strong>Navegador Remoto:</strong> o cache local de arquivos remotos usa SHA-256 no lugar de SHA-1.</li>
+</ul>
 <h2 id="100">[1.0.0]<a class="anchor" href="#100" aria-label="Link para esta seção">#</a></h2>
 <p>Primeira versão pública e completamente floss.</p>
-<h3 id="adicionado">Adicionado<a class="anchor" href="#adicionado" aria-label="Link para esta seção">#</a></h3>
+<h3 id="adicionado-1">Adicionado<a class="anchor" href="#adicionado-1" aria-label="Link para esta seção">#</a></h3>
 <ul>
 <li><strong>Editor:</strong> 25 linguagens com highlight (48 reconhecidas por extensão), autocomplete e sugestões contextuais, snippets, Vim Mode, minimap, multi-cursor, seleção inteligente, code folding, LSP e DAP.</li>
 <li><strong>Interface:</strong> 21 temas, K-UI (engine cósmica animada), 15+ painéis, Activity Bar responsiva, 14 idiomas.</li>
@@ -137,10 +161,10 @@ seguindo o <a href="https://semver.org/lang/pt-BR/" target="_blank" rel="noopene
   </main>
   <aside class="toc" aria-label="Nesta página">
     <p class="toc-t">Nesta página</p>
-    <ul><li class="l2"><a href="#100">[1.0.0]</a></li><li class="l3"><a href="#adicionado">Adicionado</a></li><li class="l2"><a href="#0---09">[0 -&gt; 0.9]</a></li></ul>
+    <ul><li class="l2"><a href="#101">[1.0.1]</a></li><li class="l3"><a href="#adicionado">Adicionado</a></li><li class="l3"><a href="#modificado">Modificado</a></li><li class="l3"><a href="#corrigido">Corrigido</a></li><li class="l3"><a href="#segurança">Segurança</a></li><li class="l2"><a href="#100">[1.0.0]</a></li><li class="l3"><a href="#adicionado-1">Adicionado</a></li><li class="l2"><a href="#0---09">[0 -&gt; 0.9]</a></li></ul>
   </aside>
 </div>
-<footer class="site-foot"><span>Codis v1.0.0 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
+<footer class="site-foot"><span>Codis v1.0.1 · Aether · MIT · © KillovSky</span><span><a href="https://github.com/KillovSky/Codis" target="_blank" rel="noopener">GitHub</a> · <a href="changelog.html">Changelog</a> · <a href="roadmap.html">Roadmap</a></span></footer>
 <script src="docs.js" defer></script>
 </body>
 </html>

@@ -365,7 +365,7 @@ Estas chaves são lidas pelo código (com valor padrão no ponto de uso), mas **
 | `kui_dock_pinned` | bool | `false` | Dock do K-UI fixado |
 | `screensaver_idle_s` | int | `9999` | Segundos de inatividade para o protetor de tela do K-UI |
 
-> Os padrões acima refletem os `.get(chave, padrão)` do código na versão 1.0.0; se divergirem, o código é a fonte da verdade.
+> Os padrões acima refletem os `.get(chave, padrão)` do código na versão 1.0.1; se divergirem, o código é a fonte da verdade.
 
 ---
 

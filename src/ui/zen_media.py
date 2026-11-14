@@ -40,6 +40,7 @@ from collections.abc import Callable
 from pathlib import Path
 from tkinter import filedialog
 from typing import Any
+from urllib.parse import urlparse
 
 from src.i18n import _t
 from src.theme.utils import alpha_blend_hex
@@ -63,6 +64,21 @@ except (ImportError, OSError, Exception):
     VLC_AVAILABLE = False
 
 
+def _is_youtube(url: str) -> bool:
+    """True se o host da URL é youtube.com, youtu.be ou um subdomínio deles.
+
+    Compara o *hostname* parseado (não substring), para que ``evil.com/?youtube.com``
+    ou ``youtube.com.evil.com`` não sejam tratados como YouTube.
+    """
+    try:
+        # aceita também "youtube.com/watch?v=..." sem esquema
+        parsed = urlparse(url if "://" in url else "//" + url)
+        host = (parsed.hostname or "").lower()
+    except ValueError:
+        return False
+    return any(host == d or host.endswith("." + d) for d in ("youtube.com", "youtu.be"))
+
+
 def _parse_entry(entry) -> dict[str, str]:
     """Converte uma entrada de playlist em dicionário ``{name, url}``.
 
@@ -81,7 +97,7 @@ def _parse_entry(entry) -> dict[str, str]:
             "url": str(entry.get("url", "")),
         }
     url = str(entry)
-    if "youtube.com" in url or "youtu.be" in url:
+    if _is_youtube(url):
         if "watch?v=" in url:
             name = url.rsplit("watch?v=", 1)[-1].split("&", 1)[0]
         else:
@@ -735,7 +751,7 @@ class ZenMediaPlayer:
                     else:
                         player.set_xwindow(self._video_wid)
             media = instancia.media_new(url)
-            if "youtube.com" in url or "youtu.be" in url:
+            if _is_youtube(url):
                 media.add_option(":network-caching=1500")
             player.set_media(media)
             with contextlib.suppress(AttributeError, RuntimeError):

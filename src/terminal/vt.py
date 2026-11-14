@@ -38,8 +38,12 @@ _ESC_SIMPLE = re.compile(r"\x1b([ -/]*)([0-~])")
 _CSI_PREFIX = re.compile(r"\x1b\[[0-?]*[ -/]*\Z")
 _OSC_PREFIX = re.compile(r"\x1b\][^\x07\x1b]*\x1b?\Z")
 _ESC_PREFIX = re.compile(r"\x1b[ -/]*\Z")
-_STRING_TERMINATED = re.compile(r"\x1b[PX^_]([^\x07\x1b]|\x1b[^\\])*(?:\x1b\\|\x07)")
-_STRING_PREFIX = re.compile(r"\x1b[PX^_]([^\x07\x1b]|\x1b[^\\])*\x1b?\Z")
+# Corpo de DCS/SOS/PM/APC em "loop desenrolado": corridas de não-ESC separadas por
+# ESC que não inicia o terminador ST (ESC \). Cada ESC é literal, então não há
+# ambiguidade entre iterações e o casamento é linear (sem backtracking exponencial).
+_STRING_BODY = r"[^\x07\x1b]*(?:\x1b(?!\\)[^\x07\x1b]*)*"
+_STRING_TERMINATED = re.compile(r"\x1b[PX^_]" + _STRING_BODY + r"(?:\x1b\\|\x07)")
+_STRING_PREFIX = re.compile(r"\x1b[PX^_]" + _STRING_BODY + r"\Z")
 
 _MAX_PENDING = 8192
 _MAX_SCROLLED = 5000

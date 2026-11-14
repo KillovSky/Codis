@@ -15,8 +15,8 @@ abstract: >
   com suporte nativo a Python (Google/NumPy/Sphinx), Rust, Go, Ruby, Lua, C/C++, C# e mais,
   gerenciador de tarefas Kanban com agendador de comandos integrado, e suporte a 14 idiomas.
 
-version: "1.0.0"
-date-released: "2026-11-12"
+version: "1.0.1"
+date-released: "2026-11-13"
 license: MIT
 
 authors:

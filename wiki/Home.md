@@ -1,6 +1,6 @@
 # 📖 Documentação do Codis
 
-Documentação do Codis · Aether (v1.0.0). Os arquivos desta pasta alimentam a GitHub Wiki e o [site](https://killovsky.github.io/Codis/). CHANGELOG, ROADMAP, CONTRIBUTING e SECURITY ficam na raiz do repositório.
+Documentação do Codis · Aether (v1.0.1). Os arquivos desta pasta alimentam a GitHub Wiki e o [site](https://killovsky.github.io/Codis/). CHANGELOG, ROADMAP, CONTRIBUTING e SECURITY ficam na raiz do repositório.
 
 
 ## Começando
@@ -9,6 +9,7 @@ Documentação do Codis · Aether (v1.0.0). Os arquivos desta pasta alimentam a 
 | --- | --- | --- |
 | 🚀 | [Primeiros Passos](primeiros-passos.md) | Instalação, requisitos, execução, wizard inicial |
 | 🖥️ | [Interface](interface.md) | Layout geral: Activity Bar, Sidebar, painéis, barra de status |
+| 📸 | [Previews](previews.md) | Tour visual: capturas do editor por dentro, painel por painel |
 | ⌨️ | [Atalhos](atalhos.md) | Referência completa de todos os atalhos e cheat sheet |
 | ⚙️ | [Configurações](configuracoes.md) | As 24 categorias de `config.json`, com tipo e valor padrão |
 | 🎨 | [Temas](temas.md) | Temas built-in, pré-visualização, criação customizada e via plugin |

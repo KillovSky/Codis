@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 
 APP_NAME = "Codis"
-APP_VERSION = "1.0.0"
+APP_VERSION = "1.0.1"
 APP_CODENAME = "Aether"
 
 
