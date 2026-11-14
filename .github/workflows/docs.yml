@@ -175,7 +175,7 @@ jobs:
 
       - name: "Sincronizar para GitHub Wiki"
         if: steps.changed.outputs.run == 'true' && steps.wikirepo.outputs.exists == 'true'
-        uses: Andrew-Chen-Wang/github-wiki-action@v4
+        uses: Andrew-Chen-Wang/github-wiki-action@v5
         with:
           path: wiki/
           token: ${{ secrets.GITHUB_TOKEN }}
